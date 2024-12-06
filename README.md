@@ -157,8 +157,8 @@ TODO:
 - Sara sets up procedure to use the `.renv` lock file for running this on Quest
 - Move/rewrite the `workflow-06_XX .R` script from the epimodel template (and chistigHPC repository) here to have a clean method for how to run this
 
-4 Simulations (simulate hiv incidence over time with venue attendance)
-Once we have the calibrations carried out, we can actually carry out the epimodel simulations. 
+## 4 Simulations 
+Once we have the calibrations carried out, we can actually carry out the epimodel simulations. That is, we will simulate hiv incidence over time with venue attendance.
 
 Packages/components needed:
 - `repast4py`
