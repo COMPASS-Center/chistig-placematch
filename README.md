@@ -30,6 +30,7 @@ The repositories that were developed/used previously and are relevent here are t
 ## List of required files for our repository
 
 ### Pre-generated/written
+
 - A `chistig_colocation.py` module written in Python using Repast4py for agent-based colocation of synthetic population and implemented via the reticulate package
 - A `params.yaml` file that contains the following:
   -  the empirical population details for when new synthetic egos enter the simulation and need to be assigned behavior for their corresponding demographic (e.g. venue attendance behavior)
@@ -42,6 +43,7 @@ The repositories that were developed/used previously and are relevent here are t
 - A `network_estimation.R` file that carries out the initial network ERGM fits described in the initial ERGM fit procedure below and derived from: https://github.com/Tom-Wolff/chiSTIG_HPC/blob/main/R/01-networks_estimation.R
 
 ### Generated/created through procedures documented below
+
 - An `epistats.rds` R-object file that will come from the edge calibration procedure
 - A `netstats.rds` R-object file that will come from the edge calibration procedure
 - A set of four `netest_<treatment type>.rds` R-object files that will come from the edge calibration procedure for each of our "treatment types" (i.e. control, apps-only, venues-only, venues+apps)
@@ -49,6 +51,7 @@ The repositories that were developed/used previously and are relevent here are t
 - `.sh` files used for running sets of simulations/procedures in Quest 
 
 TODO:
+
 - put `R/utils-0_project_settings.R` file into a broader `utils.R` file
 - put `R/utils-epi_trackers.R` file into a broader `utils.R` file
 - put `R/utils-targets.R` file into a broader `utils.R` file
@@ -57,16 +60,18 @@ TODO:
   - This includes the `acts_setup.R` script
 
 ## Overview of our directory 
-python/
-input/
-output/
-R/
-package_dependency_archives/
-params/
- yaml file 
+
+- python/
+- input/
+- output/
+- R/
+- package_dependency_archives/
+- params/
+   - yaml file 
 
 ## Other requirements
 External packages that are needed:
+
 - `repast4py`
 - `slurmworkflow` - Workflow from EpimodelHIV to use with their template for calibration
 - `ARTnet` - set of initial datapoints and estimations used for our epimodel simulation
@@ -78,20 +83,20 @@ External packages that are needed:
 ## 1. Initial ERGM fits
 The first step of our work are initial ERGM fits of our network.
 
-Packages/components needed:
+- Packages/components needed:
   - `empimodelhiv-p`
 
-Output created:
-  The following are created by this and then used in the edge calibration procedure
+- Output created:
+  - The following are created by this and then used in the edge calibration procedure
     - An initial `netest` object
     - An initial `epistats` object
     - An initial `netstats` object
 
-NOTEs:
-    - originally, used the `chiSTIG_HPC` repo to carry out this, but it is not necessary as there is only one script from that repository that is used and run once
-    - Instead, we only need the source called files of the following from that repository:
-      - R/utils-0_project_settings.R
-      - 01-networks_estimation.R script from the chiSTIG_HPC repository 
+- NOTEs:
+- originally, used the `chiSTIG_HPC` repo to carry out this, but it is not necessary as there is only one script from that repository that is used and run once
+- Instead, we only need the source called files of the following from that repository:
+  - R/utils-0_project_settings.R
+  - 01-networks_estimation.R script from the chiSTIG_HPC repository 
 
 TODOs: 
 - look for other source called files from `chiSTIG_HPC` that are used to build this
