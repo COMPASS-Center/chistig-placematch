@@ -54,6 +54,7 @@ TODO:
 - put `R/utils-targets.R` file into a broader `utils.R` file
 - implement the following file into our branch of the epimodelHIV-p repository: https://github.com/Tom-Wolff/chiSTIG_HPC/blob/main/R/04-test_netsim.R#L122
 - write an `.R` script that explicitly calls on the `ARTnet` and `ARTnetData` packages and extracts explicitly what we need from those two packages so we only need to call upon them once for all of our procedures.
+  - This includes the `acts_setup.R` script
 
 ## Overview of our directory 
 python/
