@@ -70,6 +70,7 @@ TODO:
    - yaml file 
 
 ## Other requirements
+
 External packages that are needed:
 
 - `repast4py`
@@ -77,22 +78,21 @@ External packages that are needed:
 - `ARTnet` - set of initial datapoints and estimations used for our epimodel simulation
 - `reticulate` - used to communicate back and forth between epimodel in R and chistig colocation in python
 
-
 # Procedures for the paper/simulation results
 
 ## 1. Initial ERGM fits
 The first step of our work are initial ERGM fits of our network.
 
-- Packages/components needed:
-  - `empimodelhiv-p`
+Packages/components needed:
+- `empimodelhiv-p`
 
-- Output created:
-  - The following are created by this and then used in the edge calibration procedure
-    - An initial `netest` object
-    - An initial `epistats` object
-    - An initial `netstats` object
+Output created:
+The following are created by this and then used in the edge calibration procedure
+- An initial `netest` object
+- An initial `epistats` object
+- An initial `netstats` object
 
-- NOTEs:
+NOTEs:
 - originally, used the `chiSTIG_HPC` repo to carry out this, but it is not necessary as there is only one script from that repository that is used and run once
 - Instead, we only need the source called files of the following from that repository:
   - R/utils-0_project_settings.R
@@ -107,31 +107,31 @@ TODOs:
 After creating our initial network fits, our edge calibration allows us to calibrate our `netest`, `epistats`, and `netstats` objects for our target edge counts. 
 
 Packages/components needed:
-  - `repast4py` and our colocation module 
-  - `epimodelhiv-p` that implements our `chistigmodules` functions 
-  - explicit quest setup/procedure to run the calibration
+- `repast4py` and our colocation module 
+- `epimodelhiv-p` that implements our `chistigmodules` functions 
+- explicit quest setup/procedure to run the calibration
   
 Input files needed:
-  - `dur_coeffs.R`
-  - target values of our edges
+- `dur_coeffs.R`
+- target values of our edges
     
 Output created:
-  - `netest` objects for each of the treatment scenarios
-  - `epistats` for the updated target value fits
-  - `netstats` for the updated target value fits 
+- `netest` objects for each of the treatment scenarios
+- `epistats` for the updated target value fits
+- `netstats` for the updated target value fits 
 
 TODOs:
-  - check on if we need the params file for this, and if so, we will need to lay out the procedure for building this set of parameters to complete this procedure before the epimodel parameter calibration
+- check on if we need the params file for this, and if so, we will need to lay out the procedure for building this set of parameters to complete this procedure before the epimodel parameter calibration
 
 
 ## 3. Epimodelhiv parameter calibration
 Now we run the epimodel parameter calibration. We use a calibration method that is developed by the EpimodelHIV team and implemented via the Epimodel template repository. It implicitly creates and runs the necessary SLURM files to carry out the calibration on the Quest cluster. The package dependencies are organized/installed via the `.renv` lock file.  
 
 Packages/components needed:
-  - `epimodelhiv-p`
-  - `slurmworkflow` - the package used to carry out the implicit automated workflow via the epimodel template method
-  - chistigHPC (quest setup is implicit via slurmworkflow, copy of the epimodel template)
-    - uses workflow-06_XX .R from https://github.com/Tom-Wolff/chiSTIG_HPC/blob/main/R/workflow_06-automated-calibration.R
+- `epimodelhiv-p`
+- `slurmworkflow` - the package used to carry out the implicit automated workflow via the epimodel template method
+- chistigHPC (quest setup is implicit via slurmworkflow, copy of the epimodel template)
+  - uses workflow-06_XX .R from https://github.com/Tom-Wolff/chiSTIG_HPC/blob/main/R/workflow_06-automated-calibration.R
  
  NOTEs:
  - Automated calibration doesn't actually converge to the final parameter values because of population size
@@ -150,20 +150,20 @@ Packages/components needed:
     - https://github.com/Tom-Wolff/chiSTIG_HPC/tree/main
 
 Output:
-  - updated `params.csv` file for epimodel that also includes the transcale parameters
+- updated `params.csv` file for epimodel that also includes the transcale parameters
     
-- TODO:
-  - Sara runs this herself and tries out these steps
-  - Sara sets up procedure to use the `.renv` lock file for running this on Quest
-  - Move/rewrite the `workflow-06_XX .R` script from the epimodel template (and chistigHPC repository) here to have a clean method for how to run this
+TODO:
+- Sara runs this herself and tries out these steps
+- Sara sets up procedure to use the `.renv` lock file for running this on Quest
+- Move/rewrite the `workflow-06_XX .R` script from the epimodel template (and chistigHPC repository) here to have a clean method for how to run this
 
 4 Simulations (simulate hiv incidence over time with venue attendance)
 Once we have the calibrations carried out, we can actually carry out the epimodel simulations. 
 
 Packages/components needed:
-  - `repast4py`
-  - `epimodelhiv-p` that implements the overwrite functions of the `chistigmodules` repository
-  - explicit quest setup
+- `repast4py`
+- `epimodelhiv-p` that implements the overwrite functions of the `chistigmodules` repository
+- explicit quest setup
 
 
 
