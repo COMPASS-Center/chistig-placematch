@@ -2,8 +2,44 @@
 Analysis of venue attendance on HIV incidence over time
 
 
+# Preliminaries
+
+## Terms
+
+- Treatment type
+  - Control
+  - Appuse only
+  - Venue attendance only
+  - Appuse + venue attendance
+ 
+- Partnership type
+  - Main
+  - Casual
+  - One-time 
+
 # Structure of repo
 
+## List of required files for our repository
+- A `chistig_colocation.py` module written in Python using Repast4py for agent-based colocation of synthetic population and implemented via the reticulate package
+- A `params.yaml` file that contains the following:
+  -  the empirical population details for when new synthetic egos enter the simulation and need to be assigned behavior for their corresponding demographic (e.g. venue attendance behavior)
+  -  simulation details, such as length of simulation
+  -  directory details for where to read in files from and where to write files out to
+- An `initial_synthpop.csv` initial synthetic population in a .csv file that is with a uniform age (?) 
+- A `utils.R` file that contains functions useful for keeping track of epimodel specifics taken from 
+- An `epistats.rds` R-object file that will come from the edge calibration procedure
+- A `netstats.rds` R-object file that will come from the edge calibration procedure
+- A set of four `netest_<treatment type>.rds` R-object files that will come from the edge calibration procedure for each of our "treatment types" (i.e. control, apps-only, venues-only, venues+apps)
+- A `params.csv` file that contains the epimodel calibrated parameters from the epimodelhiv parameter calibration procedure
+- A `target_values.csv` that contains the target edge values for the formation components of our network ERGMs for each partnership type and treatment type
+- A 
+
+
+TODO:
+- put `R/utils-0_project_settings.R` file into a broader `utils.R` file
+- put `R/utils-epi_trackers.R` file into a broader `utils.R` file
+- put `R/utils-targets.R` file into a broader `utils.R` file
+ 
 
 python/
 input/
@@ -13,10 +49,16 @@ package_dependency_archives/
 params/
  yaml file 
 
+## Other requirements
+External packages that are needed:
+- `repast4py`
+- `slurmworkflow` - Workflow from EpimodelHIV to use with their template for calibration
+- `ARTnet` - set of initial 
 
-## Steps of what we do with this repository
+# Steps of what we do with this repository for the paper/simulation results
 
-1. initial ergm fits
+## 1. initial ergm fits
+The first step of our work are initial ERGM fits of our network. The 
   - empimodelhiv-p
   - output:
     - netest
