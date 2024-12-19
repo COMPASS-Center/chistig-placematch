@@ -1,16 +1,21 @@
 # chistig-placematch
 Analysis of venue attendance on HIV incidence over time. To carry out this anaylsis, we have four major steps, described as the following:
 
-0. Prior to anything from this repository, we use the output from the [#chistig-place-and-pop](https://github.com/COMPASS-Center/chistig-place-and-pop) repository, which creates a synthetic population of agents between the ages of 16-29, who are assigned a race/ethcnicity, age, and corresponding set of venues and venue attendance behavior. Additionally, a set of target edges based on this synthetic population is delineated. 
-
+0. Prior to anything from this repository, we use the output from the [#chistig-place-and-pop](https://github.com/COMPASS-Center/chistig-place-and-pop) repository, which creates a synthetic population of agents between the ages of 16-29, who are assigned a race/ethcnicity, age, and corresponding set of venues and venue attendance behavior. Additionally, a set of target edges based on this synthetic population is delineated.
+1. Our first step is creating an estimated network estimation objects for our synthetic population based on everything _except_ venue colocation.
+2. Next, we refine our network estimation objects to fit our set of target edges using our agents' venues.
+3. Third, we calibrate the parameters for our disease transmission portion of the simulation using these network objects.
+4. Finally, we run a full simulation that models disease transmission of our synthetic population over time as they colocate at venues.
 
 # Preliminaries
+
+This repository is a second iteration of our chiSTIG project that is an effort to combine all of the disparate procedures, scripts, and repositories that were developed/used for the four steps above. A few notes on the disparate procedures/scripts/repositories we are building from are described here.
 
 ## Old repositories used
 
 The repositories that were developed/used previously and are relevent here are the following:
 
-- `ChiSTIG_model` - repository developed by Sara and implements the colocation module that uses repast4py, and is where the simulations + edge calibration steps were carried out
+- `ChiSTIG_model` - repository developed by Sara and implements the colocation module that uses repast4py, and is where the simulations + edge calibration steps were carried out ([link to ChiSTIG_model](https://github.com/jozik/ChiSTIG_model))
 - `chistigmodules` - repository developed by Tom that implement the `control_msm` module overrides and allow us to have a module for `fuzzynodematch` for our venue and appuse colocation. This module was previously compiled and called as an R package for our procedures. Instead, we plan to implement the `control_msm` override via the EpimodelHIV-p branch we will create. Thus, we will only need to install our version of the `EpimodelHIV-p` package to utilize this.
 - `chiSTIG_HPC` - repository developed by Tom that was a copy of the epimodel template for a standard epimodel model development/implementation. The main component of this repository that is useful is the automated workflow for calibration. In this repository, we will instead just copy over the relevent individual `.R` files for the calibration.   
 
