@@ -21,17 +21,20 @@ The repositories that were developed/used previously and are relevent here are t
 
 ## Terms
 
-- Treatment type
-  - Control
-  - Appuse only
-  - Venue attendance only
-  - Appuse + venue attendance
- 
-- Partnership type
+We have three types of sexual networks that we are simulating based on partnership types. Our three partnership types are:
+
   - Main
   - Casual
   - One-time 
 
+We then run our chiSTIG simulations to test how disease transmission differs based on behavioral dynamics of our synthetic population. The four sets of experiments we define as _treatment types_ and are as follows:
+
+  - Control - does not take into consideration of agents attending and colocating at venues, or using apps 
+  - Appuse only -  *does not* take into consideration of agents attending and colocating at venues; *does* consider colocating virtually based on app use
+  - Venue attendance only - takes into consideration of agents attending and colocating at venues; *does not* consider colocating virtually based on app use
+  - Appuse + venue attendance - takes into consideration of agents attending and colocating at venues *and* colocating virtually based on app use
+
+ 
 # Structure of repo
 
 ## List of required files for our repository
