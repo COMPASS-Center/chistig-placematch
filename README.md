@@ -35,7 +35,7 @@ We then run our chiSTIG simulations to test how disease transmission differs bas
   - Appuse + venue attendance - takes into consideration of agents attending and colocating at venues *and* colocating virtually based on app use
 
  
-# Structure of repo
+# Structure of this repository
 
 ## List of required files for our repository
 
@@ -93,17 +93,23 @@ External packages that are needed:
 ## 1. Initial ERGM fits
 The first step of our work are initial ERGM fits of our network.
 
-Packages/components needed:
+### Main files used
+
+
+### Packages/components needed
 - `empimodelhiv-p`
 
-Output created:
+### Input files/data required
+
+
+### Output created:
 The following are created by this and then used in the edge calibration procedure
-- An initial `netest` object
-- An initial `epistats` object
-- An initial `netstats` object
+- An initial `netest` RDS object
+- An initial `epistats` RDS object
+- An initial `netstats` RDS object
 
 NOTEs:
-- originally, used the `chiSTIG_HPC` repo to carry out this, but it is not necessary as there is only one script from that repository that is used and run once
+- Originally, used the `chiSTIG_HPC` repo to carry out this, but it is not necessary as there is only one script from that repository that is used and run once
 - Instead, we only need the source called files of the following from that repository:
   - R/utils-0_project_settings.R
   - 01-networks_estimation.R script from the chiSTIG_HPC repository 
