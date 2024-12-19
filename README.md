@@ -21,12 +21,14 @@ The repositories that were developed/used previously and are relevent here are t
 
 ## Terms
 
+### Partnership types
 We have three types of sexual networks that we are simulating based on partnership types. Our three partnership types are:
 
   - Main
   - Casual
   - One-time 
 
+### Treatment types
 We then run our chiSTIG simulations to test how disease transmission differs based on behavioral dynamics of our synthetic population. The four sets of experiments we define as _treatment types_ and are as follows:
 
   - Control - does not take into consideration of agents attending and colocating at venues, or using apps 
@@ -128,28 +130,70 @@ The following are created by this and then used in the edge calibration procedur
 - [ ] consider how to run this without needing the ArtNET package
 
 ## 2. Edge calibration 
-After creating our initial network fits, our edge calibration allows us to calibrate our `netest`, `epistats`, and `netstats` objects for our target edge counts. 
+After creating our initial network fits, our edge calibration allows us to calibrate our `netest`, `epistats`, and `netstats` objects for our target edge counts. The procedure for running this is laid out in the `./02-network-edge-calibration/README.md`. 
 
-Packages/components needed:
-- `repast4py` and our colocation module 
+### Main files used
+- `./02-network-edge-calibration/edge_calibration_procedure_ONE.sh`
+- `./02-network-edge-calibration/edge_calibration_procedure_TWO.sh`
+- `testXX.yaml`
+
+### Packages/components needed
+- `repast4py`
 - `epimodelhiv-p` that implements our `chistigmodules` functions 
-- explicit quest setup/procedure to run the calibration
-  
-Input files needed:
-- `dur_coeffs.R`
-- target values of our edges
-    
-Output created:
-- `netest` objects for each of the treatment scenarios
-- `epistats` for the updated target value fits
-- `netstats` for the updated target value fits 
 
-TODOs:
-- check on if we need the params file for this, and if so, we will need to lay out the procedure for building this set of parameters to complete this procedure before the epimodel parameter calibration
+### Input files/data required
+- From step #1
+  - Initial `netest` RDS object
+  - Initial `epistats` RDS object
+  - Initial `netstats` RDS object
+- Predifined scripts in `./02-network-edge-calibration/`
+  - `step1_edge_calibration.R` 
+  - `step2a_edge_calibration.R` 
+  - `step2b_edge_calibration.R`
+  - `step2b_sbatch_ergm_fit_procedure.sh`
+  - `step2b_sbatch_model_convergence.sh`
+  - `step2b_setup_ergm_fit_procedure`
+  - `step2c_edge_calibration.R`
+  - `step3a_edge_calibration.py`
+  - `simtestXX.R`
+- Other files
+  - `chistig_params.yaml`
+  - `chistig_colocation_model_reticulate.py`
+  - `dur_coeffs.R`
+  - target values of our edges
+
+### Interim files created
+- `.rds` fit objects for each of the four treatment types
+- `.csv` files for coefficients for each of the four treatment types
+- `.out` files for the output from the simulations
+- `calibration_sets_that_did_not_converge.txt`
+- `edge_target_calibration_vals.csv`
+-  `step2_ergm_fit_procedure_input_args.txt`
+
+### Output created
+- `netest` objects for each of the treatment scenarios
+  - `netest_control.rds`
+  - `netest_venues.rds`
+  - `netest_apps.rds`
+  - `netest_both.rds`
+- updated `epistats` for each partnership type
+- updated `netstats` for each partnership type  
+
+### TODO 
+- [ ] check on if we need the params file for this, and if so, we will need to lay out the procedure for building this set of parameters to complete this procedure before the epimodel parameter calibration
 
 
 ## 3. Epimodelhiv parameter calibration
 Now we run the epimodel parameter calibration. We use a calibration method that is developed by the EpimodelHIV team and implemented via the Epimodel template repository. It implicitly creates and runs the necessary SLURM files to carry out the calibration on the Quest cluster. The package dependencies are organized/installed via the `.renv` lock file.  
+
+### Main files used
+### Packages/components needed
+### Input files/data required
+### Output created:
+### NOTES
+### TODO 
+
+
 
 Packages/components needed:
 - `epimodelhiv-p`
@@ -189,6 +233,13 @@ Packages/components needed:
 - `epimodelhiv-p` that implements the overwrite functions of the `chistigmodules` repository
 - explicit quest setup
 
+
+### Main files used
+### Packages/components needed
+### Input files/data required
+### Output created:
+### NOTES
+### TODO 
 
 
 
