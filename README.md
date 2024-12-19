@@ -176,11 +176,9 @@ After creating our initial network fits, our edge calibration allows us to calib
   - `netest_venues.rds`
   - `netest_apps.rds`
   - `netest_both.rds`
-- updated `epistats` for each partnership type
-- updated `netstats` for each partnership type  
+- updated `epistats` 
+- updated `netstats` 
 
-### TODO 
-- [ ] check on if we need the params file for this, and if so, we will need to lay out the procedure for building this set of parameters to complete this procedure before the epimodel parameter calibration
 
 
 ## 3. Epimodelhiv parameter calibration
