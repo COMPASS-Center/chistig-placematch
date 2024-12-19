@@ -94,13 +94,20 @@ External packages that are needed:
 The first step of our work are initial ERGM fits of our network.
 
 ### Main files used
-
+- `01-networks_estimation.R`
 
 ### Packages/components needed
-- `empimodelhiv-p`
+- `EpiModelHIV-p`
+- `ARTnet`
 
 ### Input files/data required
-
+- From [#chistig-place-and-pop](https://github.com/COMPASS-Center/chistig-place-and-pop):
+  - `egos_v4_1_uniform_age_dist.csv`
+  - `target_values_v4_1_uniform_age_dist.csv`
+- Other:
+ - `utils-0_project_settings.R`
+ - `dur_coefs.R`
+ - `acts_setup.R`
 
 ### Output created:
 The following are created by this and then used in the edge calibration procedure
@@ -108,16 +115,17 @@ The following are created by this and then used in the edge calibration procedur
 - An initial `epistats` RDS object
 - An initial `netstats` RDS object
 
-NOTEs:
+### NOTES
 - Originally, used the `chiSTIG_HPC` repo to carry out this, but it is not necessary as there is only one script from that repository that is used and run once
-- Instead, we only need the source called files of the following from that repository:
-  - R/utils-0_project_settings.R
-  - 01-networks_estimation.R script from the chiSTIG_HPC repository 
+- Instead, we only need the source called files of the following from from the chiSTIG_HPC repository:
+  - `R/utils-0_project_settings.R`
+  - `01-networks_estimation.R`  
 
-TODOs: 
-- look for other source called files from `chiSTIG_HPC` that are used to build this
-- streamline the writing of the `01-networks_estimation.R` network estimation file into a `network_estimation.R` script for this repository
-- write out a `utils.R` file that combines all of the utility functions previously created across multiple files (e.g. `R/utils-targets.R`)
+### TODO 
+- [X] look for other source called files from `chiSTIG_HPC` that are used to build this
+- [ ] streamline the writing of the `01-networks_estimation.R` network estimation file into a `network_estimation.R` script for this repository
+- [ ] write a comprehensive `utils.R` file that combines all of the utility functions previously created across multiple files (e.g. `R/utils-targets.R`)
+- [ ] consider how to run this without needing the ArtNET package
 
 ## 2. Edge calibration 
 After creating our initial network fits, our edge calibration allows us to calibrate our `netest`, `epistats`, and `netstats` objects for our target edge counts. 
