@@ -1,0 +1,69 @@
+expname: 'test23oct'
+
+# directories
+repo.dir: '/projects/p32153/ChiSTIG_model/'
+calibration.subdir: 'calibration/'
+artnet.duration.dissolution.subdir: 'calibration/'
+epistats.subdir: 'data/input/'
+synthpop.subdir: 'data/synthpop/v4/'
+netest.subdir: 'data/input/'
+target.dataframe.subdir: 'calibration/'
+calibration.matrix.subdir: 'calibration/'
+simulation.subdir: 'chistig/'
+simulation.params.subdir: 'params/'
+
+# files
+target.dataframe.fname: 'target_values_v4_1_uniform_age_dist.csv' # will be located here /projects/p32153/ChiSTIG_model/calibration/target_values_v4_1_uniform_age_dist.csv
+epistats.fname: 'epistats-local.rds'
+artnet.compute.duration.dissolution.fname: 'dur_coefs.R'
+synthpop.fname: 'egos_v4_1_uniform_age_dist.csv'
+calibration.matrix.fname: 'edge_target_calibration_vals'
+step2b.inputargs.fname: 'step2_ergm_fit_procedure_input_args'
+step2b.sbatch.fname: 'step2b_sbatch_ergm_fit_procedure'
+step2b.rscript.fname: 'step2b_edge_calibration.R'
+sim.model.params.base.fname: 'model_params'
+
+
+# treatments
+treatment.types:
+  - control
+  - both      
+  - apps
+  - venues
+
+# partnerships
+partnership.types:
+  - main
+  - casual      
+  - onetime
+
+# calibration setup
+num.ergm.convergence.attempts: 10
+ergm.convergence.attempt.time: 60 #minutes 
+max.random.seed: 200
+sbatch.partition: 'normal' # short, normal, 
+sbatch.walltime.hours: '10' # make sure it is large enough to account for the convergence attempt time times the number of convergence attempts
+sbatch.walltime.minutes: '30'
+sbatch.email: 'tom.wolff@northwestern.edu'
+sbatch.memory: '3G'
+convergence.fail.fname: 'calibration_sets_that_did_not_converge'
+
+
+# simulation runs
+num.simulation.runs.per.treatment: 20
+simulation.treatments:
+  control: 'c'
+  both: 'b'
+  venues: 'v'
+  apps: 'a'
+simulation.arguments.file: 'input_args'
+sbatch.mem.sim: '3G'
+sbatch.partition.sim: 'normal'
+sbatch.time.hours.sim: '08'
+sbatch.time.minutes.sim: '00'
+simulation.rscript.file: 'simtest'
+
+# simulation yaml override 
+simulation.yaml.override:
+  stop.at: 4000
+  burnin.time.weeks: 4000

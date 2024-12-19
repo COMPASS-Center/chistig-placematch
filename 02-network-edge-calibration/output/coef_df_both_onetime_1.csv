@@ -1,0 +1,13 @@
+"","treatment","model","term","estimate"
+"edges","Venues and Apps","Onetime","edges",-15.1158907804067
+"nodematch.age.grp.1","Venues and Apps","Onetime","nodematch.age.grp.1",0.866638367065992
+"nodematch.age.grp.2","Venues and Apps","Onetime","nodematch.age.grp.2",0.801415331227347
+"nodefactor.race.1","Venues and Apps","Onetime","nodefactor.race.1",-0.24615141934486
+"nodefactor.race.2","Venues and Apps","Onetime","nodefactor.race.2",-0.184016393774224
+"nodefactor.race.3","Venues and Apps","Onetime","nodefactor.race.3",-0.120115513934331
+"nodematch.race","Venues and Apps","Onetime","nodematch.race",0.859671808069673
+"nodefactor.deg.tot.1","Venues and Apps","Onetime","nodefactor.deg.tot.1",-0.012858106397546
+"nodefactor.deg.tot.2","Venues and Apps","Onetime","nodefactor.deg.tot.2",0.725312594213365
+"nodefactor.deg.tot.3+","Venues and Apps","Onetime","nodefactor.deg.tot.3+",0.821047928485759
+"fuzzynodematch.venues.all.TRUE","Venues and Apps","Onetime","fuzzynodematch.venues.all.TRUE",1.46343890823723
+"fuzzynodematch.apps.all.TRUE","Venues and Apps","Onetime","fuzzynodematch.apps.all.TRUE",1.29187018120463

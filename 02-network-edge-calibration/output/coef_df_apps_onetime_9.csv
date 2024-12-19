@@ -1,0 +1,12 @@
+"","treatment","model","term","estimate"
+"edges","Apps Only","Onetime","edges",-15.1401004475758
+"nodematch.age.grp.1","Apps Only","Onetime","nodematch.age.grp.1",0.901074489100279
+"nodematch.age.grp.2","Apps Only","Onetime","nodematch.age.grp.2",0.819404703725472
+"nodefactor.race.1","Apps Only","Onetime","nodefactor.race.1",-0.247777249065339
+"nodefactor.race.2","Apps Only","Onetime","nodefactor.race.2",-0.184263610802591
+"nodefactor.race.3","Apps Only","Onetime","nodefactor.race.3",-0.106114790680436
+"nodematch.race","Apps Only","Onetime","nodematch.race",0.887585138714761
+"nodefactor.deg.tot.1","Apps Only","Onetime","nodefactor.deg.tot.1",-0.0112241923350574
+"nodefactor.deg.tot.2","Apps Only","Onetime","nodefactor.deg.tot.2",0.741076950063677
+"nodefactor.deg.tot.3+","Apps Only","Onetime","nodefactor.deg.tot.3+",0.831011016321319
+"fuzzynodematch.apps.all.TRUE","Apps Only","Onetime","fuzzynodematch.apps.all.TRUE",1.30078848574446

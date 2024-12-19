@@ -1,0 +1,362 @@
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-conda-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
+5 test23oct.yaml 1 both onetime
+Run number in SLURM array: 5.
+YAML file name: test23oct.yaml.
+Calibration set number for ERGM fit: 1.
+Treatment type for ERGM fit: both.
+Partnership type for ERGM fit: onetime.
+Array of random seeds for convergence attempts: 50 157 146 129 68 171 72 13 198 61.
+Random seed is 50 for attempt 1 of 10...
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+[1] "Random seed number: 50"
+[1] "Both - Inst (B3)"
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.1451.
+The log-likelihood improved by 5.3986.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.1671.
+The log-likelihood improved by 6.2805.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.1650.
+The log-likelihood improved by 5.1220.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.1799.
+The log-likelihood improved by 5.0648.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.1983.
+The log-likelihood improved by 5.1459.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.2063.
+The log-likelihood improved by 4.5536.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.2462.
+The log-likelihood improved by 5.2045.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.2664.
+The log-likelihood improved by 4.7639.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.3011.
+The log-likelihood improved by 4.4861.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.3650.
+The log-likelihood improved by 4.6176.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.4648.
+The log-likelihood improved by 4.7911.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.6527.
+The log-likelihood improved by 4.8365.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Attempt 1 did not finish within the timeout period.
+Random seed is 157 for attempt 2 of 10...
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+[1] "Random seed number: 157"
+[1] "Both - Inst (B3)"
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.1602.
+The log-likelihood improved by 979.4781.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Error in ergm.MCMLE(init, nw, model, initialfit = (initialfit <- NULL),  : 
+  Number of edges in a simulated network exceeds that in the observed by a factor of more than 20. This is a strong indicator of model degeneracy or a very poor starting parameter configuration. If you are reasonably certain that neither of these is the case, increase the MCMLE.density.guard control.ergm() parameter.
+Calls: netest -> ergm -> ergm.MCMLE
+In addition: Warning message:
+In mple.existence(pl) : The MPLE does not exist!
+Execution halted
+Attempt 2 did not finish within the timeout period.
+Random seed is 146 for attempt 3 of 10...
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+[1] "Random seed number: 146"
+[1] "Both - Inst (B3)"
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.2842.
+The log-likelihood improved by 5.0505.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.3396.
+The log-likelihood improved by 4.6553.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.4480.
+The log-likelihood improved by 5.0144.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.6407.
+The log-likelihood improved by 5.0527.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 3.7688.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.1818.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0013.
+Convergence test p-value: < 0.0001. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Attempt 3 completed successfully.
+Finished convergence attempts loop.

@@ -1,0 +1,11 @@
+"","treatment","model","term","estimate"
+"edges","Basic","Onetime","edges",-14.4338751213164
+"nodematch.age.grp.1","Basic","Onetime","nodematch.age.grp.1",0.95648411488914
+"nodematch.age.grp.2","Basic","Onetime","nodematch.age.grp.2",0.787214419783315
+"nodefactor.race.1","Basic","Onetime","nodefactor.race.1",-0.405022030410058
+"nodefactor.race.2","Basic","Onetime","nodefactor.race.2",-0.231602567208039
+"nodefactor.race.3","Basic","Onetime","nodefactor.race.3",-0.136588725141034
+"nodematch.race","Basic","Onetime","nodematch.race",0.973274542823113
+"nodefactor.deg.tot.1","Basic","Onetime","nodefactor.deg.tot.1",-0.122534223583814
+"nodefactor.deg.tot.2","Basic","Onetime","nodefactor.deg.tot.2",0.929435458530873
+"nodefactor.deg.tot.3+","Basic","Onetime","nodefactor.deg.tot.3+",1.00723873835861
