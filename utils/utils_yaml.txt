@@ -1,0 +1,20 @@
+est_dir = "./data/intermediate/estimates/"
+diag_dir = "./data/intermediate/diagnostics/"
+calib_dir = "./data/intermediate/calibration/"
+scenarios_dir = "./data/intermediate/scenarios/"
+
+current_git_branch = "main"
+mail_user = "tom.wolff@northwestern.edu"
+
+calibration_end = 60 # Number of years for burn-in period
+prep_start = Inf
+intervention_start = Inf
+intervention_end = Inf # I think the Inf values here are correct, will need to check 
+riskh.start = Inf
+
+# HPC Configs
+
+hpc_partition = "short"
+hpc_account = "p32153"
+hpc_r_version = "4.3.0"
+hpc_conda_proj = NULL
