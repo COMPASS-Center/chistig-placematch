@@ -12,21 +12,21 @@
 ## 00. Shared variables setup
 ##
 
-est_dir <- "./data/intermediate/estimates/"
-diag_dir <- "./data/intermediate/diagnostics/"
-calib_dir <- "./data/intermediate/calibration/"
-scenarios_dir <- "./data/intermediate/scenarios/"
+est_dir <- yaml$est_dir
+diag_dir <- yaml$diag_dir
+calib_dir <- yaml$calib_dir
+scenarios_dir <- yaml$scenarios_dir
 
 # Information for the HPC workflows
-current_git_branch <- "main"
-mail_user <- "tom.wolff@northwestern.edu" # or any other mail provider
+current_git_branch <- yaml$current_git_branch
+mail_user <- yaml$mail_user # or any other mail provider
 
 # Relevant time steps for the simulation
-calibration_end    <- 52 * 60
+calibration_end    <- 52 * yaml$calibration_end
 restart_time       <- calibration_end + 1
-prep_start         <- restart_time + 52 * 5
-intervention_start <- prep_start + 52 * 10
-intervention_end   <- intervention_start + 52 * 10
+prep_start         <- yaml$prep_start
+intervention_start <- yaml$intervention_start
+intervention_end   <- yaml$intervention_end
 
 
 
@@ -58,8 +58,8 @@ param <- EpiModel::param.net(
   data.frame.params = readr::read_csv("data/input/params_chistig_apr18.csv"),
   netstats          = netstats,
   epistats          = epistats,
-  prep.start        = Inf,
-  riskh.start       = Inf
+  prep.start        = yaml$prep_start,
+  riskh.start       = yaml$riskh.start
 )
 
 # Initial conditions (default prevalence initialized in epistats)
@@ -556,11 +556,11 @@ calibration_trackers <- list(
 
 # Must be sourced **AFTER** "./R/utils-0_project_settings.R"
 
-swf_configs_quest <- function(partition = "short",
-                              account = "p32153",
-                              r_version = "4.3.0",
-                              conda_proj = NULL,
-                              mail_user = "tom.wolff@northwestern.edu") {
+swf_configs_quest <- function(partition =  yaml$hpc_partition,
+                              account = yaml$hpc_account,
+                              r_version = yaml$hpc_r_version,
+                              conda_proj = yaml$hpc_conda_proj,
+                              mail_user = yaml$mail_user) {
 
   hpc_configs <- list()
   hpc_configs[["default_sbatch_opts"]] <-  list(
@@ -594,9 +594,9 @@ swf_configs_quest <- function(partition = "short",
 ######
 
 hpc_configs <- swf_configs_quest(
-  partition = "short", # ASK ABOUT THIS
-  r_version = "4.3.0",
-  mail_user = "tom.wolff@northwestern.edu"
+  partition = yaml$hpc_partition, # ASK ABOUT THIS
+  r_version = yaml$hpc_r_version,
+  mail_user = yaml$mail_suer
 )
 #
 # hpc_configs <- EpiModelHPC::swf_configs_hyak(
