@@ -259,3 +259,5 @@ if (sex.cess.mod == TRUE) {
   out$casl$durs.casl.byage <- rbind(out$casl$durs.casl.byage, df)
 }
 
+# Save `out` as a pre-generated object for reproducibility
+saveRDS(out, "~/Desktop/dur_coefs.rds")

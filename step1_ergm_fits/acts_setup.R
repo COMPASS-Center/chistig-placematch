@@ -191,3 +191,11 @@ cond.oo.mod = glm(prob.cond ~
 acts.mod <- strip_glm(acts.mod)
 cond.mc.mod <- strip_glm(cond.mc.mod)
 cond.oo.mod <- strip_glm(cond.oo.mod)
+
+# Save the above model objects, stored as a list, in an RDS file
+saveRDS(
+    list(acts.mod = acts.mod,
+         cond.mc.mod = cond.mc.mod,
+         cond.oo.mod = cond.oo.mod),
+    "~/Desktop/acts_models.rds"
+)

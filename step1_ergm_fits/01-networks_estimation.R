@@ -33,18 +33,12 @@ if (context == "local") {
 ##### NOTE: You need to access RADAR off the chiSTIG project folder located here
 ##### `smb://fsmresfiles.fsm.northwestern.edu/fsmresfiles` in order for `acts_setup.R`
 ##### to run
-source("./R/acts_setup.R")
-##### Warning message that appears here is due to deriving predicted probabilities
-##### of condom use using a binomial family model
+# source("./R/acts_setup.R")
+acts_models <- readRDS("./data/acts_models.rds")
 
-# Remove RADAR data for security purposes
-acts.mod$data <- NULL
-acts.mod$model <- NULL
-cond.mc.mod$data <- NULL
-cond.mc.mod$model <- NULL
-cond.oo.mod$data <- NULL
-cond.oo.mod$model <- NULL
-
+acts.mod <- acts_models$acts.mod
+cond.mc.mod <- acts_models$cond.mc.mod
+cond.oo.mod <- acts_models$cond.oo.mod
 
 
 # 0. Initialize Network (chiSTIG) ----------------------------------------------
@@ -289,8 +283,13 @@ target_extract = function(df = target_df, term, model) {
   return(target_val)
 }
 
-# Get Duration/dissolution coefficients based on ARTNet data
-source("./R/dur_coefs.R")
+# Get Duration/dissolution coefficients based on ARTNet data. The script sourced
+# below combines ARTnet data with objects defined above to create these coefficients,
+# so we include the `source` call here, albeit commented out. Because the `ARTnetData`
+# package is private, however, we include pre-generated data objects here for
+# reproducibility purposes
+#### source("./R/dur_coefs.R")
+dur_coefs <- readRDS("./step1_ergm_fits/data/dur_coefs.rds")
 
 
 # Netstats
@@ -453,11 +452,11 @@ netstats <- list(
     dissolution = dissolution_coefs(~offset(edges), duration = 115, d.rate = 0.001386813),
 
     diss.homog = dissolution_coefs(dissolution = ~offset(edges),
-                                             duration = out$main$durs.main.homog$mean.dur.adj,
+                                             duration = dur_coefs$main$durs.main.homog$mean.dur.adj,
                                              d.rate = 0.001386813),
     diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
                                                offset(nodematch("age.grp", diff = TRUE)),
-                                             duration = out$main$durs.main.byage$mean.dur.adj,
+                                             duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
                                              d.rate = 0.001386813)
 
 
@@ -518,11 +517,11 @@ netstats <- list(
     dissolution = dissolution_coefs(~offset(edges), duration = 72, d.rate = 0.001386813),
 
     diss.homog = dissolution_coefs(dissolution = ~offset(edges),
-                                             duration = out$casl$durs.casl.homog$mean.dur.adj,
+                                             duration = dur_coefs$casl$durs.casl.homog$mean.dur.adj,
                                              d.rate = 0.001386813),
     diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
                                                offset(nodematch("age.grp", diff = TRUE)),
-                                             duration = out$casl$durs.casl.byage$mean.dur.adj,
+                                             duration = dur_coefs$casl$durs.casl.byage$mean.dur.adj,
                                              d.rate = 0.001386813)
 
 
@@ -684,7 +683,7 @@ fit_main <- netest(
   target.stats = target.stats.main,
   coef.diss = dissolution_coefs(dissolution = ~offset(edges) +
                                 offset(nodematch("age.grp", diff = TRUE)),
-                                duration = out$main$durs.main.byage$mean.dur.adj,
+                                duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
                                 d.rate = 0.001386813),
   set.control.ergm =
     control.ergm(
@@ -748,7 +747,7 @@ fit_casl <- netest(
   target.stats = target.stats.casl,
   coef.diss = dissolution_coefs(dissolution = ~offset(edges) +
                                   offset(nodematch("age.grp", diff = TRUE)),
-                                duration = out$casl$durs.casl.byage$mean.dur.adj,
+                                duration = dur_coefs$casl$durs.casl.byage$mean.dur.adj,
                                 d.rate = 0.001386813),
   set.control.ergm =
     control.ergm(
