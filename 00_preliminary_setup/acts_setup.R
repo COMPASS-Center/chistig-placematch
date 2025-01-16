@@ -1,3 +1,19 @@
+library(tidyverse)
+library(lubridate)
+library(yaml)
+
+args <- commandArgs(trailingOnly = TRUE)
+yamlfname <- args[1]
+yamldata <- yaml.load_file(yamlfname)
+
+randomseed <- as.integer(yamldata$random.seed)
+set.seed(randomseed)
+time_unit <- yamldata$time.unit
+
+radar_alter_fname <- paste0(yamldata$radar.alter.data.dir, yamldata$radar.alter.data.fname) # nolint: line_length_linter.
+radar_prep_fname <- paste0(yamldata$prep, yamldata$radar.prep.data.fname)
+output_fname <- paste0(yamldata$acts.models.output.dir, yamldata$acts.models.output.fname) # nolint: line_length_linter.
+
 # From EpiModel team, custom function for anonymizing GLM outputs:
 strip_glm <- function(cm) {
   root_elts <- c("y", "model", "residuals", "fitted.values", "effects",
@@ -14,8 +30,6 @@ strip_glm <- function(cm) {
   return(cm)
 }
 
-
-
 get_race_combo <- function(race_p1, race_p2) {
   race.combo <- ifelse(race_p1 == race_p2, race_p1, race_p1 + 4)
   # Original
@@ -29,12 +43,9 @@ get_race_combo <- function(race_p1, race_p2) {
   return(race.combo)
 }
 
-library(tidyverse)
-library(lubridate)
 
-time.unit = 7
-
-radar_alter <- read.csv("/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/Data/Internal/chiSTIG/Final Datasets/alterlevel_11aug22.csv") %>%
+# radar_alter <- read.csv("/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/Data/Internal/chiSTIG/Final Datasets/alterlevel_11aug22.csv") %>%
+radar_alter <- read.csv(radar_alter_fname) %>%
   # Date formatting is different across the ego and alter datasets. Need to
   # convert them to proper date objects to get workable duration measures
   mutate(first_sex2 = as.Date(dyad_edge.firstSex, format = "%m/%d/%Y"),
@@ -73,7 +84,8 @@ radar_alter <- read.csv("/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/D
          )
 
 # Read in PrEP use measure
-radar_prep <- read.csv("/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/Data/Internal/RADAR/Data Pull/prepData_2023-08-15.csv") %>%
+# radar_prep <- read.csv("/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/Data/Internal/RADAR/Data Pull/prepData_2023-08-15.csv") %>%
+radar_prep <- read.csv(radar_prep_fname) %>%
   rename(egoid = radarid,
          wavenumber = visit) %>%
   # PrEP use is originally coded as 1 = yes, 0 = no, and NA if HIV positive
@@ -137,7 +149,7 @@ radar_alter %>%
 
 # Poisson model of sexual acts within partnership
 
-acts.mod = glm(floor(acts*364/time.unit) ~
+acts.mod = glm(floor(acts*364/time_unit) ~
   # Partnership duration
   # duration.time + I(duration_time^2) +
   # Race/ethnicity
@@ -197,5 +209,6 @@ saveRDS(
     list(acts.mod = acts.mod,
          cond.mc.mod = cond.mc.mod,
          cond.oo.mod = cond.oo.mod),
-    "~/Desktop/acts_models.rds"
+         output_fname
+    # "~/Desktop/acts_models.rds"
 )
