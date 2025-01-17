@@ -22,7 +22,7 @@ current_git_branch <- yaml$current_git_branch
 mail_user <- yaml$mail_user # or any other mail provider
 
 # Relevant time steps for the simulation
-calibration_end    <- 52 * yaml$calibration_end
+calibration_end    <- 52 * yaml$calibration_end # number of years converted to weeks
 restart_time       <- calibration_end + 1
 prep_start         <- yaml$prep_start
 intervention_start <- yaml$intervention_start
