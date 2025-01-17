@@ -12,7 +12,7 @@ library("ARTnet")
 
 # Settings ---------------------------------------------------------------------
 context <- if (!exists("context")) "local" else context
-source("R/utils-0_project_settings.R")
+source("R/utils-0_project_settings.R") # TODO change this
 
 if (context == "local") {
   networks_size   <- 5 * 1e3
@@ -33,17 +33,13 @@ if (context == "local") {
 ##### NOTE: You need to access RADAR off the chiSTIG project folder located here
 ##### `smb://fsmresfiles.fsm.northwestern.edu/fsmresfiles` in order for `acts_setup.R`
 ##### to run
-source("./R/acts_setup.R")
+source("./R/acts_setup.R") # TODO: change this 
 ##### Warning message that appears here is due to deriving predicted probabilities
 ##### of condom use using a binomial family model
 
-# Remove RADAR data for security purposes
-acts.mod$data <- NULL
-acts.mod$model <- NULL
-cond.mc.mod$data <- NULL
-cond.mc.mod$model <- NULL
-cond.oo.mod$data <- NULL
-cond.oo.mod$model <- NULL
+acts.mod <- acts_models$acts.mod
+cond.mc.mod <- acts_models$cond.mc.mod
+cond.oo.mod <- acts_models$cond.oo.mod
 
 
 
@@ -119,13 +115,14 @@ epistats <- list(
 
 )
 
-saveRDS(epistats, paste0(est_dir, "epistats-", context, ".rds"))
+
+saveRDS(epistats, paste0(est_dir, "epistats-", context, ".rds")) # TODO: change this 
 
 ########################################
 # Now we read in ego-level information #
 ########################################
 
-library(tidyverse)
+library(tidyverse) # TODO: move this 
 
 #egos <- read.csv("./data/input/egos_v4_1.csv") %>%
 egos <- read.csv("./data/synthpop_gen/egos_v4_1_uniform_age_dist.csv") %>%
@@ -278,6 +275,7 @@ asmr[asmr$age >= max.age, ] <- 1
 # Read in target stats (for netstats) #
 #######################################
 
+# TODO: change the following
  old_target_df <- read.csv("./from_chistig/target_values_full.csv")
 target_df <- read.csv("./data/synthpop_gen/target_values_v4_1_uniform_age_dist.csv")
 
@@ -289,8 +287,14 @@ target_extract = function(df = target_df, term, model) {
   return(target_val)
 }
 
-# Get Duration/dissolution coefficients based on ARTNet data
-source("./R/dur_coefs.R")
+# Get Duration/dissolution coefficients based on ARTNet data. The script sourced
+# below combines ARTnet data with objects defined above to create these coefficients,
+# so we include the `source` call here, albeit commented out. Because the `ARTnetData`
+# package is private, however, we include pre-generated data objects here for
+# reproducibility purposes
+#### source("./R/dur_coefs.R")
+dur_coefs <- readRDS("./step1_ergm_fits/data/dur_coefs.rds") # TODO: change this 
+
 
 
 # Netstats
@@ -397,6 +401,7 @@ netstats <- list(
 
 
   ),
+
 
   # main : list of target stats and dissolution model for main partnerships
   main = list(
@@ -589,7 +594,8 @@ netstats <- list(
 )
 
 saveRDS(netstats, paste0(est_dir, "netstats-level-", context, ".rds"))
-
+#### EVERYTHING UP TO HERE IS CREATING EPISTATS AND NETSTATS
+## TODO: move all of this to somewhere else 
 
 ### Initialize network
 nw <- network::network.initialize(n = nrow(egos),

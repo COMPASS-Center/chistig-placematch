@@ -18,3 +18,19 @@ hpc_partition = "short"
 hpc_account = "p32153"
 hpc_r_version = "4.3.0"
 hpc_conda_proj = NULL
+
+
+
+
+
+epistats location
+netstats location
+context 
+basic_netest_local 
+path to restart 
+network parameters 
+
+
+libraries at top:
+epimodel 
+dplyr 
