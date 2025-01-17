@@ -1,0 +1,36 @@
+# setup
+random.seed: 15
+context: 'local' # either local or hpc 
+
+# datafiles and directories
+repo.dir: '/projects/p32153/chistig-placematch/' 
+estimates.subdir: "data/intermediate/estimates/" #epistats/netest/netstats objects are stored  
+diagnostics.subdir: "data/intermediate/diagnostics/" # don't use these right now
+calibration.subdir: 'data/intermediate/calibration/' # don't use these right now
+scenarios.subdir: 'data/intermediate/scenarios/' # don't use these right now
+
+epistats.fname: 'epistats-local.rds'
+netstats.fname: 'netstats-local.rds'
+
+
+basic.netest.local.fname: 'basic_netest-local.rds' # what is this? `est` object for basdic ERGMS... where is it derived?
+# this is created after running 01-networks_estimation
+# it is actually saved as `basic_netest-level-allvenues` in the networks_estimations 
+# will call it "basic-netest" or whatever 
+
+# HPC configuration
+hpc.partition: 'short' 
+hpc.account: 'p32153'
+hpc.r.version: '4.3.0'
+hpc.conda.proj: 'NULL' # do we need this here? can we not just put it directly in script?
+hpc.current.git.branch: 'main'
+hpc.user.email: 'tom.wolff@northwestern.edu'
+
+# calibration setup 
+calibration.end: 60 #number of years for burnin period
+prep.start: 'Inf' # Does not incorporate PreP # do we need this here? can we not just put it directly in script?
+intervention.start: 'Inf' # we do not incorporate intervention at this point # do we need this here? 
+intervention.end: 'Inf' # do we need this here? 
+riskh.start: 'Inf' # do we need this here? # check what this is 
+
+# TODO: move calibraiton setup

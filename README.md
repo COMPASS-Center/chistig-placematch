@@ -1,4 +1,16 @@
 # chistig-placematch
+
+Notes on the structure of the repository:
+
+How to store data and intermediary data
+- input data directory
+- intermediary data directory 
+
+For each run, do we want to create a directory of everything? So a directory with the output from each step? 
+
+
+
+
 Analysis of venue attendance on HIV incidence over time. To carry out this anaylsis, we have four major steps, described as the following:
 
 0. Prior to anything from this repository, we use the output from the [#chistig-place-and-pop](https://github.com/COMPASS-Center/chistig-place-and-pop) repository, which creates a synthetic population of agents between the ages of 16-29, who are assigned a race/ethcnicity, age, and corresponding set of venues and venue attendance behavior. Additionally, a set of target edges based on this synthetic population is delineated.

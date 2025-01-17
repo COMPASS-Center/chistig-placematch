@@ -13,3 +13,7 @@ radar.prep.data.fname: 'prepData_2023-08-15.csv'
 acts.models.output.dir: './'
 acts.models.output.fname: acts_models.rds
 
+dur.coefs.output.dir: './'
+dur.coefs.output.fname: 'dur_coefs.rds'
+
+
