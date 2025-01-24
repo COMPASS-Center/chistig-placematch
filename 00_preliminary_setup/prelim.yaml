@@ -16,9 +16,3 @@ acts.models.output.fname: acts_models.rds
 
 dur.coefs.output.dir: './'
 dur.coefs.output.fname: 'dur_coefs.rds'
-
-
-epistats.output.dir: './'
-epistats.output.fname: 'epistats.rds'
-
-
