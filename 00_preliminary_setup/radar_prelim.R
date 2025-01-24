@@ -34,10 +34,8 @@ output_fname <- paste0(yamldata$acts.models.output.dir, yamldata$acts.models.out
 # User functions
 # =========================
 
-strip_glm <- function(cm) {
-  '''
-  From EpiModel team, custom function for anonymizing GLM outputs:
-  '''
+# From EpiModel team, custom function for anonymizing GLM outputs:
+strip_glm <- function(cm){
   root_elts <- c("y", "model", "residuals", "fitted.values", "effects",
                  "linear.predictors", "weights", "prior.weights", "data")
   for (elt in root_elts) cm[[elt]] <- c()
@@ -49,18 +47,15 @@ strip_glm <- function(cm) {
   return(cm)
 }
 
+
+# Sets race combo for the race/ethnicity groups of RADAR data
+# Original race combo set as follows:
+#  race.combo <- c(1, 4, 6, 2, 3, 5)[race.combo]
+#  NOTE:   In the empirical data from RADAR from which we are training these models,
+#  there are no persistent partnerships that would be coded `5` (other/other).
+#  To handle this absence, we are going to collapse categories `5` and `6` into
+#  a single category (ego is OtherNH) and proceed from there.
 get_race_combo <- function(race_p1, race_p2) {
-  '''
-  Sets race combo for the race/ethnicity groups of RADAR data
-
-  Original race combo set as follows:
-    race.combo <- c(1, 4, 6, 2, 3, 5)[race.combo]
-
-  NOTE:   In the empirical data from RADAR from which we are training these models,
-  there are no persistent partnerships that would be coded `5` (other/other).
-  To handle this absence, we are going to collapse categories `5` and `6` into
-  a single category (ego is OtherNH) and proceed from there.
-  '''
   race.combo <- ifelse(race_p1 == race_p2, race_p1, race_p1 + 4)
   race.combo <- c(1, 3, 5, 7, 2, 4, 6, 8)[race.combo]
   race.combo <- ifelse(race.combo > 5, (race.combo - 1), race.combo)
@@ -71,11 +66,9 @@ get_race_combo <- function(race_p1, race_p2) {
 # Read in and format alter and PrEP use data
 # =========================
 
+# Date formatting is different across the ego and alter datasets.
+# Need to convert them to proper date objects to get workable duration measures
 radar_alter <- read.csv(radar_alter_fname) %>%
-  '''
-  Date formatting is different across the ego and alter datasets.
-  Need to convert them to proper date objects to get workable duration measures
-  '''
   mutate(
     first_sex2 = as.Date(dyad_edge.firstSex, format = "%m/%d/%Y"),
     last_sex2 = as.Date(dyad_edge.lastSex, format = "%m/%d/%Y"),
@@ -123,14 +116,11 @@ radar_alter <- read.csv(radar_alter_fname) %>%
     # prep = rbinom(n(), size = 1, prob = .1930576)
   )
 
-radar_prep <- read.csv(radar_prep_fname) %>%
-  '''
-  Read in and set up PrEP use measure 
 
-  NOTE:
-  PrEP use is originally coded as 1 = yes, 0 = no, and NA if HIV positive,
-  so we recode NAs to 0s in this use case
-  '''
+# Read in and set up PrEP use measure
+# NOTE: PrEP use is originally coded as 1 = yes, 0 = no, and NA if HIV positive,
+# so we recode NAs to 0s in this use case
+radar_prep <- read.csv(radar_prep_fname) %>%
   rename(egoid = radarid,
          wavenumber = visit) %>%
 
@@ -145,12 +135,11 @@ radar_alter <- radar_alter %>%
 
 
 # =========================
-# Specify partnership type specifics 
+# Specify partnership type specifics
 # =========================
+
+# Setup persistent partnerships from RADAR data
 persistent <- radar_alter %>%
-  '''
-  Setup persistent partnerships from RADAR data
-  '''
   filter(one_night_stand_flag == 0) %>%
   select(
     alter.alter_id,
@@ -170,14 +159,10 @@ persistent <- radar_alter %>%
 )
 
 
+# Setup one-time partnerships from RADAR data
+# NOTE: Because there is no time duration for one-time partnerships, 
+# rates of condom use need to be calculated differently
 one_off <- radar_alter %>%
-  '''
-  Setup one-time partnerships from RADAR data
-
-  NOTE:
-  Because there is no time duration for one-time partnerships, 
-  rates of condom use need to be calculated differently
-  '''
   filter(one_night_stand_flag == 1) %>%
   mutate(
     acts = dyad_edge.analFreq,
@@ -210,10 +195,8 @@ radar_alter %>%
   summarize(count = n())
 
 
+# Poisson model of sexual acts within partnership
 acts.mod = glm(
-  '''
-  Poisson model of sexual acts within partnership
-  '''
   floor(acts*364/time_unit) ~
   # duration.time + I(duration_time^2) + # Partnership duration  NOTE: why is this commented out? XX
   as.factor(race.combo) + # Race/ethnicity
@@ -225,11 +208,8 @@ acts.mod = glm(
   data = persistent
 )
 
-
+# Binomial model of condom use (persistent partnerships)
 cond.mc.mod = glm(
-  '''
-  Binomial model of condom use (persistent partnerships)
-  '''
   any.cond ~
   # duration.time + I(duration_time^2) + # Partnership duration
   as.factor(race.combo) + # Race/ethnicity
@@ -243,11 +223,8 @@ cond.mc.mod = glm(
   data = persistent
 )
 
-
+# Binomial model of condom use for one-time partnerships
 cond.oo.mod = glm(
-  '''
-  Binomial model of condom use for one-time partnerships
-  '''
   prob.cond ~
   as.factor(race.combo) + # Race/ethnicity
   comb.age + I(comb.age^2) + # Combined Age
