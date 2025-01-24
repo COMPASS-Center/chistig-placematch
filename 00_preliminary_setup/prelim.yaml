@@ -2,7 +2,7 @@
 random.seed: 15
 time.unit: 7
 
-# input datafiles and directories  
+# input datafiles and directories
 radar.alter.data.dir: '/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/Data/Internal/chiSTIG/Final Datasets/'
 radar.alter.data.fname: 'alterlevel_11aug22.csv'
 
@@ -11,7 +11,7 @@ radar.prep.data.fname: 'prepData_2023-08-15.csv'
 
 # output datafiles and directories
 acts.models.output.dir: './'
-acts.models.output.fname: acts_models.rds
+acts.models.output.fname: 'acts_models.rds'
 
 dur.coefs.output.dir: './'
 dur.coefs.output.fname: 'dur_coefs.rds'
