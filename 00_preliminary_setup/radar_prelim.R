@@ -1,3 +1,14 @@
+###############################################################################
+# Script Name:    radar_prelim.R
+# Purpose:        set up parnership type data from RADAR 
+# Author:         Sara Rimer, Tom Wolff
+# Date Created:   2025-01-22
+# Last Modified:  2025-01-22
+# Dependencies:   prelim.yaml, tidyverse, lubridate, yaml RADAR data
+# Notes:          RAW dataset is not stored on repository. Must use in conjunction with local data
+###############################################################################
+
+
 # =========================
 # libraries
 # =========================
@@ -27,7 +38,7 @@ time_unit <- yamldata$time.unit
 # =========================
 
 radar_alter_fname <- paste0(yamldata$radar.alter.data.dir, yamldata$radar.alter.data.fname) # nolint: line_length_linter.
-radar_prep_fname <- paste0(yamldata$prep, yamldata$radar.prep.data.fname)
+radar_prep_fname <- paste0(yamldata$radar.prep.data.dir, yamldata$prep, yamldata$radar.prep.data.fname) # nolint
 output_fname <- paste0(yamldata$acts.models.output.dir, yamldata$acts.models.output.fname) # nolint: line_length_linter.
 
 # =========================
@@ -250,5 +261,5 @@ saveRDS(
     list(acts.mod = acts.mod,
          cond.mc.mod = cond.mc.mod,
          cond.oo.mod = cond.oo.mod),
-         output_fname
+    output_fname
 )
