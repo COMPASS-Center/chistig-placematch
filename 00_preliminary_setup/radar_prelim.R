@@ -1,11 +1,12 @@
 ###############################################################################
 # Script Name:    radar_prelim.R
-# Purpose:        set up parnership type data from RADAR 
+# Purpose:        set up parnership type data from RADAR
 # Author:         Sara Rimer, Tom Wolff
 # Date Created:   2025-01-22
 # Last Modified:  2025-01-22
-# Dependencies:   prelim.yaml, tidyverse, lubridate, yaml RADAR data
-# Notes:          RAW dataset is not stored on repository. Must use in conjunction with local data
+# Dependencies:   tidyverse, lubridate, yaml
+# Notes:          RAW dataset is not stored on repository.
+#                 Must use in conjunction with local data
 ###############################################################################
 
 
@@ -22,6 +23,7 @@ library(yaml)
 # =========================
 
 args <- commandArgs(trailingOnly = TRUE)
+print(args)
 yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 
@@ -257,9 +259,11 @@ cond.oo.mod <- strip_glm(cond.oo.mod)
 # Save the above model objects, stored as a list, in an RDS file
 # =========================
 
-saveRDS(
-    list(acts.mod = acts.mod,
-         cond.mc.mod = cond.mc.mod,
-         cond.oo.mod = cond.oo.mod),
-    output_fname
-)
+# saveRDS(
+#     list(acts.mod = acts.mod,
+#          cond.mc.mod = cond.mc.mod,
+#          cond.oo.mod = cond.oo.mod),
+#     output_fname
+# )
+
+save(acts.mod, cond.mc.mod, cond.oo.mod, file = output_fname)
