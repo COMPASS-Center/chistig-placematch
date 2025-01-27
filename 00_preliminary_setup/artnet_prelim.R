@@ -14,8 +14,8 @@
 # =========================
 
 library(yaml)
-# library(ARTnet)
-# library(ARTnetData)
+library(ARTnet)
+library(ARTnetData)
 
 
 # =========================
