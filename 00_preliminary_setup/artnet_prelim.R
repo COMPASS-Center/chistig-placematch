@@ -33,34 +33,34 @@ yamldata <- yaml.load_file(yamlfname)
 randomseed <- as.integer(yamldata$random.seed)
 set.seed(randomseed)
 
-print("here")
 
 
 # =========================
 # define filenames/directories from YAML
 # =========================
-# epistats <- readRDS(paste0(yamldata$epistats.dir, yamldata$epistats.fname))
+epistats <- readRDS(paste0(yamldata$epistats.dir, yamldata$epistats.fname))
 output_fname <- paste0(yamldata$dur.coefs.output.dir, yamldata$dur.coefs.output.fname)
 
 
 
 
+
+# Create output list
+out <- list()
+
+## Durations (MAIN) ----
+## Inputs ##
+geog.lvl <- epistats$geog.lvl
+race <- epistats$race
+age.limits = epistats$age.limits
+age.breaks = epistats$age.breaks
+age.sexual.cessation = epistats$age.sexual.cessation
+sex.cess.mod <- epistats$sex.cess.mod
+age.grps = epistats$age.grps
+time.unit <- epistats$time.unit
+smooth.main.dur = FALSE
+
 print("here")
-
-# # Create output list
-# out <- list()
-
-# ## Durations (MAIN) ----
-# ## Inputs ##
-# geog.lvl <- epistats$geog.lvl
-# race <- epistats$race
-# age.limits = epistats$age.limits
-# age.breaks = epistats$age.breaks
-# age.sexual.cessation = epistats$age.sexual.cessation
-# sex.cess.mod <- epistats$sex.cess.mod
-# age.grps = epistats$age.grps
-# time.unit <- epistats$time.unit
-# smooth.main.dur = FALSE
 
 # # Fix global binding check error
 # duration.time <- NULL
