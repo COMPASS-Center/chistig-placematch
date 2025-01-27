@@ -24,9 +24,8 @@ duration.time <- NULL
 ## Age Processing ##
 
 ## Data ##
-d <- ARTnetData::ARTnet.wide
-l <- ARTnetData::ARTnet.long
-
+d <- ARTnetData::ARTnet.wide ## XX
+l <- ARTnetData::ARTnet.long ## XX
 
 # p_age_imp initialization for lintr
 p_age_imp <- NULL
@@ -260,4 +259,4 @@ if (sex.cess.mod == TRUE) {
 }
 
 # Save `out` as a pre-generated object for reproducibility
-saveRDS(out, "~/Desktop/dur_coefs.rds")
+saveRDS(out, "~/Desktop/dur_coefs.rds") ## XX

@@ -12,9 +12,10 @@ radar.prep.data.fname: 'prepData_2023-08-15.csv'
 
 # output datafiles and directories
 acts.models.output.dir: './'
-# acts.models.output.fname: 'acts_models.rds'
-acts.models.output.fname: 'acts_models.RData'
+acts.models.output.fname: 'acts_models.rds'
 
 dur.coefs.output.dir: './'
 dur.coefs.output.fname: 'dur_coefs.rds'
 
+epistats.dir: './'
+epistats.fname: 'epistats.rds'

@@ -45,7 +45,7 @@ get_race_combo <- function(race_p1, race_p2) {
 
 
 # radar_alter <- read.csv("/Volumes/fsmresfiles/MSS/Birkett_Lab/Projects/chiSTIG/Data/Internal/chiSTIG/Final Datasets/alterlevel_11aug22.csv") %>%
-radar_alter <- read.csv(radar_alter_fname) %>%
+radar_alter <- read.csv(radar_alter_fname) %>% ##XX
   # Date formatting is different across the ego and alter datasets. Need to
   # convert them to proper date objects to get workable duration measures
   mutate(first_sex2 = as.Date(dyad_edge.firstSex, format = "%m/%d/%Y"),
@@ -212,3 +212,5 @@ saveRDS(
          output_fname
     # "~/Desktop/acts_models.rds"
 )
+
+
