@@ -14,6 +14,7 @@
 # =========================
 
 library(yaml)
+library(tidyverse)
 library(ARTnet)
 library(ARTnetData)
 
