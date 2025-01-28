@@ -103,6 +103,7 @@ l$ONGOING <- as.numeric(l$ONGOING)
 l$ongoing2 <- ifelse(is.na(l$ONGOING), 0, l$ONGOING)
 l$ONGOING <- NULL
 
+# Calculating number of main partnerships each ARTNet case has
 d <- l %>%
   filter(RAI == 1 | IAI == 1) %>%
   filter(ptype == 1) %>%
@@ -110,6 +111,7 @@ d <- l %>%
   summarise(deg.main = sum(ongoing2)) %>%
   right_join(d, by = "AMIS_ID")
 
+# Calculating number of casual parnterships each ARTNet case has
 d <- l %>%
   filter(RAI == 1 | IAI == 1) %>%
   filter(ptype == 2) %>%
@@ -125,6 +127,7 @@ d$deg.casl <- ifelse(is.na(d$deg.casl), 0, d$deg.casl)
 d$deg.casl <- ifelse(d$deg.casl > 3, 3, d$deg.casl)
 d$deg.main <- ifelse(d$deg.main > 2, 2, d$deg.main)
 
+# Calculating total number of partnerships
 d$deg.tot <- d$deg.main + d$deg.casl
 
 
@@ -176,7 +179,7 @@ durs.main$rates.main.adj <- 1 - (2^(-1 / (wt * durs.main$median.dur)))
 durs.main$mean.dur.adj <- 1 / (1 - (2^(-1 / (wt * durs.main$median.dur))))
 out$main$durs.main.homog <- durs.main
 
-# stratified by age
+# Stratifying partnership duration by age
 
 # first, non-matched by age group
 durs.main.nonmatch <- lmain %>%
@@ -199,8 +202,10 @@ durs.main.matched <- lmain %>%
   as.data.frame()
 durs.main.matched
 
+# Combining the above two dataframes
 durs.main.all <- rbind(durs.main.nonmatch, durs.main.matched)
 
+# Adjusting by weights
 durs.main.all$rates.main.adj <- 1 - (2^(-1 / (wt * durs.main.all$median.dur)))
 durs.main.all$mean.dur.adj <- 1 / (1 - (2^(-1 / (wt * durs.main.all$median.dur))))
 
@@ -225,6 +230,8 @@ if (sex.cess.mod == TRUE) {
 }
 
 ## Durations (CASUAL) ----
+# What follows here mirrors the process above for main partnerships, just applied
+# to casual partnerships
 out$casl <- list()
 lcasl <- l[l$ptype == 2, ]
 
@@ -311,4 +318,5 @@ if (sex.cess.mod == TRUE) {
 # saveRDS(out, "~/Desktop/dur_coefs.rds")
 # saveRDS(out, "~/Desktop/dur_coefs.rds")
 
+# Save output
 saveRDS(out, output_fname)
