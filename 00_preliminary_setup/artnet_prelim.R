@@ -54,7 +54,7 @@ age.breaks = epistats$age.breaks
 age.sexual.cessation = epistats$age.sexual.cessation
 sex.cess.mod <- epistats$sex.cess.mod
 age.grps = epistats$age.grps
-time.unit <- epistats$time.unit ## XX TODO: 
+time.unit <- epistats$time.unit ## XX TODO:
 
 # R list object for storing output data
 out <- list()
@@ -80,14 +80,17 @@ l <- subset(l, age >= age.limits[1] & age < age.sexual.cessation &
               p_age_imp >= age.limits[1] & p_age_imp < age.sexual.cessation)
 d <- subset(d, age >= age.limits[1] & age < age.sexual.cessation)
 
-# TODO: XX what does this do?
+# Calculating dyadic combined age and difference in age, which can be used
+# as covariates in models
 l$comb.age <- l$age + l$p_age_imp
 l$diff.age <- abs(l$age - l$p_age_imp)
 
-# TODO: XX specify what this does
+# Creating a measure of partnership length, another covariate
 l$duration.time <- l$duration * 7 / time.unit
 
-#Append Data when geog.lvl is defined ## XX What does this mean?
+# Append Data when geog.lvl is defined; including ARTNet geographic information
+# if relevant (it's not for our purposes but we leave it here so as not to
+# risk messing anything up)
 if (!is.null(geog.lvl)) {
   d$geog <- epistats$geog.d
   d$geogYN <- epistats$geogYN.d
@@ -95,7 +98,7 @@ if (!is.null(geog.lvl)) {
   l$geogYN <- epistats$geogYN.l
 }
 
-## XX What does this mean?
+## Measures indicating whether partnership is actively ongoing
 l$ONGOING <- as.numeric(l$ONGOING)
 l$ongoing2 <- ifelse(is.na(l$ONGOING), 0, l$ONGOING)
 l$ONGOING <- NULL
