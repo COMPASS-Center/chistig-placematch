@@ -39,7 +39,7 @@ set.seed(randomseed)
 # define filenames/directories from YAML
 # =========================
 epistats <- readRDS(paste0(yamldata$epistats.dir, yamldata$epistats.fname))
-output_fname <- paste0(yamldata$dur.coefs.output.dir, yamldata$dur.coefs.output.fname)
+artnet_output_fname <- paste0(yamldata$artnet.output.dir, yamldata$artnet.output.fname)
 
 
 # =========================
@@ -49,18 +49,18 @@ output_fname <- paste0(yamldata$dur.coefs.output.dir, yamldata$dur.coefs.output.
 # parameters from epistats to use here
 geog.lvl <- epistats$geog.lvl
 race <- epistats$race
-age.limits = epistats$age.limits
-age.breaks = epistats$age.breaks
+age.limits <- epistats$age.limits
+age.breaks <- epistats$age.breaks
 age.sexual.cessation = epistats$age.sexual.cessation
 sex.cess.mod <- epistats$sex.cess.mod
-age.grps = epistats$age.grps
+age.grps <- epistats$age.grps
 time.unit <- epistats$time.unit ## XX TODO:
 
 # R list object for storing output data
 out <- list()
 
 # other preliminary parameters to set
-smooth.main.dur = FALSE ## XX TODO: what is this?
+smooth.main.dur <- FALSE ## XX TODO: what is this?
 duration.time <- NULL
 p_age_imp <- NULL # p_age_imp initialization for lintr XX what does this do?
 
@@ -314,9 +314,5 @@ if (sex.cess.mod == TRUE) {
   out$casl$durs.casl.byage <- rbind(out$casl$durs.casl.byage, df)
 }
 
-# Save `out` as a pre-generated object for reproducibility
-# saveRDS(out, "~/Desktop/dur_coefs.rds")
-# saveRDS(out, "~/Desktop/dur_coefs.rds")
-
 # Save output
-saveRDS(out, output_fname)
+saveRDS(out, artnet_output_fname)

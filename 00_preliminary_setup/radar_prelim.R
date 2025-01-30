@@ -41,7 +41,7 @@ time_unit <- yamldata$time.unit
 
 radar_alter_fname <- paste0(yamldata$radar.alter.data.dir, yamldata$radar.alter.data.fname) # nolint: line_length_linter.
 radar_prep_fname <- paste0(yamldata$radar.prep.data.dir, yamldata$prep, yamldata$radar.prep.data.fname) # nolint
-output_fname <- paste0(yamldata$acts.models.output.dir, yamldata$acts.models.output.fname) # nolint: line_length_linter.
+output_fname <- paste0(yamldata$radar.output.dir, yamldata$radar.output.fname) # nolint: line_length_linter.
 
 # =========================
 # User functions

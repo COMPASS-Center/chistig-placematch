@@ -40,8 +40,8 @@ time_unit <- yamldata$time.unit
 # =========================
 
 # load RADAR data
-radar_data <- readRDS(paste0(yamldata$acts.models.output.dir, yamldata$acts.models.output.fname))
-output_fname <- paste0(yamldata$epistats.dir, yamldata$epistats.fname)
+radar_data <- readRDS(paste0(yamldata$radar.output.dir, yamldata$radar.output.fname))
+epistats_output_fname <- paste0(yamldata$epistats.dir, yamldata$epistats.fname)
 
 # =========================
 # Initialize Epistats with RADAR data
@@ -107,4 +107,4 @@ epistats <- list(
 
 )
 
-saveRDS(epistats, output_fname)
+saveRDS(epistats, epistats_output_fname)
