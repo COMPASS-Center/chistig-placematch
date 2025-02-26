@@ -5,7 +5,7 @@
 # Date Created:   2025-01-22
 # Last Modified:  2025-01-22
 # Dependencies:   yaml
-# Notes:          
+# Notes:
 ###############################################################################
 
 
@@ -36,7 +36,7 @@ time_unit <- yamldata$time.unit
 
 
 # =========================
-# source input data 
+# source input data
 # =========================
 
 # load RADAR data
@@ -98,8 +98,6 @@ epistats <- list(
   sex.cess.mod = FALSE,
 
   # init.hiv.prev : Initial HIV prevalence by each racial group
-  # REPLACE WITH FINAL CDPH NUMBERS DIVIDED BY SARA'S POPULATION
-  # ESTIMATES TODO: Is this done? XX
   init.hiv.prev = c(.1215, .0474, .014, .0268),
 
   # time.unit : Number of days in each time period
