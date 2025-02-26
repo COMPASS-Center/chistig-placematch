@@ -4,8 +4,8 @@
 # Author:         Sara Rimer, Tom Wolff
 # Date Created:   2025-01-22
 # Last Modified:  2025-01-22
-# Dependencies:   
-# Notes:          
+# Dependencies:
+# Notes:
 ###############################################################################
 
 
@@ -59,9 +59,9 @@ target_extract = function(df = target_df, term, model) {
 
 
 # =========================
-# format and setup egos 
+# format and setup egos
 # =========================
-egos <- egos %>% 
+egos <- egos %>%
   dplyr::mutate(race_art = dplyr::case_when(
                                     race_ethnicity == "whiteNH" ~ "white",
                                     race_ethnicity == "blackNH" ~ "black",
@@ -90,7 +90,7 @@ egos <- egos %>%
 
 
 # =========================
-# set up age-sex-specific mortality rates 
+# set up age-sex-specific mortality rates
 # =========================
 
 ## Age-sex-specific mortality rates (B, H, W)
@@ -174,7 +174,7 @@ asmr[asmr$age >= max.age, ] <- 1
 
 
 # =========================
-# create initial netstats object for main, casual, and one-time partnerships 
+# create initial netstats object for main, casual, and one-time partnerships
 # =========================
 
 netstats <- list(
@@ -206,11 +206,6 @@ netstats <- list(
 
     # asmr : dataframe containing 100 rows (possible age range) with age-specific
     # mortality rates
-    ##### age (`1:100`)
-    ##### vec.asmr.B (something black)
-    ##### vec.asmr.H (something hispanic)
-    ##### vec.asmr.W (somethign white/other; adjust for our own categorization)
-
     asmr = asmr,
 
     # ages : vector of valid age values in simulation
@@ -265,8 +260,6 @@ netstats <- list(
     # Randomly assign to nodes according to proportions derived from RADAR by
     # Morgan et al. (2021)
     role.class = sample(0:2, size = nrow(egos), replace = TRUE, prob = c(73, 87, 475)/sum(c(73, 87, 475))),
-    # For now give everyone "versatile"
-    # role.class = rep(2, nrow(egos)),
 
     # diag.status : I believe this is HIV status
     diag.status = egos$diag.status,
@@ -290,10 +283,6 @@ netstats <- list(
     # nodematch_age.grp
     nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "main"),
                           target_extract(term = "nodematch.age.21to29", model = "main")),
-
-    # nodefactor_age.grp
-    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "main"),
-    #                        target_extract(term = "nodefactor.age.21to29", model = "main")),
 
     # concurrent
     concurrent = target_extract(df = target_df,
@@ -349,10 +338,6 @@ netstats <- list(
     # nodematch_age.grp
     nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "casual"),
                           target_extract(term = "nodematch.age.21to29", model = "casual")),
-
-    # nodefactor_age.grp
-    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "casual"),
-    #                        target_extract(term = "nodefactor.age.21to29", model = "casual")),
 
     # concurrent
     concurrent = target_extract(df = target_df,
@@ -418,12 +403,6 @@ netstats <- list(
 
     # nodematch_age.grp
     nodematch_age.grp = target_extract(term = "nodematch.age", model = "one.time"),
-    # nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "one.time"),
-    #                       target_extract(term = "nodematch.age.21to29", model = "one.time")),
-
-    # nodefactor_age.grp
-    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "one.time"),
-    #                        target_extract(term = "nodefactor.age.21to29", model = "one.time")),
 
     # nodefactor_init_pers_cat
     nodefactor_deg.tot = c(target_extract(term = "nodefactor.init_pers_cat.0", model = "one.time"),
@@ -439,18 +418,6 @@ netstats <- list(
 
     # fuzzynodematch_apps_dating
     fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "one.time")
-
-    # edges
-    # nodefactor_race
-    # nodematch_race
-    # nodematch_race_diffF (Ask)
-    # nodefactor_age.grp
-    # nodematch_age.grp
-    # absdiff_age
-    # absdiff_sqrtage
-    # nodefactor_deg.tot
-    # concurrent
-    # nodefactor_diag.status
 
   )
 )
