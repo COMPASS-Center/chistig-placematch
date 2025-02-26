@@ -10,27 +10,19 @@ The `prelim.yaml` file sets up the necessary arguments needed for the preliminar
 
 To run the above, do the following:
 
-1.
+First, either run the `radar_prelim.R` script locally, or ensure the correct output file is stored within the `00_preliminary_setup` directory. 
 
+Then, sign in to Quest, and setup the environment for our `R` and `python` instances:
 ```sh
-Rscript radar_prelim.R prelim.yaml
+module purge all 
+conda activate /projects/p32153/condaenvs/conda-chistig
 ```
 
-2. 
-
+From here, you can run the rest of the preliminary scripts in the following order:
 ```sh
 Rscript epistats.R prelim.yaml
-```
-
-3.
-
-```sh
 Rscript artnet_prelim.R prelim.yaml
-```
-
-4. 
-
-```sh
 Rscript netstats.R prelim.yaml
 ```
 
+At the end of this, you should have the base `netstats.rds` object that will be used throughout the rest of the simulations. 
