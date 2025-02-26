@@ -7,3 +7,30 @@ The preliminary works to set up everything needed before we begin the Chistig mo
 
 The `prelim.yaml` file sets up the necessary arguments needed for the preliminary steps.
 
+
+To run the above, do the following:
+
+1.
+
+```sh
+Rscript radar_prelim.R prelim.yaml
+```
+
+2. 
+
+```sh
+Rscript epistats.R prelim.yaml
+```
+
+3.
+
+```sh
+Rscript artnet_prelim.R prelim.yaml
+```
+
+4. 
+
+```sh
+Rscript netstats.R prelim.yaml
+```
+
