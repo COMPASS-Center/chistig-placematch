@@ -20,7 +20,7 @@ artnet.output.fname: 'dur_coefs.rds'
 epistats.dir: './'
 epistats.fname: 'epistats.rds'
 
-netstats.dir: './'
+netstats.dir: '../01-networks-estimation/'
 netstats.fname: 'netstats.rds'
 
 synthpop.data.dir: '../synthpop/'
