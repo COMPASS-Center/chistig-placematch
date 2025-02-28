@@ -10,7 +10,8 @@ The `prelim.yaml` file sets up the necessary arguments needed for the preliminar
 
 To run the above, do the following:
 
-First, either run the `radar_prelim.R` script locally, or ensure the correct output file is stored within the `00_preliminary_setup` directory. 
+First, either run the `radar_prelim.R` script locally, or ensure the correct output file is stored within the 
+`00-preliminary-setup` directory. 
 
 Then, sign in to Quest, and setup the environment for our `R` and `python` instances:
 ```sh
