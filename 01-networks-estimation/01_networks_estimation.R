@@ -22,9 +22,9 @@ library(dplyr)
 # read in yaml file
 # =========================
 
-args <- commandArgs(trailingOnly = TRUE)
-yamlfname <- args[1]
-yamldata <- yaml.load_file(yamlfname)
+# args <- commandArgs(trailingOnly = TRUE)
+# yamlfname <- args[1]
+# yamldata <- yaml.load_file(yamlfname)
 
 
 # =========================
