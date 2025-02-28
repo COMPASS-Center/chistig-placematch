@@ -31,8 +31,8 @@ library(dplyr)
 # setup YAML parameters
 # =========================
 
-randomseed <- as.integer(yamldata$random.seed)
-set.seed(randomseed)
+# randomseed <- as.integer(yamldata$random.seed)
+# set.seed(randomseed)
 
 
 # =========================
