@@ -1,5 +1,5 @@
 ###############################################################################
-# Script Name:    01-networks_estimation.R
+# Script Name:    01_networks_estimation.R
 # Purpose:        Initialize the different networks 
 # Author:         Sara Rimer, Tom Wolff
 # Date Created:   2025-02-24
@@ -7,29 +7,6 @@
 # Dependencies:   yaml
 # Notes: This file does an initial estimates the ERGMs.  
 ###############################################################################
-
-# =======================
-# TODO: add in the settings details for if this is run via HPC
-# =======================
-# When run locally `context == "local"` it fits
-# ## 5k nodes networks. They can be used for local testing of the project.
-# ## When run on the HPC (`context` is set in the workflow definition to "hpc"),
-# ## 100k nodes networks are used.        
-
-# context <- if (!exists("context")) "local" else context
-# source("R/utils-0_project_settings.R") # TODO change this
-
-# if (context == "local") {
-#   networks_size   <- 5 * 1e3
-#   estimation_method <- "Stochastic-Approximation"
-#   estimation_ncores <- 1
-# } else if (context == "hpc") {
-#   networks_size   <- 100 * 1e3
-# } else  {
-#   stop("The `context` variable must be set to either 'local' or 'hpc'")
-# }
-
-
 
 # =========================
 # libraries
