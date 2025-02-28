@@ -18,7 +18,7 @@ conda activate /projects/p32153/condaenvs/conda-chistig
 
 Finally, run the script with the following:
 ```sh
-Rscript 01-networks_estimation.R
+Rscript 01_networks_estimation.R
 ```
 
 > **NOTE:** We do not have YAML arguments yet for this Rscript. That will change in the future.
