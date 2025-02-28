@@ -40,7 +40,7 @@ set.seed(randomseed)
 # =========================
 # define filenames/directories from YAML
 # =========================
-dur_coefs <- readRDS(paste0(yamldata$artnet.output.dir, yamldata$artnet.output.fname)) # nolint # Duration/dissolution coefficients based on ARTNet data.
+artnet_out <- readRDS(paste0(yamldata$artnet.output.dir, yamldata$artnet.output.fname)) # nolint # Duration/dissolution coefficients based on ARTNet data.
 target_df <- read.csv(paste0(yamldata$synthpop.data.dir, yamldata$synthpop.target.values.fname)) # nolint
 egos <- read.csv(paste0(yamldata$synthpop.data.dir, yamldata$synthpop.egos.fname)) # nolint
 epistats <- readRDS(paste0(yamldata$epistats.dir, yamldata$epistats.fname)) # nolint
