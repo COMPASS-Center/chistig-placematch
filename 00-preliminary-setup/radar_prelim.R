@@ -124,9 +124,6 @@ radar_alter <- read.csv(radar_alter_fname) %>%
     any.cond = prob.cond > 0,
     never.cond = prob.cond == 0,
     geogYN = ifelse(alter.resid_cat == "Chicago", 1, 0)
-    # PrEP use. For now, I'm randomly assigning 1s based on mean
-    # rate of use in ARTNet
-    # prep = rbinom(n(), size = 1, prob = .1930576)
   )
 
 
@@ -173,7 +170,7 @@ persistent <- radar_alter %>%
 
 
 # Setup one-time partnerships from RADAR data
-# NOTE: Because there is no time duration for one-time partnerships, 
+# NOTE: Because there is no time duration for one-time partnerships,
 # rates of condom use need to be calculated differently
 one_off <- radar_alter %>%
   filter(one_night_stand_flag == 1) %>%
@@ -211,28 +208,24 @@ radar_alter %>%
 # Poisson model of sexual acts within partnership
 acts.mod = glm(
   floor(acts*364/time_unit) ~
-  # duration.time + I(duration_time^2) + # Partnership duration  NOTE: why is this commented out? XX
   as.factor(race.combo) + # Race/ethnicity
   as.factor(ptype) +   # Partnership type
- # duration.time*as.factor(ptype) +  # Duration*partnership type interaction NOTE: why is this commented out?
   comb.age + I(comb.age^2) +   # Combined Age
   hiv.concord.pos,   # Combined HIV status
-  family = poisson(), 
+  family = poisson(),
   data = persistent
 )
 
 # Binomial model of condom use (persistent partnerships)
 cond.mc.mod = glm(
   any.cond ~
-  # duration.time + I(duration_time^2) + # Partnership duration
   as.factor(race.combo) + # Race/ethnicity
-  as.factor(ptype) + # Partnership type             
-  # duration.time*as.factor(ptype) + # Duration*partnership type interaction ## TODO: Why is this commented out? XX
+  as.factor(ptype) + # Partnership type
   comb.age + I(comb.age^2) + # Combined Age
   hiv.concord.pos + # Combined HIV status
   prep + # PrEP use
-  geogYN, # geogYN (not sure why)
-  family = binomial(), 
+  geogYN, # geogYN (for handling ARTNet-related specifications)
+  family = binomial(),
   data = persistent
 )
 
@@ -243,7 +236,7 @@ cond.oo.mod = glm(
   comb.age + I(comb.age^2) + # Combined Age
   hiv.concord.pos + # Combined HIV status
   prep + # PrEP use
-  geogYN,  # geogYN (not sure why)
+  geogYN,  # geogYN (for handling ARTNet-related specifications)
   family = binomial(), data = one_off
 )
 
@@ -256,14 +249,7 @@ cond.mc.mod <- strip_glm(cond.mc.mod)
 cond.oo.mod <- strip_glm(cond.oo.mod)
 
 # =========================
-# Save the above model objects, stored as a list, in an RDS file
+# Save the above model objects
 # =========================
-
-# saveRDS(
-#     list(acts.mod = acts.mod,
-#          cond.mc.mod = cond.mc.mod,
-#          cond.oo.mod = cond.oo.mod),
-#     output_fname
-# )
 
 save(acts.mod, cond.mc.mod, cond.oo.mod, file = output_fname)

@@ -47,22 +47,28 @@ artnet_output_fname <- paste0(yamldata$artnet.output.dir, yamldata$artnet.output
 # =========================
 
 # parameters from epistats to use here
-geog.lvl <- epistats$geog.lvl
-race <- epistats$race
-age.limits <- epistats$age.limits
-age.breaks <- epistats$age.breaks
-age.sexual.cessation = epistats$age.sexual.cessation
-sex.cess.mod <- epistats$sex.cess.mod
-age.grps <- epistats$age.grps
-time.unit <- epistats$time.unit ## XX TODO:
+geog.lvl <- epistats$geog.lvl ## Selects city from ARTNet data
+race <- epistats$race ## Sets whether ARTNet data should be subset by race
+age.limits <- epistats$age.limits ## Sets minimum and maximum age values in population
+age.breaks <- epistats$age.breaks ## Sets where age categories in population should be cut off
+age.sexual.cessation = epistats$age.sexual.cessation ## Sets age at which nodes
+                                                     ## are assumed to have ceased
+                                                     ## sexual activity and leave
+                                                     ## the network
+sex.cess.mod <- epistats$sex.cess.mod ## Sets whether there's a model determining
+                                      ## sexual cessation beyond mere aging
+age.grps <- epistats$age.grps         ## Lists age group categories used in sim
+time.unit <- epistats$time.unit ## Number of days each timestep in EpiModel sim represents
 
 # R list object for storing output data
 out <- list()
 
 # other preliminary parameters to set
-smooth.main.dur <- FALSE ## XX TODO: what is this?
+smooth.main.dur <- FALSE ## This has to do with an adjustment of durations
+                         ## for main partnerships (see line 216) that we don't use
 duration.time <- NULL
-p_age_imp <- NULL # p_age_imp initialization for lintr XX what does this do?
+p_age_imp <- NULL # p_age_imp initialization. This is used to subset ARTNet data
+                  # by a desired age range
 
 
 # =========================
@@ -75,7 +81,7 @@ l <- ARTnetData::ARTnet.long
 
 
 # Subset datasets by lower age limit and age.sexual.cessation
-# Now applies to both index (respondents) and partners for long dataset ## XX what does this comment mean?
+# Now filters these datasets by ages of both sexual partners in the edgelist data
 l <- subset(l, age >= age.limits[1] & age < age.sexual.cessation &
               p_age_imp >= age.limits[1] & p_age_imp < age.sexual.cessation)
 d <- subset(d, age >= age.limits[1] & age < age.sexual.cessation)
