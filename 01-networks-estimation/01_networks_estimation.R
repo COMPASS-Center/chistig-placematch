@@ -43,7 +43,7 @@ library(dplyr)
 expdir <- "./"
 
 # read in netstats
-netstats <- paste0(expdir, "netstats.rds")
+netstats <- readRDS(paste0(expdir, "netstats.rds"))
 
 # define the output files
 control_netest_out_fname <- paste0(expdir, "netest-control.rds")
