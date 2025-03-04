@@ -17,7 +17,6 @@ library(yaml)
 library(dplyr)
 
 
-
 # =========================
 # read in yaml file
 # =========================
@@ -61,6 +60,7 @@ nw <- network::network.initialize(n = numegos,
                          loops = FALSE,
                          directed = FALSE)
 
+
 attr_names <- names(netstats$attr)
 attr_values <- netstats$attr
 
@@ -86,11 +86,13 @@ ergm_fit_control_settings <- list(
 
 # MAIN PARTNERSHIPS --------------------------------------------
 
+print("Setting up main partnerships...")
+
 # 1. Target stats
 target_stats_main <- c(
     edges = netstats$main$edges,
-    concurrent = netstats$main$concurrent,
     nodematch_age.grp = netstats$main$nodematch_age.grp,
+    concurrent = netstats$main$concurrent,
     nodefactor_race = netstats$main$nodefactor_race[1:3],
     nodematch_race = netstats$main$nodematch_race,
     nodefactor_deg.casl = netstats$main$nodefactor_deg.casl[-1],
@@ -123,8 +125,8 @@ target_stats_main_venuesapps <- unname(target_stats_main_venuesapps)
 # 2. Formation model formula
 model_terms_main_control <- c(
     "edges",
-    "concurrent",
     "nodematch('age.grp', diff = TRUE)",
+    "concurrent",
     "nodefactor('race', levels=-4)",
     "nodematch('race')",
     "nodefactor('deg.casl', levels=-1)"
@@ -159,6 +161,7 @@ model_form_main_venuesapps <- as.formula(
 
 
 # 3. Fit the network model to the target stats
+print("... fitting the control model ...")
 fit_main_control <- netest(
     nw = nw_main,
     formation = model_form_main_control,
@@ -168,6 +171,7 @@ fit_main_control <- netest(
 )
 fit_main_control <- trim_netest(fit_main_control)
 
+print("... fitting the venues only model ...")
 fit_main_venuesonly <- netest(
     nw = nw_main,
     formation = model_form_main_venuesonly,
@@ -177,6 +181,7 @@ fit_main_venuesonly <- netest(
 )
 fit_main_venuesonly <- trim_netest(fit_main_venuesonly)
 
+print("... fitting the apps only model ...")
 fit_main_appsonly <- netest(
     nw = nw_main,
     formation = model_form_main_appsonly,
@@ -186,6 +191,7 @@ fit_main_appsonly <- netest(
 )
 fit_main_appsonly <- trim_netest(fit_main_appsonly)
 
+print("... fitting the venues + apps model ...")
 fit_main_venuesapps <- netest(
     nw = nw_main,
     formation = model_forma_main_venuesapps,
@@ -198,11 +204,13 @@ fit_main_venuesapps <- trim_netest(fit_main_venuesapps)
 
 # CASUAL PARTNERSHIPS --------------------------------------------
 
+print("Setting up casual partnerships...")
+
 # 1. Target stats
 target_stats_casl <- c(
     edges =  netstats$casl$edges,
-    concurrent =  netstats$casl$concurrent,
     nodematch_age.grp = netstats$casl$nodematch_age.grp,
+    concurrent =  netstats$casl$concurrent,
     nodefactor_race =  netstats$casl$nodefactor_race[1:3],
     nodematch_race = netstats$casl$nodematch_race,
     nodefactor_deg.main = netstats$casl$nodefactor_deg.main[-1],
@@ -235,8 +243,8 @@ target_stats_casl_venuesapps <- unname(target_stats_casl_venuesapps)
 # 2. Formation model formula
 model_terms_casl_control <- c(
     "edges",
-    "concurrent",
     "nodematch('age.grp', diff = TRUE)",
+    "concurrent",
     "nodefactor('race', levels=-4)",
     "nodematch('race')",
     "nodefactor('deg.main', levels=-1)"
@@ -270,6 +278,7 @@ model_form_casl_venuesapps <- as.formula(
 
 
 # 3. Fit the network model to the target stats
+print("... fitting the control model ...")
 fit_casl_control <- netest(
     nw = nw_casl,
     formation = model_form_casl_control,
@@ -279,6 +288,7 @@ fit_casl_control <- netest(
 )
 fit_casl_control <- trim_netest(fit_casl_control)
 
+print("... fitting the venues only model ...")
 fit_casl_venuesonly <- netest(
     nw = nw_casl,
     formation = model_form_casl_venuesonly,
@@ -288,6 +298,7 @@ fit_casl_venuesonly <- netest(
 )
 fit_casl_venuesonly <- trim_netest(fit_casl_venuesonly)
 
+print("... fitting the apps only model ...")
 fit_casl_appsonly <- netest(
     nw = nw_casl,
     formation = model_form_casl_appsonly,
@@ -297,6 +308,7 @@ fit_casl_appsonly <- netest(
 )
 fit_casl_appsonly <- trim_netest(fit_casl_appsonly)
 
+print("... fitting the venues + apps model ...")
 fit_casl_venuesapps <- netest(
     nw = nw_casl,
     formation = model_form_casl_venuesapps,
@@ -308,6 +320,8 @@ fit_casl_venuesapps <- trim_netest(fit_casl_venuesapps)
 
 
 # ONE-TIME PARTNERSHIPS --------------------------------------------
+
+print("Setting up one-time partnerships...")
 
 # 1. Target stats
 target_stats_inst <- c(
@@ -378,6 +392,7 @@ model_form_inst_venuesapps <- as.formula(
 )
 
 # 3. Fit the network model to the target stats
+print("... fitting the control model ...")
 fit_inst_control <- netest(
     nw = nw_inst,
     formation = model_form_inst_control,
@@ -387,6 +402,7 @@ fit_inst_control <- netest(
 )
 fit_inst_control <- trim_netest(fit_inst_control)
 
+print("... fitting the venues only model ...")
 fit_inst_venuesonly <- netest(
     nw = nw_inst,
     formation = model_form_inst_venuesonly,
@@ -396,6 +412,7 @@ fit_inst_venuesonly <- netest(
 )
 fit_inst_venuesonly <- trim_netest(fit_inst_venuesonly)
 
+print("... fitting the apps only model ...")
 fit_inst_appsonly <- netest(
     nw = nw_inst,
     formation = model_form_inst_appsonly,
@@ -405,6 +422,7 @@ fit_inst_appsonly <- netest(
 )
 fit_inst_appsonly <- trim_netest(fit_inst_appsonly)
 
+print("... fitting the venues + apps model ...")
 fit_inst_venuesapps <- netest(
     nw = nw_inst,
     formation = model_form_inst_venuesapps,
@@ -418,7 +436,7 @@ fit_inst_venuesapps <- trim_netest(fit_inst_venuesapps)
 # Save the ERGM fits 
 # =========================
 
-# A. CONTROL --------------------------------- 
+# A. CONTROL ---------------------------------
 
 out_control <- list(
     fit_main = fit_main_control,
@@ -574,3 +592,4 @@ inst_df <- data.frame(
 
 coef_df_venuesapps <- dplyr::bind_rows(coef_df_venuesapps, casl_df)
 coef_df_venuesapps <- dplyr::bind_rows(coef_df_venuesapps, inst_df)
+

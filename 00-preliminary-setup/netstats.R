@@ -14,7 +14,6 @@
 # =========================
 
 library("EpiModelHIV")
-# library(tidyverse)
 library(yaml)
 library(dplyr)
 
@@ -90,6 +89,29 @@ egos <- egos %>%
                 deg.tot = init_pers_cat,
                 venues_all = venue_list_1week
   )
+
+egos <- egos %>%
+  mutate(sqrt.age = sqrt(age),
+         active.sex = 1,
+         age.grp = ifelse(age.grp == "16to20", 1, 2),
+         apps.all = app_list) %>%
+    select(
+        numeric_id,
+        egoid,
+        age,
+        sqrt.age,
+        agegroup,
+        age.grp,
+        race.ethnicity = race_ethnicity,
+        race,
+        deg.casl,
+        deg.main,
+        deg.tot,
+        diag.status = hiv_status,
+        venues.all = venues_all,
+        apps.all,
+        active.sex
+    )
 
 
 # =========================
