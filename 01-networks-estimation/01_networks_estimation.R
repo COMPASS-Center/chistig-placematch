@@ -194,7 +194,7 @@ fit_main_appsonly <- trim_netest(fit_main_appsonly)
 print("... fitting the venues + apps model ...")
 fit_main_venuesapps <- netest(
     nw = nw_main,
-    formation = model_forma_main_venuesapps,
+    formation = model_form_main_venuesapps,
     target.stats = target_stats_main_venuesapps,
     coef.diss = netstats$main$diss.byage,
     set.control.ergm = do.call(control.ergm, ergm_fit_control_settings)
