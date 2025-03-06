@@ -427,7 +427,9 @@ netstats <- list(
     nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "one.time"),
 
     # nodematch_age.grp
-    nodematch_age.grp = target_extract(term = "nodematch.age", model = "one.time"),
+    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "one.time"),
+                          target_extract(term = "nodematch.age.21to29", model = "one.time")),
+
 
     # nodefactor_init_pers_cat
     nodefactor_deg.tot = c(target_extract(term = "nodefactor.init_pers_cat.0", model = "one.time"),
