@@ -15,6 +15,9 @@ exp.dir: './'
 # netstats object name and location
 netstats.dir: './'
 netstats.fname: 'netstats.rds'
+# create a text file that stores which ergm fit scenarios did not converge
+convergence.fail.fname: 'ergm_fits_that_did_not_converge'
+
 
 # -----------------------------------
 ## Experiment details 
@@ -54,7 +57,6 @@ sbatch.walltime.hours: '10' # make sure it is large enough to account for the co
 sbatch.walltime.minutes: '30'
 # memory
 sbatch.memory: '3G'
-convergence.fail.fname: 'calibration_sets_that_did_not_converge'
 
 
 
