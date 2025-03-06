@@ -28,7 +28,7 @@ library(argparse)
 parser <- ArgumentParser(description = "Process command line arguments for which network estimation is occurring and which random seed to use") #nolint
 
 # parser$add_argument("--yamlfname", required=TRUE, help="The YAML file that needs to be passed in") #nolint
-# parser$add_argument("--randomseed", required=FALSE, help="The random seed to use for this attempt of ERGM network estimate") #nolint
+parser$add_argument("--randomseed", required=FALSE, help="The random seed to use for this attempt of ERGM network estimate") #nolint
 parser$add_argument(
     "--partnershiptype",
     required = FALSE,
@@ -55,6 +55,10 @@ if ((is.na(ptype)) || (is.na(mtype))) {
     runall <- FALSE
 }
 
+randomseed <- as.integer(
+    ifelse(is.null(args$randomseed), 15, args$randomseed)
+)
+
 
 # =========================
 # setup YAML parameters
@@ -62,8 +66,8 @@ if ((is.na(ptype)) || (is.na(mtype))) {
 
 # yamldata <- yaml.load_file(args$yamlfname)
 
-# set the random seed to be whatever if passed in
-# if nothing is passed in, uses the default as defined in the yaml file
+# # set the random seed to be whatever if passed in
+# # if nothing is passed in, uses the default as defined in the yaml file
 # randomseed <- as.integer(
 #     ifelse(is.null(args$randomseed), yamldata$random.seed, args$randomseed)
 # )
