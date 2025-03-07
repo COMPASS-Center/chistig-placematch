@@ -1,0 +1,1607 @@
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-conda-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
+Selected partnership type: casual
+Selected model type: venues
+Array of random seeds for convergence attempts: 50 157 146 129 68 171 72 13 198 61.
+Random seed is 50 for attempt 1 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0158.
+The log-likelihood improved by 11.6691.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0395.
+The log-likelihood improved by 5.0274.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0458.
+The log-likelihood improved by 5.4398.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0544.
+The log-likelihood improved by 6.1725.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0574.
+The log-likelihood improved by 5.3021.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0739.
+The log-likelihood improved by 6.8756.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0773.
+The log-likelihood improved by 5.8184.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.0917.
+The log-likelihood improved by 6.1514.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1069.
+The log-likelihood improved by 6.3495.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.1165.
+The log-likelihood improved by 5.5273.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.1425.
+The log-likelihood improved by 6.3252.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.1615.
+The log-likelihood improved by 5.4553.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.1998.
+The log-likelihood improved by 5.7658.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.2457.
+The log-likelihood improved by 5.6262.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.3333.
+The log-likelihood improved by 6.1171.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.4881.
+The log-likelihood improved by 6.0322.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.7855.
+The log-likelihood improved by 5.1457.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.5568.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0068.
+Convergence test p-value: 0.0023. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 1 did not finish within the timeout period.
+Random seed is 157 for attempt 2 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0390.
+The log-likelihood improved by 6.6070.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0540.
+The log-likelihood improved by 5.6055.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0604.
+The log-likelihood improved by 5.2052.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0693.
+The log-likelihood improved by 5.2379.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0779.
+The log-likelihood improved by 5.3791.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0892.
+The log-likelihood improved by 5.9076.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0970.
+The log-likelihood improved by 5.8411.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.1049.
+The log-likelihood improved by 5.4067.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1145.
+The log-likelihood improved by 5.4214.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.1301.
+The log-likelihood improved by 5.5418.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.1424.
+The log-likelihood improved by 5.2435.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.1670.
+The log-likelihood improved by 5.7663.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.1919.
+The log-likelihood improved by 5.4020.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.2271.
+The log-likelihood improved by 5.7548.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.2820.
+The log-likelihood improved by 5.8456.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.3644.
+The log-likelihood improved by 5.8512.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.4949.
+The log-likelihood improved by 5.1570.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 0.8949.
+The log-likelihood improved by 5.5900.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.2801.
+Estimating equations are not within tolerance region.
+Iteration 20 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0185.
+Convergence test p-value: 0.0009. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 2 did not finish within the timeout period.
+Random seed is 146 for attempt 3 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0322.
+The log-likelihood improved by 7.1110.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0521.
+The log-likelihood improved by 5.8913.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0603.
+The log-likelihood improved by 5.3589.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0682.
+The log-likelihood improved by 5.5347.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0771.
+The log-likelihood improved by 5.6456.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0816.
+The log-likelihood improved by 5.3290.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0916.
+The log-likelihood improved by 5.5954.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.0967.
+The log-likelihood improved by 5.3994.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1029.
+The log-likelihood improved by 5.2680.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.1145.
+The log-likelihood improved by 5.5797.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.1256.
+The log-likelihood improved by 5.5628.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.1379.
+The log-likelihood improved by 5.7058.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.1477.
+The log-likelihood improved by 5.0961.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.1705.
+The log-likelihood improved by 5.5117.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.1909.
+The log-likelihood improved by 5.2803.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.2151.
+The log-likelihood improved by 5.0806.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.2833.
+The log-likelihood improved by 6.3104.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 0.3387.
+The log-likelihood improved by 5.6566.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 0.4508.
+The log-likelihood improved by 5.5587.
+Estimating equations are not within tolerance region.
+Iteration 20 of at most 60:
+Optimizing with step length 0.6963.
+The log-likelihood improved by 5.2753.
+Estimating equations are not within tolerance region.
+Iteration 21 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 1.6457.
+Estimating equations are not within tolerance region.
+Iteration 22 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0231.
+Convergence test p-value: 0.0003. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 3 did not finish within the timeout period.
+Random seed is 129 for attempt 4 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0312.
+The log-likelihood improved by 7.0972.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0448.
+The log-likelihood improved by 5.2615.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0603.
+The log-likelihood improved by 6.9792.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0599.
+The log-likelihood improved by 5.3802.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0657.
+The log-likelihood improved by 5.6736.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0744.
+The log-likelihood improved by 6.3056.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0755.
+The log-likelihood improved by 5.5829.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.0853.
+The log-likelihood improved by 6.1174.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.0934.
+The log-likelihood improved by 6.3222.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.0994.
+The log-likelihood improved by 6.1578.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.1009.
+The log-likelihood improved by 5.6527.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.1069.
+The log-likelihood improved by 5.3035.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.1202.
+The log-likelihood improved by 5.6976.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.1332.
+The log-likelihood improved by 5.8096.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.1438.
+The log-likelihood improved by 5.5705.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.1477.
+The log-likelihood improved by 4.7885.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.1775.
+The log-likelihood improved by 5.5209.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 0.1864.
+The log-likelihood improved by 4.6894.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 0.2323.
+The log-likelihood improved by 5.4262.
+Estimating equations are not within tolerance region.
+Iteration 20 of at most 60:
+Optimizing with step length 0.2723.
+The log-likelihood improved by 5.2404.
+Estimating equations are not within tolerance region.
+Iteration 21 of at most 60:
+Optimizing with step length 0.3217.
+The log-likelihood improved by 4.8595.
+Estimating equations are not within tolerance region.
+Iteration 22 of at most 60:
+Optimizing with step length 0.4379.
+The log-likelihood improved by 5.0400.
+Estimating equations are not within tolerance region.
+Iteration 23 of at most 60:
+Optimizing with step length 0.7433.
+The log-likelihood improved by 6.0525.
+Estimating equations are not within tolerance region.
+Iteration 24 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 1.4864.
+Estimating equations are not within tolerance region.
+Iteration 25 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0173.
+Convergence test p-value: 0.0019. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 4 did not finish within the timeout period.
+Random seed is 68 for attempt 5 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0303.
+The log-likelihood improved by 7.9576.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0615.
+The log-likelihood improved by 6.6634.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0769.
+The log-likelihood improved by 5.8014.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.1058.
+The log-likelihood improved by 6.9330.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.1205.
+The log-likelihood improved by 5.5632.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.1511.
+The log-likelihood improved by 5.4730.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.1938.
+The log-likelihood improved by 5.7417.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.2712.
+The log-likelihood improved by 5.9658.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.4039.
+The log-likelihood improved by 5.4146.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.6860.
+The log-likelihood improved by 5.0361.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.8670.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0235.
+Convergence test p-value: 0.0097. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 5 did not finish within the timeout period.
+Random seed is 171 for attempt 6 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0117.
+The log-likelihood improved by 6.4783.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0159.
+The log-likelihood improved by 7.0437.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0189.
+The log-likelihood improved by 6.3731.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0228.
+The log-likelihood improved by 6.4084.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0260.
+The log-likelihood improved by 5.9429.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0326.
+The log-likelihood improved by 6.7385.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0347.
+The log-likelihood improved by 5.4603.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.0417.
+The log-likelihood improved by 5.9610.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.0531.
+The log-likelihood improved by 7.1751.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.0556.
+The log-likelihood improved by 5.6836.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.0639.
+The log-likelihood improved by 5.6424.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.0762.
+The log-likelihood improved by 5.9018.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.0892.
+The log-likelihood improved by 5.9129.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.1017.
+The log-likelihood improved by 5.3373.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.1284.
+The log-likelihood improved by 6.0908.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.1557.
+The log-likelihood improved by 5.8658.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.1918.
+The log-likelihood improved by 5.8263.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 0.2701.
+The log-likelihood improved by 6.8989.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 0.3415.
+The log-likelihood improved by 5.5647.
+Estimating equations are not within tolerance region.
+Iteration 20 of at most 60:
+Optimizing with step length 0.5413.
+The log-likelihood improved by 5.6156.
+Estimating equations are not within tolerance region.
+Iteration 21 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 3.5231.
+Estimating equations are not within tolerance region.
+Iteration 22 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0217.
+Convergence test p-value: 0.0014. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 6 did not finish within the timeout period.
+Random seed is 72 for attempt 7 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0446.
+The log-likelihood improved by 6.0560.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0551.
+The log-likelihood improved by 5.5730.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0662.
+The log-likelihood improved by 6.2794.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0732.
+The log-likelihood improved by 6.1443.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0766.
+The log-likelihood improved by 5.7277.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0807.
+The log-likelihood improved by 5.1904.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0878.
+The log-likelihood improved by 5.3653.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.0925.
+The log-likelihood improved by 4.9771.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1050.
+The log-likelihood improved by 5.5060.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.1170.
+The log-likelihood improved by 5.7304.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.1211.
+The log-likelihood improved by 5.1455.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.1359.
+The log-likelihood improved by 5.3107.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.1799.
+The log-likelihood improved by 7.5760.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.1807.
+The log-likelihood improved by 5.7792.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.2141.
+The log-likelihood improved by 6.0456.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.2387.
+The log-likelihood improved by 5.1998.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.2987.
+The log-likelihood improved by 5.6969.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 0.3804.
+The log-likelihood improved by 5.3068.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 0.5301.
+The log-likelihood improved by 4.9257.
+Estimating equations are not within tolerance region.
+Iteration 20 of at most 60:
+Optimizing with step length 0.9750.
+The log-likelihood improved by 5.0125.
+Estimating equations are not within tolerance region.
+Iteration 21 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.1042.
+Estimating equations are not within tolerance region.
+Iteration 22 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0046.
+Convergence test p-value: 0.0018. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 7 did not finish within the timeout period.
+Random seed is 13 for attempt 8 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0289.
+The log-likelihood improved by 8.6341.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0579.
+The log-likelihood improved by 5.9488.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0734.
+The log-likelihood improved by 6.2259.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0865.
+The log-likelihood improved by 5.9159.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.1036.
+The log-likelihood improved by 6.1929.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.1043.
+The log-likelihood improved by 4.9558.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.1266.
+The log-likelihood improved by 5.2947.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.1471.
+The log-likelihood improved by 5.5422.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1769.
+The log-likelihood improved by 5.9436.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.2142.
+The log-likelihood improved by 6.1787.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.2556.
+The log-likelihood improved by 5.8175.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.2916.
+The log-likelihood improved by 4.6580.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.4421.
+The log-likelihood improved by 6.3838.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.6118.
+The log-likelihood improved by 4.7238.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 2.8998.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0214.
+Convergence test p-value: 0.0034. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 8 did not finish within the timeout period.
+Random seed is 198 for attempt 9 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0286.
+The log-likelihood improved by 7.3721.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0457.
+The log-likelihood improved by 5.8128.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0563.
+The log-likelihood improved by 6.1880.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0624.
+The log-likelihood improved by 5.7938.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0781.
+The log-likelihood improved by 6.8241.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.0813.
+The log-likelihood improved by 5.9409.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.0884.
+The log-likelihood improved by 5.4705.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.1055.
+The log-likelihood improved by 5.9896.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1125.
+The log-likelihood improved by 5.1440.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.1310.
+The log-likelihood improved by 5.3481.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.1488.
+The log-likelihood improved by 5.1907.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.1764.
+The log-likelihood improved by 5.2170.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.2138.
+The log-likelihood improved by 5.5435.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.2501.
+The log-likelihood improved by 5.1493.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.3236.
+The log-likelihood improved by 5.2580.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 0.4353.
+The log-likelihood improved by 4.8533.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 0.6962.
+The log-likelihood improved by 4.9745.
+Estimating equations are not within tolerance region.
+Iteration 18 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 1.5537.
+Estimating equations are not within tolerance region.
+Iteration 19 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0234.
+Convergence test p-value: 0.0004. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Error in gzfile(file, mode) : cannot open the connection
+Calls: <Anonymous> -> saveRDS -> gzfile
+In addition: Warning message:
+In gzfile(file, mode) :
+  cannot open compressed file './interim/netest-casual-venues.rds', probable reason 'No such file or directory'
+Execution halted
+Attempt 9 did not finish within the timeout period.
+Random seed is 61 for attempt 10 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES only model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Model statistics ‘nodematch.age.grp.1’, ‘concurrent’, and ‘nodefactor.race.3’ are not varying. This may indicate that the observed data occupies an extreme point in the sample space or that the estimation has reached a dead-end configuration.
+Warning: Model statistics ‘nodefactor.race.2’ are linear combinations of some set of preceding statistics at the current stage of the estimation. This may indicate that the model is nonidentifiable.
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0043.
+The log-likelihood improved by 246473332644228890824093472048543694848.0000.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Error in ergm.MCMLE(init, nw, model, initialfit = (initialfit <- NULL),  : 
+  Number of edges in a simulated network exceeds that in the observed by a factor of more than 20. This is a strong indicator of model degeneracy or a very poor starting parameter configuration. If you are reasonably certain that neither of these is the case, increase the MCMLE.density.guard control.ergm() parameter.
+Calls: <Anonymous> -> netest -> ergm -> ergm.MCMLE
+In addition: Warning messages:
+1: In mple.existence(pl) : The MPLE does not exist!
+2: In ergm.mple(nw, fd, m, MPLEtype = MPLEtype, init = init, control = control,  :
+  glm.fit: fitted probabilities numerically 0 or 1 occurred
+Execution halted
+Attempt 10 did not finish within the timeout period.
+Reached the maximum number of attempts (10).
