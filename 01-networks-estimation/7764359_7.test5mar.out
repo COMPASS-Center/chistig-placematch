@@ -1,0 +1,180 @@
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+R version 4.3.2 (2023-10-31) -- "Eye Holes"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-conda-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
+Selected partnership type: casual
+Selected model type: venuesapps
+Array of random seeds for convergence attempts: 50 157 146 129 68 171 72 13 198 61.
+Random seed is 50 for attempt 1 of 10...
+Loading required package: EpiModel
+Loading required package: deSolve
+Loading required package: networkDynamic
+Loading required package: network
+
+‘network’ 1.18.1 (2023-01-24), part of the Statnet Project
+* ‘news(package="network")’ for changes since last version
+* ‘citation("network")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+‘networkDynamic’ 0.11.4 (2023-12-10?), part of the Statnet Project
+* ‘news(package="networkDynamic")’ for changes since last version
+* ‘citation("networkDynamic")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+Loading required package: tergm
+Loading required package: ergm
+
+‘ergm’ 4.4.0 (2023-01-26), part of the Statnet Project
+* ‘news(package="ergm")’ for changes since last version
+* ‘citation("ergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+‘ergm’ 4 is a major update that introduces some backwards-incompatible
+changes. Please type ‘news(package="ergm")’ for a list of major
+changes.
+
+Registered S3 method overwritten by 'tergm':
+  method                   from
+  simulate_formula.network ergm
+
+‘tergm’ 4.1.1 (2022-11-07), part of the Statnet Project
+* ‘news(package="tergm")’ for changes since last version
+* ‘citation("tergm")’ for citation information
+* ‘https://statnet.org’ for help, support, and other information
+
+
+Attaching package: ‘tergm’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+Loading required package: statnet.common
+
+Attaching package: ‘statnet.common’
+
+The following object is masked from ‘package:ergm’:
+
+    snctrl
+
+The following objects are masked from ‘package:base’:
+
+    attr, order
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Fitting the VENUES+APPS model for CASUAL partnerships ...
+Unable to match target stats. Using MCMLE estimation.
+Starting maximum pseudolikelihood estimation (MPLE):
+Evaluating the predictor and response matrix.
+Maximizing the pseudolikelihood.
+Finished MPLE.
+Starting Monte Carlo maximum likelihood estimation (MCMLE):
+Iteration 1 of at most 60:
+Warning: ‘glpk’ selected as the solver, but package ‘Rglpk’ is not available; falling back to ‘lpSolveAPI’. This should be fine unless the sample size and/or the number of parameters is very big.
+Optimizing with step length 0.0460.
+The log-likelihood improved by 5.6522.
+Estimating equations are not within tolerance region.
+Iteration 2 of at most 60:
+Optimizing with step length 0.0595.
+The log-likelihood improved by 6.1082.
+Estimating equations are not within tolerance region.
+Iteration 3 of at most 60:
+Optimizing with step length 0.0710.
+The log-likelihood improved by 6.1206.
+Estimating equations are not within tolerance region.
+Iteration 4 of at most 60:
+Optimizing with step length 0.0756.
+The log-likelihood improved by 5.1735.
+Estimating equations are not within tolerance region.
+Iteration 5 of at most 60:
+Optimizing with step length 0.0907.
+The log-likelihood improved by 5.7133.
+Estimating equations are not within tolerance region.
+Iteration 6 of at most 60:
+Optimizing with step length 0.1027.
+The log-likelihood improved by 5.5909.
+Estimating equations are not within tolerance region.
+Iteration 7 of at most 60:
+Optimizing with step length 0.1127.
+The log-likelihood improved by 5.2030.
+Estimating equations are not within tolerance region.
+Iteration 8 of at most 60:
+Optimizing with step length 0.1381.
+The log-likelihood improved by 5.8503.
+Estimating equations are not within tolerance region.
+Iteration 9 of at most 60:
+Optimizing with step length 0.1440.
+The log-likelihood improved by 4.7579.
+Estimating equations are not within tolerance region.
+Iteration 10 of at most 60:
+Optimizing with step length 0.1931.
+The log-likelihood improved by 6.1689.
+Estimating equations are not within tolerance region.
+Iteration 11 of at most 60:
+Optimizing with step length 0.2224.
+The log-likelihood improved by 5.3342.
+Estimating equations are not within tolerance region.
+Iteration 12 of at most 60:
+Optimizing with step length 0.2618.
+The log-likelihood improved by 4.6644.
+Estimating equations are not within tolerance region.
+Iteration 13 of at most 60:
+Optimizing with step length 0.3766.
+The log-likelihood improved by 5.6399.
+Estimating equations are not within tolerance region.
+Iteration 14 of at most 60:
+Optimizing with step length 0.5029.
+The log-likelihood improved by 4.7565.
+Estimating equations are not within tolerance region.
+Iteration 15 of at most 60:
+Optimizing with step length 0.9430.
+The log-likelihood improved by 4.6982.
+Estimating equations are not within tolerance region.
+Iteration 16 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.1261.
+Estimating equations are not within tolerance region.
+Iteration 17 of at most 60:
+Optimizing with step length 1.0000.
+The log-likelihood improved by 0.0044.
+Convergence test p-value: 0.0070. Converged with 99% confidence.
+Finished MCMLE.
+This model was fit using MCMC.  To examine model diagnostics and check
+for degeneracy, use the mcmc.diagnostics() function.
+Attempt 1 completed successfully.
