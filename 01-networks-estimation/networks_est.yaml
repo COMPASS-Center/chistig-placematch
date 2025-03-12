@@ -9,9 +9,11 @@ random.seed: 15 # note - keep this the same across the .yamls
 # directory where to keep the interim network estimate files
 interim.dir: 'interim/'
 # directory where full output files will be held
-out.dir: './'
+# out.dir: './'
+out.dir: &expname 'test12mar'
 # experiment directory where everything is being run from
-exp.dir: './'
+# exp.dir: './'
+exp.dir: *expname
 # netstats object name and location
 netstats.dir: './'
 netstats.fname: 'netstats.rds'
@@ -22,6 +24,9 @@ convergence.fail.fname: 'ergm_fits_that_did_not_converge'
 # -----------------------------------
 ## Experiment details 
 # -----------------------------------
+# experiment name
+# exp.name: 'test12mar'
+exp.name: *expname
 # partnership types (comment out the ones not included)
 partnership.types:
     - main
@@ -48,7 +53,7 @@ max.random.seed: 200
 ## SBATCH details 
 # -----------------------------------
 # email to send this too
-sbatch.email:
+sbatch.email: 'tom.wolff@northwestern.edu'
 # partition type
 sbatch.partition: 'normal' # short, normal 
 # walltime hours
@@ -57,6 +62,7 @@ sbatch.walltime.hours: '10' # make sure it is large enough to account for the co
 sbatch.walltime.minutes: '30'
 # memory
 sbatch.memory: '3G'
+
 
 
 
