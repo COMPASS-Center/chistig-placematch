@@ -28,7 +28,11 @@ library(argparse)
 parser <- ArgumentParser(description = "Process command line arguments for which network estimation is occurring and which random seed to use") #nolint
 
 # parser$add_argument("--yamlfname", required=TRUE, help="The YAML file that needs to be passed in") #nolint
-parser$add_argument("--randomseed", required=FALSE, help="The random seed to use for this attempt of ERGM network estimate") #nolint
+parser$add_argument(
+    "--randomseed",
+    type = "integer",
+    required = FALSE,
+    help="The random seed to use for this attempt of ERGM network estimate") #nolint
 parser$add_argument(
     "--partnershiptype",
     required = FALSE,
@@ -72,9 +76,9 @@ randomseed <- as.integer(
 #     ifelse(is.null(args$randomseed), yamldata$random.seed, args$randomseed)
 # )
 
-# # =========================
-# # define filenames/directories from YAML
-# # =========================
+# =========================
+# define filenames/directories from YAML
+# =========================
 
 # define the experiment directory where input and outputs are saved
 expdir <- "./"
@@ -566,172 +570,3 @@ if (runall) {
         stop("Error: Invalid function selection.")
     }
 }
-
-
-
-
-
-
-
-
-# # # =========================
-# # # Save the ERGM fits 
-# # # =========================
-
-# # # A. CONTROL ---------------------------------
-
-# # out_control <- list(
-# #     fit_main = fit_main_control,
-# #     fit_casl = fit_casl_control,
-# #     fit_inst = fit_inst_control
-# # )
-# # saveRDS(out_control, control_netest_out_fname)
-
-# # # B. VENUES ONLY ---------------------------------
-
-# # out_venuesonly <- list(
-# #     fit_main = fit_main_venuesonly,
-# #     fit_casl = fit_casl_venuesonly,
-# #     fit_inst = fit_inst_venuesonly
-# # )
-# # saveRDS(out_venuesonly, venuesonly_netest_out_fname)
-
-
-# # # C. APPS ONLY ---------------------------------
-
-# # out_appsonly <- list(
-# #     fit_main = fit_main_appsonly,
-# #     fit_casl = fit_casl_appsonly,
-# #     fit_inst = fit_inst_appsonly
-# # )
-# # saveRDS(out_appsonly, appsonly_netest_out_fname)
-
-
-# # # D. VENUES + APPS ---------------------------------
-
-# # out_venuesapps <- list(
-# #     fit_main = fit_main_venuesapps,
-# #     fit_casl = fit_casl_venuesapps,
-# #     fit_inst = fit_inst_venuesapps
-# # )
-# # saveRDS(out_venuesapps, venuesapps_netest_out_fname)
-
-
-# # # =========================
-# # # Crete dataframes of coefficients for each treatment/scenario
-# # # =========================
-
-# # # A. CONTROL ---------------------------------
-
-# # coef_df_control <- data.frame(
-# #                 treatment = "control",
-# #                 model = "main",
-# #                 term = names(fit_main_control$coef.form),
-# #                 estimate = fit_main_control$coef.form
-# #             )
-
-# # casl_df <- data.frame(
-# #                 treatment = "control",
-# #                 model = "casual",
-# #                 term = names(fit_casl_control$coef.form),
-# #                 estimate = fit_casl_control$coef.form
-# #             )
-
-# # inst_df <- data.frame(
-# #                 treatment = "control",
-# #                 model = "onetime",
-# #                 term = names(fit_inst_control$coef.form),
-# #                 estimate = fit_inst_control$coef.form
-# #             )
-
-# # coef_df_control <- dplyr::bind_rows(coef_df_control, casl_df)
-# # coef_df_control <- dplyr::bind_rows(coef_df_control, inst_df)
-
-
-# # # B. VENUES ONLY ---------------------------------
-
-# # coef_df_venuesonly <- data.frame(
-# #                 treatment = "venues",
-# #                 model = "main",
-# #                 term = names(fit_main_venuesonly$coef.form),
-# #                 estimate = fit_main_venuesonly$coef.form
-# #             )
-
-# # casl_df <- data.frame(
-# #                 treatment = "venues",
-# #                 model = "casual",
-# #                 term = names(fit_casl_venuesonly$coef.form),
-# #                 estimate = fit_casl_venuesonly$coef.form
-# #             )
-
-# # inst_df <- data.frame(
-# #                 treatment = "venues",
-# #                 model = "onetime",
-# #                 term = names(fit_inst_venuesonly$coef.form),
-# #                 estimate = fit_inst_venuesonly$coef.form
-# #             )
-
-# # coef_df_venuesonly <- dplyr::bind_rows(coef_df_venuesonly, casl_df)
-# # coef_df_venuesonly <- dplyr::bind_rows(coef_df_venuesonly, inst_df)
-
-# # out_venuesonly <- list(
-# #     fit_main = fit_main_venuesonly,
-# #     fit_casl = fit_casl_venuesonly,
-# #     fit_inst = fit_inst_venuesonly
-# # )
-# # saveRDS(out_venuesonly, paste0(est_dir, "netest-venues", context, ".rds"))
-
-# # # C. APPS ONLY ---------------------------------
-
-# # coef_df_appsonly <- data.frame(
-# #                 treatment = "apps",
-# #                 model = "main",
-# #                 term = names(fit_main_appsonly$coef.form),
-# #                 estimate = fit_main_appsonly$coef.form
-# #             )
-
-# # casl_df <- data.frame(
-# #                 treatment = "apps",
-# #                 model = "casual",
-# #                 term = names(fit_casl_appsonly$coef.form),
-# #                 estimate = fit_casl_appsonly$coef.form
-# #             )
-
-# # inst_df <- data.frame(
-# #                 treatment = "apps",
-# #                 model = "onetime",
-# #                 term = names(fit_inst_appsonly$coef.form),
-# #                 estimate = fit_inst_appsonly$coef.form
-# #             )
-
-# # coef_df_appsonly <- dplyr::bind_rows(coef_df_appsonly, casl_df)
-# # coef_df_appsonly <- dplyr::bind_rows(coef_df_appsonly, inst_df)
-
-
-
-# # # D. VENUES + APPS ---------------------------------
-
-# # coef_df_venuesapps <- data.frame(
-# #                 treatment = "venuesapps",
-# #                 model = "main",
-# #                 term = names(fit_main_venuesapps$coef.form),
-# #                 estimate = fit_main_venuesapps$coef.form
-# #             )
-
-# # casl_df <- data.frame(
-# #                 treatment = "venuesapps",
-# #                 model = "casual",
-# #                 term = names(fit_casl_venuesapps$coef.form),
-# #                 estimate = fit_casl_venuesapps$coef.form
-# #             )
-
-# # inst_df <- data.frame(
-# #                 treatment = "venuesapps",
-# #                 model = "onetime",
-# #                 term = names(fit_inst_venuesapps$coef.form),
-# #                 estimate = fit_inst_venuesapps$coef.form
-# #             )
-
-# # coef_df_venuesapps <- dplyr::bind_rows(coef_df_venuesapps, casl_df)
-# # coef_df_venuesapps <- dplyr::bind_rows(coef_df_venuesapps, inst_df)
-
