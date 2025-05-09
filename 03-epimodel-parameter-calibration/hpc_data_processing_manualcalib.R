@@ -4,33 +4,26 @@ library("future.apply")
 library("EpiModelHIV")
 
 # Data ------------------------------------------------------------------------
-#sim_targets <- readRDS("./data/intermediate/alldata_oct26.rds")
-# netstats <- readRDS("~/Desktop/chiSTIG_hpc/data/intermediate/estimates/netstats-level-local_00018_00014_alt.rds")
-netstats <- readRDS("~/Desktop/chiSTIG_hpc/data/intermediate/estimates/netstats-local.rds")
-
-
+netstats <- readRDS("./03-epimodel-parameter-calibration/data/intermediate/estimates/netstats-local.rds")
 
 # Necessary files
 context <- "local"
 est_dir <- "blah"
 prep_start = 52*2
-source("~/Desktop/chiSTIG_hpc/R/utils-chistig_basic_inputs.R") # generate `path_to_est`, `param` and `initchis`
+source("./03-epimodel-parameter-calibration/step3_utils.R")
+# source("~/Desktop/chiSTIG_hpc/R/utils-chistig_basic_inputs.R") # generate `path_to_est`, `param` and `initchis`
 # path_to_est <- "./data/intermediate/estimates/basic_netest-local.rds"
 # path_to_est      <- "/Users/wms1212/Desktop/ChiSTIG_model/epimodel/data/intermediate/estimates/venue_only_netest-local.rds"
-path_to_est <- "~/Desktop/chiSTIG_hpc/data/intermediate/estimates/basic_netest-local.rds"
+path_to_est <- "./03-epimodel-parameter-calibration/data/intermediate/estimates/basic_netest-local.rds"
 # Controls
-source("~/Desktop/chiSTIG_hpc/R/utils-targets.R")
+# source("~/Desktop/chiSTIG_hpc/R/utils-targets.R")
 
 
-# Directory containing runs
+# This is where the user should specify the directory containing calibration runs
 this_dir <- "~/Desktop/manual_nov8"
 
 files <- list.files(this_dir)
 files <- files[stringr::str_detect(files, "rds$")]
-# files <- files[stringr::str_detect(files, "^test23")]
-# files <- files[stringr::str_detect(files, "control")]
-
-# sim <- readRDS(paste(this_dir, files[[i]], sep = "/"))
 
 for (i in 1:length(files)) {
   this_targets <- tibble::as_tibble(readRDS(paste(this_dir, files[[i]], sep = "/"))) %>%
@@ -159,6 +152,11 @@ annual_incid2$total.incid.rate.dispar.HW <- annual_incid2$total.incid.H - annual
 
 annual_incid2$ir100.dispar.BW <- annual_incid2$ir100.B - annual_incid2$ir100.W
 annual_incid2$ir100.dispar.HW <- annual_incid2$ir100.H - annual_incid2$ir100.W
+
+
+###########################################################
+#    D I A G N O S T I C   V I S U A L I Z A T I O N S    #
+###########################################################
 
 # sim_targets <- sim_targets %>% dplyr::filter(time >= 3000)
 # annual_incid <- annual_incid %>% dplyr::filter(time >= 3000)

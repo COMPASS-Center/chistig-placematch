@@ -20,7 +20,8 @@ library("slurmworkflow")
 
 #### SEEMS LIKE THESE ARE NEEDED, BUT NOT SURE WHERE THEY'RE SPECIFIED
 # Settings ---------------------------------------------------------------------
-source("./R/utils-0_project_settings.R")
+source("./03-epimodel-parameter-calibration/step3_utils.R")
+# source("./R/utils-0_project_settings.R")
 context <- "hpc"
 max_cores <- 1
 
@@ -32,11 +33,12 @@ model <- function(proposal) {
   library(dplyr)
 
   warning("Loaded project settings")
-  source("./R/utils-0_project_settings.R")
+  # source("./R/utils-0_project_settings.R")
+  source("./03-epimodel-parameter-calibration/step3_utils.R")
   context <- "hpc"
   warning(paste("Context just stored as '", context, "'", sep = ""))
   max_cores <- 1
-  source("./R/utils-chistig_basic_inputs.R") # make `path_to_est`, `param` and `init`
+  # source("./R/utils-chistig_basic_inputs.R") # make `path_to_est`, `param` and `init`
   # epistats <- readRDS("data/intermediate/estimates/epistats-local.rds") # THESE ARE STORED IN INPUT WHERE THEY USUALLY AREN'T IN THE OTHER WORKFLOWS
   # netstats <- readRDS("data/intermediate/estimates/netstats-local.rds")
   # est      <- readRDS("data/intermediate/estimates/basic_netest-local.rds")
@@ -54,7 +56,7 @@ model <- function(proposal) {
   warning("Finished reading in `est`")
 
   # I think this needs to be loaded here to get `calibration_trackers` to work
-  source("./R/utils-targets.R")
+  # source("./R/utils-targets.R")
 
   control <- control_msm(
     # nsteps = 52 * 11,
@@ -158,7 +160,7 @@ calib_object <- list(
       hiv.trans.scale_3 = 3.1,
       hiv.trans.scale_4 = 1
     ),
-    root_directory = "data/calib",
+    root_directory = "./03-epimodel-parameter-calibration/data/calib",
     max_iteration = 3,
     n_sims = n_sims
   ),
@@ -296,7 +298,7 @@ calib_object <- list(
 #   r_version = "4.3",
 #   mail_user = "tom.wolff@northwestern.edu"
 # )
-source("./R/utils-hpc_configs.R") # creates `hpc_configs`
+# source("./R/utils-hpc_configs.R") # creates `hpc_configs`
 
 wf <- create_workflow(
   wf_name = "auto_calib",

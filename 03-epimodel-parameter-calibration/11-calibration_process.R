@@ -7,7 +7,8 @@ library("dplyr")
 library("future.apply")
 
 # Settings ---------------------------------------------------------------------
-source("./R/utils-0_project_settings.R")
+source("./03-epimodel-parameter-calibration/step3_utils.R")
+# source("./R/utils-0_project_settings.R")
 context <- if (!exists("context")) "local" else "hpc"
 
 if (context == "local") {
@@ -19,12 +20,12 @@ if (context == "local") {
 }
 
 # ------------------------------------------------------------------------------
-source("./R/utils-targets.R")
+# source("./R/utils-targets.R")
 batches_infos <- EpiModelHPC::get_scenarios_batches_infos(calib_dir)
 
 process_one_batch <- function(scenario_infos) {
   # d_sim <- readRDS(scenario_infos$file_name) %>% as_tibble()
-  d_sim <- readRDS("./data/intermediate/calibration/sim__1__1.rds")# %>% as_tibble()
+  d_sim <- readRDS("./03-epimodel-parameter-calibration/data/intermediate/calibration/sim__1__1.rds")# %>% as_tibble()
 
   plot(d_sim, y = "incid", main = "Population Size, Katie's Recommended a.rate")
 
@@ -167,7 +168,7 @@ assessments_raw <- future_lapply(
 )
 
 assessments_raw <- bind_rows(assessments_raw)
-saveRDS(assessments_raw, "./data/intermediate/calibration/assessments_raw.rds")
+saveRDS(assessments_raw, "./03-epimodel-parameter-calibration/data/intermediate/calibration/assessments_raw.rds")
 
 assessments <- assessments_raw %>%
   select(- c(sim, batch_number)) %>%
@@ -183,4 +184,4 @@ assessments <- assessments_raw %>%
   ))
 
 # Save the result --------------------------------------------------------------
-saveRDS(assessments, "./data/intermediate/calibration/assessments.rds")
+saveRDS(assessments, "./03-epimodel-parameter-calibration/data/intermediate/calibration/assessments.rds")

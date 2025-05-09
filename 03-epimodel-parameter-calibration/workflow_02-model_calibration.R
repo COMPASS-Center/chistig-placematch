@@ -8,12 +8,13 @@ library("EpiModelHPC")
 library("EpiModelHIV")
 
 # Settings ---------------------------------------------------------------------
-source("./R/utils-0_project_settings.R")
+# source("./R/utils-0_project_settings.R")
+source("./03-epimodel-parameter-calibration/step3_utils.R")
 context <- "hpc"
 max_cores <- 1
 
-source("./R/utils-chistig_basic_inputs.R") # make `path_to_est`, `param` and `init`
-source("./R/utils-hpc_configs.R") # creates `hpc_configs`
+# source("./R/utils-chistig_basic_inputs.R") # make `path_to_est`, `param` and `init`
+# source("./R/utils-hpc_configs.R") # creates `hpc_configs`
 
 # ------------------------------------------------------------------------------
 
@@ -34,7 +35,7 @@ wf <- add_workflow_step(
 )
 
 # Controls
-source("./R/utils-targets.R")
+# source("./R/utils-targets.R")
 control <- control_msm(
   nsteps              = 52 * 60,
   nsims               = 1,
@@ -179,7 +180,7 @@ scenarios_df <- tibble(
   # tt.durable.supp.prob_4 = c(0, .4)
 )
 
-write.csv(scenarios_df, paste("./scenarios_", Sys.Date(), ".csv", sep = ""))
+write.csv(scenarios_df, paste("./03-epimodel-parameter-calibration/scenarios_", Sys.Date(), ".csv", sep = ""))
 
 
 scenarios_list <- EpiModel::create_scenario_list(scenarios_df)
@@ -189,7 +190,7 @@ wf <- add_workflow_step(
   step_tmpl = step_tmpl_netsim_scenarios(
     path_to_est, param, init, control,
     scenarios_list = scenarios_list,
-    output_dir = "./data/intermediate/calibration",
+    output_dir = "./03-epimodel-parameter-calibration/data/intermediate/calibration",
     # libraries = c(#"EpiModelHIV",
     #               "slurmworkflow",
     #               "EpiModelHPC",

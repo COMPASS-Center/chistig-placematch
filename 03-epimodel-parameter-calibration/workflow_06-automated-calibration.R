@@ -20,7 +20,8 @@ library("slurmworkflow")
 
 #### SEEMS LIKE THESE ARE NEEDED, BUT NOT SURE WHERE THEY'RE SPECIFIED
 # Settings ---------------------------------------------------------------------
-source("./R/utils-0_project_settings.R")
+# source("./R/utils-0_project_settings.R")
+source("./03-epimodel-parameter-calibration/step3_utils.R")
 context <- "hpc"
 max_cores <- 1
 
@@ -32,24 +33,10 @@ model <- function(proposal) {
   library(dplyr)
 
   warning("Loaded project settings")
-  source("./R/utils-0_project_settings.R")
+  source("./03-epimodel-parameter-calibration/step3_utils.R")
   context <- "hpc"
   warning(paste("Context just stored as '", context, "'", sep = ""))
   max_cores <- 1
-  source("./R/utils-chistig_basic_inputs.R")
-
-
-  # epistats <- readRDS("data/intermediate/estimates/epistats-local.rds") # THESE ARE STORED IN INPUT WHERE THEY USUALLY AREN'T IN THE OTHER WORKFLOWS
-  # netstats <- readRDS("data/intermediate/estimates/netstats-local.rds")
-  # est      <- readRDS("data/intermediate/estimates/basic_netest-local.rds")
-  #
-  # param <- param.net(
-  #   data.frame.params = read.csv("data/input/params_chistig_jan29.csv"),
-  #   netstats          = netstats,
-  #   epistats          = epistats
-  # )
-
-  # init <- init_msm()
 
   est <- readRDS(path_to_est)
 
@@ -168,7 +155,7 @@ calib_object <- list(
       hiv.trans.scale_3 = 2,
       hiv.trans.scale_4 = 1
     ),
-    root_directory = "data/calib",
+    root_directory = "./03-epimodel-parameter-calibration/data/calib",
     max_iteration = 100,
     n_sims = n_sims
   ),
@@ -361,7 +348,7 @@ calib_object <- list(
 #   r_version = "4.3",
 #   mail_user = "tom.wolff@northwestern.edu"
 # )
-source("./R/utils-hpc_configs.R") # creates `hpc_configs`
+# source("./R/utils-hpc_configs.R") # creates `hpc_configs`
 
 wf <- create_workflow(
   wf_name = "auto_calib",
