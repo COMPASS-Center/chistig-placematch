@@ -6,9 +6,9 @@ This step runs the initial ERGM fits for the four "treatments" (i.e. counterfact
 
 To run this step, first sign in to Quest.
 
-Next, mke sure the full `00_preliminary_setup` is carried out. If so, there should be a `netsats.rds` object now in the `chistig-placematch/01-network-estimation/` subdirectory.
+Next, mke sure the full `00_preliminary_setup` is carried out. If so, there should be a `netsats.rds` object now in the `chistig-placematch/01-networks-estimation/` subdirectory.
 
-In the terminal, ensure you are in the `chistig-placematch/01-network-estimation/` subdirectory (check this by using the command `pwd`). 
+In the terminal, ensure you are in the `chistig-placematch/01-networks-estimation/` subdirectory (check this by using the command `pwd`). 
 
 Then setup the Quest Python/R computational environment with the following:
 ```sh
