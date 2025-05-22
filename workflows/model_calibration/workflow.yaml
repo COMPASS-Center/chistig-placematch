@@ -1,0 +1,30 @@
+name: model_calibration
+n_steps: 2.0
+default_sbatch_opts:
+  partition: short
+  account: p32153
+  mail-type: FAIL
+  mail-user: tom.wolff@northwestern.edu
+steps:
+- name: ~
+  number: 1.0
+  sbatch_opts:
+    partition: short
+    account: p32153
+    mail-type: FAIL
+    mail-user: tom.wolff@northwestern.edu
+    mem: 16G
+    cpus-per-task: 4.0
+    time: 120.0
+- name: ~
+  number: 2.0
+  sbatch_opts:
+    partition: short
+    account: p32153
+    mail-type: FAIL,TIME_LIMIT
+    mail-user: tom.wolff@northwestern.edu
+    cpus-per-task: 1.0
+    time: '04:00:00'
+    mem: 5G
+    array: 0-39
+    export: SWF__ARRAY_OFFSET=1

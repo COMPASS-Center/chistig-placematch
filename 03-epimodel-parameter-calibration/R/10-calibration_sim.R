@@ -53,18 +53,17 @@
 
 # Settings ---------------------------------------------------------------------
 context <- "local"
-source("./03-epimodel-parameter-calibration/step3_utils.R")
-# source("./R/utils-0_project_settings.R")
+source("./R/utils-0_project_settings.R")
 
 # Run the simulations ----------------------------------------------------------
 
 # Necessary files
-# source("./R/utils-chistig_basic_inputs.R") # generate `path_to_est`, `param` and `init`
+source("./R/utils-chistig_basic_inputs.R") # generate `path_to_est`, `param` and `init`
 # path_to_est <- "./data/intermediate/estimates/basic_netest-local.rds"
 # path_to_est      <- "/Users/wms1212/Desktop/ChiSTIG_model/epimodel/data/intermediate/estimates/venue_only_netest-local.rds"
-path_to_est <- "./03-epimodel-parameter-calibration//data/intermediate/estimates/basic_netest-local.rds"
+path_to_est <- "./data/intermediate/estimates/basic_netest-local.rds"
 # Controls
-# source("./R/utils-targets.R")
+ source("./R/utils-targets.R")
 
 
 
@@ -273,7 +272,7 @@ EpiModelHPC::netsim_scenarios(
   path_to_est, param, init, control, scenarios_list,
   n_rep = 20,
   n_cores = 10,
-  output_dir = "./03-epimodel-parameter-calibration/data/intermediate/calibration",
+  output_dir = "data/intermediate/calibration",
   #libraries = NULL,
   libraries = c("slurmworkflow", "EpiModelHPC", "chiSTIGmodules"),
   save_pattern = "simple"
@@ -282,6 +281,6 @@ EpiModelHPC::netsim_scenarios(
 end_time <- Sys.time()
 
 # Check the files produced
-list.files("./03-epimodel-parameter-calibration/data/intermediate/calibration")
+list.files("data/intermediate/calibration")
 
 
