@@ -44,7 +44,8 @@ model <- function(proposal) {
   endo_ir_targets_val = c(4.802, 1.3055, 1.1405, 0.4409)
 
   # I think this needs to be loaded here to get `calibration_trackers` to work
-  source("./R/utils-targets.R")
+  # source("./R/utils-targets.R")
+  source("./03-epimodel-parameter-calibration/step3_utils.R")
 
   control <- control_msm(
     nsteps = 52 * 60,
