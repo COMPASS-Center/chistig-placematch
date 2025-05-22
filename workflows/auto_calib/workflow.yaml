@@ -1,0 +1,40 @@
+name: auto_calib
+n_steps: 3.0
+default_sbatch_opts:
+  partition: short
+  account: p32153
+  mail-type: FAIL
+  mail-user: tom.wolff@northwestern.edu
+steps:
+- name: ~
+  number: 1.0
+  sbatch_opts:
+    partition: short
+    account: p32153
+    mail-type: FAIL
+    mail-user: tom.wolff@northwestern.edu
+    cpus-per-task: 8.0
+    time: '01:00:00'
+    mem-per-cpu: 4G
+- name: ~
+  number: 2.0
+  sbatch_opts:
+    partition: short
+    account: p32153
+    mail-type: FAIL
+    mail-user: tom.wolff@northwestern.edu
+    cpus-per-task: 8.0
+    time: '02:00:00'
+    mem-per-cpu: 5G
+    array: 0-12
+    export: SWF__ARRAY_OFFSET=1
+- name: ~
+  number: 3.0
+  sbatch_opts:
+    partition: short
+    account: p32153
+    mail-type: END
+    mail-user: tom.wolff@northwestern.edu
+    cpus-per-task: 1.0
+    time: '01:00:00'
+    mem-per-cpu: 8G
