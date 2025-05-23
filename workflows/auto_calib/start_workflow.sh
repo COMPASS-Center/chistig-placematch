@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ 
 # see https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -e
 
