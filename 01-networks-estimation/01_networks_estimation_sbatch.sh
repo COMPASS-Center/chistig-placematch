@@ -7,10 +7,8 @@
 #SBATCH --ntasks-per-node=1 ## how many cpus or processors do you need on each computer
 #SBATCH --time=10:30:00 ## how long does this need to run (remember different partitions have restrictions on this param)
 #SBATCH --mem=3G
-#SBATCH --job-name="test10mar_\${SLURM_ARRAY_TASK_ID}" ## When you run squeue -u 
-NETID this is how you can identify the job
-#SBATCH --output=%A_%a.test10mar.out ## standard out and standard error goes to this 
-file
+#SBATCH --job-name="test10mar_\${SLURM_ARRAY_TASK_ID}" ## When you run squeue -u NETID this is how you can identify the job
+#SBATCH --output=%A_%a.test10mar.out ## standard out and standard error goes to this file
 #SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
 #SBATCH --mail-user=tom.wolff@northwestern.edu ## your email
 
@@ -56,8 +54,7 @@ for attempt in "${!my_random_seed_array[@]}"; do
 	random_seed=${my_random_seed_array[attempt]}
 	echo "Random seed is $random_seed for attempt $((attempt+1)) of $max_attempts..."
 
-	# if timeout "$timeout_duration" Rscript step2b_edge_calibration.R "$yamlfname" "$calibrationset" "$treatmenttype" "$partnershiptype" "${my_random_seed_array[$attempt]}"; then
-	if timeout "$timeout_duration" Rscript 01_networks_estimation.R --partnershiptype "$selected_ptype" --modeltype "$selected_mtype" --randomseed "${my_random_seed_array[$attempt]}"; then
+	if timeout "$timeout_duration" Rscript 01a_networks_estimation.R --partnershiptype "$selected_ptype" --modeltype "$selected_mtype" --randomseed "${my_random_seed_array[$attempt]}"; then
         echo "Attempt $((attempt+1)) completed successfully."
         break
     else
