@@ -94,13 +94,15 @@ As mentioned in Step 7, the automated calibration process generates several outp
 
 To examine `assessments.rds`, all you need to do is pass this file through the `swfcalib::render_assessment` function in R:
 
-`### Exampleswfcalib::render_assessment("~/Downloads/assessments.rds", output_dir = "~/Desktop")`
+``` R
+swfcalib::render_assessment("~/Downloads/assessments.rds", output_dir = "~/Desktop")
+```
 
 This creates an HTML file, `assessment.html`, located at whatever path you specify as the `output_dir` argument. Opening this HTML file in a browser provides you with a series of visualizations summarizing the progress made within each wave and job of the overall automated calibration workflow. Of these visualizations, we find that the ones labeled **Target Errors** are most informative. If calibration of a parameter was successful, these plots should show error values that gradually center around 0.00 over the course of calibration.
 
 Provided the results summarized in `assessment.html` are satisfactory, the `calib_object.rds` file contains any and all calibrated parameter values. Here is a brief runthrough of how you would inspect this file:
 
-``` R
+``` r
 # Read in `calib_object.rds`
 calib_object <- readRDS("~/Downloads/calib_object.rds")
 
