@@ -4,22 +4,32 @@ This step runs the initial ERGM fits for the four "treatments" (i.e. counterfact
 3. Apps - ERGM fits only on app colocation only
 3. Venues + Apps - ERGM fits only on both venue and app colocation 
 
-To run this step, first sign in to Quest.
+To run this step, first sign in to your HPC environment (e.g., Quest).
 
-Next, mke sure the full `00_preliminary_setup` is carried out. If so, there should be a `netsats.rds` object now in the `chistig-placematch/01-network-estimation/` subdirectory.
+Next, ensure the full `00_preliminary_setup` is carried out. If so, there should be a `netsats.rds` object now in the `chistig-placematch/01-network-estimation/` subdirectory.
 
 In the terminal, ensure you are in the `chistig-placematch/01-network-estimation/` subdirectory (check this by using the command `pwd`). 
 
-Then setup the Quest Python/R computational environment with the following:
+Then setup the Quest Python/R computing environment with the following:
 ```sh
 module purge all 
 conda activate /projects/p32153/condaenvs/conda-chistig
 ```
+For those using a different computing setup, please replicate our conda environment by installing the packages listed in `conda_environment_packages.txt` in the main directory.  
 
-Finally, run the script with the following:
-```sh
-Rscript 01_networks_estimation.R
+Next, run the script 
 ```
+Rscript 01a_networks_estimation.R
+```
+This script creates the initial ergm fits for each combination of relationship type (main, casual, one-time) and treatment (control, venues, apps, venues + apps), resulting in 12 fitted rds files in the `interim` folder.
+
+Once all the fits are created, run the next script to consolidate the networks across the relationship types:
+```
+Rscript 01b_networks_estimation.R
+```
+This should result in two rds files (coefficients and network estimates) per treatment, in the `01-networks-estimation` folder.
+
+Note that, due to the stochastic fitting procedure, some estimates in `01a_networks_estimation.R1` may not converge the first time they run, and so the fitting procedure may have to run more than once to yield all 12 rds files. Please inspect the output in the `interim` folder and ensure all 12 rds files are present before calling `01b_networks_estimation.R`.  
 
 > **NOTE:** We do not have YAML arguments yet for this Rscript. That will change in the future.
 
