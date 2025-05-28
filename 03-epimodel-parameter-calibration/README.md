@@ -1,6 +1,6 @@
 # Step 3: Calibration of Epidemiological Parameters
 
-This step of the preparation process calibrates values of epidemiological parameters related to rates of HIV testing as well as antiretroviral therapy (ART) uptake, retention, and re-uptake. It also calibrates levels of HIV acquisition occurring from sources outside the focal population (i.e. sexual partners who are not MSM-TW aged 16-30). Additionally, it calibrates values for parameters designed to emulate unexplained causes of racial disparities in HIV prevalence. These values are all stored in the `params.csv` file located within `./data/input/`, which is called upon when setting up `EpiModelHIV` simulations (you can see this in line 83 of the `step3_utils.R` script located in this subdirectory).
+This step of the preparation process calibrates values of epidemiological parameters related to rates of HIV testing as well as antiretroviral therapy (ART) uptake, retention, and re-uptake. It also calibrates levels of HIV acquisition occurring from sources outside the focal population (i.e. sexual partners who are not MSM-TW aged 16-30). Additionally, it calibrates values for parameters designed to emulate unexplained causes of racial disparities in HIV prevalence. These values are all stored in the `params.csv` file located within `./data/input/`, which is called upon when setting up `EpiModelHIV` simulations (you can see this in line 83 of the `utils_03.R` script located in this subdirectory).
 
 This `README` is meant to guide users through the setup and execution of code related to this step of the preparation process. It is adapted from documentation written by the core EpiModel team, which explains the calibration process in detail and describes how specific epidemiological phenomena are represented by parameters: <https://epimodel.github.io/swfcalib/articles/swfcalib.html>
 
@@ -80,7 +80,7 @@ Once the conda environment is activated, begin the automated calibration workflo
 
 ### 9. Await Completion or Crash of Calibration Process
 
-The automated calibration process will take some time. If you specified an email address in the `mail_user` argument of `swf_configs_quest`, found in `chistig-placematch/03-epimodel-parameter-calibration/step3_utils.R`, notices of slurm job failures will be sent to that email address.
+The automated calibration process will take some time. If you specified an email address in the `mail_user` argument of `swf_configs_quest`, found in `chistig-placematch/03-epimodel-parameter-calibration/utils_03.R`, notices of slurm job failures will be sent to that email address.
 
 Should you receive a notification of job failure, we recommend consulting the log files stored in `placematch/workflows/auto_calib/log` to troubleshoot any potential issues.
 
@@ -94,7 +94,7 @@ As mentioned in Step 7, the automated calibration process generates several outp
 
 To examine `assessments.rds`, all you need to do is pass this file through the `swfcalib::render_assessment` function in R:
 
-``` R
+``` r
 swfcalib::render_assessment("~/Downloads/assessments.rds", output_dir = "~/Desktop")
 ```
 
