@@ -1,0 +1,64 @@
+# -----------------------------------
+## General
+# -----------------------------------
+random.seed: 15 # note - keep this the same across the .yamls
+
+# -----------------------------------
+## Directories and filenames 
+# -----------------------------------
+# directory where to keep the interim network estimate files
+interim.dir: 'interim/'
+# directory where full output files will be held
+out.dir: './'
+# experiment directory where everything is being run from
+exp.dir: './'
+# netstats object name and location
+netstats.dir: './'
+netstats.fname: 'netstats.rds'
+# create a text file that stores which ergm fit scenarios did not converge
+convergence.fail.fname: 'ergm_fits_that_did_not_converge'
+
+
+# -----------------------------------
+## Experiment details 
+# -----------------------------------
+# partnership types (comment out the ones not included)
+partnership.types:
+    - main
+    - casual
+    - onetime
+# counterfactual model types (comment out the ones not included)
+model.types:
+    - control
+    - venues
+    - apps
+    - venuesapps
+
+# -----------------------------------
+## ERGM fit arguments
+# -----------------------------------
+# number of attempts for ergm fit to converge
+num.ergm.convergence.attempts: 10
+# max amount of time for each ergm fit attempt (in minutes)
+ergm.convergence.attempt.time: 60
+# max random seed for each ergm attempt
+max.random.seed: 200
+
+# -----------------------------------
+## SBATCH details 
+# -----------------------------------
+# email to send this too
+sbatch.email:
+# partition type
+sbatch.partition: 'normal' # short, normal 
+# walltime hours
+sbatch.walltime.hours: '10' # make sure it is large enough to account for the convergence attempt time times the number of convergence attempts
+# walltime minutes 
+sbatch.walltime.minutes: '30'
+# memory
+sbatch.memory: '3G'
+
+
+
+# Running a dependent job:
+# https://services.northwestern.edu/TDClient/30/Portal/KB/ArticleDet?ID=1964#section-job-array

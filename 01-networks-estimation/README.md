@@ -18,7 +18,7 @@ conda activate /projects/p32153/condaenvs/conda-chistig
 
 Finally, run the script with the following:
 ```sh
-Rscript 01-networks_estimation.R
+Rscript 01_networks_estimation.R
 ```
 
 > **NOTE:** We do not have YAML arguments yet for this Rscript. That will change in the future.
@@ -31,6 +31,7 @@ Future TODOs:
 - create .yaml file that can be used for the full set of runs for an experiment 
 - Add in the following HPC settings forStep 3 (these details were in an earlier consolidated settings.R )
 
+<!--
 # =======================
 # TODO: add in the settings details for if this is run via HPC
 # =======================
@@ -51,3 +52,4 @@ Future TODOs:
 # } else  {
 #   stop("The `context` variable must be set to either 'local' or 'hpc'")
 # }
+--> 

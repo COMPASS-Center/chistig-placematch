@@ -14,7 +14,9 @@
 # =========================
 
 library("EpiModelHIV")
-library(tidyverse)
+library(yaml)
+library(dplyr)
+
 
 
 # =========================
@@ -37,7 +39,7 @@ set.seed(randomseed)
 # =========================
 # define filenames/directories from YAML
 # =========================
-dur_coefs <- readRDS(paste0(yamldata$artnet.output.dir, yamldata$artnet.output.fname)) # nolint # Duration/dissolution coefficients based on ARTNet data.
+artnet_out <- readRDS(paste0(yamldata$artnet.output.dir, yamldata$artnet.output.fname)) # nolint # Duration/dissolution coefficients based on ARTNet data.
 target_df <- read.csv(paste0(yamldata$synthpop.data.dir, yamldata$synthpop.target.values.fname)) # nolint
 egos <- read.csv(paste0(yamldata$synthpop.data.dir, yamldata$synthpop.egos.fname)) # nolint
 epistats <- readRDS(paste0(yamldata$epistats.dir, yamldata$epistats.fname)) # nolint
@@ -87,6 +89,29 @@ egos <- egos %>%
                 deg.tot = init_pers_cat,
                 venues_all = venue_list_1week
   )
+
+egos <- egos %>%
+  mutate(sqrt.age = sqrt(age),
+         active.sex = 1,
+         age.grp = ifelse(age.grp == "16to20", 1, 2),
+         apps.all = app_list) %>%
+    select(
+        numeric_id,
+        egoid,
+        age,
+        sqrt.age,
+        agegroup,
+        age.grp,
+        race.ethnicity = race_ethnicity,
+        race,
+        deg.casl,
+        deg.main,
+        deg.tot,
+        diag.status = hiv_status,
+        venues.all = venues_all,
+        apps.all,
+        active.sex
+    )
 
 
 # =========================
@@ -402,7 +427,9 @@ netstats <- list(
     nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "one.time"),
 
     # nodematch_age.grp
-    nodematch_age.grp = target_extract(term = "nodematch.age", model = "one.time"),
+    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "one.time"),
+                          target_extract(term = "nodematch.age.21to29", model = "one.time")),
+
 
     # nodefactor_init_pers_cat
     nodefactor_deg.tot = c(target_extract(term = "nodefactor.init_pers_cat.0", model = "one.time"),
