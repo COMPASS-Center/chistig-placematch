@@ -231,7 +231,7 @@ calib_object <- list(
       )
     ),
 # Wave 2 (ART Cessation and Viral Suppression)
-      wave1 = list(
+      wave2 = list(
         job1 = list(
               targets = "cc.vsupp.B",
               targets_val = 0.571,
@@ -274,7 +274,7 @@ calib_object <- list(
         )
       ),
 # Wave 3 (Exogenous Incidence Rate)
-    wave1 = list(
+    wave3 = list(
       job1 = list(
         targets = "exo.ir100.B",
         targets_val = 1.618,
@@ -317,7 +317,7 @@ calib_object <- list(
       )
     ),
 # Wave 4 (Trans Scale and Total Incidence Rate)
-    wave1 = list(
+    wave4 = list(
       job1 = list(
         targets = paste0("endo.ir100.", c("B", "H", "O", "W")),
         targets_val = c(4.802, 1.3055, 1.1405, 0.4409),
