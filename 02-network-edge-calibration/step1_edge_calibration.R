@@ -12,7 +12,8 @@ yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 expname <- yamldata$expname
 
-targetdf_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$target.dataframe.fname)
+targetdf_fname <- paste0(yamldata$repo.dir, yamldata$target.dataframe.subdir, yamldata$target.dataframe.fname)
+
 
 target_df <- read.csv(targetdf_fname)
 
@@ -90,6 +91,6 @@ scenario_mat <- expand.grid(experiment = expname,
 
 # Save `scenario_mat` as a CSV to be called on in next step
 ### Specify file name
-scenario_mat_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, expname, "/", yamldata$calibration.matrix.fname, "_", expname, '.csv', sep="")
+scenario_mat_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname, sep="")
 ### Save CSV
 write.csv(scenario_mat, scenario_mat_output_fname, row.names = FALSE, quote = FALSE)
