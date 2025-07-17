@@ -11,9 +11,6 @@ args <- commandArgs(trailingOnly = TRUE)
 yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 expname <- if (is.null(yamldata$expname)) NA else yamldata$expname
-outdir <- if (isnul)
-
-calibration_matrix_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname, sep="")
 
 if (is.null(yamldata$interim.data.subdir)) {
   outdir <- paste(yamldata$repo.dir, yamldata$calibration.subdir, sep="")
