@@ -19,7 +19,7 @@ thisseed <- as.integer(args[5])
 set.seed(thisseed)
 print(paste("Random seed number:", thisseed, sep=" "))
 
-outdir <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, interim.data.subdir)
+outdir <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir)
 
 ### Name datafiles 
 # drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$expname, "/", yamldata$calibration.matrix.fname, "_", yamldata$expname, ".csv")
