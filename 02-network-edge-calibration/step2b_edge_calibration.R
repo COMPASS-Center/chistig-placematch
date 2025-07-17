@@ -22,7 +22,7 @@ print(paste("Random seed number:", thisseed, sep=" "))
 
 ### Name datafiles 
 # drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$expname, "/", yamldata$calibration.matrix.fname, "_", yamldata$expname, ".csv")
-calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$calibration.matrix.fname)
+calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname)
 
 # egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synthpop.fname)
 
