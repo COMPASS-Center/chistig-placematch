@@ -38,9 +38,10 @@ convergence.fail.fname: 'calibration_sets_that_did_not_converge'
 # treatments
 treatment.types:
   - control
-  - both      
   - apps
   - venues
+  - venuesapps      
+
 
 # partnerships
 partnership.types:
