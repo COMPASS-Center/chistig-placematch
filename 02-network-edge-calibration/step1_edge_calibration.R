@@ -91,6 +91,7 @@ calibration_matrix <- expand.grid(experiment = expname,
      dplyr::select(fit_no, dplyr::everything())
 
 
+print(calibration_matrix)
 
 # # # Save `scenario_mat` as a CSV to be called on in next step
 # # ### Specify file name
