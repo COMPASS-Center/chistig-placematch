@@ -11,6 +11,16 @@ args <- commandArgs(trailingOnly = TRUE)
 yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 expname <- if (is.null(yamldata$expname)) NA else yamldata$expname
+outdir <- if (isnul)
+
+calibration_matrix_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname, sep="")
+
+if (is.null(yamldata$interim.data.subdir)) {
+  outdir <- paste(yamldata$repo.dir, yamldata$calibration.subdir, sep="")
+} else {
+  outdir <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir, sep="")
+}
+print(outdir)
 
 targetdf_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$target.dataframe.fname)
 target_df <- read.csv(targetdf_fname)
@@ -88,6 +98,6 @@ calibration_matrix <- expand.grid(experiment = expname,
 
 # Save `scenario_mat` as a CSV to be called on in next step
 ### Specify file name
-calibration_matrix_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname, sep="")
+calibration_matrix_output_fname <- paste(outdir, yamldata$calibration.matrix.fname, sep="")
 ### Save CSV
 write.csv(calibration_matrix, calibration_matrix_output_fname, row.names = FALSE, quote = FALSE)

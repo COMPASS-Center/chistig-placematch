@@ -5,7 +5,6 @@ calibration.subdir: '02-network-edge-calibration/'
 
 calibration.matrix.fname: 'edge_target_calibration_vals.csv'
 
-
 prelim.subdir: '00-preliminary-setup/'
 artnet.duration.dissolution.fname: 'dur_coefs.rds'
 epistats.fname: 'epistats.rds'
@@ -17,3 +16,15 @@ target.dataframe.fname: 'target_values_v4_1_uniform_age_dist.csv'
 netstats.subdir: '01-networks-estimation/'
 netstats.fname: 'netstats.rds'
 
+interim.data.subdir: 'interim/'
+
+# calibration setup
+num.ergm.convergence.attempts: 10
+ergm.convergence.attempt.time: 60 #minutes 
+max.random.seed: 200
+sbatch.partition: 'normal' # short, normal, 
+sbatch.walltime.hours: '10' # make sure it is large enough to account for the convergence attempt time times the number of convergence attempts
+sbatch.walltime.minutes: '30'
+sbatch.email: 'tom.wolff@northwestern.edu'
+sbatch.memory: '3G'
+convergence.fail.fname: 'calibration_sets_that_did_not_converge'
