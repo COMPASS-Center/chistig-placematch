@@ -221,7 +221,7 @@ print(calibration_matrix)
 print(str(netstats_base$main$dissolution))
 print(str(netstats_base$main$dissolution$dissolution))
 print(str(netstats_base$main$dissolution$diss.homog))
-print(str(netstats_base$main$dissolution$diss.byage))
+print(str(netstats_base$main$dissolution$diss.byage$d.rate))
 
 
 
@@ -230,10 +230,10 @@ print(str(netstats_base$main$dissolution$diss.byage))
 # # 	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
 # # 	                                   duration = dur_coefs$main$durs.main.homog$mean.dur.adj,
 # # 	                                   d.rate = calibration_matrix$drate_main),
-# # 	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
-# # 	                                     offset(nodematch("age.grp", diff = TRUE)),
-# # 	                                   duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
-# # 	                                   d.rate = calibration_matrix$drate_main)
+	    # diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
+	    #                                  offset(nodematch("age.grp", diff = TRUE)),
+	    #                                duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
+	    #                                d.rate = calibration_matrix$drate_main)
 
 
 # print(netstats_base$main$fuzzynodematch_venues.all)
@@ -245,11 +245,11 @@ print(str(netstats_base$main$dissolution$diss.byage))
 
 
 
-Netstats
-for (i in 1:num_calibration_scenarios){
-	calibration_matrix <- calibration_matrix_full[i, ]
+# Netstats
+# for (i in 1:num_calibration_scenarios){
+# 	calibration_matrix <- calibration_matrix_full[i, ]
 
-    netstats <- netstats_base
+#     netstats <- netstats_base
 
 
 
