@@ -191,326 +191,327 @@ target_extract = function(df = target_df, term, model) {
   return(target_val)
 }
 
+print(str(netstats))
 
-##############################################################
-# Get duration/dissolution coefficients based on ARTNet data #
-##############################################################
-# source(artnet_compute_duration_dissolution_fname)
-# # source
-# artnet_out
-# dur_coefs <- netstats
+# ##############################################################
+# # Get duration/dissolution coefficients based on ARTNet data #
+# ##############################################################
+# # source(artnet_compute_duration_dissolution_fname)
+# # # source
+# # artnet_out
+# # dur_coefs <- netstats
 
 
 
-##############################################################
-# Setup and compute netstats object for each calibration set #
-##############################################################
-# drate_mat <- drate_mat[1, ]
-# drate_mat <- drate_mat_full[num_calibration_scenarios, ]
-calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
+# ##############################################################
+# # Setup and compute netstats object for each calibration set #
+# ##############################################################
+# # drate_mat <- drate_mat[1, ]
+# # drate_mat <- drate_mat_full[num_calibration_scenarios, ]
+# calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
 
 
-# Netstats
-for (i in 1:num_calibration_scenarios){
-	calibration_matrix <- calibration_matrix_full[i, ]
+# # Netstats
+# for (i in 1:num_calibration_scenarios){
+# 	calibration_matrix <- calibration_matrix_full[i, ]
 
-	netstats <- list(
-	  # demog : list of demographic information for network
-	  demog = list(
+# 	netstats <- list(
+# 	  # demog : list of demographic information for network
+# 	  demog = list(
 
-	    # num : network size (nodes)
-	    num = nrow(egos),
+# 	    # num : network size (nodes)
+# 	    num = nrow(egos),
 
-	    # props : proportion of nodes in each racial/ethnic category
-	    # Looks like it's a data frame
-	    props = data.frame("White" = sum(egos$race == 4)/nrow(egos),
-	                       "Black" = sum(egos$race == 1)/nrow(egos),
-	                       "Hispanic" = sum(egos$race == 2)/nrow(egos),
-	                       "Other" = sum(egos$race == 3)/nrow(egos)),
+# 	    # props : proportion of nodes in each racial/ethnic category
+# 	    # Looks like it's a data frame
+# 	    props = data.frame("White" = sum(egos$race == 4)/nrow(egos),
+# 	                       "Black" = sum(egos$race == 1)/nrow(egos),
+# 	                       "Hispanic" = sum(egos$race == 2)/nrow(egos),
+# 	                       "Other" = sum(egos$race == 3)/nrow(egos)),
 
-	    # num.B : proportion of nodes black
-	    num.B = sum(egos$race == 1)/nrow(egos),
+# 	    # num.B : proportion of nodes black
+# 	    num.B = sum(egos$race == 1)/nrow(egos),
 
-	    # num.H : proportion of nodes hispanic
-	    num.H = sum(egos$race == 2)/nrow(egos),
+# 	    # num.H : proportion of nodes hispanic
+# 	    num.H = sum(egos$race == 2)/nrow(egos),
 
-	    # num.W : proportion of nodes white/other (adjust for our own categorization
-	    # schema)
-	    num.W = sum(egos$race == 4)/nrow(egos),
+# 	    # num.W : proportion of nodes white/other (adjust for our own categorization
+# 	    # schema)
+# 	    num.W = sum(egos$race == 4)/nrow(egos),
 
-	    # num.O : proportion of nodes other race?
-	    num.O = sum(egos$race == 3)/nrow(egos),
+# 	    # num.O : proportion of nodes other race?
+# 	    num.O = sum(egos$race == 3)/nrow(egos),
 
-	    # asmr : dataframe containing 100 rows (possible age range) with age-specific
-	    # mortality rates
-	    ##### age (`1:100`)
-	    ##### vec.asmr.B (something black)
-	    ##### vec.asmr.H (something hispanic)
-	    ##### vec.asmr.W (somethign white/other; adjust for our own categorization)
+# 	    # asmr : dataframe containing 100 rows (possible age range) with age-specific
+# 	    # mortality rates
+# 	    ##### age (`1:100`)
+# 	    ##### vec.asmr.B (something black)
+# 	    ##### vec.asmr.H (something hispanic)
+# 	    ##### vec.asmr.W (somethign white/other; adjust for our own categorization)
 
-	    asmr = asmr,
+# 	    asmr = asmr,
 
-	    # ages : vector of valid age values in simulation
-	    ages = epistats$age.limits[[1]]:epistats$age.limits[[2]],
+# 	    # ages : vector of valid age values in simulation
+# 	    ages = epistats$age.limits[[1]]:epistats$age.limits[[2]],
 
-	    # age.breaks : vector of categorical age cutoffs
-	    age.breaks = epistats$age.breaks),
+# 	    # age.breaks : vector of categorical age cutoffs
+# 	    age.breaks = epistats$age.breaks),
 
-	  # geog.lvl : character of geographic level
-	  geog.lvl = NULL,
+# 	  # geog.lvl : character of geographic level
+# 	  geog.lvl = NULL,
 
-	  # race : logical if things should be broken down by race
-	  race = TRUE,
+# 	  # race : logical if things should be broken down by race
+# 	  race = TRUE,
 
-	  # time.unit : numeric value indicating number of days in each network step
-	  time.unit = 7,
+# 	  # time.unit : numeric value indicating number of days in each network step
+# 	  time.unit = 7,
 
-	  # attr : list of node-level attributs
-	  attr = list(
+# 	  # attr : list of node-level attributs
+# 	  attr = list(
 
-	    # Original ego identifiers
-	    numeric.id = egos$numeric_id,
-	    egoid = egos$egoid,
+# 	    # Original ego identifiers
+# 	    numeric.id = egos$numeric_id,
+# 	    egoid = egos$egoid,
 
-	    # age : numeric vector of node ages
-	    age = egos$age,
+# 	    # age : numeric vector of node ages
+# 	    age = egos$age,
 
-	    # sqrt.age : square root of ages
-	    sqrt.age = egos$sqrt.age,
+# 	    # sqrt.age : square root of ages
+# 	    sqrt.age = egos$sqrt.age,
 
-	    # age.grp : numeric designation of age group membership
-	    age.grp = egos$age.grp,
+# 	    # age.grp : numeric designation of age group membership
+# 	    age.grp = egos$age.grp,
 
-	    # active.sex : 1/0 indicator of if node is sexually active
-	    active.sex = egos$active.sex,
+# 	    # active.sex : 1/0 indicator of if node is sexually active
+# 	    active.sex = egos$active.sex,
 
-	    # race : numeric designation of racial/ethnic categorization
-	    race = egos$race,
+# 	    # race : numeric designation of racial/ethnic categorization
+# 	    race = egos$race,
 
-	    # deg.casl : degree in casual network
-	    deg.casl = egos$deg.casl,
+# 	    # deg.casl : degree in casual network
+# 	    deg.casl = egos$deg.casl,
 
-	    # deg.main : degree in main network
-	    deg.main = egos$deg.main,
+# 	    # deg.main : degree in main network
+# 	    deg.main = egos$deg.main,
 
-	    # deg.tot : total degree
-	    deg.tot = egos$deg.tot,
+# 	    # deg.tot : total degree
+# 	    deg.tot = egos$deg.tot,
 
-	    # risk.grp : risk group (investigate for what this means practically)
+# 	    # risk.grp : risk group (investigate for what this means practically)
 
-	    # role.class : Preference for sexual position during acts
-	    # Randomly assign to nodes according to proportions derived from RADAR by
-	    # Morgan et al. (2021)
-	    role.class = sample(0:2, size = nrow(egos), replace = TRUE, prob = c(73, 87, 475)/sum(c(73, 87, 475))),
-	    # For now give everyone "versatile"
-	    # role.class = rep(2, nrow(egos)),
+# 	    # role.class : Preference for sexual position during acts
+# 	    # Randomly assign to nodes according to proportions derived from RADAR by
+# 	    # Morgan et al. (2021)
+# 	    role.class = sample(0:2, size = nrow(egos), replace = TRUE, prob = c(73, 87, 475)/sum(c(73, 87, 475))),
+# 	    # For now give everyone "versatile"
+# 	    # role.class = rep(2, nrow(egos)),
 
-	    # diag.status : I believe this is HIV status
-	    diag.status = egos$diag.status,
+# 	    # diag.status : I believe this is HIV status
+# 	    diag.status = egos$diag.status,
 
-	    # venues_all
-	    venues.all = egos$venues.all,
+# 	    # venues_all
+# 	    venues.all = egos$venues.all,
 
-	    # apps_all
-	    apps.all = egos$apps.all
+# 	    # apps_all
+# 	    apps.all = egos$apps.all
 
 
 
-	  ),
+# 	  ),
 
-	  # main : list of target stats and dissolution model for main partnerships
-	  main = list(
+# 	  # main : list of target stats and dissolution model for main partnerships
+# 	  main = list(
 
-	    # edges
-	    edges = target_extract(df = target_df,
-	                           term = "edges",
-	                           model = "main"),
+# 	    # edges
+# 	    edges = target_extract(df = target_df,
+# 	                           term = "edges",
+# 	                           model = "main"),
 
-	    # concurrent
-	    concurrent = target_extract(df = target_df,
-	                                term = "concurrent",
-	                                model = "main"),
+# 	    # concurrent
+# 	    concurrent = target_extract(df = target_df,
+# 	                                term = "concurrent",
+# 	                                model = "main"),
 
-	    # nodefactor race
-	    nodefactor_race = c(target_extract(term = "nodefactor.race_ethnicity.blackNH", model = "main"),
-	                        target_extract(term = "nodefactor.race_ethnicity.hispanic", model = "main"),
-	                        target_extract(term = "nodefactor.race_ethnicity.otherNH", model = "main"),
-	                        target_extract(term = "nodefactor.race_ethnicity.whiteNH", model = "main")),
+# 	    # nodefactor race
+# 	    nodefactor_race = c(target_extract(term = "nodefactor.race_ethnicity.blackNH", model = "main"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.hispanic", model = "main"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.otherNH", model = "main"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.whiteNH", model = "main")),
 
 
-	    # nodematch race
-	    nodematch_race = target_extract(term = "nodematch.race_ethnicity", model = "main"),
+# 	    # nodematch race
+# 	    nodematch_race = target_extract(term = "nodematch.race_ethnicity", model = "main"),
 
-	    # nodematch black
-	    nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "main"),
+# 	    # nodematch black
+# 	    nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "main"),
 
-	    # nodematch_age.grp
-	    # nodematch_age.grp = target_extract(term = "nodematch.age", model = "main"),
-	    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "main"),
-	                          target_extract(term = "nodematch.age.21to29", model = "main")),
+# 	    # nodematch_age.grp
+# 	    # nodematch_age.grp = target_extract(term = "nodematch.age", model = "main"),
+# 	    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "main"),
+# 	                          target_extract(term = "nodematch.age.21to29", model = "main")),
 
-	    # nodefactor_age.grp
-	    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "main"),
-	    #                        target_extract(term = "nodefactor.age.21to29", model = "main")),
+# 	    # nodefactor_age.grp
+# 	    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "main"),
+# 	    #                        target_extract(term = "nodefactor.age.21to29", model = "main")),
 
-	    # nodefactor_init_cas_cat
-	    nodefactor_deg.casl = c(target_extract(term = "nodefactor.init_cas_cat.0", model = "main"),
-	                            target_extract(term = "nodefactor.init_cas_cat.1", model = "main"),
-	                            target_extract(term = "nodefactor.init_cas_cat.2+", model = "main")),
+# 	    # nodefactor_init_cas_cat
+# 	    nodefactor_deg.casl = c(target_extract(term = "nodefactor.init_cas_cat.0", model = "main"),
+# 	                            target_extract(term = "nodefactor.init_cas_cat.1", model = "main"),
+# 	                            target_extract(term = "nodefactor.init_cas_cat.2+", model = "main")),
 
-	    # fuzzynodematch_venues_all
-	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "main"),
-	    fuzzynodematch_venues.all = calibration_matrix$venues_main,
+# 	    # fuzzynodematch_venues_all
+# 	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "main"),
+# 	    fuzzynodematch_venues.all = calibration_matrix$venues_main,
 
-	    # fuzzynodematch_apps_all
-	    fuzzynodematch_apps.all = calibration_matrix$apps_main,
+# 	    # fuzzynodematch_apps_all
+# 	    fuzzynodematch_apps.all = calibration_matrix$apps_main,
 
 
-	    # fuzzynodematch_apps_dating
-	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "main"),
+# 	    # fuzzynodematch_apps_dating
+# 	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "main"),
 
-	    # dissolution model
-	    dissolution = dissolution_coefs(~offset(edges), duration = 87, d.rate = calibration_matrix$drate_main),
-	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
-	                                   duration = dur_coefs$main$durs.main.homog$mean.dur.adj,
-	                                   d.rate = calibration_matrix$drate_main),
-	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
-	                                     offset(nodematch("age.grp", diff = TRUE)),
-	                                   duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
-	                                   d.rate = calibration_matrix$drate_main)
+# 	    # dissolution model
+# 	    dissolution = dissolution_coefs(~offset(edges), duration = 87, d.rate = calibration_matrix$drate_main),
+# 	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
+# 	                                   duration = dur_coefs$main$durs.main.homog$mean.dur.adj,
+# 	                                   d.rate = calibration_matrix$drate_main),
+# 	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
+# 	                                     offset(nodematch("age.grp", diff = TRUE)),
+# 	                                   duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
+# 	                                   d.rate = calibration_matrix$drate_main)
 
 
-	  ),
+# 	  ),
 
-	  # casl : same deal as above but for casual network
-	  casl = list(
+# 	  # casl : same deal as above but for casual network
+# 	  casl = list(
 
-	    edges = target_extract(df = target_df,
-	                           term = "edges",
-	                           model = "casual"),
+# 	    edges = target_extract(df = target_df,
+# 	                           term = "edges",
+# 	                           model = "casual"),
 
-	    # concurrent
-	    concurrent = target_extract(df = target_df,
-	                                term = "concurrent",
-	                                model = "casual"),
+# 	    # concurrent
+# 	    concurrent = target_extract(df = target_df,
+# 	                                term = "concurrent",
+# 	                                model = "casual"),
 
-	    # nodefactor race
-	    nodefactor_race = c(target_extract(term = "nodefactor.race_ethnicity.blackNH", model = "casual"),
-	                        target_extract(term = "nodefactor.race_ethnicity.hispanic", model = "casual"),
-	                        target_extract(term = "nodefactor.race_ethnicity.otherNH", model = "casual"),
-	                        target_extract(term = "nodefactor.race_ethnicity.whiteNH", model = "casual")),
+# 	    # nodefactor race
+# 	    nodefactor_race = c(target_extract(term = "nodefactor.race_ethnicity.blackNH", model = "casual"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.hispanic", model = "casual"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.otherNH", model = "casual"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.whiteNH", model = "casual")),
 
 
-	    # nodematch race
-	    nodematch_race = target_extract(term = "nodematch.race_ethnicity", model = "casual"),
+# 	    # nodematch race
+# 	    nodematch_race = target_extract(term = "nodematch.race_ethnicity", model = "casual"),
 
-	    # nodematch black
-	    nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "casual"),
+# 	    # nodematch black
+# 	    nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "casual"),
 
-	    # nodematch_age.grp
-	    # nodematch_age.grp = target_extract(term = "nodematch.age", model = "casual"),
-	    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "casual"),
-	                          target_extract(term = "nodematch.age.21to29", model = "casual")),
+# 	    # nodematch_age.grp
+# 	    # nodematch_age.grp = target_extract(term = "nodematch.age", model = "casual"),
+# 	    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "casual"),
+# 	                          target_extract(term = "nodematch.age.21to29", model = "casual")),
 
 
-	    # nodefactor_age.grp
-	    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "casual"),
-	    #                       target_extract(term = "nodefactor.age.21to29", model = "casual")),
+# 	    # nodefactor_age.grp
+# 	    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "casual"),
+# 	    #                       target_extract(term = "nodefactor.age.21to29", model = "casual")),
 
-	    # nodefactor_init_cas_cat
-	    nodefactor_deg.main = c(target_extract(term = "nodefactor.init_ser_cat.0", model = "casual"),
-	                            target_extract(term = "nodefactor.init_ser_cat.1+", model = "casual")),
+# 	    # nodefactor_init_cas_cat
+# 	    nodefactor_deg.main = c(target_extract(term = "nodefactor.init_ser_cat.0", model = "casual"),
+# 	                            target_extract(term = "nodefactor.init_ser_cat.1+", model = "casual")),
 
-	    # fuzzynodematch_venues_all
-	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "casual"),
-	    fuzzynodematch_venues.all = calibration_matrix$venues_casual,
+# 	    # fuzzynodematch_venues_all
+# 	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "casual"),
+# 	    fuzzynodematch_venues.all = calibration_matrix$venues_casual,
 
-	    # fuzzynodematch_apps_all
-	    fuzzynodematch_apps.all = calibration_matrix$apps_casual,
+# 	    # fuzzynodematch_apps_all
+# 	    fuzzynodematch_apps.all = calibration_matrix$apps_casual,
 
-	    # fuzzynodematch_apps_dating
-	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "casual"),
+# 	    # fuzzynodematch_apps_dating
+# 	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "casual"),
 
-	    # dissolution model
-	    dissolution = dissolution_coefs(~offset(edges), duration = 57, d.rate = calibration_matrix$drate_cas),
-	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
-	                                   duration = dur_coefs$casl$durs.casl.homog$mean.dur.adj,
-	                                   d.rate = calibration_matrix$drate_cas),
-	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
-	                                     offset(nodematch("age.grp", diff = TRUE)),
-	                                   duration = dur_coefs$casl$durs.casl.byage$mean.dur.adj,
-	                                   d.rate = calibration_matrix$drate_cas)
+# 	    # dissolution model
+# 	    dissolution = dissolution_coefs(~offset(edges), duration = 57, d.rate = calibration_matrix$drate_cas),
+# 	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
+# 	                                   duration = dur_coefs$casl$durs.casl.homog$mean.dur.adj,
+# 	                                   d.rate = calibration_matrix$drate_cas),
+# 	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
+# 	                                     offset(nodematch("age.grp", diff = TRUE)),
+# 	                                   duration = dur_coefs$casl$durs.casl.byage$mean.dur.adj,
+# 	                                   d.rate = calibration_matrix$drate_cas)
 
 
-	  ),
+# 	  ),
 
-	  # inst : more or less same as above but for one-off network
-	  inst = list(
+# 	  # inst : more or less same as above but for one-off network
+# 	  inst = list(
 
-	    edges = target_extract(df = target_df,
-	                           term = "edges",
-	                           model = "one.time"),
+# 	    edges = target_extract(df = target_df,
+# 	                           term = "edges",
+# 	                           model = "one.time"),
 
-	    # nodefactor race
-	    nodefactor_race = c(target_extract(term = "nodefactor.race_ethnicity.blackNH", model = "one.time"),
-	                        target_extract(term = "nodefactor.race_ethnicity.hispanic", model = "one.time"),
-	                        target_extract(term = "nodefactor.race_ethnicity.otherNH", model = "one.time"),
-	                        target_extract(term = "nodefactor.race_ethnicity.whiteNH", model = "one.time")),
+# 	    # nodefactor race
+# 	    nodefactor_race = c(target_extract(term = "nodefactor.race_ethnicity.blackNH", model = "one.time"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.hispanic", model = "one.time"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.otherNH", model = "one.time"),
+# 	                        target_extract(term = "nodefactor.race_ethnicity.whiteNH", model = "one.time")),
 
 
-	    # nodematch race
-	    nodematch_race = target_extract(term = "nodematch.race_ethnicity", model = "one.time"),
+# 	    # nodematch race
+# 	    nodematch_race = target_extract(term = "nodematch.race_ethnicity", model = "one.time"),
 
-	    # nodematch black
-	    nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "one.time"),
+# 	    # nodematch black
+# 	    nodematch_race.1 = target_extract(term = "nodematch.race_ethnicity.blackNH", model = "one.time"),
 
-	    # nodematch_age.grp
-	    # nodematch_age.grp = target_extract(term = "nodematch.age", model = "one.time"),
-	    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "one.time"),
-	                          target_extract(term = "nodematch.age.21to29", model = "one.time")),
+# 	    # nodematch_age.grp
+# 	    # nodematch_age.grp = target_extract(term = "nodematch.age", model = "one.time"),
+# 	    nodematch_age.grp = c(target_extract(term = "nodematch.age.16to20", model = "one.time"),
+# 	                          target_extract(term = "nodematch.age.21to29", model = "one.time")),
 
-	    # nodefactor_age.grp
-	    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "one.time"),
-	    #                        target_extract(term = "nodefactor.age.21to29", model = "one.time")),
+# 	    # nodefactor_age.grp
+# 	    # nodefactor_age.grp = c(target_extract(term = "nodefactor.age.16to20", model = "one.time"),
+# 	    #                        target_extract(term = "nodefactor.age.21to29", model = "one.time")),
 
-	    # nodefactor_init_pers_cat
-	    nodefactor_deg.tot = c(target_extract(term = "nodefactor.init_pers_cat.0", model = "one.time"),
-	                           target_extract(term = "nodefactor.init_pers_cat.1", model = "one.time"),
-	                           target_extract(term = "nodefactor.init_pers_cat.2", model = "one.time"),
-	                           target_extract(term = "nodefactor.init_pers_cat.3+", model = "one.time")),
+# 	    # nodefactor_init_pers_cat
+# 	    nodefactor_deg.tot = c(target_extract(term = "nodefactor.init_pers_cat.0", model = "one.time"),
+# 	                           target_extract(term = "nodefactor.init_pers_cat.1", model = "one.time"),
+# 	                           target_extract(term = "nodefactor.init_pers_cat.2", model = "one.time"),
+# 	                           target_extract(term = "nodefactor.init_pers_cat.3+", model = "one.time")),
 
 
-	    # fuzzynodematch_venues_all
-	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "one.time"),
-	    fuzzynodematch_venues.all = calibration_matrix$venues_onetime,
+# 	    # fuzzynodematch_venues_all
+# 	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "one.time"),
+# 	    fuzzynodematch_venues.all = calibration_matrix$venues_onetime,
 
-	    # fuzzynodematch_apps_all
-	    fuzzynodematch_apps.all = calibration_matrix$apps_onetime,
+# 	    # fuzzynodematch_apps_all
+# 	    fuzzynodematch_apps.all = calibration_matrix$apps_onetime,
 
-	    # fuzzynodematch_apps_dating
-	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "one.time")
+# 	    # fuzzynodematch_apps_dating
+# 	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "one.time")
 
-	    # edges
-	    # nodefactor_race
-	    # nodematch_race
-	    # nodematch_race_diffF (Ask)
-	    # nodefactor_age.grp
-	    # nodematch_age.grp
-	    # absdiff_age
-	    # absdiff_sqrtage
-	    # nodefactor_deg.tot
-	    # concurrent
-	    # nodefactor_diag.status
+# 	    # edges
+# 	    # nodefactor_race
+# 	    # nodematch_race
+# 	    # nodematch_race_diffF (Ask)
+# 	    # nodefactor_age.grp
+# 	    # nodematch_age.grp
+# 	    # absdiff_age
+# 	    # absdiff_sqrtage
+# 	    # nodefactor_deg.tot
+# 	    # concurrent
+# 	    # nodefactor_diag.status
 
-	  )
-	)
+# 	  )
+# 	)
 
-	# print(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", calibration_matrix$fit_no, ".rds"))
-	saveRDS(netstats, paste0(outdir, "netstats_", calibration_matrix$fit_no, ".rds"))
+# 	# print(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", calibration_matrix$fit_no, ".rds"))
+# 	saveRDS(netstats, paste0(outdir, "netstats_", calibration_matrix$fit_no, ".rds"))
 
-}
+# }
 
 
-# print(netstats)
+# # print(netstats)
 
 
