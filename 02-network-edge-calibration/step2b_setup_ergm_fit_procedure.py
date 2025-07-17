@@ -53,8 +53,8 @@ sbatch = f"""
 #SBATCH --ntasks-per-node=1 ## how many cpus or processors do you need on each computer
 #SBATCH --time={yamldata['sbatch.walltime.hours']}:{yamldata['sbatch.walltime.minutes']}:00 ## how long does this need to run (remember different partitions have restrictions on this param)
 #SBATCH --mem={yamldata['sbatch.memory']}
-#SBATCH --job-name="{yamldata['expname']}_%A" ## When you run squeue -u NETID this is how you can identify the job
-#SBATCH --output=%a_{run}.%A.{yamldata['expname']}.out ## standard out and standard error goes to this file
+#SBATCH --job-name="%A" ## When you run squeue -u NETID this is how you can identify the job
+#SBATCH --output=%a_{run}.%A.out ## standard out and standard error goes to this file
 #SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
 #SBATCH --mail-user={yamldata['sbatch.email']} ## your email
 
