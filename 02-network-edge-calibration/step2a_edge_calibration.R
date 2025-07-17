@@ -219,7 +219,7 @@ calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
 
 # print(calibration_matrix)
 
-print(netstats_base$main$fuzzynodematch_apps.all)
+print(netstats_base$main$fuzzynodematch_venues.all)
 print(calibration_matrix$venues_main)
 # Netstats
 # for (i in 1:num_calibration_scenarios){
