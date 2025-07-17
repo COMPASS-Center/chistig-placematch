@@ -508,7 +508,7 @@ for (i in 1:num_calibration_scenarios){
 	)
 
 	# print(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", calibration_matrix$fit_no, ".rds"))
-	saveRDS(netstats, paste0(yamldata$repo.dir, yamldata$calibration.subdir, "netstats_", calibration_matrix$fit_no, ".rds"))
+	saveRDS(netstats, paste0(outdir, "netstats_", calibration_matrix$fit_no, ".rds"))
 
 }
 
