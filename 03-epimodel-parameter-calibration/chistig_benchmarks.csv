@@ -1,0 +1,21 @@
+category,measure_name,definition,target_val,ci_lower,ci_upper,source,notes
+Diagnosed (Black),cc.dx.B,Proportion of HIV+ that are Diagnosed (Black),0.546535643,,,,"Can't find the source, but from what I can see crawling around Slack I incorporated these target values around 12/1/23"
+Diagnosed (Hispanic),cc.dx.H,Proportion of HIV+ that are Diagnosed (Hispanic),0.543136789,,,,
+Diagnosed (Other),cc.dx.O,Proportion of HIV+ that are Diagnosed (Other),0.598877987,,,,
+Diagnosed (White),cc.dx.W,Proportion of HIV+ that are Diagnosed (White),0.561490598,,,,
+Linked to Care (Black),cc.linked1m.B,Proportion of HIV+ Nodes Linked to Care within One Month (Black),0.828,,,"CDPH (2019 Data Request, as source by EpiModel team)",
+Linked to Care (Hispanic),cc.linked1m.B,Proportion of HIV+ Nodes Linked to Care within One Month (Hispanic),0.867,,,,
+Linked to Care (Other),cc.linked1m.B,Proportion of HIV+ Nodes Linked to Care within One Month (Other),0.875,,,,
+Linked to Care (White),cc.linked1m.B,Proportion of HIV+ Nodes Linked to Care within One Month (White),0.936,,,,
+Viral Suppression (Black),cc.vsupp.B,Proportion of HIV+ Nodes with Viral Suppression (Black),0.571,,,"CDPH (2019 Data Request, as source by EpiModel team)",
+Viral Suppression (Hispanic),cc.vsupp.H,Proportion of HIV+ Nodes with Viral Suppression (Hispanic),0.675,,,,
+Viral Suppression (Other),cc.vsupp.O,Proportion of HIV+ Nodes with Viral Suppression (Other),0.586,,,,
+Viral Suppression (White),cc.vsupp.W,Proportion of HIV+ Nodes with Viral Suppression (White),0.617,,,,
+Exogenous Incidence Rate (Black),exo.ir100.B,Exogenous Incidence Rate (Black),1.618,1.438,1.798,,I was stupid in how I determined this (just subtracted from the CIs of total incidence rate). We’ll need to revisit these
+Exogenous Incidence Rate (Hispanic),exo.ir100.H,Exogenous Incidence Rate (Hispanic),0.7345,0.653,0.816,,
+Exogenous Incidence Rate (Other),exo.ir100.O,Exogenous Incidence Rate (Other),0.5695,0.506,0.633,,
+Exogenous Incidence Rate (White),exo.ir100.W,Exogenous Incidence Rate (White),0.2891,0.257,0.3212,,
+Total Incidence Rate (Black),ir100.B,Total Incidence Rate (Black),6.42,4.44,9.3,RADAR,https://chistig.slack.com/?redir=%2Ffiles-pri%2FT018989KM3J-F06B8MG0403%2Fimage.png
+Total Incidence Rate (Hispanic),ir100.H,Total Incidence Rate (Hispanic),2.04,1.1,3.79,,
+Total Incidence Rate (Other),ir100.O,Total Incidence Rate (Other),1.71,0.55,5.31,,
+Total Incidence Rate (White),ir100.W,Total Incidence Rate (White),0.73,0.24,2.26,,
