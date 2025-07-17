@@ -18,6 +18,8 @@ netstats.fname: 'netstats.rds'
 
 interim.data.subdir: 'interim/'
 
+step2b.inputargs.fname: 'step2_ergm_fit_procedure_input_args'
+
 # calibration setup
 num.ergm.convergence.attempts: 10
 ergm.convergence.attempt.time: 60 #minutes 
