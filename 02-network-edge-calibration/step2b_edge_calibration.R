@@ -24,13 +24,26 @@ print(paste("Random seed number:", thisseed, sep=" "))
 # drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$expname, "/", yamldata$calibration.matrix.fname, "_", yamldata$expname, ".csv")
 calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname)
 
-# egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synthpop.fname)
+egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synthpop.fname)
 
 
 # ### Read in the calibration input matrix 
 calibration_matrix_full <- read.csv(calibration_matrix_fname)
-print(calibration_matrix_full)
-# num_calibration_scenarios <- max(drate_mat_full$fit_no) 
+num_calibration_scenarios <- max(calibration_matrix_full$fit_no)
+
+
+
+### Load netstats object
+netstats <- readRDS(paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir, "netstats_", calibration_set_num, ".rds"))
+
+numegos <- netstats$demog$num
+nw <- network::network.initialize(n = numegos,
+                         loops = FALSE,
+                         directed = FALSE)
+
+
+attr_names <- names(netstats$attr)
+attr_values <- netstats$attr
 
 
 # ### Load synthetic population of egos 
