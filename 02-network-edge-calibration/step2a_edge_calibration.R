@@ -38,8 +38,6 @@ epistats <- readRDS(epistats_fname)
 # source(artnet_compute_duration_dissolution_fname)
 dur_coefs <- readRDS(artnet_duration_dissolution_fname)
 
-print(dur_coefs)
-
 ### Read in target stat dataframe
 # target_df <- read.csv("./data/synthpop_gen/target_values_v4_1_uniform_age_dist.csv")
 target_df <- read.csv(targetstats_fname)
