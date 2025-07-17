@@ -19,6 +19,9 @@ netstats.fname: 'netstats.rds'
 interim.data.subdir: 'interim/'
 
 step2b.inputargs.fname: 'step2_ergm_fit_procedure_input_args'
+step2b.sbatch.fname: 'step2b_sbatch_ergm_fit_procedure'
+# step2b.rscript.fname: 'step2b_edge_calibration.R'
+
 
 # calibration setup
 num.ergm.convergence.attempts: 10
@@ -30,3 +33,18 @@ sbatch.walltime.minutes: '30'
 sbatch.email: 'tom.wolff@northwestern.edu'
 sbatch.memory: '3G'
 convergence.fail.fname: 'calibration_sets_that_did_not_converge'
+
+
+# treatments
+treatment.types:
+  - control
+  - both      
+  - apps
+  - venues
+
+# partnerships
+partnership.types:
+  - main
+  - casual      
+  - onetime
+

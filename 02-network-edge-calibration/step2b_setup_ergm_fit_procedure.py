@@ -17,10 +17,11 @@ random_seed_max = yamldata['max.random.seed']
 
 # setup args input filename 
 # expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
+expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 # output_fname = f"{yamldata['step2b.inputargs.fname']}_{yamldata['expname']}.txt"
 output_fname = f"{yamldata['step2b.inputargs.fname']}.txt"
 
-# output_file = f"{expiriment_dir}{output_fname}"
+output_file = f"{expiriment_dir}{output_fname}"
 # output_file = "test_output_step2.txt"
 
 # obtain the length of the calibration set matrix 
@@ -29,22 +30,19 @@ calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 calibration_df = pd.read_csv(calibration_df_fname)
 num_calibration_sets = max(calibration_df['fit_no'])
 
-print(num_calibration_sets)
+sbatch_bash_commands_outfile = f"{expiriment_dir}{yamldata['step2b.sbatch.fname']}.sh"
 
-# sbatch_bash_commands_outfile = f"{expiriment_dir}{yamldata['step2b.sbatch.fname']}.sh"
-# #sbatch_bash_commands_outfile = f"{yamldata['step2b.sbatch.fname']}_{yamldata['expname']}.sh"
+random_seeds_list = random.sample(range(random_seed_max + 1), yamldata['num.ergm.convergence.attempts'])
+random_seeds_string = f"({' '.join(map(str,random_seeds_list))})"
 
-# random_seeds_list = random.sample(range(random_seed_max + 1), yamldata['num.ergm.convergence.attempts'])
-# random_seeds_string = f"({' '.join(map(str,random_seeds_list))})"
-
-# run = 0
-# with open(output_file, 'w') as file:
-# 	for setno in range(1, num_calibration_sets+1):
-# 		for thistreatment in yamldata['treatment.types']:
-# 			for thispartnership in yamldata['partnership.types']:
-# 				line = f"{run}\t{yamlfname}\t{setno}\t{thistreatment}\t{thispartnership}\n"
-# 				file.write(line)
-# 				run += 1
+run = 0
+with open(output_file, 'w') as file:
+	for setno in range(1, num_calibration_sets+1):
+		for thistreatment in yamldata['treatment.types']:
+			for thispartnership in yamldata['partnership.types']:
+				line = f"{run}\t{yamlfname}\t{setno}\t{thistreatment}\t{thispartnership}\n"
+				file.write(line)
+				run += 1
 
 # sbatch = f"""
 # #SBATCH --account=p32153  ## YOUR ACCOUNT pXXXX or bXXXX
