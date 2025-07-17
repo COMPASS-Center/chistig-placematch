@@ -40,6 +40,8 @@ dur_coefs <- readRDS(artnet_duration_dissolution_fname)
 
 netstats <- readRDS(netstats_fname)
 print(str(netstats))
+print("")
+print(netstats$demog)
 
 # ### Read in target stat dataframe
 # # target_df <- read.csv("./data/synthpop_gen/target_values_v4_1_uniform_age_dist.csv")
