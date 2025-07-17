@@ -217,11 +217,20 @@ print(netstats_base$demog)
 # drate_mat <- drate_mat_full[num_calibration_scenarios, ]
 calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
 
-print(calibration_matrix)
+# print(calibration_matrix)
 
-# # # Netstats
-# # for (i in 1:num_calibration_scenarios){
-# # 	calibration_matrix <- calibration_matrix_full[i, ]
+print(netstats$main$fuzzynodematch_apps.all)
+print(calibration_matrix$venues_main)
+# Netstats
+# for (i in 1:num_calibration_scenarios){
+# 	calibration_matrix <- calibration_matrix_full[i, ]
+
+#     netstats <- netstats_base
+
+
+#     fuzzynodematch_venues.all = calibration_matrix$venues_main,
+#     fuzzynodematch_apps.all = calibration_matrix$apps_main,
+
 
 # # 	netstats <- list(
 # # 	  # demog : list of demographic information for network
