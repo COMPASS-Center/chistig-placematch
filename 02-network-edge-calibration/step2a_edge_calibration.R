@@ -14,14 +14,24 @@ yamldata <- yaml.load_file(yamlfname)
 
 ### Name datafiles 
 egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synthpop.fname)
-epistats_fname <- paste0(yamldata$repo.dir, yamldata$epistats.subdir, yamldata$epistats.fname)
-artnet_compute_duration_dissolution_fname <- paste0(yamldata$repo.dir, yamldata$artnet.duration.dissolution.subdir, yamldata$artnet.compute.duration.dissolution.fname)
-targetstats_fname <- paste0(yamldata$repo.dir, yamldata$target.dataframe.subdir, yamldata$target.dataframe.fname)
-drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$expname, "/", yamldata$calibration.matrix.fname, "_", yamldata$expname, ".csv")
+
+epistats_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$epistats.fname)
+artnet_compute_duration_dissolution_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$artnet.compute.duration.dissolution.fname)
+
+netstats_fname <- paste0(yamldata$.repo.dir, yamldata$netstats.subdir, yamldata$netstats.fname)
+
+targetstats_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$target.dataframe.fname)
+
+#drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$)
+calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname)
+
 
 ### Read in epistats
 # readRDS("./data/intermediate/estimates/epistats-local.rds")
 epistats <- readRDS(epistats_fname)
+source(artnet_compute_duration_dissolution_fname)
+dur_coefs <- artnet_out
+
 
 
 ### Read in target stat dataframe
@@ -31,8 +41,11 @@ target_df <- read.csv(targetstats_fname)
 
 ### Read in the calibration input matrix 
 # drate_mat <- read.csv("./data/intermediate/estimates/edge_target_calibration_vals.csv")
-drate_mat_full <- read.csv(drate_mat_fname)
-num_calibration_scenarios <- max(drate_mat_full$fit_no) 
+# drate_mat_full <- read.csv(drate_mat_fname)
+calibration_matrix_full <- read.csv(calibration_matrix_fname)
+
+# num_calibration_scenarios <- max(drate_mat_full$fit_no) 
+num_calibration_scenarios <- max(calibration_matrix_full$fit_no)
 
 
 ###################################
@@ -83,103 +96,105 @@ egos <- egos %>%
          active.sex)
 
 
-######################################
-# Set ASMR data frame (for netstats) #
-######################################
-asmr.B <- c(0.00079, 0.00046, 0.00030, 0.00025, 0.00024, 0.00025, 0.00019,
-            0.00019, 0.00021, 0.00020, 0.00026, 0.00026, 0.00038, 0.00056,
-            0.00077, 0.00100, 0.00151, 0.00227, 0.00271, 0.00264, 0.00297,
-            0.00302, 0.00315, 0.00319, 0.00322, 0.00319, 0.00336, 0.00337,
-            0.00330, 0.00363, 0.00396, 0.00392, 0.00407, 0.00428, 0.00411,
-            0.00453, 0.00485, 0.00486, 0.00533, 0.00513, 0.00575, 0.00580,
-            0.00628, 0.00671, 0.00669, 0.00750, 0.00773, 0.00858, 0.00934,
-            0.00947, 0.00999, 0.01141, 0.01216, 0.01360, 0.01432, 0.01517,
-            0.01699, 0.01853, 0.02021, 0.02099, 0.02366, 0.02547, 0.02877,
-            0.02979, 0.03104, 0.03467, 0.03653, 0.03941, 0.04114, 0.04320,
-            0.04487, 0.04879, 0.05100, 0.05678, 0.05611, 0.06384, 0.06891,
-            0.07399, 0.07682, 0.08209, 0.08938, 0.09737, 0.10400, 0.11336,
-            0.16336)
-asmr.H <- c(0.00032, 0.00021, 0.00018, 0.00011, 0.00011, 0.00009, 0.00010,
-            0.00009, 0.00009, 0.00012, 0.00013, 0.00015, 0.00016, 0.00025,
-            0.00036, 0.00058, 0.00076, 0.00106, 0.00125, 0.00134, 0.00145,
-            0.00156, 0.00164, 0.00166, 0.00164, 0.00159, 0.00176, 0.00172,
-            0.00201, 0.00198, 0.00192, 0.00191, 0.00202, 0.00204, 0.00219,
-            0.00223, 0.00251, 0.00246, 0.00272, 0.00272, 0.00298, 0.00307,
-            0.00321, 0.00351, 0.00367, 0.00391, 0.00442, 0.00484, 0.00512,
-            0.00521, 0.00616, 0.00649, 0.00714, 0.00790, 0.00863, 0.00938,
-            0.00992, 0.01094, 0.01222, 0.01217, 0.01464, 0.01483, 0.01630,
-            0.01731, 0.01850, 0.02054, 0.02269, 0.02321, 0.02515, 0.02734,
-            0.02937, 0.03064, 0.03349, 0.03670, 0.03980, 0.04387, 0.04724,
-            0.05151, 0.05591, 0.05902, 0.06345, 0.07317, 0.07849, 0.08617,
-            0.13436)
-asmr.W <- c(0.00034, 0.00023, 0.00019, 0.00014, 0.00014, 0.00010, 0.00010,
-            0.00009, 0.00009, 0.00012, 0.00014, 0.00015, 0.00022, 0.00028,
-            0.00036, 0.00050, 0.00059, 0.00082, 0.00096, 0.00104, 0.00126,
-            0.00128, 0.00134, 0.00144, 0.00153, 0.00163, 0.00172, 0.00186,
-            0.00194, 0.00205, 0.00220, 0.00225, 0.00238, 0.00245, 0.00247,
-            0.00264, 0.00274, 0.00280, 0.00306, 0.00312, 0.00324, 0.00329,
-            0.00344, 0.00354, 0.00371, 0.00405, 0.00442, 0.00479, 0.00511,
-            0.00547, 0.00599, 0.00653, 0.00706, 0.00768, 0.00827, 0.00922,
-            0.00978, 0.01065, 0.01151, 0.01235, 0.01349, 0.01437, 0.01548,
-            0.01664, 0.01730, 0.01879, 0.01986, 0.02140, 0.02263, 0.02419,
-            0.02646, 0.02895, 0.03031, 0.03625, 0.03753, 0.04268, 0.04631,
-            0.05235, 0.05724, 0.06251, 0.06934, 0.07589, 0.08669, 0.09582,
-            0.16601)
-asmr.O <- c(0.00034, 0.00023, 0.00019, 0.00014, 0.00014, 0.00010, 0.00010,
-            0.00009, 0.00009, 0.00012, 0.00014, 0.00015, 0.00022, 0.00028,
-            0.00036, 0.00050, 0.00059, 0.00082, 0.00096, 0.00104, 0.00126,
-            0.00128, 0.00134, 0.00144, 0.00153, 0.00163, 0.00172, 0.00186,
-            0.00194, 0.00205, 0.00220, 0.00225, 0.00238, 0.00245, 0.00247,
-            0.00264, 0.00274, 0.00280, 0.00306, 0.00312, 0.00324, 0.00329,
-            0.00344, 0.00354, 0.00371, 0.00405, 0.00442, 0.00479, 0.00511,
-            0.00547, 0.00599, 0.00653, 0.00706, 0.00768, 0.00827, 0.00922,
-            0.00978, 0.01065, 0.01151, 0.01235, 0.01349, 0.01437, 0.01548,
-            0.01664, 0.01730, 0.01879, 0.01986, 0.02140, 0.02263, 0.02419,
-            0.02646, 0.02895, 0.03031, 0.03625, 0.03753, 0.04268, 0.04631,
-            0.05235, 0.05724, 0.06251, 0.06934, 0.07589, 0.08669, 0.09582,
-            0.16601)
+# ######################################
+# # Set ASMR data frame (for netstats) #
+# ######################################
+# asmr.B <- c(0.00079, 0.00046, 0.00030, 0.00025, 0.00024, 0.00025, 0.00019,
+#             0.00019, 0.00021, 0.00020, 0.00026, 0.00026, 0.00038, 0.00056,
+#             0.00077, 0.00100, 0.00151, 0.00227, 0.00271, 0.00264, 0.00297,
+#             0.00302, 0.00315, 0.00319, 0.00322, 0.00319, 0.00336, 0.00337,
+#             0.00330, 0.00363, 0.00396, 0.00392, 0.00407, 0.00428, 0.00411,
+#             0.00453, 0.00485, 0.00486, 0.00533, 0.00513, 0.00575, 0.00580,
+#             0.00628, 0.00671, 0.00669, 0.00750, 0.00773, 0.00858, 0.00934,
+#             0.00947, 0.00999, 0.01141, 0.01216, 0.01360, 0.01432, 0.01517,
+#             0.01699, 0.01853, 0.02021, 0.02099, 0.02366, 0.02547, 0.02877,
+#             0.02979, 0.03104, 0.03467, 0.03653, 0.03941, 0.04114, 0.04320,
+#             0.04487, 0.04879, 0.05100, 0.05678, 0.05611, 0.06384, 0.06891,
+#             0.07399, 0.07682, 0.08209, 0.08938, 0.09737, 0.10400, 0.11336,
+#             0.16336)
+# asmr.H <- c(0.00032, 0.00021, 0.00018, 0.00011, 0.00011, 0.00009, 0.00010,
+#             0.00009, 0.00009, 0.00012, 0.00013, 0.00015, 0.00016, 0.00025,
+#             0.00036, 0.00058, 0.00076, 0.00106, 0.00125, 0.00134, 0.00145,
+#             0.00156, 0.00164, 0.00166, 0.00164, 0.00159, 0.00176, 0.00172,
+#             0.00201, 0.00198, 0.00192, 0.00191, 0.00202, 0.00204, 0.00219,
+#             0.00223, 0.00251, 0.00246, 0.00272, 0.00272, 0.00298, 0.00307,
+#             0.00321, 0.00351, 0.00367, 0.00391, 0.00442, 0.00484, 0.00512,
+#             0.00521, 0.00616, 0.00649, 0.00714, 0.00790, 0.00863, 0.00938,
+#             0.00992, 0.01094, 0.01222, 0.01217, 0.01464, 0.01483, 0.01630,
+#             0.01731, 0.01850, 0.02054, 0.02269, 0.02321, 0.02515, 0.02734,
+#             0.02937, 0.03064, 0.03349, 0.03670, 0.03980, 0.04387, 0.04724,
+#             0.05151, 0.05591, 0.05902, 0.06345, 0.07317, 0.07849, 0.08617,
+#             0.13436)
+# asmr.W <- c(0.00034, 0.00023, 0.00019, 0.00014, 0.00014, 0.00010, 0.00010,
+#             0.00009, 0.00009, 0.00012, 0.00014, 0.00015, 0.00022, 0.00028,
+#             0.00036, 0.00050, 0.00059, 0.00082, 0.00096, 0.00104, 0.00126,
+#             0.00128, 0.00134, 0.00144, 0.00153, 0.00163, 0.00172, 0.00186,
+#             0.00194, 0.00205, 0.00220, 0.00225, 0.00238, 0.00245, 0.00247,
+#             0.00264, 0.00274, 0.00280, 0.00306, 0.00312, 0.00324, 0.00329,
+#             0.00344, 0.00354, 0.00371, 0.00405, 0.00442, 0.00479, 0.00511,
+#             0.00547, 0.00599, 0.00653, 0.00706, 0.00768, 0.00827, 0.00922,
+#             0.00978, 0.01065, 0.01151, 0.01235, 0.01349, 0.01437, 0.01548,
+#             0.01664, 0.01730, 0.01879, 0.01986, 0.02140, 0.02263, 0.02419,
+#             0.02646, 0.02895, 0.03031, 0.03625, 0.03753, 0.04268, 0.04631,
+#             0.05235, 0.05724, 0.06251, 0.06934, 0.07589, 0.08669, 0.09582,
+#             0.16601)
+# asmr.O <- c(0.00034, 0.00023, 0.00019, 0.00014, 0.00014, 0.00010, 0.00010,
+#             0.00009, 0.00009, 0.00012, 0.00014, 0.00015, 0.00022, 0.00028,
+#             0.00036, 0.00050, 0.00059, 0.00082, 0.00096, 0.00104, 0.00126,
+#             0.00128, 0.00134, 0.00144, 0.00153, 0.00163, 0.00172, 0.00186,
+#             0.00194, 0.00205, 0.00220, 0.00225, 0.00238, 0.00245, 0.00247,
+#             0.00264, 0.00274, 0.00280, 0.00306, 0.00312, 0.00324, 0.00329,
+#             0.00344, 0.00354, 0.00371, 0.00405, 0.00442, 0.00479, 0.00511,
+#             0.00547, 0.00599, 0.00653, 0.00706, 0.00768, 0.00827, 0.00922,
+#             0.00978, 0.01065, 0.01151, 0.01235, 0.01349, 0.01437, 0.01548,
+#             0.01664, 0.01730, 0.01879, 0.01986, 0.02140, 0.02263, 0.02419,
+#             0.02646, 0.02895, 0.03031, 0.03625, 0.03753, 0.04268, 0.04631,
+#             0.05235, 0.05724, 0.06251, 0.06934, 0.07589, 0.08669, 0.09582,
+#             0.16601)
 
-# transformed to rates by time unit
-trans.asmr.H <- 1 - (1 - asmr.H)^(1 / (364 / epistats$time.unit))
-trans.asmr.W <- 1 - (1 - asmr.W)^(1 / (364 / epistats$time.unit))
-trans.asmr.B <- 1 - (1 - asmr.B)^(1 / (364 / epistats$time.unit))
-trans.asmr.O <- 1 - (1 - asmr.O)^(1 / (364 / epistats$time.unit))
+# # transformed to rates by time unit
+# trans.asmr.H <- 1 - (1 - asmr.H)^(1 / (364 / netstats$time.unit))
+# trans.asmr.W <- 1 - (1 - asmr.W)^(1 / (364 / netstats$time.unit))
+# trans.asmr.B <- 1 - (1 - asmr.B)^(1 / (364 / netstats$time.unit))
+# trans.asmr.O <- 1 - (1 - asmr.O)^(1 / (364 / epistats$time.unit))
 
-# Transformed rates, 85+ rate for ages 85 - 100
-vec.asmr.B <- c(trans.asmr.B, rep(tail(trans.asmr.B, n = 1), 15))
-vec.asmr.H <- c(trans.asmr.H, rep(tail(trans.asmr.H, n = 1), 15))
-vec.asmr.W <- c(trans.asmr.W, rep(tail(trans.asmr.W, n = 1), 15))
-vec.asmr.O <- c(trans.asmr.O, rep(tail(trans.asmr.O, n = 1), 15))
+# # Transformed rates, 85+ rate for ages 85 - 100
+# vec.asmr.B <- c(trans.asmr.B, rep(tail(trans.asmr.B, n = 1), 15))
+# vec.asmr.H <- c(trans.asmr.H, rep(tail(trans.asmr.H, n = 1), 15))
+# vec.asmr.W <- c(trans.asmr.W, rep(tail(trans.asmr.W, n = 1), 15))
+# vec.asmr.O <- c(trans.asmr.O, rep(tail(trans.asmr.O, n = 1), 15))
 
-asmr <- data.frame(age = 1:100,
-                   vec.asmr.B,
-                   vec.asmr.H,
-                   vec.asmr.W,
-                   vec.asmr.O)
+# asmr <- data.frame(age = 1:100,
+#                    vec.asmr.B,
+#                    vec.asmr.H,
+#                    vec.asmr.W,
+#                    vec.asmr.O)
 
-# Setting deterministic mortality prob = 1 at upper age limit
-max.age <- epistats$age.limits[2]
-asmr[asmr$age >= max.age, ] <- 1
+# # Setting deterministic mortality prob = 1 at upper age limit
+# max.age <- epistats$age.limits[2]
+# asmr[asmr$age >= max.age, ] <- 1
 
 
-#####################################
-# Setup target stats (for netstats) #
-#####################################
+# #####################################
+# # Setup target stats (for netstats) #
+# #####################################
 
-# Function for quickly extracting target values from dataframe
-target_extract = function(df = target_df, term, model) {
-  this_row <- which(df$X == term)
-  this_col <- which(colnames(df) == paste("mean_", model, sep = ""))
-  target_val <- df[this_row, this_col]
-  return(target_val)
-}
+# # Function for quickly extracting target values from dataframe
+# target_extract = function(df = target_df, term, model) {
+#   this_row <- which(df$X == term)
+#   this_col <- which(colnames(df) == paste("mean_", model, sep = ""))
+#   target_val <- df[this_row, this_col]
+#   return(target_val)
+# }
 
 
 ##############################################################
 # Get duration/dissolution coefficients based on ARTNet data #
 ##############################################################
-source(artnet_compute_duration_dissolution_fname)
-dur_coefs <- out
+# source(artnet_compute_duration_dissolution_fname)
+# # source
+# artnet_out
+# dur_coefs <- netstats
 
 
 
@@ -187,12 +202,13 @@ dur_coefs <- out
 # Setup and compute netstats object for each calibration set #
 ##############################################################
 # drate_mat <- drate_mat[1, ]
-drate_mat <- drate_mat_full[num_calibration_scenarios, ]
+# drate_mat <- drate_mat_full[num_calibration_scenarios, ]
+calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
 
 
 # Netstats
 for (i in 1:num_calibration_scenarios){
-	drate_mat <- drate_mat_full[i, ]
+	calibration_matrix <- calibration_matrix_full[i, ]
 
 	netstats <- list(
 	  # demog : list of demographic information for network
@@ -340,24 +356,24 @@ for (i in 1:num_calibration_scenarios){
 
 	    # fuzzynodematch_venues_all
 	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "main"),
-	    fuzzynodematch_venues.all = drate_mat$venues_main,
+	    fuzzynodematch_venues.all = calibration_matrix$venues_main,
 
 	    # fuzzynodematch_apps_all
-	    fuzzynodematch_apps.all = drate_mat$apps_main,
+	    fuzzynodematch_apps.all = calibration_matrix$apps_main,
 
 
 	    # fuzzynodematch_apps_dating
 	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "main"),
 
 	    # dissolution model
-	    dissolution = dissolution_coefs(~offset(edges), duration = 87, d.rate = drate_mat$drate_main),
+	    dissolution = dissolution_coefs(~offset(edges), duration = 87, d.rate = calibration_matrix$drate_main),
 	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
 	                                   duration = dur_coefs$main$durs.main.homog$mean.dur.adj,
-	                                   d.rate = drate_mat$drate_main),
+	                                   d.rate = calibration_matrix$drate_main),
 	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
 	                                     offset(nodematch("age.grp", diff = TRUE)),
 	                                   duration = dur_coefs$main$durs.main.byage$mean.dur.adj,
-	                                   d.rate = drate_mat$drate_main)
+	                                   d.rate = calibration_matrix$drate_main)
 
 
 	  ),
@@ -403,23 +419,23 @@ for (i in 1:num_calibration_scenarios){
 
 	    # fuzzynodematch_venues_all
 	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "casual"),
-	    fuzzynodematch_venues.all = drate_mat$venues_casual,
+	    fuzzynodematch_venues.all = calibration_matrix$venues_casual,
 
 	    # fuzzynodematch_apps_all
-	    fuzzynodematch_apps.all = drate_mat$apps_casual,
+	    fuzzynodematch_apps.all = calibration_matrix$apps_casual,
 
 	    # fuzzynodematch_apps_dating
 	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "casual"),
 
 	    # dissolution model
-	    dissolution = dissolution_coefs(~offset(edges), duration = 57, d.rate = drate_mat$drate_cas),
+	    dissolution = dissolution_coefs(~offset(edges), duration = 57, d.rate = calibration_matrix$drate_cas),
 	    diss.homog = dissolution_coefs(dissolution = ~offset(edges),
 	                                   duration = dur_coefs$casl$durs.casl.homog$mean.dur.adj,
-	                                   d.rate = drate_mat$drate_cas),
+	                                   d.rate = calibration_matrix$drate_cas),
 	    diss.byage = dissolution_coefs(dissolution = ~offset(edges) +
 	                                     offset(nodematch("age.grp", diff = TRUE)),
 	                                   duration = dur_coefs$casl$durs.casl.byage$mean.dur.adj,
-	                                   d.rate = drate_mat$drate_cas)
+	                                   d.rate = calibration_matrix$drate_cas)
 
 
 	  ),
@@ -462,10 +478,10 @@ for (i in 1:num_calibration_scenarios){
 
 	    # fuzzynodematch_venues_all
 	    # fuzzynodematch_venues.all = target_extract(term = "fuzzynodematch.venues_all.TRUE", model = "one.time"),
-	    fuzzynodematch_venues.all = drate_mat$venues_onetime,
+	    fuzzynodematch_venues.all = calibration_matrix$venues_onetime,
 
 	    # fuzzynodematch_apps_all
-	    fuzzynodematch_apps.all = drate_mat$apps_onetime,
+	    fuzzynodematch_apps.all = calibration_matrix$apps_onetime,
 
 	    # fuzzynodematch_apps_dating
 	    fuzzynodematch_apps.dating = target_extract(term = "fuzzynodematch.apps_dating.TRUE", model = "one.time")
@@ -485,8 +501,8 @@ for (i in 1:num_calibration_scenarios){
 	  )
 	)
 
-	# print(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", drate_mat$fit_no, ".rds"))
-	saveRDS(netstats, paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", drate_mat$fit_no, ".rds"))
+	# print(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", calibration_matrix$fit_no, ".rds"))
+	saveRDS(netstats, paste0(yamldata$repo.dir, yamldata$calibration.subdir, "netstats_", calibration_matrix$fit_no, ".rds"))
 
 }
 

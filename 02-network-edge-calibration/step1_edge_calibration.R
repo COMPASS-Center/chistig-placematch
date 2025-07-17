@@ -12,7 +12,7 @@ yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 expname <- yamldata$expname
 
-targetdf_fname <- paste0(yamldata$repo.dir, yamldata$target.dataframe.subdir, yamldata$target.dataframe.fname)
+targetdf_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$target.dataframe.fname)
 
 
 target_df <- read.csv(targetdf_fname)
@@ -75,7 +75,7 @@ venues_onetime <- 1.951811
 # Once the above objects are stored, we use the `expand.grid` function
 # to create a data frame storing all possible combinations of values
 # for our `d.rate` parameters and target stats
-scenario_mat <- expand.grid(experiment = expname,
+calibration_matrix <- expand.grid(experiment = expname,
                             drate_main = drate_main,
                             drate_cas = drate_cas,
                             apps_main = apps_main,
@@ -91,6 +91,6 @@ scenario_mat <- expand.grid(experiment = expname,
 
 # Save `scenario_mat` as a CSV to be called on in next step
 ### Specify file name
-scenario_mat_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname, sep="")
+calibration_matrix_output_fname <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname, sep="")
 ### Save CSV
-write.csv(scenario_mat, scenario_mat_output_fname, row.names = FALSE, quote = FALSE)
+write.csv(calibration_matrix, calibration_matrix_output_fname, row.names = FALSE, quote = FALSE)

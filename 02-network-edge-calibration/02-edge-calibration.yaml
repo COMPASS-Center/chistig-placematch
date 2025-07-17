@@ -1,1 +1,19 @@
-0
+
+
+repo.dir: '/projects/p32153/chistig-placematch/'
+calibration.subdir: '02-network-edge-calibration/'
+
+calibration.matrix.fname: 'edge_target_calibration_vals.csv'
+
+
+prelim.subdir: '00-preliminary-setup/'
+artnet.compute.duration.dissolution.fname: 'dur_coefs.rds'
+epistats.fname: 'epistats.rds'
+
+synthpop.subdir: 'synthpop/'
+synthpop.fname: 'egos_v4_1_uniform_age_dist.csv'
+target.dataframe.fname: 'target_values_v4_1_uniform_age_dist.csv'
+
+netstats.subdir: '01-networks-estimation/'
+netstats.fname: 'netstats.rds'
+
