@@ -26,6 +26,12 @@ targetstats_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldat
 calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname)
 
 
+if (is.null(yamldata$interim.data.subdir)) {
+  outdir <- paste(yamldata$repo.dir, yamldata$calibration.subdir, sep="")
+} else {
+  outdir <- paste(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir, sep="")
+}
+
 ### Read in epistats
 # readRDS("./data/intermediate/estimates/epistats-local.rds")
 epistats <- readRDS(epistats_fname)
