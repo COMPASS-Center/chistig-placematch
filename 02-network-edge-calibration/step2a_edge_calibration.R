@@ -16,7 +16,7 @@ yamldata <- yaml.load_file(yamlfname)
 egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synthpop.fname)
 
 epistats_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$epistats.fname)
-artnet_compute_duration_dissolution_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$artnet.compute.duration.dissolution.fname)
+artnet_duration_dissolution_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$artnet.duration.dissolution.fname)
 
 netstats_fname <- paste0(yamldata$.repo.dir, yamldata$netstats.subdir, yamldata$netstats.fname)
 
@@ -30,7 +30,7 @@ calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdi
 # readRDS("./data/intermediate/estimates/epistats-local.rds")
 epistats <- readRDS(epistats_fname)
 # source(artnet_compute_duration_dissolution_fname)
-dur_coefs <- readRDS(artnet_compute_duration_dissolution_fname)
+dur_coefs <- readRDS(artnet_duration_dissolution_fname)
 
 print(dur_coefs)
 

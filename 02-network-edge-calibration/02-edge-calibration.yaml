@@ -7,7 +7,7 @@ calibration.matrix.fname: 'edge_target_calibration_vals.csv'
 
 
 prelim.subdir: '00-preliminary-setup/'
-artnet.compute.duration.dissolution.fname: 'dur_coefs.rds'
+artnet.duration.dissolution.fname: 'dur_coefs.rds'
 epistats.fname: 'epistats.rds'
 
 synthpop.subdir: 'synthpop/'
