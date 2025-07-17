@@ -18,7 +18,7 @@ egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synth
 epistats_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$epistats.fname)
 artnet_duration_dissolution_fname <- paste0(yamldata$repo.dir, yamldata$prelim.subdir, yamldata$artnet.duration.dissolution.fname)
 
-netstats_fname <- paste0(yamldata$.repo.dir, yamldata$netstats.subdir, yamldata$netstats.fname)
+netstats_fname <- paste0(yamldata$repo.dir, yamldata$netstats.subdir, yamldata$netstats.fname)
 
 targetstats_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$target.dataframe.fname)
 
