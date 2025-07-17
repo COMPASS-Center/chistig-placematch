@@ -34,7 +34,9 @@ num_calibration_scenarios <- max(calibration_matrix_full$fit_no)
 
 
 ### Load netstats object
-netstats <- readRDS(paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir, "netstats_", calibration_set_num, ".rds"))
+netstats_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir, "netstats_", calibration_set_num, ".rds")
+print(netstats_fname)
+netstats <- readRDS(netstats_fname)
 
 numegos <- netstats$demog$num
 nw <- network::network.initialize(n = numegos,
