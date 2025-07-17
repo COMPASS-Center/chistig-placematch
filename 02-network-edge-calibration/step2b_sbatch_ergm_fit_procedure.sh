@@ -27,7 +27,7 @@ echo "Calibration set number for ERGM fit: ${calibrationset}."
 echo "Treatment type for ERGM fit: ${treatmenttype}."
 echo "Partnership type for ERGM fit: ${partnershiptype}."
 
-my_random_seed_array=(73 180 52 64 173 48 11 76 143 79)
+my_random_seed_array=(38 136 141 186 173 138 77 171 197 122)
 max_attempts=${#my_random_seed_array[@]}
 
 echo "Array of random seeds for convergence attempts: ${my_random_seed_array[@]}."
