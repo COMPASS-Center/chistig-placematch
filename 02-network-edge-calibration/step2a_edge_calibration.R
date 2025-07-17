@@ -38,23 +38,20 @@ epistats <- readRDS(epistats_fname)
 # source(artnet_compute_duration_dissolution_fname)
 dur_coefs <- readRDS(artnet_duration_dissolution_fname)
 
-netstats <- readRDS(netstats_fname)
-print(str(netstats))
-print("")
-print(netstats$demog)
-
-# ### Read in target stat dataframe
-# # target_df <- read.csv("./data/synthpop_gen/target_values_v4_1_uniform_age_dist.csv")
-# target_df <- read.csv(targetstats_fname)
 
 
-# ### Read in the calibration input matrix 
-# # drate_mat <- read.csv("./data/intermediate/estimates/edge_target_calibration_vals.csv")
-# # drate_mat_full <- read.csv(drate_mat_fname)
-# calibration_matrix_full <- read.csv(calibration_matrix_fname)
+### Read in target stat dataframe
+# target_df <- read.csv("./data/synthpop_gen/target_values_v4_1_uniform_age_dist.csv")
+target_df <- read.csv(targetstats_fname)
 
-# # num_calibration_scenarios <- max(drate_mat_full$fit_no) 
-# num_calibration_scenarios <- max(calibration_matrix_full$fit_no)
+
+### Read in the calibration input matrix 
+# drate_mat <- read.csv("./data/intermediate/estimates/edge_target_calibration_vals.csv")
+# drate_mat_full <- read.csv(drate_mat_fname)
+calibration_matrix_full <- read.csv(calibration_matrix_fname)
+
+# num_calibration_scenarios <- max(drate_mat_full$fit_no) 
+num_calibration_scenarios <- max(calibration_matrix_full$fit_no)
 
 
 # ###################################
@@ -184,17 +181,23 @@ print(netstats$demog)
 # asmr[asmr$age >= max.age, ] <- 1
 
 
-# #####################################
-# # Setup target stats (for netstats) #
-# #####################################
+#####################################
+# Setup target stats (for netstats) #
+#####################################
 
-# # Function for quickly extracting target values from dataframe
-# target_extract = function(df = target_df, term, model) {
-#   this_row <- which(df$X == term)
-#   this_col <- which(colnames(df) == paste("mean_", model, sep = ""))
-#   target_val <- df[this_row, this_col]
-#   return(target_val)
-# }
+# Function for quickly extracting target values from dataframe
+target_extract = function(df = target_df, term, model) {
+  this_row <- which(df$X == term)
+  this_col <- which(colnames(df) == paste("mean_", model, sep = ""))
+  target_val <- df[this_row, this_col]
+  return(target_val)
+}
+
+netstats_base <- readRDS(netstats_fname)
+print(str(netstats_base))
+print("")
+print(netstats_base$demog)
+
 
 
 # ##############################################################
@@ -207,13 +210,14 @@ print(netstats$demog)
 
 
 
-# # ##############################################################
-# # # Setup and compute netstats object for each calibration set #
-# # ##############################################################
-# # # drate_mat <- drate_mat[1, ]
-# # # drate_mat <- drate_mat_full[num_calibration_scenarios, ]
-# # calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
+##############################################################
+# Setup and compute netstats object for each calibration set #
+##############################################################
+# drate_mat <- drate_mat[1, ]
+# drate_mat <- drate_mat_full[num_calibration_scenarios, ]
+calibration_matrix <- calibration_matrix_full[num_calibration_scenarios, ]
 
+print(calibration_matrix)
 
 # # # Netstats
 # # for (i in 1:num_calibration_scenarios){
