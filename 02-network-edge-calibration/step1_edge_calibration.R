@@ -11,23 +11,14 @@ args <- commandArgs(trailingOnly = TRUE)
 yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 
-print(yamldata$expname)
-
-
 expname <- if (is.null(yamldata$expname)) NA else yamldata$expname
-print(expname)
-# if (exists(yamldata$expname)) {
-#   expname <- yamldata$expname
-# } else {
-#   expname <- NA
-# }
 
-# # expname <- yamldata$expname
 
-# targetdf_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$target.dataframe.fname)
 
-# target_df <- read.csv(targetdf_fname)
+targetdf_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$target.dataframe.fname)
 
+target_df <- read.csv(targetdf_fname)
+print(target_df)
 
 # # Function for quickly extracting target stats for ERGMs from dataframe.
 # # These values serve as a good starting point for the edge calibration process,
