@@ -13,6 +13,9 @@ yamldata <- yaml.load_file(yamlfname)
 
 print(yamldata$expname)
 
+
+expname <- if (is.null(yamldata$expname)) NA else yamldata$expname
+print(expname)
 # if (exists(yamldata$expname)) {
 #   expname <- yamldata$expname
 # } else {
