@@ -28,7 +28,8 @@ calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matri
 
 
 # ### Read in the calibration input matrix 
-# drate_mat_full <- read.csv(drate_mat_fname)
+calibration_matrix_full <- read.csv(calibration_matrix_fname)
+print(calibration_matrix_full)
 # num_calibration_scenarios <- max(drate_mat_full$fit_no) 
 
 
