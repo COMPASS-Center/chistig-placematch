@@ -64,6 +64,7 @@ for (cset in 1:num_calibration_scenarios){
         for (ptype in partnership_types){
             fit_file <- paste0(interim_subdir, "netest-", ptype, "-", ttype, "_", cset, ".rds") #nolint
             if (!file.exists(file = fit_file)){
+                print("Could not find the following ERGM fit file:")
                 print(fit_file)
                 cset2skip <- c(cset2skip, cset)
             }
