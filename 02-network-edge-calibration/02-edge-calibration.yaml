@@ -17,6 +17,7 @@ netstats.subdir: '01-networks-estimation/'
 netstats.fname: 'netstats.rds'
 
 interim.data.subdir: 'interim/'
+output.data.subdir: 'output/'
 
 step2b.inputargs.fname: 'step2_ergm_fit_procedure_input_args'
 step2b.sbatch.fname: 'step2b_sbatch_ergm_fit_procedure'
