@@ -63,8 +63,8 @@ for (cset in 1:num_calibration_scenarios){
     for(ttype in treatment_types){
         for (ptype in partnership_types){
             fit_file <- paste0(interim_subdir, "netest-", ptype, "-", ttype, "_", cset, ".rds") #nolint
-            print(fit_file)
             if (!file.exists(file = fit_file)){
+                print(fit_file)
                 cset2skip <- c(cset2skip, cset)
             }
         }
