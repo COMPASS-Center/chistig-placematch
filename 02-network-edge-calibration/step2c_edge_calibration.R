@@ -83,7 +83,7 @@ for (cset in 1:num_calibration_scenarios) {
 
     for (ttype in treatment_types) {
         for (ptype in partnership_types) {
-            fit_file <- paste0(experiment_dir, "netest-", ptype, "-", ttype, "_", cset, ".rds") #nolint
+            fit_file <- paste0(experiment_subdir, "netest-", ptype, "-", ttype, "_", cset, ".rds") #nolint
             # check if file exists or not; if not, need to document them 
             if (!file.exists(file = fit_file)){
                 print("NO FILE EXISTS")
