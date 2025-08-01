@@ -69,3 +69,14 @@ The README file in this subdirectory will guide you on the rest of the steps. Fo
 /projects/p32153/ChiSTIG_model/calibration/test18sep/README.md
 ```
 
+
+
+
+REPOSITORY NOTES:
+- step2b is extremely messy 
+    - includes reading in dur_coefs.rds and epistats.rds from the prelim directory, which we should not have to do this as we should be able to read in the netstats.rds object from the preliminary step and just edit that directly for each calibration scenario
+    - comments and unused lines have not been cleaned up
+- also, took out the "experiment" defining for different types of edge calibration experiments... this could be added in in the future
+- need to write out what to do if there are specific models that do not converge (e.g. VENUES ONLY for ONE-TIME partnerships)
+    - how to run more of the ERGM fits to try and get convergence 
+    

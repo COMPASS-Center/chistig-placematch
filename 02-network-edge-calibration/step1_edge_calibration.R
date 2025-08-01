@@ -1,4 +1,5 @@
 # Create a CSV file to feed target stats into the calibration process
+# Set up directories for experiment 
 
 #######################################
 # Read in target stats (for netstats) #
