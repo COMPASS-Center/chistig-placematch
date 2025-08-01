@@ -31,7 +31,7 @@ sbatch.walltime.hours: '10' # make sure it is large enough to account for the co
 sbatch.walltime.minutes: '30'
 sbatch.email: 'tom.wolff@northwestern.edu'
 sbatch.memory: '3G'
-convergence.fail.fname: 'calibration_sets_that_did_not_converge'
+convergence.fail.fname: 'edge_calibration_sets_that_did_not_converge'
 
 
 # treatments

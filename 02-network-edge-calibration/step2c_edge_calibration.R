@@ -25,8 +25,9 @@ print(interim_subdir)
 
 # set up output data directory
 out_subdir <- interim_subdir
+cset2skip_fname <- paste0(out_subdir, yamldata$convergence.fail.fname, ".txt")
 
-
+print(cset2skip_fname)
 # # set up input data directories 
 # sim_input_data_dir <- paste0(yamldata$repo.dir, yamldata$netest.subdir) #nolint
 
@@ -104,6 +105,4 @@ for (cset in 1:num_calibration_scenarios) {
         saveRDS(out, paste0(out_subdir, "netest-", ttype, "_", cset, ".rds")) #nolint
     }
 }
-
-cset2skip_fname <- paste0(out_subdir, yamldata$convergence.fail.fname, ".txt")
 write(cset2skip, file = cset2skip_fname, ncolumns = 1, sep = "\n")
