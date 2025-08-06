@@ -15,69 +15,94 @@ with open(yamlfname) as stream:
 # experiment name 
 # experiment_name = yamldata['expname']
 # expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
-expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
+expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}" 
 
 if 'expname' in yamldata:
-    expiriment_dir = f"{expiriment_dir}{yamldata['expname']}/"
-    print(expiriment_dir)
+    experiment_name = yamldata['expname']
+    expiriment_dir = f"{expiriment_dir}{experiment_name}/"
 else:
+    experiment_name = 'NA'
     expiriment_dir = f"{expiriment_dir}"
-    print(expiriment_dir)
 
 expiriment_interim_dir = f"{expiriment_dir}{yamldata['interim.data.subdir']}"
 
-print(expiriment_interim_dir)
-# # simulation dir 
-# simulation_dir = f"{yamldata['repo.dir']}{yamldata['simulation.subdir']}"
+# simulation dir 
+# simulation_dir = expiriment_interim_dir
+simulation_dir = expiriment_dir
 
-# # params dir
-# params_dir = f"{yamldata['repo.dir']}{yamldata['simulation.params.subdir']}"
+# params dir
+params_dir = f"{yamldata['repo.dir']}{yamldata['params.subdir']}"
 
 # # obtain the number of calibration runs
-# calibration_df_fname = f"{yamldata['calibration.matrix.fname']}_{yamldata['expname']}.csv"
-# calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
-# calibration_df = pd.read_csv(calibration_df_fname)
-# num_calibration_sets = max(calibration_df['fit_no'])
+calibration_df_fname = f"{yamldata['calibration.matrix.fname']}"
+calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
+calibration_df = pd.read_csv(calibration_df_fname)
+num_calibration_sets = max(calibration_df['fit_no'])
 
-# # obtain the treatments
-# treatments_dict = yamldata['simulation.treatments']
+out_subdir = expiriment_interim_dir
+cset2skip_fname = f"{out_subdir}{yamldata['convergence.fail.fname']}"
+with open(cset2skip_fname, 'r') as file:
+    cset2skip = [int(line.strip()) for line in file]
 
-# # the random seed max
-# random_seed_max = yamldata['max.random.seed']
-# simulation_random_seeds = random.sample(range(yamldata['max.random.seed'] + 1), yamldata['num.simulation.runs.per.treatment'])
+# obtain the treatments
+treatments_dict = yamldata['treatment.types']
+print(treatments_dict)
 
-# # the file names and locations
-# sim_args_fname = f"{simulation_dir}{yamldata['simulation.arguments.file']}_{experiment_name}.txt"
-# sbatch_simulation_bash_commands_outfile = f"{simulation_dir}sbatch_{experiment_name}.sh"
+# the random seed max
+random_seed_max = yamldata['max.random.seed']
+simulation_random_seeds = random.sample(range(yamldata['max.random.seed'] + 1), yamldata['step3.num.simulation.runs.per.treatment'])
 
-# print(sbatch_simulation_bash_commands_outfile)
+# the file names and locations
+sim_args_fname = f"{simulation_dir}{yamldata['step3.simulation.args.fname']}" #nolint
+sbatch_simulation_bash_commands_outfile = f"{simulation_dir}{yamldata['step3.simulation.sbatch.fname']}"
 
-# run = 0
-# with open(sim_args_fname, 'w') as file:
-#         for setno in range(1, num_calibration_sets+1):
-#                 for thistreatment in treatments_dict:
-#                         for thistreatmentrun, thisrandomseed in enumerate(simulation_random_seeds):
-#                                 line = f"{run}\t{setno}\t{treatments_dict[thistreatment]}{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\n"
-#                                 file.write(line)                                
-#                                 run += 1
+# # print(simulation_random_seeds)
+# # print(sim_args_fname)
+# # print(sbatch_simulation_bash_commands_outfile)
+# # # print(sbatch_simulation_bash_commands_outfile)
 
-# sbatch = f"""
-# #SBATCH --account=p32153  ## YOUR ACCOUNT pXXXX or bXXXX
-# #SBATCH --partition={yamldata['sbatch.partition.sim']}  ### PARTITION (buyin, short, normal, etc)
-# #SBATCH --array=0-{run-1} ## number of jobs to run "in parallel"
-# #SBATCH --nodes=1 ## how many computers do you need
-# #SBATCH --ntasks-per-node=1 ## how many cpus or processors do you need on each computer
-# #SBATCH --time={yamldata['sbatch.time.hours.sim']}:{yamldata['sbatch.time.minutes.sim']}:00 ## how long does this need to run (remember different partitions have restrictions on this param)
-# #SBATCH --mem={yamldata['sbatch.mem.sim']}
-# #SBATCH --job-name="${{SLURM_ARRAY_TASK_ID}}_sim_{experiment_name}" ## When you run squeue -u NETID this is how you can identify the job
-# #SBATCH --output=%a_{run}.%A.sim.{experiment_name}.out ## standard out and standard error goes to this file
-# #SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
-# #SBATCH --mail-user={yamldata['sbatch.email']} ## your email
+simulation_args_dict = {}
+run = 0
+with open(sim_args_fname, 'w') as file:
+    for setno in range(1, num_calibration_sets + 1):
+        if setno in cset2skip:
+            print(f"Calibration set {setno} did not converge and will not be a part of simulation runs.")
+        else:
+            for thistreatment in treatments_dict:
+                for thistreatmentrun, thisrandomseed in enumerate(simulation_random_seeds):
+                    # line = f"{run}\t{setno}\t{treatments_dict[thistreatment]}{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\n"
+                    simulation_args_dict[run] = {}
+                    simulation_args_dict[run]['calibration_set_number'] = setno
+                    simulation_args_dict[run]['treatment'] = thistreatment
+                    simulation_args_dict[run]['treatment_run'] = thistreatmentrun
+                    simulation_args_dict[run]['experiment'] = experiment_name
+                    simulation_args_dict[run]['random_seed'] = thisrandomseed
+                    line = f"{run}\t{setno}\t{thistreatment}\t{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\n"
+                    file.write(line)                                
+                    run += 1
 
-# module purge all
-# conda activate /projects/p32153/condaenvs/conda-chistig
 
-# R --version
+print(simulation_args_dict)
+
+
+
+sbatch = f"""
+#SBATCH --account=p32153  ## YOUR ACCOUNT pXXXX or bXXXX
+#SBATCH --partition={yamldata['sbatch.partition.sim']}  ### PARTITION (buyin, short, normal, etc)
+#SBATCH --array=0-{run-1} ## number of jobs to run "in parallel"
+#SBATCH --nodes=1 ## how many computers do you need
+#SBATCH --ntasks-per-node=1 ## how many cpus or processors do you need on each computer
+#SBATCH --time={yamldata['sbatch.time.hours.sim']}:{yamldata['sbatch.time.minutes.sim']}:00 ## how long does this need to run (remember different partitions have restrictions on this param)
+#SBATCH --mem={yamldata['sbatch.mem.sim']}
+#SBATCH --job-name="${{SLURM_ARRAY_TASK_ID}}_sim_{experiment_name}" ## When you run squeue -u NETID this is how you can identify the job
+#SBATCH --output=%a_{run}.%A.sim.{experiment_name}.out ## standard out and standard error goes to this file
+#SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
+#SBATCH --mail-user={yamldata['sbatch.email']} ## your email
+
+module purge all
+conda activate /projects/p32153/condaenvs/conda-chistig
+
+R --version
 
 
 # IFS=$'\\n' read -d '' -r -a input_args < {yamldata['simulation.arguments.file']}_{experiment_name}.txt

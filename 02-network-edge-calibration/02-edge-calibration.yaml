@@ -1,4 +1,5 @@
-repo.dir: '/projects/p32153/chistig-placematch/'
+# repo.dir: '/projects/p32153/chistig-placematch/'
+repo.dir: '/Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/'
 calibration.subdir: '02-network-edge-calibration/'
 
 calibration.matrix.fname: 'edge_target_calibration_vals.csv'
@@ -21,17 +22,25 @@ step2b.inputargs.fname: 'step2_ergm_fit_procedure_input_args'
 step2b.sbatch.fname: 'step2b_sbatch_ergm_fit_procedure'
 step2b.rscript.fname: 'step2b_edge_calibration.R'
 
+params.subdir: 'params/'
+calibration.params.fname: 'params_chistig_apr18.csv'
+simulation.params.fname: 'model_params_test23oct.yaml'
+
+step3.simulation.args.fname: 'step3_simulation_runs_input_args.txt'
+step3.simulation.sbatch.fname: 'step3_simulation_sbatch.sh'
+step3.num.simulation.runs.per.treatment: 20
+
 
 # calibration setup
-num.ergm.convergence.attempts: 10
-ergm.convergence.attempt.time: 60 #minutes 
+num.ergm.convergence.attempts: 10 #change this to step2.num.ergm.convergence.attempts
+ergm.convergence.attempt.time: 60 #minutes  #change this to step2.ergm.convergence.attempt.time
 max.random.seed: 200
 sbatch.partition: 'normal' # short, normal, 
 sbatch.walltime.hours: '10' # make sure it is large enough to account for the convergence attempt time times the number of convergence attempts
 sbatch.walltime.minutes: '30'
 sbatch.email: 'tom.wolff@northwestern.edu'
 sbatch.memory: '3G'
-convergence.fail.fname: 'edge_calibration_sets_that_did_not_converge'
+convergence.fail.fname: 'edge_calibration_sets_that_did_not_converge.txt'
 
 
 # treatments
