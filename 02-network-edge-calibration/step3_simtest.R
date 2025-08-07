@@ -86,9 +86,9 @@ netstats <- readRDS(paste0(calibration_interim_dir, "netstats_", calibration_set
 if (treatment == 'venues'){
   est <- readRDS(paste0(calibration_interim_dir, "netest-venues_", calibration_set_num, ".rds"))
 } else if (treatment == 'apps'){
-  est <- readRDS(paste0(calibration_interim_dir, "netest-apps_", experiment_name, "_", calibration_set_num, ".rds"))
+  est <- readRDS(paste0(calibration_interim_dir, "netest-apps_", calibration_set_num, ".rds"))
 } else if (treatment == 'venuesapps'){
-  est <- readRDS(paste0(calibration_interim_dir, "netest-venuesapps_", experiment_name, "_", calibration_set_num, ".rds"))
+  est <- readRDS(paste0(calibration_interim_dir, "netest-venuesapps_", calibration_set_num, ".rds"))
 } else if (treatment == 'control') {
   est <- readRDS(paste0(calibration_interim_dir, "netest-control_", calibration_set_num, ".rds"))
 } else {
