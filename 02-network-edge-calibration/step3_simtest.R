@@ -58,10 +58,11 @@ python_chistig <- import("chistig_colocation_model_reticulate")
 
 # load the necessary chistig data for the chistig colocation model
 # chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params.yaml"))
-chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params_", experiment_name, ".yaml"))
+chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params_test23oct.yaml"))
 
 # rename the agent_log file with the specific experiment
-chistig_colocation_params$agent.log.file <- paste0(this_dir, "output/agent_log_", treatment_type, "_", experiment_name, "_", calibration_set_num, ".txt")
+# chistig_colocation_params$agent.log.file <- paste0(this_dir, "output/agent_log_", treatment_type, "_", experiment_name, "_", calibration_set_num, ".txt")
+chistig_colocation_params$agent.log.file <- paste0(calibration_interim_dir, "agent-log-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".txt")
 
 # set the random seed in the colocation
 python_chistig$set_random_seed(random_seed)
