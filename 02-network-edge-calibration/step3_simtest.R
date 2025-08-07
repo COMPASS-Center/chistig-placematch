@@ -58,7 +58,7 @@ python_chistig <- import("chistig_colocation_model_reticulate")
 
 # load the necessary chistig data for the chistig colocation model
 # chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params.yaml"))
-chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params_test23oct.yaml"))
+chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params_step2.yaml"))
 
 # rename the agent_log file with the specific experiment
 # chistig_colocation_params$agent.log.file <- paste0(this_dir, "output/agent_log_", treatment_type, "_", experiment_name, "_", calibration_set_num, ".txt")
