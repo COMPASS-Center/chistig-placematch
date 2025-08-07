@@ -83,13 +83,13 @@ source(paste0(this_dir, "utils/utils-targets.R"))
 epistats <- readRDS(paste0(this_dir, "00-preliminary-setup/epistats.rds"))
 netstats <- readRDS(paste0(calibration_interim_dir, "netstats_", calibration_set_num, ".rds"))
 
-if (treatment == 'venues'){
+if (treatment_type == 'venues'){
   est <- readRDS(paste0(calibration_interim_dir, "netest-venues_", calibration_set_num, ".rds"))
-} else if (treatment == 'apps'){
+} else if (treatment_type == 'apps'){
   est <- readRDS(paste0(calibration_interim_dir, "netest-apps_", calibration_set_num, ".rds"))
-} else if (treatment == 'venuesapps'){
+} else if (treatment_type == 'venuesapps'){
   est <- readRDS(paste0(calibration_interim_dir, "netest-venuesapps_", calibration_set_num, ".rds"))
-} else if (treatment == 'control') {
+} else if (treatment_type == 'control') {
   est <- readRDS(paste0(calibration_interim_dir, "netest-control_", calibration_set_num, ".rds"))
 } else {
   print("ERROR: invalid treatment type code provided")
