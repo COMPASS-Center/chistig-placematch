@@ -82,7 +82,7 @@ with open(sim_args_fname, 'w') as file:
                     run += 1
 
 
-print(simulation_args_dict)
+# print(simulation_args_dict)
 
 
 
@@ -112,7 +112,7 @@ Rscript step3a_simtest.R ${{input_args[$SLURM_ARRAY_TASK_ID]}}
 echo $SECONDS
 """
 
-outfile_temp = f'{expiriment_dir}temp.sh'
+outfile_temp = f'{simulation_dir}temp.sh'
 # outfile_temp = f'temp.sh'
 with open(outfile_temp, 'w') as f:
         f.write(sbatch)
