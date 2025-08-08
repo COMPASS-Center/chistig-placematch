@@ -125,7 +125,7 @@ open(f'{sbatch_simulation_bash_commands_outfile}', "w").write("#!/bin/bash\n" + 
 # write out yaml file to the params directory but with the experiment name 
 default_sim_params_fname = f"{yamldata['default.simulation.params.fname']}"
 default_sim_params_file = f"{params_dir}{default_sim_params_fname}"
-new_sim_params_file = f"{params_dir}{yamldata['simulation.params.fname']}"
+new_sim_params_file = f"{simulation_dir}{yamldata['simulation.params.fname']}"
 
 with open(default_sim_params_file) as stream:
     try:
