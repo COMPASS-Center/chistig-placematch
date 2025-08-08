@@ -1,5 +1,5 @@
-# repo.dir: '/projects/p32153/chistig-placematch/'
-repo.dir: '/Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/'
+repo.dir: '/projects/p32153/chistig-placematch/'
+#repo.dir: '/Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/'
 calibration.subdir: '02-network-edge-calibration/'
 
 calibration.matrix.fname: 'edge_target_calibration_vals.csv'
