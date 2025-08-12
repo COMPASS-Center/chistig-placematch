@@ -24,7 +24,7 @@ step2b.rscript.fname: 'step2b_edge_calibration.R'
 
 params.subdir: 'params/'
 calibration.params.fname: 'params_chistig_apr18.csv'
-default.simulation.params.fname: 'model_params_test23oct.yaml'
+default.simulation.params.fname: 'model_params_step2.yaml'
 simulation.params.fname: 'model_params_edge_calibration.yaml'
 
 step3a.rscript.fname: 'step3a_simtest.R'
