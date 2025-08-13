@@ -12,78 +12,37 @@ yamlfname <- args[1]
 yamldata <- yaml.load_file(yamlfname)
 calibration_set_num <- as.integer(args[2])
 # thismodel <- args[3]
-thistreatmenttype <- args[3] # basic (control), venues only (venues), apps only (apps), venues+apps (both)
-thispartnershiptype <- args[4] # "main" #main, casual, one-time
+mtype <- args[3] # basic (control), venues only (venues), apps only (apps), venues+apps (venuesapps)
+ptype <- args[4] # "main" #main, casual, one-time
 thisseed <- as.integer(args[5])
-
 
 set.seed(thisseed)
 print(paste("Random seed number:", thisseed, sep=" "))
 
+outdir <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir)
+
 ### Name datafiles 
-drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$expname, "/", yamldata$calibration.matrix.fname, "_", yamldata$expname, ".csv")
+# drate_mat_fname <- paste0(yamldata$repo.dir, yamldata$calibration.matrix.subdir, yamldata$expname, "/", yamldata$calibration.matrix.fname, "_", yamldata$expname, ".csv")
+calibration_matrix_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$calibration.matrix.fname)
+
 egos_fname <- paste0(yamldata$repo.dir, yamldata$synthpop.subdir, yamldata$synthpop.fname)
 
 
-### Read in the calibration input matrix 
-drate_mat_full <- read.csv(drate_mat_fname)
-num_calibration_scenarios <- max(drate_mat_full$fit_no) 
+# ### Read in the calibration input matrix 
+calibration_matrix_full <- read.csv(calibration_matrix_fname)
+num_calibration_scenarios <- max(calibration_matrix_full$fit_no)
 
-
-### Load synthetic population of egos 
-egos <- read.csv(egos_fname) %>%
-  dplyr::mutate(race_art = dplyr::case_when(race_ethnicity == "whiteNH" ~ "white",
-                                            race_ethnicity == "blackNH" ~ "black",
-                                            race_ethnicity == "hispanic" ~ "hispanic",
-                                            race_ethnicity == "otherNH" ~ "other",
-                                            TRUE ~ NA),
-                race_art2 = dplyr::case_when(race_ethnicity == "whiteNH" ~ "4_white",
-                                             race_ethnicity == "blackNH" ~ "1_black",
-                                             race_ethnicity == "hispanic" ~ "2_hispanic",
-                                             race_ethnicity == "otherNH" ~ "3_other",
-                                             TRUE ~ NA),
-                race = dplyr::case_when(race_ethnicity == "whiteNH" ~ 4,
-                                        race_ethnicity == "blackNH" ~ 1,
-                                        race_ethnicity == "hispanic" ~ 2,
-                                        race_ethnicity == "otherNH" ~ 3,
-                                        TRUE ~ NA),
-                age.grp = agegroup,
-                age = age,
-                deg.main = init_ser_cat,
-                deg.casl = init_cas_cat,
-                deg.tot = init_pers_cat,
-
-                # venues_all = venue_list)
-
-                venues_all = venue_list_1week)
-
-
-egos <- egos %>%
-  mutate(sqrt.age = sqrt(age),
-         active.sex = 1,
-         age.grp = ifelse(age.grp == "16to20", 1, 2),
-         apps.all = app_list) %>%
-  select(numeric_id, egoid,
-         age, sqrt.age, agegroup, age.grp,
-         race.ethnicity = race_ethnicity, race,
-         deg.casl, deg.main, deg.tot,
-         # risk.grp ?
-         diag.status = hiv_status,
-         venues.all = venues_all,
-         apps.all,
-         active.sex)
 
 
 ### Load netstats object
-# for (i in 1:num_calibration_scenarios){
-# netstats <- readRDS(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", i, ".rds"))
-netstats <- readRDS(paste0(yamldata$repo.dir, yamldata$netest.subdir, "netstats_", yamldata$expname, "_", calibration_set_num, ".rds"))
+netstats_fname <- paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$interim.data.subdir, "netstats_", calibration_set_num, ".rds")
+netstats <- readRDS(netstats_fname)
 
+numegos <- netstats$demog$num
+nw <- network::network.initialize(n = numegos,
+                         loops = FALSE,
+                         directed = FALSE)
 
-### Initialize network
-nw <- network::network.initialize(n = nrow(egos),
-                                  loops = FALSE,
-                                  directed = FALSE)
 
 attr_names <- names(netstats$attr)
 attr_values <- netstats$attr
@@ -93,752 +52,455 @@ nw_casl <- nw_main
 nw_inst <- nw_main
 
 
-if (thistreatmenttype == 'control') {
-
-	if (thispartnershiptype == 'main') {
-
-		print("Control - Main (A1)")
-
-		model_main <- ~ edges +
-		  # nodefactor("age.grp", levels = 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  # nodematch("age.grp", levels = -1) +
-		  concurrent +
-		  nodefactor("race", levels = -4) +
-		  nodematch("race") +
-		  # nodematch("race", diff = TRUE, levels = 1) +
-		  nodefactor("deg.casl", levels= -1)
-
-
-		target.stats.main <- c(
-		  edges = netstats$main$edges,
-		  # nodefactor_age.grp = netstats$main$nodefactor_age.grp[1],
-		  nodematch_age.grp = netstats$main$nodematch_age.grp,
-		  # nodematch_age.grp = netstats$main$nodematch_age.grp[-1],
-		  concurrent = netstats$main$concurrent,
-		  nodefactor_race = netstats$main$nodefactor_race[1:3],
-		  nodematch_race = netstats$main$nodematch_race,
-		  # nodematch_race.1 = netstats$main$nodematch_race.1,
-		  nodefactor_deg.casl = netstats$main$nodefactor_deg.casl[-1]
-		)
-		target.stats.main <- unname(target.stats.main)
-
-
-		fit_main <- netest(
-		  nw = nw_main,
-		  formation = model_main,
-		  target.stats = target.stats.main,
-		  coef.diss = netstats$main$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_main <- trim_netest(fit_main)
-
-		main_df <- data.frame(treatment = "Basic",
-	                      model = "Main",
-	                      term = names(fit_main$coef.form),
-	                      estimate = fit_main$coef.form)
-
-		saveRDS(fit_main, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_control_main_", calibration_set_num, ".rds"))
-		write.csv(main_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_control_main_", calibration_set_num, ".csv"))
-	
-	} else if (thispartnershiptype == 'casual') {
-
-		print("Control - Casual (A2)")
-
-		model_casl <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-		  nodefactor("deg.main", levels=-1)
-
-		target.stats.casl <- c(
-		  edges =                           netstats$casl$edges,
-		  # nodefactor_age.grp =            netstats$casl$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$casl$nodematch_age.grp,
-		  concurrent =                      netstats$casl$concurrent,
-		  nodefactor_race =               netstats$casl$nodefactor_race[1:3],
-		  nodematch_race =                netstats$casl$nodematch_race,
-		  # nodematch_race.1 =              netstats$casl$nodematch_race.1,
-		  nodefactor_deg.main =           netstats$casl$nodefactor_deg.main[-1]
-		)
-		target.stats.casl <- unname(target.stats.casl)
-
-		fit_casl <- netest(
-		  nw = nw_casl,
-		  formation = model_casl,
-		  target.stats = target.stats.casl,
-		  coef.diss = netstats$casl$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_casl <- trim_netest(fit_casl)
-
-		casl_df <- data.frame(treatment = "Basic",
-		                      model = "Casual",
-		                      term = names(fit_casl$coef.form),
-		                      estimate = fit_casl$coef.form)
-
-		saveRDS(fit_casl, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_control_casual_", calibration_set_num, ".rds"))
-		write.csv(casl_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_control_casual_", calibration_set_num, ".csv"))
-
-	} else if (thispartnershiptype == 'onetime') {
-
-		print("Control - Inst (A3)")
-
-		model_inst <-  ~ edges +
-		  # nodefactor("age.grp", levels = 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-		  nodefactor("deg.tot", levels=-1)
-
-		target.stats.inst <- c(
-		  edges =                           netstats$inst$edges,
-		  # nodefactor_age.grp =            netstats$inst$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$inst$nodematch_age.grp,
-		  nodefactor_race =               netstats$inst$nodefactor_race[1:3],
-		  nodematch_race =                netstats$inst$nodematch_race,
-		  # nodematch_race.1 =              netstats$inst$nodematch_race.1,
-		  nodefactor_deg.tot =           netstats$inst$nodefactor_deg.tot[-1]
-		)
-		target.stats.inst <- unname(target.stats.inst)
-
-		fit_inst <- netest(
-		  nw = nw_inst,
-		  formation = model_inst,
-		  target.stats = target.stats.inst,
-		  coef.diss = dissolution_coefs(~offset(edges), duration = 1),
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_inst <- trim_netest(fit_inst)
-
-		inst_df <- data.frame(treatment = "Basic",
-		                      model = "Onetime",
-		                      term = names(fit_inst$coef.form),
-		                      estimate = fit_inst$coef.form)
-
-		saveRDS(fit_inst, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_control_onetime_", calibration_set_num, ".rds"))
-		write.csv(inst_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_control_onetime_", calibration_set_num, ".csv"))
-
-	} else {
-
-		print("ERROR: PARTNERSHIP TYPE NOT CORRECTLY SPECIFIED")
-
-	}
-
-} else if (thistreatmenttype == 'both') {
-
-	if (thispartnershiptype == 'main') {
-
-		print("Both - Main (B1)")
-
-		model_main <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels = -4) +
-		  nodematch("race") +
-		  # nodematch("race", diff = TRUE, levels = 1) +
-
-		  nodefactor("deg.casl", levels= -1) +
-		  fuzzynodematch("venues.all", binary=TRUE) +
-		  fuzzynodematch("apps.all", binary = TRUE)
-		# fuzzynodematch("apps_nondating", binary=TRUE)
-
-
-		target.stats.main <- c(
-		  edges = netstats$main$edges,
-		  # nodefactor_age.grp = netstats$main$nodefactor_age.grp[1],
-		  nodematch_age.grp = netstats$main$nodematch_age.grp,
-		  concurrent = netstats$main$concurrent,
-		  nodefactor_race = netstats$main$nodefactor_race[1:3],
-		  nodematch_race = netstats$main$nodematch_race,
-		  # nodematch_race.1 = netstats$main$nodematch_race.1,
-
-		  nodefactor_deg.casl = netstats$main$nodefactor_deg.casl[-1],
-		  fuzzynodematch_venues.all = netstats$main$fuzzynodematch_venues.all,
-		  fuzzynodematch_apps.all = netstats$main$fuzzynodematch_apps.all
-		  # fuzzynodematch_apps.nondating = netstats$main$fuzzynodematch_apps.dating
-		)
-		target.stats.main <- unname(target.stats.main)
-
-		fit_main <- netest(
-		  nw = nw_main,
-		  formation = model_main,
-		  target.stats = target.stats.main,
-		  coef.diss = netstats$main$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_main <- trim_netest(fit_main)
-
-		main_df <- data.frame(treatment = "Venues and Apps",
-		                      model = "Main",
-		                      term = names(fit_main$coef.form),
-		                      estimate = fit_main$coef.form)
-
-		saveRDS(fit_main, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_both_main_", calibration_set_num, ".rds"))
-		write.csv(main_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_both_main_", calibration_set_num, ".csv"))
-	
-	} else if (thispartnershiptype == 'casual'){
-
-		print("Both - Casual (B2)")
-
-		model_casl <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-
-		  nodefactor("deg.main", levels=-1) +
-		  fuzzynodematch("venues.all", binary=TRUE) +
-		  fuzzynodematch("apps.all", binary = TRUE)
-		#fuzzynodematch("apps_nondating", binary=TRUE)
-
-
-		target.stats.casl <- c(
-		  edges =                           netstats$casl$edges,
-		  #  nodefactor_age.grp =            netstats$casl$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$casl$nodematch_age.grp,
-		  concurrent =                      netstats$casl$concurrent,
-		  nodefactor_race =               netstats$casl$nodefactor_race[1:3],
-		  nodematch_race =                netstats$casl$nodematch_race,
-		  # nodematch_race.1 =              netstats$casl$nodematch_race.1,
-
-		  nodefactor_deg.main =           netstats$casl$nodefactor_deg.main[-1],
-		  fuzzynodematch_venues.all =     netstats$casl$fuzzynodematch_venues.all,
-		  fuzzynodematch_apps.all =       netstats$casl$fuzzynodematch_apps.all
-		  # fuzzynodematch_apps.nondating = netstats$casl$fuzzynodematch_apps.dating
-		)
-		target.stats.casl <- unname(target.stats.casl)
-
-
-		fit_casl <- netest(
-		  nw = nw_casl,
-		  formation = model_casl,
-		  target.stats = target.stats.casl,
-		  coef.diss = netstats$casl$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_casl <- trim_netest(fit_casl)
-
-		casl_df <- data.frame(treatment = "Venues and Apps",
-		                      model = "Casual",
-		                      term = names(fit_casl$coef.form),
-		                      estimate = fit_casl$coef.form)
-
-		saveRDS(fit_casl, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_both_casual_", calibration_set_num, ".rds"))
-		write.csv(casl_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_both_casual_", calibration_set_num, ".csv"))		
-
-	} else if (thispartnershiptype == 'onetime') {
-
-		print("Both - Inst (B3)")
-
-		model_inst <-  ~ edges +
-		  # nodefactor("age.grp", levels=1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-
-		  nodefactor("deg.tot", levels=-1) +
-		  fuzzynodematch("venues.all", binary=TRUE) +
-		  fuzzynodematch("apps.all", binary = TRUE)
-		#fuzzynodematch("apps_nondating", binary=TRUE)
-
-		target.stats.inst <- c(
-		  edges =                           netstats$inst$edges,
-		  # nodefactor_age.grp =            netstats$inst$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$inst$nodematch_age.grp,
-		  nodefactor_race =               netstats$inst$nodefactor_race[1:3],
-		  nodematch_race =                netstats$inst$nodematch_race,
-		  # nodematch_race.1 =              netstats$inst$nodematch_race.1,
-
-		  nodefactor_deg.tot =           netstats$inst$nodefactor_deg.tot[-1],
-		  fuzzynodematch_venues.all =       netstats$inst$fuzzynodematch_venues.all,
-		  fuzzynodematch_apps.all = netstats$inst$fuzzynodematch_apps.all
-		  # fuzzynodematch_apps.nondating = netstats$inst$fuzzynodematch_apps.dating
-		)
-		target.stats.inst <- unname(target.stats.inst)
-
-		fit_inst <- netest(
-		  nw = nw_inst,
-		  formation = model_inst,
-		  target.stats = target.stats.inst,
-		  coef.diss = dissolution_coefs(~offset(edges), duration = 1),
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_inst <- trim_netest(fit_inst)
-
-		inst_df <- data.frame(treatment = "Venues and Apps",
-		                      model = "Onetime",
-		                      term = names(fit_inst$coef.form),
-		                      estimate = fit_inst$coef.form)
-
-		saveRDS(fit_inst, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_both_onetime_", calibration_set_num, ".rds"))
-		write.csv(inst_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_both_onetime_", calibration_set_num, ".csv"))		
-
-	} else {
-
-		print("ERROR: PARTNERSHIP TYPE NOT CORRECTLY SPECIFIED")
-
-	}
-
-} else if (thistreatmenttype == 'apps') {
-
-	if (thispartnershiptype == 'main') {
-
-		print("Apps - Main (C1)")
-
-		model_main <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels = -4) +
-		  nodematch("race") +
-		  # nodematch("race", diff = TRUE, levels = 1) +
-
-		  nodefactor("deg.casl", levels= -1) +
-		  fuzzynodematch("apps.all", binary = TRUE)
-		# fuzzynodematch("apps_nondating", binary=TRUE)
-
-
-		target.stats.main <- c(
-		  edges = netstats$main$edges,
-		  # nodefactor_age.grp = netstats$main$nodefactor_age.grp[1],
-		  nodematch_age.grp = netstats$main$nodematch_age.grp,
-		  concurrent = netstats$main$concurrent,
-		  nodefactor_race = netstats$main$nodefactor_race[1:3],
-		  nodematch_race = netstats$main$nodematch_race,
-		  # nodematch_race.1 = netstats$main$nodematch_race.1,
-		  nodefactor_deg.casl = netstats$main$nodefactor_deg.casl[-1],
-		  fuzzynodematch_apps.all = netstats$main$fuzzynodematch_apps.all
-		  # fuzzynodematch_apps.nondating = netstats$main$fuzzynodematch_apps.dating
-		)
-		target.stats.main <- unname(target.stats.main)
-
-		fit_main <- netest(
-		  nw = nw_main,
-		  formation = model_main,
-		  target.stats = target.stats.main,
-		  coef.diss = netstats$main$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_main <- trim_netest(fit_main)
-
-		main_df <- data.frame(treatment = "Apps Only",
-		                      model = "Main",
-		                      term = names(fit_main$coef.form),
-		                      estimate = fit_main$coef.form)
-
-		saveRDS(fit_main, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_apps_main_", calibration_set_num, ".rds"))
-		write.csv(main_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_apps_main_", calibration_set_num, ".csv"))		
-
-	} else if (thispartnershiptype == 'casual') {
-
-		print("Apps - Casual (C2)")
-
-		model_casl <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-
-		  nodefactor("deg.main", levels=-1) +
-		  fuzzynodematch("apps.all", binary = TRUE)
-		#fuzzynodematch("apps_nondating", binary=TRUE)
-
-
-		target.stats.casl <- c(
-		  edges =                           netstats$casl$edges,
-		  # nodefactor_age.grp =            netstats$casl$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$casl$nodematch_age.grp,
-		  concurrent =                      netstats$casl$concurrent,
-		  nodefactor_race =               netstats$casl$nodefactor_race[1:3],
-		  nodematch_race =                netstats$casl$nodematch_race,
-		  # nodematch_race.1 =              netstats$casl$nodematch_race.1,
-
-		  nodefactor_deg.main =           netstats$casl$nodefactor_deg.main[-1],
-		  fuzzynodematch_apps.all =       netstats$casl$fuzzynodematch_apps.all
-		  # fuzzynodematch_apps.nondating = netstats$casl$fuzzynodematch_apps.dating
-		)
-		target.stats.casl <- unname(target.stats.casl)
-
-		fit_casl <- netest(
-		  nw = nw_casl,
-		  formation = model_casl,
-		  target.stats = target.stats.casl,
-		  coef.diss = netstats$casl$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_casl <- trim_netest(fit_casl)
-
-		casl_df <- data.frame(treatment = "Apps Only",
-		                      model = "Casual",
-		                      term = names(fit_casl$coef.form),
-		                      estimate = fit_casl$coef.form)
-
-		saveRDS(fit_casl, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_apps_casual_", calibration_set_num, ".rds"))
-		write.csv(casl_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_apps_casual_", calibration_set_num, ".csv"))		
-
-	} else if (thispartnershiptype == 'onetime') {
-
-		print("Apps - Onetime (C3)")
-
-		model_inst <-  ~ edges +
-		  # nodefactor("age.grp", levels=1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-
-		  nodefactor("deg.tot", levels=-1) +
-		  fuzzynodematch("apps.all", binary = TRUE)
-		#fuzzynodematch("apps_nondating", binary=TRUE)
-
-		target.stats.inst <- c(
-		  edges =                           netstats$inst$edges,
-		  # nodefactor_age.grp =            netstats$inst$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$inst$nodematch_age.grp,
-		  nodefactor_race =               netstats$inst$nodefactor_race[1:3],
-		  nodematch_race =                netstats$inst$nodematch_race,
-		  # nodematch_race.1 =              netstats$inst$nodematch_race.1,
-
-		  nodefactor_deg.tot =           netstats$inst$nodefactor_deg.tot[-1],
-		  fuzzynodematch_apps.all = netstats$inst$fuzzynodematch_apps.all
-		  # fuzzynodematch_apps.nondating = netstats$inst$fuzzynodematch_apps.dating
-		)
-		target.stats.inst <- unname(target.stats.inst)
-
-		fit_inst <- netest(
-		  nw = nw_inst,
-		  formation = model_inst,
-		  target.stats = target.stats.inst,
-		  coef.diss = dissolution_coefs(~offset(edges), duration = 1),
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_inst <- trim_netest(fit_inst)
-
-		inst_df <- data.frame(treatment = "Apps Only",
-		                      model = "Onetime",
-		                      term = names(fit_inst$coef.form),
-		                      estimate = fit_inst$coef.form)
-
-		saveRDS(fit_inst, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_apps_onetime_", calibration_set_num, ".rds"))
-		write.csv(inst_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_apps_onetime_", calibration_set_num, ".csv"))		
-
-	} else {
-
-		print("ERROR: PARTNERSHIP TYPE NOT CORRECTLY SPECIFIED")
-
-	}
-
-} else if (thistreatmenttype == 'venues') {
-
-	if (thispartnershiptype == 'main') {
-
-		print("Venues - Main (D1)")
-
-		model_main <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels = -4) +
-		  nodematch("race") +
-		  # nodematch("race", diff = TRUE, levels = 1) +
-
-		  nodefactor("deg.casl", levels= -1) +
-		  fuzzynodematch("venues.all", binary=TRUE)
-		# fuzzynodematch("apps_nondating", binary=TRUE)
-
-
-		target.stats.main <- c(
-		  edges = netstats$main$edges,
-		  # nodefactor_age.grp = netstats$main$nodefactor_age.grp[1],
-		  nodematch_age.grp = netstats$main$nodematch_age.grp,
-		  concurrent = netstats$main$concurrent,
-		  nodefactor_race = netstats$main$nodefactor_race[1:3],
-		  nodematch_race = netstats$main$nodematch_race,
-		  # nodematch_race.1 = netstats$main$nodematch_race.1,
-
-		  nodefactor_deg.casl = netstats$main$nodefactor_deg.casl[-1],
-		  fuzzynodematch_venues.all = netstats$main$fuzzynodematch_venues.all
-		  # fuzzynodematch_apps.nondating = netstats$main$fuzzynodematch_apps.dating
-		)
-		target.stats.main <- unname(target.stats.main)
-
-		fit_main <- netest(
-		  nw = nw_main,
-		  formation = model_main,
-		  target.stats = target.stats.main,
-		  coef.diss = netstats$main$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_main <- trim_netest(fit_main)
-
-		main_df <- data.frame(treatment = "Venues Only",
-		                      model = "Main",
-		                      term = names(fit_main$coef.form),
-		                      estimate = fit_main$coef.form)
-
-		saveRDS(fit_main, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_venues_main_", calibration_set_num, ".rds"))
-		write.csv(main_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_venues_main_", calibration_set_num, ".csv"))		
-
-	} else if (thispartnershiptype == 'casual') {
-
-		print("Venues - Casual (D2)")
-
-		model_casl <- ~ edges +
-		  # nodefactor("age.grp", levels= 1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  concurrent +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-
-		  nodefactor("deg.main", levels=-1) +
-		  fuzzynodematch("venues.all", binary=TRUE)
-		#fuzzynodematch("apps_nondating", binary=TRUE)
-
-
-		target.stats.casl <- c(
-		  edges =                           netstats$casl$edges,
-		  # nodefactor_age.grp =            netstats$casl$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$casl$nodematch_age.grp,
-		  concurrent =                      netstats$casl$concurrent,
-		  nodefactor_race =               netstats$casl$nodefactor_race[1:3],
-		  nodematch_race =                netstats$casl$nodematch_race,
-		  # nodematch_race.1 =              netstats$casl$nodematch_race.1,
-		  nodefactor_deg.main =           netstats$casl$nodefactor_deg.main[-1],
-		  fuzzynodematch_venues.all =     netstats$casl$fuzzynodematch_venues.all
-		  # fuzzynodematch_apps.nondating = netstats$casl$fuzzynodematch_apps.dating
-		)
-		target.stats.casl <- unname(target.stats.casl)
-
-		fit_casl <- netest(
-		  nw = nw_casl,
-		  formation = model_casl,
-		  target.stats = target.stats.casl,
-		  coef.diss = netstats$casl$diss.byage,
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_casl <- trim_netest(fit_casl)
-
-		casl_df <- data.frame(treatment = "Venues Only",
-		                      model = "Casual",
-		                      term = names(fit_casl$coef.form),
-		                      estimate = fit_casl$coef.form)
-
-		saveRDS(fit_casl, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_venues_casual_", calibration_set_num, ".rds"))
-		write.csv(casl_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_venues_casual_", calibration_set_num, ".csv"))		
-
-	} else if (thispartnershiptype == 'onetime') {
-
-		print("Venues - Onetime (D3)")
-
-		model_inst <-  ~ edges +
-		  # nodefactor("age.grp", levels=1) +
-		  nodematch("age.grp", diff = TRUE) +
-		  nodefactor("race", levels=-4) +
-		  nodematch("race") +
-		  # nodematch("race", diff=TRUE, levels=1) +
-
-		  nodefactor("deg.tot", levels=-1) +
-		  fuzzynodematch("venues.all", binary=TRUE)
-		#fuzzynodematch("apps_nondating", binary=TRUE)
-
-		target.stats.inst <- c(
-		  edges =                           netstats$inst$edges,
-		  # nodefactor_age.grp =            netstats$inst$nodefactor_age.grp[1],
-		  nodematch_age.grp =             netstats$inst$nodematch_age.grp,
-		  nodefactor_race =               netstats$inst$nodefactor_race[1:3],
-		  nodematch_race =                netstats$inst$nodematch_race,
-		  # nodematch_race.1 =              netstats$inst$nodematch_race.1,
-
-		  nodefactor_deg.tot =           netstats$inst$nodefactor_deg.tot[-1],
-		  fuzzynodematch_venues.all =       netstats$inst$fuzzynodematch_venues.all
-		  # fuzzynodematch_apps.nondating = netstats$inst$fuzzynodematch_apps.dating
-		)
-		target.stats.inst <- unname(target.stats.inst)
-
-		fit_inst <- netest(
-		  nw = nw_inst,
-		  formation = model_inst,
-		  target.stats = target.stats.inst,
-		  coef.diss = dissolution_coefs(~offset(edges), duration = 1),
-		  set.control.ergm =
-		    control.ergm(
-		      parallel = 4,
-		      MCMC.interval = 10000,
-		      MCMLE.effectiveSize=NULL,
-		      MCMC.burnin = 1000,
-		      MCMC.samplesize = 20000,
-		      SAN.maxit = 20,
-		      SAN.nsteps.times = 10
-		    )
-		)
-
-		fit_inst <- trim_netest(fit_inst)
-
-		inst_df <- data.frame(treatment = "Venues Only",
-		                      model = "Onetime",
-		                      term = names(fit_inst$coef.form),
-		                      estimate = fit_inst$coef.form)
-
-		saveRDS(fit_inst, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "fit_venues_onetime_", calibration_set_num, ".rds"))
-		write.csv(inst_df, paste0(yamldata$repo.dir, yamldata$calibration.subdir, yamldata$expname, "/", "coef_df_venues_onetime_", calibration_set_num, ".csv"))		
-
-	} else {
-
-		print("ERROR: PARTNERSHIP TYPE NOT CORRECTLY SPECIFIED")
-
-	}
-
-} else {
-
-	print("ERROR: TREATMENT TYPE NOT CORRECTLY SPECIFIED")
-
+# =========================
+# Set up the different counterfactual models to be tested
+# =========================
+
+# computational settings for running the ergm fits
+ergm_fit_ctrl_settings <- list(
+    parallel = 4,
+    MCMC.interval = 10000,
+    MCMLE.effectiveSize = NULL,
+    MCMC.burnin = 1000,
+    MCMC.samplesize = 20000,
+    SAN.maxit = 20,
+    SAN.nsteps.times = 10
+)
+
+# --------------------------------------------------------------
+# MAIN PARTNERSHIPS --------------------------------------------
+# --------------------------------------------------------------
+
+# 1. Target stats
+target_stats_main <- c(
+    edges = netstats$main$edges,
+    nodematch_age.grp = netstats$main$nodematch_age.grp,
+    concurrent = netstats$main$concurrent,
+    nodefactor_race = netstats$main$nodefactor_race[1:3],
+    nodematch_race = netstats$main$nodematch_race,
+    nodefactor_deg.casl = netstats$main$nodefactor_deg.casl[-1],
+    fuzzynodematch_venues.all = netstats$main$fuzzynodematch_venues.all,
+    fuzzynodematch_apps.all = netstats$main$fuzzynodematch_apps.all
+)
+
+target_stats_main_control <- target_stats_main[
+    setdiff(names(target_stats_main),
+    c("fuzzynodematch_venues.all", "fuzzynodematch_apps.all"))
+]
+target_stats_main_control <- unname(target_stats_main_control)
+
+target_stats_main_venuesonly <- target_stats_main[
+    setdiff(names(target_stats_main),
+    "fuzzynodematch_apps.all")
+]
+target_stats_main_venuesonly <- unname(target_stats_main_venuesonly)
+
+target_stats_main_appsonly <- target_stats_main[
+    setdiff(names(target_stats_main),
+    "fuzzynodematch_venues.all")
+]
+target_stats_main_appsonly <- unname(target_stats_main_appsonly)
+
+target_stats_main_venuesapps <- target_stats_main
+target_stats_main_venuesapps <- unname(target_stats_main_venuesapps)
+
+
+# 2. Formation model formula
+model_terms_main_control <- c(
+    "edges",
+    "nodematch('age.grp', diff = TRUE)",
+    "concurrent",
+    "nodefactor('race', levels=-4)",
+    "nodematch('race')",
+    "nodefactor('deg.casl', levels=-1)"
+)
+model_terms_main_venuesonly <- c(
+    model_terms_main_control,
+    "fuzzynodematch('venues.all', binary = TRUE)"
+)
+model_terms_main_appsonly <- c(
+    model_terms_main_control,
+    "fuzzynodematch('apps.all', binary = TRUE)"
+)
+model_terms_main_venuesapps <- c(
+    model_terms_main_control,
+    "fuzzynodematch('venues.all', binary = TRUE)",
+    "fuzzynodematch('apps.all', binary = TRUE)"
+)
+
+# model formation
+model_form_main_control <- as.formula(
+    paste("~", paste(model_terms_main_control, collapse = " + "))
+)
+model_form_main_venuesonly <- as.formula(
+    paste("~", paste(model_terms_main_venuesonly, collapse = " + "))
+)
+model_form_main_appsonly <- as.formula(
+    paste("~", paste(model_terms_main_appsonly, collapse = " + "))
+)
+model_form_main_venuesapps <- as.formula(
+    paste("~", paste(model_terms_main_venuesapps, collapse = " + "))
+)
+
+# 3. Fit the network model to the target stats
+
+func_fit_main_control <- function() {
+    cat("Fitting the CONTROL model for MAIN partnerships ...\n")
+    fit_main_control <- netest(
+        nw = nw_main,
+        formation = model_form_main_control,
+        target.stats = target_stats_main_control,
+        coef.diss = netstats$main$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_main_control <- trim_netest(fit_main_control)
+    saveRDS(fit_main_control,
+        paste0(outdir, "netest-main-control_", calibration_set_num, ".rds")
+    )
+}
+
+func_fit_main_venues <- function() {
+    cat("Fitting the VENUES only model for MAIN partnerships ...\n")
+    fit_main_venuesonly <- netest(
+        nw = nw_main,
+        formation = model_form_main_venuesonly,
+        target.stats = target_stats_main_venuesonly,
+        coef.diss = netstats$main$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_main_venuesonly <- trim_netest(fit_main_venuesonly)
+    saveRDS(fit_main_venuesonly,
+        paste0(outdir, "netest-main-venues_", calibration_set_num, ".rds")
+    )
+}
+
+func_fit_main_apps <- function() {
+    cat("Fitting the APPS only model for MAIN partnerships ...\n")
+    fit_main_appsonly <- netest(
+        nw = nw_main,
+        formation = model_form_main_appsonly,
+        target.stats = target_stats_main_appsonly,
+        coef.diss = netstats$main$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_main_appsonly <- trim_netest(fit_main_appsonly)
+    saveRDS(fit_main_appsonly,
+        paste0(outdir, "netest-main-apps_", calibration_set_num, ".rds")
+    )
+}
+
+func_fit_main_venuesapps <- function() {
+    cat("Fitting the VENUES+APPS model for MAIN partnerships ...\n")
+    fit_main_venuesapps <- netest(
+        nw = nw_main,
+        formation = model_form_main_venuesapps,
+        target.stats = target_stats_main_venuesapps,
+        coef.diss = netstats$main$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_main_venuesapps <- trim_netest(fit_main_venuesapps)
+    saveRDS(fit_main_venuesapps,
+        paste0(outdir, "netest-main-venuesapps_", calibration_set_num, ".rds")
+    )
+}
+
+# --------------------------------------------------------------
+# CASUAL PARTNERSHIPS --------------------------------------------
+# --------------------------------------------------------------
+
+# 1. Target stats
+target_stats_casl <- c(
+    edges =  netstats$casl$edges,
+    nodematch_age.grp = netstats$casl$nodematch_age.grp,
+    concurrent =  netstats$casl$concurrent,
+    nodefactor_race =  netstats$casl$nodefactor_race[1:3],
+    nodematch_race = netstats$casl$nodematch_race,
+    nodefactor_deg.main = netstats$casl$nodefactor_deg.main[-1],
+    fuzzynodematch_venues.all = netstats$casl$fuzzynodematch_venues.all,
+    fuzzynodematch_apps.all = netstats$casl$fuzzynodematch_apps.all
+)
+
+target_stats_casl_control <- target_stats_casl[
+    setdiff(names(target_stats_casl),
+    c("fuzzynodematch_venues.all", "fuzzynodematch_apps.all"))
+]
+target_stats_casl_control <- unname(target_stats_casl_control)
+
+target_stats_casl_venuesonly <- target_stats_casl[
+    setdiff(names(target_stats_casl),
+    "fuzzynodematch_apps.all")
+]
+target_stats_casl_venuesonly <- unname(target_stats_casl_venuesonly)
+
+target_stats_casl_appsonly <- target_stats_casl[
+    setdiff(names(target_stats_casl),
+    "fuzzynodematch_venues.all")
+]
+target_stats_casl_appsonly <- unname(target_stats_casl_appsonly)
+
+target_stats_casl_venuesapps <- target_stats_casl
+target_stats_casl_venuesapps <- unname(target_stats_casl_venuesapps)
+
+
+# 2. Formation model formula
+model_terms_casl_control <- c(
+    "edges",
+    "nodematch('age.grp', diff = TRUE)",
+    "concurrent",
+    "nodefactor('race', levels=-4)",
+    "nodematch('race')",
+    "nodefactor('deg.main', levels=-1)"
+)
+model_terms_casl_venuesonly <- c(
+    model_terms_casl_control,
+    "fuzzynodematch('venues.all', binary = TRUE)"
+)
+model_terms_casl_appsonly <- c(
+    model_terms_casl_control,
+    "fuzzynodematch('apps.all', binary = TRUE)"
+)
+model_terms_casl_venuesapps <- c(
+    model_terms_casl_control,
+    "fuzzynodematch('venues.all', binary = TRUE)",
+    "fuzzynodematch('apps.all', binary = TRUE)"
+)
+
+model_form_casl_control <- as.formula(
+    paste("~", paste(model_terms_casl_control, collapse = " + "))
+)
+model_form_casl_venuesonly <- as.formula(
+    paste("~", paste(model_terms_casl_venuesonly, collapse = " + "))
+)
+model_form_casl_appsonly <- as.formula(
+    paste("~", paste(model_terms_casl_appsonly, collapse = " + "))
+)
+model_form_casl_venuesapps <- as.formula(
+    paste("~", paste(model_terms_casl_venuesapps, collapse = " + "))
+)
+
+# 3. Fit the network model to the target stats
+
+func_fit_casual_control <- function() {
+    cat("Fitting the CONTROL model for CASUAL partnerships ...\n")
+    fit_casl_control <- netest(
+        nw = nw_casl,
+        formation = model_form_casl_control,
+        target.stats = target_stats_casl_control,
+        coef.diss = netstats$casl$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_casl_control <- trim_netest(fit_casl_control)
+    saveRDS(fit_casl_control,
+        paste0(outdir, "netest-casual-control_", calibration_set_num, ".rds")
+    )
+}
+
+func_fit_casual_venues <- function() {
+    cat("Fitting the VENUES only model for CASUAL partnerships ...\n")
+    fit_casl_venuesonly <- netest(
+        nw = nw_casl,
+        formation = model_form_casl_venuesonly,
+        target.stats = target_stats_casl_venuesonly,
+        coef.diss = netstats$casl$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_casl_venuesonly <- trim_netest(fit_casl_venuesonly)
+    saveRDS(fit_casl_venuesonly,
+        paste0(outdir, "netest-casual-venues_", calibration_set_num, ".rds")
+    )
+}
+
+func_fit_casual_apps <- function() {
+    cat("Fitting the APPS only model for CASUAL partnerships ...\n")
+    fit_casl_appsonly <- netest(
+        nw = nw_casl,
+        formation = model_form_casl_appsonly,
+        target.stats = target_stats_casl_appsonly,
+        coef.diss = netstats$casl$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_casl_appsonly <- trim_netest(fit_casl_appsonly)
+    saveRDS(fit_casl_appsonly,
+        paste0(outdir, "netest-casual-apps_", calibration_set_num, ".rds")
+    )
+}
+
+func_fit_casual_venuesapps <- function() {
+    cat("Fitting the VENUES+APPS model for CASUAL partnerships ...\n")
+    fit_casl_venuesapps <- netest(
+        nw = nw_casl,
+        formation = model_form_casl_venuesapps,
+        target.stats = target_stats_casl_venuesapps,
+        coef.diss = netstats$casl$diss.byage,
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_casl_venuesapps <- trim_netest(fit_casl_venuesapps)
+    saveRDS(fit_casl_venuesapps,
+        paste0(outdir, "netest-casual-venuesapps_", calibration_set_num, ".rds")
+    )
+}
+
+# --------------------------------------------------------------
+# ONE-TIME PARTNERSHIPS ----------------------------------------
+# --------------------------------------------------------------
+
+# 1. Target stats
+target_stats_inst <- c(
+    edges =  netstats$inst$edges,
+    nodematch_age.grp = netstats$inst$nodematch_age.grp,
+    nodefactor_race =  netstats$inst$nodefactor_race[1:3],
+    nodematch_race = netstats$inst$nodematch_race,
+    nodefactor_deg.tot = netstats$inst$nodefactor_deg.tot[-1],
+    fuzzynodematch_venues.all = netstats$inst$fuzzynodematch_venues.all,
+    fuzzynodematch_apps.all = netstats$inst$fuzzynodematch_apps.all
+)
+
+target_stats_inst_control <- target_stats_inst[
+    setdiff(names(target_stats_inst),
+    c("fuzzynodematch_venues.all", "fuzzynodematch_apps.all"))
+]
+target_stats_inst_control <- unname(target_stats_inst_control)
+
+target_stats_inst_venuesonly <- target_stats_inst[
+    setdiff(names(target_stats_inst),
+    "fuzzynodematch_apps.all")
+]
+target_stats_inst_venuesonly <- unname(target_stats_inst_venuesonly)
+
+target_stats_inst_appsonly <- target_stats_inst[
+    setdiff(names(target_stats_inst),
+    "fuzzynodematch_venues.all")
+]
+target_stats_inst_appsonly <- unname(target_stats_inst_appsonly)
+
+target_stats_inst_venuesapps <- target_stats_inst
+target_stats_inst_venuesapps <- unname(target_stats_inst_venuesapps)
+
+
+# 2. Formation model formula
+model_terms_inst_control <- c(
+    "edges",
+    "nodematch('age.grp', diff = TRUE)",
+    "nodefactor('race', levels = -4)",
+    "nodematch('race')",
+    "nodefactor('deg.tot', levels = -1)"
+)
+model_terms_inst_venuesonly <- c(
+    model_terms_inst_control,
+    "fuzzynodematch('venues.all', binary = TRUE)"
+)
+model_terms_inst_appssonly <- c(
+    model_terms_inst_control,
+    "fuzzynodematch('apps.all', binary = TRUE)"
+)
+model_terms_inst_venuesapps <- c(
+    model_terms_inst_control,
+    "fuzzynodematch('venues.all', binary = TRUE)",
+    "fuzzynodematch('apps.all', binary = TRUE)"
+)
+
+model_form_inst_control <- as.formula(
+    paste("~", paste(model_terms_inst_control, collapse = " + "))
+)
+model_form_inst_venuesonly <- as.formula(
+    paste("~", paste(model_terms_inst_venuesonly, collapse = " + "))
+)
+model_form_inst_appsonly <- as.formula(
+    paste("~", paste(model_terms_inst_appssonly, collapse = " + "))
+)
+model_form_inst_venuesapps <- as.formula(
+    paste("~", paste(model_terms_inst_venuesapps, collapse = " + "))
+)
+
+# 3. Fit the network model to the target stats
+
+func_fit_onetime_control <- function() {
+    cat("Fitting the CONTROL model for ONE-TIME partnerships ...\n")
+    fit_inst_control <- netest(
+        nw = nw_inst,
+        formation = model_form_inst_control,
+        target.stats = target_stats_inst_control,
+        coef.diss = dissolution_coefs(~offset(edges), duration = 1),
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_inst_control <- trim_netest(fit_inst_control)
+    saveRDS(fit_inst_control,
+        paste0(outdir, "netest-onetime-control_", calibration_set_num, ".rds")
+    )
 
 }
 
+func_fit_onetime_venues <- function() {
+    cat("Fitting the VENUES only model for ONE-TIME partnerships ...\n")
+    fit_inst_venuesonly <- netest(
+        nw = nw_inst,
+        formation = model_form_inst_venuesonly,
+        target.stats = target_stats_inst_venuesonly,
+        coef.diss = dissolution_coefs(~offset(edges), duration = 1),
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_inst_venuesonly <- trim_netest(fit_inst_venuesonly)
+    saveRDS(fit_inst_venuesonly,
+        paste0(outdir, "netest-onetime-venues_", calibration_set_num, ".rds")
+    )
+}
 
-# C - control model (no apps or venues)
-# CM - control model; main partnerships  
-# CC - control model; casual partnerships  
-# CO - control model; one-time partnerships  
+func_fit_onetime_apps <- function() {
+    cat("Fitting the APPS only model for ONE-TIME partnerships ...\n")
+    fit_inst_appsonly <- netest(
+        nw = nw_inst,
+        formation = model_form_inst_appsonly,
+        target.stats = target_stats_inst_appsonly,
+        coef.diss = dissolution_coefs(~offset(edges), duration = 1),
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_inst_appsonly <- trim_netest(fit_inst_appsonly)
+    saveRDS(fit_inst_appsonly,
+        paste0(outdir, "netest-onetime-apps_", calibration_set_num, ".rds")
+    )
+}
 
-# B - both model (both apps and venues)
-# BM - both model; main partnerships  
-# BC - both model; casual partnerships  
-# BO - both model; one-time partnerships  
-
-# A - apps model (apps only)
-# AM - apps model; main partnerships  
-# AC - apps model; casual partnerships  
-# AO - apps model; one-time partnerships  
-
-# V - venues model (venues only)
-# VM - venues model; main partnerships  
-# VC - venues model; casual partnerships  
-# VO - venues model; one-time partnerships  
-
-
+func_fit_onetime_venuesapps <- function() {
+    cat("Fitting the VENUES+APPS model for ONE-TIME partnerships ...\n")
+    fit_inst_venuesapps <- netest(
+        nw = nw_inst,
+        formation = model_form_inst_venuesapps,
+        target.stats = target_stats_inst_venuesapps,
+        coef.diss = dissolution_coefs(~offset(edges), duration = 1),
+        set.control.ergm = do.call(control.ergm, ergm_fit_ctrl_settings)
+    )
+    fit_inst_venuesapps <- trim_netest(fit_inst_venuesapps)
+    saveRDS(fit_inst_venuesapps,
+        paste0(outdir, "netest-onetime-venuesapps_", calibration_set_num, ".rds")
+    )
+}
 
 
-# }
+# =========================
+# Either run all of the ERGM counterfactual models to be fit
+# or run the one specified by the arguments passed in via the Rscript
+# =========================
+
+# Store all model fit functions in a named list
+models2fit <- list(
+    "main_control" = func_fit_main_control,
+    "main_venues" = func_fit_main_venues,
+    "main_apps" = func_fit_main_apps,
+    "main_venuesapps" = func_fit_main_venuesapps,
+    "casual_control" = func_fit_casual_control,
+    "casual_venues" = func_fit_casual_venues,
+    "casual_apps" = func_fit_casual_apps,
+    "casual_venuesapps" = func_fit_casual_venuesapps,
+    "onetime_control" = func_fit_onetime_control,
+    "onetime_venues" = func_fit_onetime_venues,
+    "onetime_apps" = func_fit_onetime_apps,
+    "onetime_venuesapps" = func_fit_onetime_venuesapps
+)
+
+
+func_key <- paste(ptype, mtype, sep="_")
+if (func_key %in% names(models2fit)) {
+    models2fit[[func_key]]()
+} else {
+    stop("Error: Invalid function selection.")
+}
