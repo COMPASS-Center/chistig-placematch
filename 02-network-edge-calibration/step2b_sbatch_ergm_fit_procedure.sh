@@ -7,8 +7,8 @@
 #SBATCH --ntasks-per-node=1 ## how many cpus or processors do you need on each computer
 #SBATCH --time=10:30:00 ## how long does this need to run (remember different partitions have restrictions on this param)
 #SBATCH --mem=3G
-#SBATCH --job-name="test23oct_%A" ## When you run squeue -u NETID this is how you can identify the job
-#SBATCH --output=%a_108.%A.test23oct.out ## standard out and standard error goes to this file
+#SBATCH --job-name="%A" ## When you run squeue -u NETID this is how you can identify the job
+#SBATCH --output=%a_108.%A.out ## standard out and standard error goes to this file
 #SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
 #SBATCH --mail-user=tom.wolff@northwestern.edu ## your email
 
@@ -17,7 +17,7 @@ conda activate /projects/p32153/condaenvs/conda-chistig
 
 R --version
 
-IFS=$'\n' read -d '' -r -a input_args < step2_ergm_fit_procedure_input_args_test23oct.txt
+IFS=$'\n' read -d '' -r -a input_args < step2_ergm_fit_procedure_input_args.txt
 echo ${input_args[$SLURM_ARRAY_TASK_ID]}
 
 IFS=$'\t' read -r runno yamlfname calibrationset treatmenttype partnershiptype  <<< "${input_args[$SLURM_ARRAY_TASK_ID]}"
@@ -27,7 +27,7 @@ echo "Calibration set number for ERGM fit: ${calibrationset}."
 echo "Treatment type for ERGM fit: ${treatmenttype}."
 echo "Partnership type for ERGM fit: ${partnershiptype}."
 
-my_random_seed_array=(50 157 146 129 68 171 72 13 198 61)
+my_random_seed_array=(38 136 141 186 173 138 77 171 197 122)
 max_attempts=${#my_random_seed_array[@]}
 
 echo "Array of random seeds for convergence attempts: ${my_random_seed_array[@]}."

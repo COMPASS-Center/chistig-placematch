@@ -28,7 +28,11 @@ library(argparse)
 parser <- ArgumentParser(description = "Process command line arguments for which network estimation is occurring and which random seed to use") #nolint
 
 # parser$add_argument("--yamlfname", required=TRUE, help="The YAML file that needs to be passed in") #nolint
-parser$add_argument("--randomseed", required=FALSE, help="The random seed to use for this attempt of ERGM network estimate") #nolint
+parser$add_argument(
+    "--randomseed",
+    type = "integer",
+    required = FALSE,
+    help="The random seed to use for this attempt of ERGM network estimate") #nolint
 parser$add_argument(
     "--partnershiptype",
     required = FALSE,
@@ -72,9 +76,9 @@ randomseed <- as.integer(
 #     ifelse(is.null(args$randomseed), yamldata$random.seed, args$randomseed)
 # )
 
-# # =========================
-# # define filenames/directories from YAML
-# # =========================
+# =========================
+# define filenames/directories from YAML
+# =========================
 
 # define the experiment directory where input and outputs are saved
 expdir <- "./"

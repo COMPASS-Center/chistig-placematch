@@ -23,6 +23,7 @@ treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
 treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
 
 
+
 if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
   treatment <- "control"
 } else if (treatment_run_letter == "a") { # "apps" - Apps, no venues

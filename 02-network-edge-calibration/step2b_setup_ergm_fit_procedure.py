@@ -16,19 +16,22 @@ num_convergence_attempts = yamldata['num.ergm.convergence.attempts']
 random_seed_max = yamldata['max.random.seed']
 
 # setup args input filename 
-expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
-output_fname = f"{yamldata['step2b.inputargs.fname']}_{yamldata['expname']}.txt"
+# expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
+expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
+expiriment_interim_dir = f"{expiriment_dir}{yamldata['interim.data.subdir']}"
+# output_fname = f"{yamldata['step2b.inputargs.fname']}_{yamldata['expname']}.txt"
+output_fname = f"{yamldata['step2b.inputargs.fname']}.txt"
+
 output_file = f"{expiriment_dir}{output_fname}"
 # output_file = "test_output_step2.txt"
 
 # obtain the length of the calibration set matrix 
-calibration_df_fname = f"{yamldata['calibration.matrix.fname']}_{yamldata['expname']}.csv"
-calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
+calibration_df_fname = f"{yamldata['calibration.matrix.fname']}"
+calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 calibration_df = pd.read_csv(calibration_df_fname)
 num_calibration_sets = max(calibration_df['fit_no'])
 
 sbatch_bash_commands_outfile = f"{expiriment_dir}{yamldata['step2b.sbatch.fname']}.sh"
-#sbatch_bash_commands_outfile = f"{yamldata['step2b.sbatch.fname']}_{yamldata['expname']}.sh"
 
 random_seeds_list = random.sample(range(random_seed_max + 1), yamldata['num.ergm.convergence.attempts'])
 random_seeds_string = f"({' '.join(map(str,random_seeds_list))})"
@@ -50,8 +53,8 @@ sbatch = f"""
 #SBATCH --ntasks-per-node=1 ## how many cpus or processors do you need on each computer
 #SBATCH --time={yamldata['sbatch.walltime.hours']}:{yamldata['sbatch.walltime.minutes']}:00 ## how long does this need to run (remember different partitions have restrictions on this param)
 #SBATCH --mem={yamldata['sbatch.memory']}
-#SBATCH --job-name="{yamldata['expname']}_%A" ## When you run squeue -u NETID this is how you can identify the job
-#SBATCH --output=%a_{run}.%A.{yamldata['expname']}.out ## standard out and standard error goes to this file
+#SBATCH --job-name="%A" ## When you run squeue -u NETID this is how you can identify the job
+#SBATCH --output=%a_{run}.%A.out ## standard out and standard error goes to this file
 #SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
 #SBATCH --mail-user={yamldata['sbatch.email']} ## your email
 
@@ -100,7 +103,7 @@ done
 echo "Finished convergence attempts loop."
 """
 
-outfile_temp = f'{expiriment_dir}temp.sh'
+outfile_temp = f'{expiriment_interim_dir}temp.sh'
 # outfile_temp = f'temp.sh'
 with open(outfile_temp, 'w') as f:
 	f.write(sbatch)
