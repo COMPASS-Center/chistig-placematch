@@ -26,7 +26,10 @@ If you completed the previous step on your local machine, you will need to push 
 
 ### 4. Evaluate Edge Calibration Results
 
+
 I don't *think* this script I use to visualize and diagnose edge calibration results is currently here. I think the best way forward is to confirm that all of Step 2 runs okay after recent changes, and then I'll take the data created at the end of what we currently have and ensure my visualization script works with it. 
+
+Katie on how the mean degree values in the edge calibration section were calculated: "Sure - basically all that's happening is that we're reweighting our target stats based on the empirical data to represent the age/race/ethnicity breakdown of the synthetic population, because each of the overall targets needs to be internally consistent with the stratified targets (e.g. mean degree by race needs to total mean degree overall by the props in each race category). So all of the egos in the empirical data get a weight based on their age (16-20 vs 21-29) and race-ehtnicity in 4 cats, and then we calculate the weighted mean degree, proportion concurrent etc etc."
 
 
 
