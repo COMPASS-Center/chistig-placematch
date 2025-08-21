@@ -489,9 +489,6 @@ step2_benchmarks <- c(mean_deg_main_lower = 0.200339524, mean_deg_main = 0.23946
                       mean_deg_cas_lower = 0.271944955, mean_deg_cas = 0.339925924, mean_deg_cas_upper = 0.407906894,
                       n_edges_onetime = 77.94033)
 
-
-sim_targets$mean_deg_main - step2_benchmarks[which(step2_benchmarks$var == "mean_deg_main" & step2_benchmarks$bound == "center"), 3]
-
 cal_results <- sim_targets %>%
   dplyr::mutate(main_dev = mean_deg_main - step2_benchmarks["mean_deg_main"],
                 main_in_bounds = mean_deg_main > step2_benchmarks["mean_deg_main_lower"] & mean_deg_main < step2_benchmarks["mean_deg_main_upper"],

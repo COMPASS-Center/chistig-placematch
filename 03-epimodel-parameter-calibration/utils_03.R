@@ -6,6 +6,54 @@
 
 # KEEP
 
+#######################################################
+#    I M P O R T I N G   S T E P   2   O U T P U T    #
+#######################################################
+
+# If no `netstats` or `netest` file(s) currently exist in
+# `03-epimodel-parameter-calibration/data/intermediate/estimates`, copy over
+# output from `02-network-edge-calibration`
+
+est_files <- list.files("./03-epimodel-parameter-calibration/data/intermediate/estimates/")
+
+if (!("epistats-local.rds" %in% est_files)) {
+  file.copy(from = "./00-preliminary-setup/epistats.rds",
+            to = "./03-epimodel-parameter-calibration/data/intermediate/estimates/epistats-local.rds",
+            overwrite = FALSE)
+}
+
+if (!("netstats-local.rds" %in% est_files)) {
+  file.copy(from = "./02-network-edge-calibration/output/netstats-local.rds",
+            to = "./03-epimodel-parameter-calibration/data/intermediate/estimates/",
+            overwrite = FALSE)
+}
+
+if (!("basic_netest-local.rds" %in% est_files)) {
+  file.copy(from = "./02-network-edge-calibration/output/basic_netest-local.rds",
+            to = "./03-epimodel-parameter-calibration/data/intermediate/estimates/",
+            overwrite = FALSE)
+}
+
+if (!("venue_only_netest-local.rds" %in% est_files)) {
+  file.copy(from = "./02-network-edge-calibration/output/venue_only_netest-local.rds",
+            to = "./03-epimodel-parameter-calibration/data/intermediate/estimates/",
+            overwrite = FALSE)
+}
+
+if (!("apps_only_netest-local.rds" %in% est_files)) {
+  file.copy(from = "./02-network-edge-calibration/output/apps_only_netest-local.rds",
+            to = "./03-epimodel-parameter-calibration/data/intermediate/estimates/",
+            overwrite = FALSE)
+}
+
+if (!("venues_apps_netest-local.rds" %in% est_files)) {
+  file.copy(from = "./02-network-edge-calibration/output/venues_apps_netest-local.rds",
+            to = "./03-epimodel-parameter-calibration/data/intermediate/estimates/",
+            overwrite = FALSE)
+}
+
+
+
 #############################################################
 #    U T I L S - 0   ( P R O J E C T   S E T T I N G S )    #
 #############################################################

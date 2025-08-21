@@ -25,6 +25,14 @@ source("./03-epimodel-parameter-calibration/utils_03.R")
 context <- "hpc"
 max_cores <- 1
 
+# Read in `chistig_benchmarks.csv`, which provides us with our benchmark values
+# for calibrating epidemiological parameters:
+chistig_benchmarks <- read.csv("./03-epimodel-parameter-calibration/chistig_benchmarks.csv")
+### Convenience function for extracting values from `chistig_benchmarks`
+get_benchmark <- function(df = chistig_benchmarks, var) {
+  return(df[which(df$measure_name == var), "target_val"])
+}
+
 
 # Define the `model` function
 model <- function(proposal) {
@@ -178,7 +186,7 @@ calib_object <- list(
     wave1 = list(
       job1 = list(
         targets = "cc.dx.B",
-        targets_val = 0.5465356428,
+        targets_val = get_benchmark(var = "cc.dx.B"),
         params = c("hiv.test.rate_1"), # target: 0.00385
         initial_proposals = dplyr::tibble(
           hiv.test.rate_1 = seq(0.002, 0.006, length.out = n_sims),
@@ -188,7 +196,7 @@ calib_object <- list(
       ),
       job2 = list(
         targets = "cc.dx.H",
-        targets_val = 0.5431367893,
+        targets_val = get_benchmark(var = "cc.dx.H"),
         params = c("hiv.test.rate_2"), # target: 0.0038
         initial_proposals = dplyr::tibble(
           hiv.test.rate_2 = seq(0.002, 0.006, length.out = n_sims),
@@ -198,7 +206,7 @@ calib_object <- list(
       ),
       job3 = list(
         targets = "cc.dx.O",
-        targets_val = 0.5614905982,
+        targets_val = get_benchmark(var = "cc.dx.O"),
         params = c("hiv.test.rate_3"), # target: 0.0069
         initial_proposals = dplyr::tibble(
           hiv.test.rate_3 = seq(0.002, 0.006, length.out = n_sims),
@@ -208,7 +216,7 @@ calib_object <- list(
       ),
       job4 = list(
         targets = "cc.dx.W",
-        targets_val = 0.5988779867,
+        targets_val = get_benchmark(var = "cc.dx.W"),
         params = c("hiv.test.rate_4"), # target: 0.0069
         initial_proposals = dplyr::tibble(
           hiv.test.rate_4 = seq(0.002, 0.006, length.out = n_sims),
@@ -218,7 +226,10 @@ calib_object <- list(
       ),
       job5 = list(
         targets = paste0("cc.linked1m.", c("B", "H", "O", "W")),
-        targets_val = c(0.828, 0.867, 0.875, 0.936), # Updated
+        targets_val = c(get_benchmark(var = "cc.linked1m.B"),
+                        get_benchmark(var = "cc.linked1m.H"),
+                        get_benchmark(var = "cc.linked1m.O"),
+                        get_benchmark(var = "cc.linked1m.W")), # Updated
         params = paste0("tx.init.rate_", 1:4),
         initial_proposals = dplyr::tibble(
           tx.init.rate_1 = sample(seq(0.1, 0.6, length.out = n_sims)), # INCREASED RANGE BASED ON WHAT I SEE LOCALLY
@@ -234,7 +245,7 @@ calib_object <- list(
       wave2 = list(
         job1 = list(
               targets = "cc.vsupp.B",
-              targets_val = 0.571,
+              targets_val = get_benchmark(var = "cc.vsupp.B"),
               params = c("tx.halt.full.or_1"),
               initial_proposals = dplyr::tibble(
                 tx.halt.full.or_1 = sample(seq(0.5, 1.5, length.out = n_sims)),
@@ -244,7 +255,7 @@ calib_object <- list(
             ),
         job2 = list(
               targets = "cc.vsupp.H",
-              targets_val = 0.675,
+              targets_val = get_benchmark(var = "cc.vsupp.H"),
               params = c("tx.halt.full.or_2"),
               initial_proposals = dplyr::tibble(
                 tx.halt.full.or_2 = sample(seq(0.4, 0.8, length.out = n_sims)),
@@ -254,7 +265,7 @@ calib_object <- list(
             ),
         job3 = list(
           targets = "cc.vsupp.O",
-          targets_val = 0.586,
+          targets_val = get_benchmark(var = "cc.vsupp.O"),
           params = c("tx.halt.full.or_3"),
           initial_proposals = dplyr::tibble(
             tx.halt.full.or_3 = sample(seq(1, 2, length.out = n_sims)),
@@ -264,7 +275,7 @@ calib_object <- list(
         ),
         job4 = list(
           targets = "cc.vsupp.W",
-          targets_val = 0.617,
+          targets_val = get_benchmark(var = "cc.vsupp.W"),
           params = c("tx.halt.full.or_4"),
           initial_proposals = dplyr::tibble(
             tx.halt.full.or_4 = sample(seq(1, 2, length.out = n_sims)),
@@ -277,7 +288,7 @@ calib_object <- list(
     wave3 = list(
       job1 = list(
         targets = "exo.ir100.B",
-        targets_val = 1.618,
+        targets_val = get_benchmark(var = "exo.ir100.B"),
         params = c("exo.trans.prob.B"), # target: 0.00385
         initial_proposals = dplyr::tibble(
           exo.trans.prob.B = seq(0.1, 0.6, length.out = n_sims),
@@ -287,7 +298,7 @@ calib_object <- list(
       ),
       job2 = list(
         targets = "exo.ir100.H",
-        targets_val = 0.7345,
+        targets_val = get_benchmark(var = "exo.ir100.H"),
         params = c("exo.trans.prob.H"), # target: 0.00385
         initial_proposals = dplyr::tibble(
           exo.trans.prob.H = seq(0.1, 0.6, length.out = n_sims),
@@ -297,7 +308,7 @@ calib_object <- list(
       ),
       job3 = list(
         targets = "exo.ir100.O",
-        targets_val = 0.5695,
+        targets_val = get_benchmark(var = "exo.ir100.O"),
         params = c("exo.trans.prob.O"), # target: 0.00385
         initial_proposals = dplyr::tibble(
           exo.trans.prob.O = seq(0.1, 0.6, length.out = n_sims),
@@ -307,7 +318,7 @@ calib_object <- list(
       ),
       job4 = list(
         targets = "exo.ir100.W",
-        targets_val = 0.2891,
+        targets_val = get_benchmark(var = "exo.ir100.W"),
         params = c("exo.trans.prob.W"), # target: 0.00385
         initial_proposals = dplyr::tibble(
           exo.trans.prob.W = seq(0.05, 0.30, length.out = n_sims),
@@ -320,7 +331,10 @@ calib_object <- list(
     wave4 = list(
       job1 = list(
         targets = paste0("endo.ir100.", c("B", "H", "O", "W")),
-        targets_val = c(4.802, 1.3055, 1.1405, 0.4409),
+        targets_val = c(get_benchmark(var = "ir100.B") - get_benchmark(var = "exo.ir100.B"),
+                        get_benchmark(var = "ir100.H") - get_benchmark(var = "exo.ir100.H"),
+                        get_benchmark(var = "ir100.O") - get_benchmark(var = "exo.ir100.O"),
+                        get_benchmark(var = "ir100.W") - get_benchmark(var = "exo.ir100.W")),
         params = paste0("hiv.trans.scale_", 1:4),
         initial_proposals = dplyr::tibble(
           hiv.trans.scale_1 = sample(seq(10, 19, length.out = n_sims)), # Need to update for parameters

@@ -13,6 +13,20 @@ prep_start = 52*2
 source("./03-epimodel-parameter-calibration/utils_03.R")
 path_to_est <- "./03-epimodel-parameter-calibration/data/intermediate/estimates/basic_netest-local.rds"
 
+# Read in `chistig_benchmarks.csv`, which provides us with our benchmark values
+# for calibrating epidemiological parameters:
+chistig_benchmarks <- read.csv("./03-epimodel-parameter-calibration/chistig_benchmarks.csv")
+### Convenience function for extracting values from `chistig_benchmarks`
+get_benchmark <- function(df = chistig_benchmarks, var, bound = "center") {
+  if (bound == "center") {
+    return(df[which(df$measure_name == var), "target_val"])
+  } else if (bound == "upper") {
+    return(df[which(df$measure_name == var), "ci_upper"])
+  } else {
+    return(df[which(df$measure_name == var), "ci_lower"])
+  }
+}
+
 # This is where the user should specify the directory containing calibration runs
 this_dir <- "./03-epimodel-parameter-calibration/data/intermediate/calibration/"
 
@@ -222,7 +236,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.dx.B",
-            benchmark = 0.546535643,
+            benchmark = get_benchmark(var = "cc.dx.B"),
             title = paste("Plot ", i, ": Proportion of HIV+ that are Diagnosed (Black)", sep = ""))
 
 
@@ -231,7 +245,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.dx.H",
-            benchmark = 0.5431367893,
+            benchmark = get_benchmark(var = "cc.dx.H"),
             title = paste("Plot ", i, ": Proportion of HIV+ that are Diagnosed (Hispanic)", sep = ""))
 
 i <- i+1
@@ -239,7 +253,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.dx.O",
-            benchmark = 0.5601310,
+            benchmark = get_benchmark(var = "cc.dx.O"),
             title = paste("Plot ", i, ": Proportion of HIV+ that are Diagnosed (Other)", sep = ""))
 
 i <- i+1
@@ -247,7 +261,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.dx.W",
-            benchmark = 0.5988779867,
+            benchmark = get_benchmark(var = "cc.dx.W"),
             title = paste("Plot ", i, ": Proportion of HIV+ that are Diagnosed (White)", sep = ""))
 
 
@@ -259,7 +273,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.linked1m.B",
-            benchmark = .828,
+            benchmark = get_benchmark(var = "cc.linked1m.B"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes Linked to Care within One Month (Black)", sep = ""))
 
 
@@ -268,7 +282,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.linked1m.H",
-            benchmark = 0.867,
+            benchmark = get_benchmark(var = "cc.linked1m.H"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes Linked to Care within One Month (Hispanic)", sep = ""))
 
 i <- i+1
@@ -276,7 +290,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.linked1m.O",
-            benchmark = 0.875,
+            benchmark = get_benchmark(var = "cc.linked1m.O"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes Linked to Care within One Month (Other)", sep = ""))
 
 i <- i+1
@@ -284,7 +298,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.linked1m.W",
-            benchmark = 0.936,
+            benchmark = get_benchmark(var = "cc.linked1m.W"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes Linked to Care within One Month (White)", sep = ""))
 
 
@@ -296,7 +310,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.vsupp.B",
-            benchmark = 0.571,
+            benchmark = get_benchmark(var = "cc.vsupp.B"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes with Viral Suppression (Black)", sep = ""))
 
 
@@ -305,7 +319,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.vsupp.H",
-            benchmark = 0.675,
+            benchmark = get_benchmark(var = "cc.vsupp.H"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes with Viral Suppression (Hispanic)", sep = ""))
 
 i <- i+1
@@ -313,7 +327,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.vsupp.O",
-            benchmark = 0.586,
+            benchmark = get_benchmark(var = "cc.vsupp.O"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes with Viral Suppression (Other)", sep = ""))
 
 i <- i+1
@@ -321,7 +335,7 @@ i <- i+1
 target_plot(data = sim_targets,
             group = "treat",
             var = "cc.vsupp.W",
-            benchmark = 0.617,
+            benchmark = get_benchmark(var = "cc.vsupp.W"),
             title = paste("Plot ", i, ": Proportion of HIV+ Nodes with Viral Suppression (White)", sep = ""))
 
 
@@ -330,30 +344,34 @@ i <- i+1
 target_plot(data = annual_incid,
             var = "exo.ir100.B",
             group = "treat",
-            benchmark = mean(c(1.438, 1.798)),
-            target_range = c(1.438, 1.798),
+            benchmark = get_benchmark(var = "exo.ir100.B"),
+            target_range = c(get_benchmark(var = "exo.ir100.B", bound = "lower"),
+                             get_benchmark(var = "exo.ir100.B", bound = "upper")),
             title = paste("Plot ", i, ": Exogenous Incidence Rate (Black, Annualized)", sep = ""))
 
 i <- i+1
 target_plot(data = annual_incid,
             var = "exo.ir100.H",
             group = "treat",
-            benchmark = mean(c(0.653, 0.816)),
-            target_range = c(0.653, 0.816),
+            benchmark = get_benchmark(var = "exo.ir100.H"),
+            target_range = c(get_benchmark(var = "exo.ir100.H", bound = "lower"),
+                             get_benchmark(var = "exo.ir100.H", bound = "upper")),
             title = paste("Plot ", i, ": Exogenous Incidence Rate (Hispanic, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid,
             var = "exo.ir100.O",
             group = "treat",
-            benchmark = mean(c(0.506, 0.633)),
-            target_range = c(0.506, 0.633),
+            benchmark = get_benchmark(var = "exo.ir100.O"),
+            target_range = c(get_benchmark(var = "exo.ir100.O", bound = "lower"),
+                             get_benchmark(var = "exo.ir100.O", bound = "upper")),
             title = paste("Plot ", i, ": Exogenous Incidence Rate (Other, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid,
             var = "exo.ir100.W",
             group = "treat",
-            benchmark = mean(c(0.257, 0.3212)),
-            target_range = c(0.257, 0.3212),
+            benchmark = get_benchmark(var = "exo.ir100.W"),
+            target_range = c(get_benchmark(var = "exo.ir100.W", bound = "lower"),
+                             get_benchmark(var = "exo.ir100.W", bound = "upper")),
             title = paste("Plot ", i, ": Exogenous Incidence Rate (White, Annualized)", sep = ""))
 
 
@@ -363,29 +381,33 @@ i <- i+1
 target_plot(data = annual_incid2,
             var = "endo.ir100.B",
             group = "treat",
-            benchmark = 6.42 - mean(c(1.438, 1.798)),
-            target_range = c(4.44-1.438, 9.30-1.798),
+            benchmark = (get_benchmark(var = "ir100.B") - get_benchmark(var = "exo.ir100.B")),
+            target_range = c((get_benchmark(var = "ir100.B", bound = "lower") - get_benchmark(var = "exo.ir100.B", bound = "lower")),
+                             (get_benchmark(var = "ir100.B", bound = "upper") - get_benchmark(var = "exo.ir100.B", bound = "upper"))),
             title = paste("Plot ", i, ": Endogenous Incidence Rate (Black, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid2,
             var = "endo.ir100.H",
             group = "treat",
-            benchmark = 2.04 - mean(c(0.653, 0.816)),
-            target_range = c(1.10-0.653, 3.79-0.816),
+            benchmark = (get_benchmark(var = "ir100.H") - get_benchmark(var = "exo.ir100.H")),
+            target_range = c((get_benchmark(var = "ir100.H", bound = "lower") - get_benchmark(var = "exo.ir100.H", bound = "lower")),
+                             (get_benchmark(var = "ir100.H", bound = "upper") - get_benchmark(var = "exo.ir100.H", bound = "upper"))),
             title = paste("Plot ", i, ": Endogenous Incidence Rate (Hispanic, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid2,
             var = "endo.ir100.O",
             group = "treat",
-            benchmark = 1.71 - mean(c(0.506, 0.633)),
-            target_range = c(0.55-0.506, 5.31-0.633),
+            benchmark = (get_benchmark(var = "ir100.O") - get_benchmark(var = "exo.ir100.O")),
+            target_range = c((get_benchmark(var = "ir100.O", bound = "lower") - get_benchmark(var = "exo.ir100.O", bound = "lower")),
+                             (get_benchmark(var = "ir100.O", bound = "upper") - get_benchmark(var = "exo.ir100.O", bound = "upper"))),
             title = paste("Plot ", i, ": Endogenous Incidence Rate (Other, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid2,
             var = "endo.ir100.W",
             group = "treat",
-            benchmark = 0.73 - mean(c(0.257, 0.3212)),
-            target_range = c(0.24, 2.26-0.3212),
+            benchmark = (get_benchmark(var = "ir100.W") - get_benchmark(var = "exo.ir100.W")),
+            target_range = c((get_benchmark(var = "ir100.W", bound = "lower") - get_benchmark(var = "exo.ir100.W", bound = "lower")),
+                             (get_benchmark(var = "ir100.W", bound = "upper") - get_benchmark(var = "exo.ir100.W", bound = "upper"))),
             title = paste("Plot ", i, ": Endogenous Incidence Rate (White, Annualized)", sep = ""))
 
 
@@ -394,29 +416,33 @@ i <- i+1
 target_plot(data = annual_incid2,
             var = "ir100.B",
             group = "treat",
-            benchmark = 6.42,
-            target_range = c(4.44, 9.30),
+            benchmark = get_benchmark(var = "ir100.B"),
+            target_range = c(get_benchmark(var = "ir100.B", bound = "lower"),
+                             get_benchmark(var = "ir100.B", bound = "upper")),
             title = paste("Plot ", i, ": Total Incidence Rate (Black, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid2,
             var = "ir100.H",
             group = "treat",
-            benchmark = 2.04,
-            target_range = c(1.10, 3.79),
+            benchmark = get_benchmark(var = "ir100.H"),
+            target_range = c(get_benchmark(var = "ir100.H", bound = "lower"),
+                             get_benchmark(var = "ir100.H", bound = "upper")),
             title = paste("Plot ", i, ": Total Incidence Rate (Hispanic, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid2,
             var = "ir100.O",
             group = "treat",
-            benchmark = 1.71,
-            target_range = c(0.55, 5.31),
+            benchmark = get_benchmark(var = "ir100.O"),
+            target_range = c(get_benchmark(var = "ir100.O", bound = "lower"),
+                             get_benchmark(var = "ir100.O", bound = "upper")),
             title = paste("Plot ", i, ": Total Incidence Rate (Other, Annualized)", sep = ""))
 i <- i+1
 target_plot(data = annual_incid2,
             var = "ir100.W",
             group = "treat",
-            benchmark = 0.73,
-            target_range = c(0.24, 2.26),
+            benchmark = get_benchmark(var = "ir100.W"),
+            target_range = c(get_benchmark(var = "ir100.W", bound = "lower"),
+                             get_benchmark(var = "ir100.W", bound = "upper")),
             title = paste("Plot ", i, ": Total Incidence Rate (White, Annualized)", sep = ""))
 
 
