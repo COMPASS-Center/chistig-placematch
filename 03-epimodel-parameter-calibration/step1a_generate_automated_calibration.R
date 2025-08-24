@@ -139,19 +139,19 @@ calib_object <- list(
       # Arrival Rate
       a.rate            = 0.001386813,
       # HIV Testing Rates
-      hiv.test.rate_1   = 0.004052745,
-      hiv.test.rate_2   = 0.004265129,
-      hiv.test.rate_3   = 0.004668849,
-      hiv.test.rate_4   = 0.005370771,
+      hiv.test.rate_1   = 0.003978091,
+      hiv.test.rate_2   = 0.004332266,
+      hiv.test.rate_3   = 0.004816584,
+      hiv.test.rate_4   = 0.005486855,
       # ART Initiation Rates
-      tx.init.rate_1    = 0.3589051,
-      tx.init.rate_2    = 0.399814,
-      tx.init.rate_3    = 0.4093571,
-      tx.init.rate_4    = 0.5031471,
+      tx.init.rate_1    = 0.3582018,
+      tx.init.rate_2    = 0.397744,
+      tx.init.rate_3    = 0.4069773,
+      tx.init.rate_4    = 0.5046594,
       # ART Cessation (Full Suppression Odds Ratio)
-      tx.halt.full.or_1 = 0.9220912,
-      tx.halt.full.or_2 = 0.6431206,
-      tx.halt.full.or_3 = 1.415046,
+      tx.halt.full.or_1 = 0.9106696,
+      tx.halt.full.or_2 = 0.6442733,
+      tx.halt.full.or_3 = 1.422374,
       tx.halt.full.or_4 = 1.237048,
       # Exogenous Transmission Parameter
       exo.trans.prob.B = 0.4642641,
@@ -278,7 +278,7 @@ calib_object <- list(
           targets_val = get_benchmark(var = "cc.vsupp.W"),
           params = c("tx.halt.full.or_4"),
           initial_proposals = dplyr::tibble(
-            tx.halt.full.or_4 = sample(seq(1, 2, length.out = n_sims)),
+            tx.halt.full.or_4 = sample(seq(0.5, 1.5, length.out = n_sims)),
           ),
           make_next_proposals = swfcalib::make_shrink_proposer(n_sims, shrink = 2),
           get_result = swfcalib::determ_poly_end(0.001, poly_n = 5)
