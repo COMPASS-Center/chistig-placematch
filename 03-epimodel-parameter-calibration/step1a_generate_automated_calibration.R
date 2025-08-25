@@ -33,6 +33,13 @@ get_benchmark <- function(df = chistig_benchmarks, var) {
   return(df[which(df$measure_name == var), "target_val"])
 }
 
+# If you have to run the automated calibration workflow multiple times, you
+# won't want to waste time re-calibrating parameters for which you've already
+# received calibrated values. Accordingly, the `initial` object below will
+# specify whether to calibrate all parameters or just the `trans.scale`
+# parameters (in our experience these are the ones that require multiple
+# automated runs).
+initial <- FALSE
 
 # Define the `model` function
 model <- function(proposal) {
@@ -130,6 +137,8 @@ model <- function(proposal) {
   return(results)
 }
 
+if (isTRUE(initial)) {
+
 # Create the `calib_object`
 n_sims  <- 100
 calib_object <- list(
@@ -139,25 +148,25 @@ calib_object <- list(
       # Arrival Rate
       a.rate            = 0.001386813,
       # HIV Testing Rates
-      hiv.test.rate_1   = 0.003978091,
-      hiv.test.rate_2   = 0.004332266,
-      hiv.test.rate_3   = 0.004816584,
-      hiv.test.rate_4   = 0.005486855,
+      hiv.test.rate_1   = 0.003967851,
+      hiv.test.rate_2   = 0.004258612,
+      hiv.test.rate_3   = 0.004778796,
+      hiv.test.rate_4   = 0.005426617,
       # ART Initiation Rates
-      tx.init.rate_1    = 0.3582018,
-      tx.init.rate_2    = 0.397744,
-      tx.init.rate_3    = 0.4069773,
-      tx.init.rate_4    = 0.5046594,
+      tx.init.rate_1    = 0.3582836,
+      tx.init.rate_2    = 0.4009485,
+      tx.init.rate_3    = 0.4107714,
+      tx.init.rate_4    = 0.5020183,
       # ART Cessation (Full Suppression Odds Ratio)
-      tx.halt.full.or_1 = 0.9106696,
-      tx.halt.full.or_2 = 0.6442733,
-      tx.halt.full.or_3 = 1.422374,
-      tx.halt.full.or_4 = 1.237048,
+      tx.halt.full.or_1 = 0.9120049,
+      tx.halt.full.or_2 = 0.6532664,
+      tx.halt.full.or_3 = 1.427322,
+      tx.halt.full.or_4 = 0.8325551,
       # Exogenous Transmission Parameter
-      exo.trans.prob.B = 0.4642641,
-      exo.trans.prob.H = 0.2100492,
-      exo.trans.prob.O = 0.1640618,
-      exo.trans.prob.W = 0.08310792,
+      exo.trans.prob.B = 0.46386,
+      exo.trans.prob.H = 0.2137259,
+      exo.trans.prob.O = 0.1615518,
+      exo.trans.prob.W = 0.08244508,
       # Trans Scale
       hiv.trans.scale_1 = 17.5,
       hiv.trans.scale_2 = 3.5,
@@ -337,10 +346,10 @@ calib_object <- list(
                         get_benchmark(var = "ir100.W") - get_benchmark(var = "exo.ir100.W")),
         params = paste0("hiv.trans.scale_", 1:4),
         initial_proposals = dplyr::tibble(
-          hiv.trans.scale_1 = sample(seq(10, 19, length.out = n_sims)), # Need to update for parameters
-          hiv.trans.scale_2 = sample(seq(0.1, 7, length.out = n_sims)),
-          hiv.trans.scale_3 = sample(seq(0.1, 7, length.out = n_sims)),
-          hiv.trans.scale_4 = sample(seq(0.1, 7, length.out = n_sims))
+          hiv.trans.scale_1 = sample(seq(11, 18, length.out = n_sims)), # Need to update for parameters
+          hiv.trans.scale_2 = sample(seq(0.8, 5.75, length.out = n_sims)),
+          hiv.trans.scale_3 = sample(seq(0.3, 5.34, length.out = n_sims)),
+          hiv.trans.scale_4 = sample(seq(0.14, 2, length.out = n_sims))
         ),
         make_next_proposals =
           swfcalib::make_proposer_se_range(n_sims, retain_prop = 0.3),
@@ -352,6 +361,73 @@ calib_object <- list(
     )
   )
 )
+# Calibrating only the `trans.scale` parameters (`initial == FALSE`)
+} else {
+  # Create the `calib_object`
+  n_sims  <- 100
+  calib_object <- list(
+    config = list(
+      simulator = model,
+      default_proposal = dplyr::tibble(
+        # Arrival Rate
+        a.rate            = 0.001386813,
+        # HIV Testing Rates
+        hiv.test.rate_1   = 0.003967851,
+        hiv.test.rate_2   = 0.004258612,
+        hiv.test.rate_3   = 0.004778796,
+        hiv.test.rate_4   = 0.005426617,
+        # ART Initiation Rates
+        tx.init.rate_1    = 0.3582836,
+        tx.init.rate_2    = 0.4009485,
+        tx.init.rate_3    = 0.4107714,
+        tx.init.rate_4    = 0.5020183,
+        # ART Cessation (Full Suppression Odds Ratio)
+        tx.halt.full.or_1 = 0.9120049,
+        tx.halt.full.or_2 = 0.6532664,
+        tx.halt.full.or_3 = 1.427322,
+        tx.halt.full.or_4 = 0.8325551,
+        # Exogenous Transmission Parameter
+        exo.trans.prob.B = 0.46386,
+        exo.trans.prob.H = 0.2137259,
+        exo.trans.prob.O = 0.1615518,
+        exo.trans.prob.W = 0.08244508,
+        # Trans Scale
+        hiv.trans.scale_1 = 17.5,
+        hiv.trans.scale_2 = 3.5,
+        hiv.trans.scale_3 = 2,
+        hiv.trans.scale_4 = 1
+      ),
+      root_directory = "./03-epimodel-parameter-calibration/data/calib",
+      max_iteration = 100,
+      n_sims = n_sims
+    ),
+    waves = list(
+      # Wave 1 (Trans Scale and Engogenous Incidence Rate)
+      wave1 = list(
+        job1 = list(
+          targets = paste0("endo.ir100.", c("B", "H", "O", "W")),
+          targets_val = c(get_benchmark(var = "ir100.B") - get_benchmark(var = "exo.ir100.B"),
+                          get_benchmark(var = "ir100.H") - get_benchmark(var = "exo.ir100.H"),
+                          get_benchmark(var = "ir100.O") - get_benchmark(var = "exo.ir100.O"),
+                          get_benchmark(var = "ir100.W") - get_benchmark(var = "exo.ir100.W")),
+          params = paste0("hiv.trans.scale_", 1:4),
+          initial_proposals = dplyr::tibble(
+            hiv.trans.scale_1 = sample(seq(11, 18, length.out = n_sims)), # Need to update for parameters
+            hiv.trans.scale_2 = sample(seq(0.8, 5.75, length.out = n_sims)),
+            hiv.trans.scale_3 = sample(seq(0.3, 5.34, length.out = n_sims)),
+            hiv.trans.scale_4 = sample(seq(0.14, 2, length.out = n_sims))
+          ),
+          make_next_proposals =
+            swfcalib::make_proposer_se_range(n_sims, retain_prop = 0.3),
+          get_result = swfcalib::determ_end_thresh(
+            thresholds = c(0.1, 0.1, 0.1, 0.1),
+            n_enough = 100
+          )
+        )
+      )
+    )
+  )
+}
 
 # REMEMBER TO SWAP PREVALENCE FOR INCIDENCE RATES FOR WAVE 4
 
