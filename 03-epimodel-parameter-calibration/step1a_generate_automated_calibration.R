@@ -392,10 +392,10 @@ calib_object <- list(
         exo.trans.prob.O = 0.1615518,
         exo.trans.prob.W = 0.08244508,
         # Trans Scale
-        hiv.trans.scale_1 = 17.5,
-        hiv.trans.scale_2 = 3.5,
-        hiv.trans.scale_3 = 2,
-        hiv.trans.scale_4 = 1
+        hiv.trans.scale_1 = 13.27132,
+        hiv.trans.scale_2 = 3.225005,
+        hiv.trans.scale_3 = 2.9784875,
+        hiv.trans.scale_4 = 1.0302112
       ),
       root_directory = "./03-epimodel-parameter-calibration/data/calib",
       max_iteration = 100,
@@ -412,10 +412,10 @@ calib_object <- list(
                           get_benchmark(var = "ir100.W") - get_benchmark(var = "exo.ir100.W")),
           params = paste0("hiv.trans.scale_", 1:4),
           initial_proposals = dplyr::tibble(
-            hiv.trans.scale_1 = sample(seq(11, 18, length.out = n_sims)), # Need to update for parameters
-            hiv.trans.scale_2 = sample(seq(0.8, 5.75, length.out = n_sims)),
-            hiv.trans.scale_3 = sample(seq(0.3, 5.34, length.out = n_sims)),
-            hiv.trans.scale_4 = sample(seq(0.14, 2, length.out = n_sims))
+            hiv.trans.scale_1 = sample(seq(13.27132, 13.27132, length.out = n_sims)), # Need to update for parameters
+            hiv.trans.scale_2 = sample(seq(3.225005, 3.225005, length.out = n_sims)),
+            hiv.trans.scale_3 = sample(seq(2.9784875, 2.9784875, length.out = n_sims)),
+            hiv.trans.scale_4 = sample(seq(1.0302112, 1.0302112, length.out = n_sims))
           ),
           make_next_proposals =
             swfcalib::make_proposer_se_range(n_sims, retain_prop = 0.3),
