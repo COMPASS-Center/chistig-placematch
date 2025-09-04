@@ -24,3 +24,18 @@ calib_object$state$iteration
 # Examine and confirm calibrated parameter values going into most recent wave of calibration
 # (This is what you'll want to manually copy into your `params.csv` file)
 calib_object$state$default_proposal
+
+# Write parameter values from `calib_object$state$default_proposal` to
+# `./03-epimodel-parameter-calibration/data/input/params_chistig.csv`
+#### Read in `params_chistig.csv`
+params_chistig <- read.csv("./03-epimodel-parameter-calibration/data/input/params_chistig.csv")
+#### Set up data frame we'll use to source updated values for `params_chistig.csv`
+param_values <- as.data.frame(t(as.data.frame(calib_object$state$default_proposal)))
+param_values$param <- rownames(param_values)
+#### Loop over `param_values` data frame to update values in `params_chistig`
+for (i in 1:nrow(param_values)) {
+  params_chistig[params_chistig$param == param_values[i, "param"], "value"] <- param_values[i, 1]
+}
+#### Write upated `params_chistig.csv`
+write.csv(params_chistig, "./03-epimodel-parameter-calibration/data/input/params_chistig.csv")
+

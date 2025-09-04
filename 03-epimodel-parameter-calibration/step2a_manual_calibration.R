@@ -116,10 +116,12 @@ scenarios_df <- tibble(
 
  # `trans.scale` parameter accounting for unexplained sources of racial disparities
  #    in HIV incidence/prevalence
- hiv.trans.scale_1 = c(1, seq(    17.5,     17.5, length.out = n_scenarios-1)),
- hiv.trans.scale_2 = c(1, seq(     5.2,      5.2, length.out = n_scenarios-1)),
- hiv.trans.scale_3 = c(1, seq(     3.04,    3.04, length.out = n_scenarios-1)),
- hiv.trans.scale_4 = c(1, seq(     .25,        1, length.out = n_scenarios-1))
+
+ hiv.trans.scale_1 = c(seq(    16,     16, length.out = n_scenarios)),
+ hiv.trans.scale_2 = c(seq(     2.954994,      2.954994, length.out = n_scenarios)),
+ hiv.trans.scale_3 = c(seq(     1.6,    1.6, length.out = n_scenarios)),
+ hiv.trans.scale_4 = c(seq(     0.7601167,        0.7601167, length.out = n_scenarios))
+
 
   # tt.partial.supp.prob_1 = c(0, .2),
   # tt.partial.supp.prob_2 = c(0, .2),

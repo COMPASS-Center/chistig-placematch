@@ -341,7 +341,7 @@ target_plot(data = sim_targets,
 
 # Annualized Exogenous Incidence Rate -----------------------------------------
 i <- i+1
-target_plot(data = annual_incid,
+target_plot(data = annual_incid2,
             var = "exo.ir100.B",
             group = "treat",
             benchmark = get_benchmark(var = "exo.ir100.B"),
@@ -350,7 +350,7 @@ target_plot(data = annual_incid,
             title = paste("Plot ", i, ": Exogenous Incidence Rate (Black, Annualized)", sep = ""))
 
 i <- i+1
-target_plot(data = annual_incid,
+target_plot(data = annual_incid2,
             var = "exo.ir100.H",
             group = "treat",
             benchmark = get_benchmark(var = "exo.ir100.H"),
@@ -358,7 +358,7 @@ target_plot(data = annual_incid,
                              get_benchmark(var = "exo.ir100.H", bound = "upper")),
             title = paste("Plot ", i, ": Exogenous Incidence Rate (Hispanic, Annualized)", sep = ""))
 i <- i+1
-target_plot(data = annual_incid,
+target_plot(data = annual_incid2,
             var = "exo.ir100.O",
             group = "treat",
             benchmark = get_benchmark(var = "exo.ir100.O"),
@@ -366,7 +366,7 @@ target_plot(data = annual_incid,
                              get_benchmark(var = "exo.ir100.O", bound = "upper")),
             title = paste("Plot ", i, ": Exogenous Incidence Rate (Other, Annualized)", sep = ""))
 i <- i+1
-target_plot(data = annual_incid,
+target_plot(data = annual_incid2,
             var = "exo.ir100.W",
             group = "treat",
             benchmark = get_benchmark(var = "exo.ir100.W"),
