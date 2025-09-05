@@ -166,4 +166,4 @@ sim <- netsim(est, param, init, control)
 end_time <- Sys.time()
 
 # saveRDS(sim, paste0(this_dir, "output/", treatment, "_", treatment_run_number, "_", experiment_name, ".rds"))
-saveRDS(sim, paste0(this_dir, "simout-", treatment_type, "_run-no-", treatment_run_num, ".rds"))
+saveRDS(sim, paste0(this_dir, "simout-", treatment, "_run-no-", treatment_run_num, ".rds"))
