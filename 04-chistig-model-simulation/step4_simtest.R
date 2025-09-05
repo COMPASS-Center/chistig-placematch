@@ -83,7 +83,7 @@ source(paste0(project_dir, "utils/utils-targets.R"))
 #
 # Necessary files
 epistats <- readRDS(paste0(project_dir, "00-preliminary-setup/epistats.rds"))
-netstats <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/netstats_local.rds"))
+netstats <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/netstats-local.rds"))
 
 if (treatment == 'venues'){
     est <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/venue_only_netest-local.rds"))
