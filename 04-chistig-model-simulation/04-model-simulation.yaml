@@ -1,0 +1,17 @@
+
+
+# list of treatments to run simulations on
+
+# number of simulations to run for each treatment
+
+# max random seed number
+
+# filename that contains the input for each of the runs
+
+
+# location of netest objects
+
+# location of this directory
+
+# location of utils 
+
