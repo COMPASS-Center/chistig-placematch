@@ -16,14 +16,12 @@ num_convergence_attempts = yamldata['num.ergm.convergence.attempts']
 random_seed_max = yamldata['max.random.seed']
 
 # setup args input filename 
-# expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
 expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 expiriment_interim_dir = f"{expiriment_dir}{yamldata['interim.data.subdir']}"
-# output_fname = f"{yamldata['step2b.inputargs.fname']}_{yamldata['expname']}.txt"
 output_fname = f"{yamldata['step2b.inputargs.fname']}.txt"
 
 output_file = f"{expiriment_dir}{output_fname}"
-# output_file = "test_output_step2.txt"
+
 
 # obtain the length of the calibration set matrix 
 calibration_df_fname = f"{yamldata['calibration.matrix.fname']}"
