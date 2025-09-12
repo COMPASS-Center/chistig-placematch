@@ -13,8 +13,6 @@ with open(yamlfname) as stream:
         print(exc)
 
 # experiment name 
-# experiment_name = yamldata['expname']
-# expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}{yamldata['expname']}/"
 expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}" 
 
 if 'expname' in yamldata:
@@ -26,8 +24,6 @@ else:
 
 expiriment_interim_dir = f"{expiriment_dir}{yamldata['interim.data.subdir']}"
 
-# simulation dir 
-# simulation_dir = expiriment_interim_dir
 simulation_dir = expiriment_interim_dir
 
 # params dir
@@ -56,10 +52,6 @@ simulation_random_seeds = random.sample(range(yamldata['max.random.seed'] + 1), 
 sim_args_fname = f"{simulation_dir}{yamldata['step3.simulation.args.fname']}" #nolint
 sbatch_simulation_bash_commands_outfile = f"{simulation_dir}{yamldata['step3.simulation.sbatch.fname']}"
 
-# # print(simulation_random_seeds)
-# # print(sim_args_fname)
-# # print(sbatch_simulation_bash_commands_outfile)
-# # # print(sbatch_simulation_bash_commands_outfile)
 
 simulation_args_dict = {}
 run = 0
@@ -80,9 +72,6 @@ with open(sim_args_fname, 'w') as file:
                     line = f"{run}\t{setno}\t{thistreatment}\t{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\n"
                     file.write(line)                                
                     run += 1
-
-
-# print(simulation_args_dict)
 
 
 

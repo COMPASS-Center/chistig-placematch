@@ -71,3 +71,10 @@ partnership.types:
 simulation.yaml.override:
   stop.at: 4000
   burnin.time.weeks: 4000
+
+
+# parameters
+departure.rate.main: 0.0018
+departure.rate.casual: 0.0014
+
+

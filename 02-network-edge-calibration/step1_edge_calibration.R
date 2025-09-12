@@ -44,8 +44,11 @@ target_extract = function(df = target_df, term, model) {
 ### Our calibration process found the below two values to be what is needed for
 ### successful edge calibration, which we provide in hopes that you will not need
 ### to recalibrate these parameters.
-drate_main <- .0018
-drate_cas <- .0014
+# drate_main <- .0018
+# drate_cas <- .0014
+drate_main <- yamldata$departure.rate.main
+drate_cas <- yamldata$departure.rate.casual
+
 
 ### These three objects store values to test for the "target stats" that inform
 ### how many ties in our partnership networks should feature colocation on
