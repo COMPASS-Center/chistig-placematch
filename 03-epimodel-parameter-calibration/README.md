@@ -18,7 +18,7 @@ After saving modifications to `step1a_generate_automated_calibration.R`, we push
 
 Once we have pushed the updated `step1a_generate_automated_calibration.R` to GitHub, we will want to ensure this updated script appears in our HPC environment (again, Northwestern's *Quest* in this instance). Using the command line within RStudio (this makes it easier to locate files within this project's GitHub repository), Northwestern personnel with proper access to Quest can log in via the following command:
 
-`$ ssh -X <webID>@quest.northwestern.edu`
+`$ ssh -X <netID>@quest.northwestern.edu`
 
 (Note: You’ll be asked for your password here)
 
@@ -34,7 +34,7 @@ If you are cloning the GitHub repository for the first time, use the following c
 
 If you have previously cloned the GitHub repository to your project allocation, simply pull the latest commit of the repository:
 
-`$ cd ./chiSTIG_HPC`
+`$ cd ./chistig-placematch`
 
 `$ git pull`
 
@@ -64,7 +64,7 @@ Upon completion, the automated calibration workflow stores a variety of output f
 
 Using the command line, log into your HPC cluster:
 
-`$ ssh -X <webID>@quest.northwestern.edu`
+`$ ssh -X <netID>@quest.northwestern.edu`
 
 Enter your password:
 
