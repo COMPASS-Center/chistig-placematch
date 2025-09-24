@@ -20,7 +20,8 @@ set.seed(random_seed)
 # Define which "Treatment" we're running here
 treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
 treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
-
+print(treatment_run_number)
+print(treatment_run_letter)
 
 if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
   treatment <- "control"
@@ -166,4 +167,4 @@ sim <- netsim(est, param, init, control)
 end_time <- Sys.time()
 
 # saveRDS(sim, paste0(this_dir, "output/", treatment, "_", treatment_run_number, "_", experiment_name, ".rds"))
-saveRDS(sim, paste0(this_dir, "simout-", treatment, "_run-no-", treatment_run_num, ".rds"))
+saveRDS(sim, paste0(this_dir, "simout-", treatment, "_run-no-", treatment_run_number, ".rds"))
