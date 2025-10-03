@@ -1,6 +1,40 @@
+# repo.dir: '/projects/p32153/chistig-placematch/'
+repo.dir: '/Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/'
+model.simulation.subdir: '04-chistig-model-simulation/'
+calibration.subdir: '02-network-edge-calibration/'
+
+model.simulation.interim.subdir: 'interim/'
+model.simulation.output.subdir: 'output/'
+
+model.simulation.rscript.fname: '04_chistig_model_simulation.R'
+sbatch.outfile.fname: '04_sbatch.sh'
+
+experiment.name: 'step4'
+number.runs.per.treatment: 120 
+batch.runs.args.fname: '04_input_args.txt'
+random.seed.max: 800
+
+treatment.types:
+  - control
+  # - apps
+  - venues
+  # - venuesapps      
 
 
-# list of treatments to run simulations on
+# partnerships
+partnership.types:
+  - main
+  - casual      
+  - onetime
+
+
+sbatch.email: 'tom.wolff@northwestern.edu'
+sbatch.memory: '3G'
+sbatch.walltime.hours: '08'
+sbatch.walltime.minutes: '00'
+sbatch.partition: 'normal'
+
+
 
 # number of simulations to run for each treatment
 
@@ -15,3 +49,6 @@
 
 # location of utils 
 
+
+
+python.instance: '/projects/p32153/condaenvs/conda-chistig/bin/python'

@@ -1,19 +1,36 @@
 import random 
+import sys
+import yaml 
+
+yamlfname = sys.argv[1]
+
+with open(yamlfname) as stream:
+    try:
+        yamldata = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
 
 
-experiment_name = "step4"
-num_runs_per_treatment = 120
+experiment_name = yamldata['experiment.name']
+output_fname = yamldata['batch.runs.args.fname']
+print(output_fname)
+output_file = output_fname
 
-# treatments = {'control': 'c', 'venues': 'v', 'apps': 'a', 'both':'b'}
-treatments = {'control': 'c', 'venues': 'v'}
-random_seed_max = 800
+treatments_dict = {'control': 'c', 'venues': 'v', 'apps': 'a', 'both':'b'}
+treatments_list = yamldata['treatment.types']
+treatments = {}
+for treatment in treatments_list:
+      treatments[treatment] = treatments_dict[treatment]
+num_runs_per_treatment = yamldata['number.runs.per.treatment']
+
+random_seed_max = int(yamldata['random.seed.max'])
 random_seeds = random.sample(range(random_seed_max + 1), num_runs_per_treatment)
-output_file = f'{experiment_name}_input_args.txt'
+
 
 run = 0
 with open(output_file, 'w') as file:
 	for thistreatment in treatments:
 		for thistreatmentrun, thisrandomseed in enumerate(random_seeds):
-			line = f"{run}\t{treatments[thistreatment]}{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\n"
+			line = f"{run}\t{treatments[thistreatment]}{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\t{yamlfname}\n"
 			file.write(line)
 			run += 1
