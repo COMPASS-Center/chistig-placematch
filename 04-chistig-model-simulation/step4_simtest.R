@@ -11,6 +11,8 @@ sbatch_run_num <- args[1]
 treatment_run <- args[2]
 experiment_name <- args[3]
 random_seed <- as.integer(args[4])
+yamlfname <- args[5]
+yamldata <- yaml.load_file(yamlfname)
 
 
 # set random seed
@@ -48,7 +50,7 @@ this_dir <- paste0(project_dir, "04-chistig-model-simulation/")
 # load python instance
 reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
 # reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
-
+reticulate::use_python()
 
 print("")
 
