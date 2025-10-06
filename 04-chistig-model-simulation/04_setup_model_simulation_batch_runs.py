@@ -30,6 +30,7 @@ if not os.path.exists(model_sim_output_subdir):
 
 # NOTE: this is the subdirectory from which the scripts submitted to the cluster will be made
 # This could be changed to the "interim" subdirectory specified above
+# However, if this subdirectory were to change, the dependent files need to also be in the same subdirectory
 sbatch_subdir = model_sim_subdir
 
 
