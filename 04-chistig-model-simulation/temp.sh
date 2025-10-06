@@ -16,7 +16,7 @@ conda activate /projects/p32153/condaenvs/conda-chistig
 
 R --version
 
-IFS=$'\n' read -d '' -r -a input_args < 04_input_args.txt
+IFS=$'\n' read -d '' -r -a input_args < /Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/04-chistig-model-simulation/04_input_args.txt
 echo ${input_args[$SLURM_ARRAY_TASK_ID]}
 
 SECONDS=0

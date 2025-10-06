@@ -12,11 +12,14 @@ with open(yamlfname) as stream:
     except yaml.YAMLError as exc:
         print(exc)
 
+
+###########################
+# setup the directory structure
+###########################
 repo_dir = yamldata['repo.dir']
 model_sim_subdir = f"{repo_dir}{yamldata['model.simulation.subdir']}"
 model_sim_interim_subdir = f"{model_sim_subdir}{yamldata['model.simulation.interim.subdir']}"
 model_sim_output_subdir = f"{model_sim_subdir}{yamldata['model.simulation.output.subdir']}"
-
 
 if not os.path.exists(model_sim_interim_subdir):
     os.mkdir(model_sim_interim_subdir)
@@ -25,6 +28,14 @@ if not os.path.exists(model_sim_output_subdir):
     os.mkdir(model_sim_output_subdir)
 
 
+# NOTE: this is the subdirectory from which the scripts submitted to the cluster will be made
+# This could be changed to the "interim" subdirectory specified above
+sbatch_subdir = model_sim_subdir
+
+
+###########################
+# setup the arguments for the batch runs  
+###########################
 experiment_name = yamldata['experiment.name']
 
 treatments_dict = {'control': 'c', 'venues': 'v', 'apps': 'a', 'both':'b'}
@@ -42,23 +53,21 @@ random_seeds = random.sample(range(random_seed_max + 1), num_runs_per_treatment)
 # write sbatch input args file
 ###########################
 model_run_args_fname = yamldata['batch.runs.args.fname']
-model_run_args_file = model_run_args_fname
+model_run_args_file = f'{sbatch_subdir}{model_run_args_fname}'
 
 run = 0
 with open(model_run_args_file, 'w') as file:
-	for thistreatment in treatments:
-		for thistreatmentrun, thisrandomseed in enumerate(random_seeds):
-			line = f"{run}\t{treatments[thistreatment]}{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\t{yamlfname}\n"
-			file.write(line)
-			run += 1
-			
-
+    for thistreatment in treatments:
+        for thistreatmentrun, thisrandomseed in enumerate(random_seeds):
+            line = f"{run}\t{treatments[thistreatment]}{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\t{yamlfname}\n"
+            file.write(line)
+            run += 1
 
 
 ###########################
 # write sbatch script file
 ###########################
-sbatch_bash_commands_outfile = f"{model_sim_subdir}{yamldata['sbatch.outfile.fname']}"
+sbatch_bash_commands_outfile = f"{sbatch_subdir}{yamldata['sbatch.outfile.fname']}"
 
 
 sbatch = f"""
@@ -88,7 +97,7 @@ echo $SECONDS
 
 """
 
-outfile_temp = f'{model_sim_subdir}temp.sh'
+outfile_temp = f'{sbatch_subdir}temp.sh'
 # outfile_temp = f'temp.sh'
 with open(outfile_temp, 'w') as f:
 	f.write(sbatch)
