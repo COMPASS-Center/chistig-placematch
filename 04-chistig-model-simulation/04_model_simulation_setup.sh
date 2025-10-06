@@ -7,5 +7,5 @@ R --version
 
 yaml_file=$1
 
-python 04_setup_model_simulation_batch_runs.py yaml_file
+python 04_setup_model_simulation_batch_runs.py "$yaml_file"
 
