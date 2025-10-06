@@ -16557,3 +16557,1575 @@ s15406 is age 16.0 and blackNH and is entering the model
 
 Agents are attending venues and using apps for week 234 in simulation...
 
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 234/3640
+Prevalence: 2100
+Population Size: 11645
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s06627 is blackNH, aged 26.72776923076942 in age group 21to29, with relationship status of 1 and is now HIV+.
+s08060 is hispanic, aged 25.75576923076942 in age group 16to20, with relationship status of 0 and is now HIV+.
+s08878 is hispanic, aged 25.571769230769423 in age group 21to29, with relationship status of 1 and is now HIV+.
+s10920 is otherNH, aged 21.62476923076942 in age group 21to29, with relationship status of 0 and is now HIV+.
+s13730 is blackNH, aged 18.057692307692395 in age group 16to20, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00131 is aged 29.99476923076942, whiteNH and is leaving the simulation.
+s01750 is aged 29.99176923076942, whiteNH and is leaving the simulation.
+s02616 is aged 29.995769230769422, whiteNH and is leaving the simulation.
+s03186 is aged 29.981769230769423, whiteNH and is leaving the simulation.
+s03322 is aged 29.981769230769423, whiteNH and is leaving the simulation.
+s04022 is aged 29.98576923076942, blackNH and is leaving the simulation.
+s05191 is aged 29.99476923076942, blackNH and is leaving the simulation.
+s05653 is aged 29.99676923076942, blackNH and is leaving the simulation.
+s07797 is aged 29.998769230769422, hispanic and is leaving the simulation.
+s07872 is aged 29.986769230769422, hispanic and is leaving the simulation.
+s07918 is aged 29.98576923076942, hispanic and is leaving the simulation.
+s08257 is aged 29.99476923076942, hispanic and is leaving the simulation.
+s09944 is aged 29.980769230769422, hispanic and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00414 is 21.004000000000193 and has aged to age group 21to29.
+s01257 is 21.015000000000192 and has aged to age group 21to29.
+s01470 is 21.000000000000192 and has aged to age group 21to29.
+s01560 is 21.01900000000019 and has aged to age group 21to29.
+s01803 is 21.001000000000193 and has aged to age group 21to29.
+s02241 is 21.00500000000019 and has aged to age group 21to29.
+s03096 is 21.01900000000019 and has aged to age group 21to29.
+s03152 is 21.01900000000019 and has aged to age group 21to29.
+s04484 is 21.013000000000194 and has aged to age group 21to29.
+s04848 is 21.013000000000194 and has aged to age group 21to29.
+s05047 is 21.01700000000019 and has aged to age group 21to29.
+s05205 is 21.003000000000192 and has aged to age group 21to29.
+s05760 is 21.009000000000192 and has aged to age group 21to29.
+s06685 is 21.012000000000192 and has aged to age group 21to29.
+s07633 is 21.01900000000019 and has aged to age group 21to29.
+s08246 is 21.007000000000193 and has aged to age group 21to29.
+s09405 is 21.00200000000019 and has aged to age group 21to29.
+s10109 is 21.01700000000019 and has aged to age group 21to29.
+s10613 is 21.012000000000192 and has aged to age group 21to29.
+s10779 is 21.01700000000019 and has aged to age group 21to29.
+s11358 is 21.012000000000192 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15407 is age 16.0 and hispanic and is entering the model
+s15408 is age 16.0 and whiteNH and is entering the model
+s15409 is age 16.0 and blackNH and is entering the model
+s15410 is age 16.0 and hispanic and is entering the model
+s15411 is age 16.0 and hispanic and is entering the model
+s15412 is age 16.0 and hispanic and is entering the model
+s15413 is age 16.0 and hispanic and is entering the model
+s15414 is age 16.0 and hispanic and is entering the model
+s15415 is age 16.0 and whiteNH and is entering the model
+s15416 is age 16.0 and blackNH and is entering the model
+s15417 is age 16.0 and hispanic and is entering the model
+s15418 is age 16.0 and blackNH and is entering the model
+s15419 is age 16.0 and blackNH and is entering the model
+s15420 is age 16.0 and blackNH and is entering the model
+s15421 is age 16.0 and blackNH and is entering the model
+s15422 is age 16.0 and blackNH and is entering the model
+s15423 is age 16.0 and hispanic and is entering the model
+s15424 is age 16.0 and whiteNH and is entering the model
+s15425 is age 16.0 and hispanic and is entering the model
+s15426 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 235 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 235/3640
+Prevalence: 2101
+Population Size: 11652
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s12564 is blackNH, aged 19.48076923076938 in age group 16to20, with relationship status of 0 and is now HIV+.
+s12584 is hispanic, aged 19.46153846153861 in age group 16to20, with relationship status of 0 and is now HIV+.
+s13322 is hispanic, aged 18.557692307692417 in age group 16to20, with relationship status of 1 and is now HIV+.
+s13663 is blackNH, aged 18.173076923077016 in age group 16to20, with relationship status of 1 and is now HIV+.
+s14686 is otherNH, aged 16.923076923076962 in age group 16to20, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s01767 is aged 29.98700000000019, whiteNH and is leaving the simulation.
+s02032 is aged 29.98800000000019, whiteNH and is leaving the simulation.
+s02116 is aged 29.995000000000193, whiteNH and is leaving the simulation.
+s02727 is aged 29.986000000000193, whiteNH and is leaving the simulation.
+s03368 is aged 29.984000000000194, whiteNH and is leaving the simulation.
+s05544 is aged 29.989000000000193, blackNH and is leaving the simulation.
+s06674 is aged 29.986000000000193, blackNH and is leaving the simulation.
+s07720 is aged 29.992000000000193, hispanic and is leaving the simulation.
+s08387 is aged 29.98200000000019, hispanic and is leaving the simulation.
+s08487 is aged 29.98700000000019, hispanic and is leaving the simulation.
+s08739 is aged 29.984000000000194, hispanic and is leaving the simulation.
+s09218 is aged 29.98800000000019, hispanic and is leaving the simulation.
+s10502 is aged 29.99100000000019, otherNH and is leaving the simulation.
+s10907 is aged 29.983000000000192, otherNH and is leaving the simulation.
+s11220 is aged 29.99900000000019, otherNH and is leaving the simulation.
+s11342 is aged 29.99400000000019, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00782 is 21.01823076923096 and has aged to age group 21to29.
+s01494 is 21.00723076923096 and has aged to age group 21to29.
+s01833 is 21.002230769230962 and has aged to age group 21to29.
+s04028 is 21.002230769230962 and has aged to age group 21to29.
+s04852 is 21.000230769230964 and has aged to age group 21to29.
+s04930 is 21.011230769230963 and has aged to age group 21to29.
+s05643 is 21.016230769230962 and has aged to age group 21to29.
+s05652 is 21.005230769230963 and has aged to age group 21to29.
+s05672 is 21.01323076923096 and has aged to age group 21to29.
+s07044 is 21.01523076923096 and has aged to age group 21to29.
+s07362 is 21.01823076923096 and has aged to age group 21to29.
+s07529 is 21.01823076923096 and has aged to age group 21to29.
+s08242 is 21.003230769230964 and has aged to age group 21to29.
+s10285 is 21.01523076923096 and has aged to age group 21to29.
+s10316 is 21.005230769230963 and has aged to age group 21to29.
+s10967 is 21.003230769230964 and has aged to age group 21to29.
+s10975 is 21.01823076923096 and has aged to age group 21to29.
+s11276 is 21.00123076923096 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15427 is age 16.0 and otherNH and is entering the model
+s15428 is age 16.0 and whiteNH and is entering the model
+s15429 is age 16.0 and blackNH and is entering the model
+s15430 is age 16.0 and hispanic and is entering the model
+s15431 is age 16.0 and hispanic and is entering the model
+s15432 is age 16.0 and hispanic and is entering the model
+s15433 is age 16.0 and hispanic and is entering the model
+s15434 is age 16.0 and whiteNH and is entering the model
+s15435 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 236 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 236/3640
+Prevalence: 2099
+Population Size: 11645
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s11060 is otherNH, aged 22.119230769230963 in age group 21to29, with relationship status of 0 and is now HIV+.
+s11310 is otherNH, aged 23.29223076923096 in age group 21to29, with relationship status of 0 and is now HIV+.
+s13242 is whiteNH, aged 18.673076923077037 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00284 is aged 29.994230769230963, whiteNH and is leaving the simulation.
+s00581 is aged 29.994230769230963, whiteNH and is leaving the simulation.
+s01105 is aged 29.993230769230962, whiteNH and is leaving the simulation.
+s01648 is aged 29.98323076923096, whiteNH and is leaving the simulation.
+s01723 is aged 29.98923076923096, whiteNH and is leaving the simulation.
+s01867 is aged 29.98123076923096, whiteNH and is leaving the simulation.
+s02280 is aged 29.987230769230962, whiteNH and is leaving the simulation.
+s02413 is aged 29.98323076923096, whiteNH and is leaving the simulation.
+s04131 is aged 29.987230769230962, blackNH and is leaving the simulation.
+s04361 is aged 29.985230769230963, blackNH and is leaving the simulation.
+s04572 is aged 29.98323076923096, blackNH and is leaving the simulation.
+s06033 is aged 29.98323076923096, blackNH and is leaving the simulation.
+s09971 is aged 29.982230769230963, hispanic and is leaving the simulation.
+s10783 is aged 29.996230769230962, otherNH and is leaving the simulation.
+s11497 is aged 29.994230769230963, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00886 is 21.006461538461732 and has aged to age group 21to29.
+s01167 is 21.00846153846173 and has aged to age group 21to29.
+s01683 is 21.003461538461732 and has aged to age group 21to29.
+s02558 is 21.006461538461732 and has aged to age group 21to29.
+s02637 is 21.00846153846173 and has aged to age group 21to29.
+s02682 is 21.018461538461732 and has aged to age group 21to29.
+s03356 is 21.009461538461732 and has aged to age group 21to29.
+s03662 is 21.001461538461733 and has aged to age group 21to29.
+s03700 is 21.009461538461732 and has aged to age group 21to29.
+s04991 is 21.012461538461732 and has aged to age group 21to29.
+s05679 is 21.00546153846173 and has aged to age group 21to29.
+s05683 is 21.018461538461732 and has aged to age group 21to29.
+s06688 is 21.010461538461733 and has aged to age group 21to29.
+s06758 is 21.00846153846173 and has aged to age group 21to29.
+s07329 is 21.00546153846173 and has aged to age group 21to29.
+s07449 is 21.018461538461732 and has aged to age group 21to29.
+s09011 is 21.010461538461733 and has aged to age group 21to29.
+s09276 is 21.00046153846173 and has aged to age group 21to29.
+s10937 is 21.007461538461733 and has aged to age group 21to29.
+s11349 is 21.01746153846173 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15436 is age 16.0 and blackNH and is entering the model
+s15437 is age 16.0 and otherNH and is entering the model
+s15438 is age 16.0 and blackNH and is entering the model
+s15439 is age 16.0 and whiteNH and is entering the model
+s15440 is age 16.0 and whiteNH and is entering the model
+s15441 is age 16.0 and hispanic and is entering the model
+s15442 is age 16.0 and whiteNH and is entering the model
+s15443 is age 16.0 and hispanic and is entering the model
+s15444 is age 16.0 and blackNH and is entering the model
+s15445 is age 16.0 and blackNH and is entering the model
+s15446 is age 16.0 and blackNH and is entering the model
+s15447 is age 16.0 and whiteNH and is entering the model
+s15448 is age 16.0 and hispanic and is entering the model
+s15449 is age 16.0 and whiteNH and is entering the model
+s15450 is age 16.0 and otherNH and is entering the model
+
+Agents are attending venues and using apps for week 237 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 237/3640
+Prevalence: 2096
+Population Size: 11645
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s05885 is blackNH, aged 29.100461538461733 in age group 21to29, with relationship status of 1 and is now HIV+.
+s10692 is otherNH, aged 28.303461538461733 in age group 16to20, with relationship status of 0 and is now HIV+.
+s14581 is blackNH, aged 17.076923076923123 in age group 16to20, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00033 is aged 29.992461538461733, whiteNH and is leaving the simulation.
+s00697 is aged 29.989461538461732, whiteNH and is leaving the simulation.
+s02311 is aged 29.989461538461732, whiteNH and is leaving the simulation.
+s02387 is aged 29.99746153846173, whiteNH and is leaving the simulation.
+s02450 is aged 29.98546153846173, whiteNH and is leaving the simulation.
+s03396 is aged 29.99946153846173, whiteNH and is leaving the simulation.
+s04455 is aged 29.989461538461732, blackNH and is leaving the simulation.
+s05968 is aged 29.98546153846173, blackNH and is leaving the simulation.
+s06172 is aged 29.984461538461733, blackNH and is leaving the simulation.
+s06456 is aged 29.989461538461732, blackNH and is leaving the simulation.
+s07189 is aged 29.99746153846173, hispanic and is leaving the simulation.
+s07279 is aged 29.99346153846173, hispanic and is leaving the simulation.
+s07863 is aged 29.986461538461732, hispanic and is leaving the simulation.
+s08376 is aged 29.989461538461732, hispanic and is leaving the simulation.
+s08380 is aged 29.995461538461733, hispanic and is leaving the simulation.
+s08686 is aged 29.990461538461734, hispanic and is leaving the simulation.
+s10259 is aged 29.987461538461734, hispanic and is leaving the simulation.
+s10627 is aged 29.986461538461732, otherNH and is leaving the simulation.
+s10862 is aged 29.986461538461732, otherNH and is leaving the simulation.
+s12501 is aged 19.596153846154, blackNH and is leaving the simulation.
+s14860 is aged 16.750000000000032, blackNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s01227 is 21.003692307692504 and has aged to age group 21to29.
+s01475 is 21.006692307692504 and has aged to age group 21to29.
+s01893 is 21.008692307692503 and has aged to age group 21to29.
+s02877 is 21.0166923076925 and has aged to age group 21to29.
+s03809 is 21.0016923076925 and has aged to age group 21to29.
+s03943 is 21.011692307692503 and has aged to age group 21to29.
+s04604 is 21.017692307692503 and has aged to age group 21to29.
+s07495 is 21.0046923076925 and has aged to age group 21to29.
+s08170 is 21.003692307692504 and has aged to age group 21to29.
+s09725 is 21.0186923076925 and has aged to age group 21to29.
+s09770 is 21.0016923076925 and has aged to age group 21to29.
+s09886 is 21.0076923076925 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15451 is age 16.0 and whiteNH and is entering the model
+s15452 is age 16.0 and hispanic and is entering the model
+s15453 is age 16.0 and hispanic and is entering the model
+s15454 is age 16.0 and whiteNH and is entering the model
+s15455 is age 16.0 and otherNH and is entering the model
+s15456 is age 16.0 and hispanic and is entering the model
+s15457 is age 16.0 and blackNH and is entering the model
+s15458 is age 16.0 and hispanic and is entering the model
+s15459 is age 16.0 and whiteNH and is entering the model
+s15460 is age 16.0 and hispanic and is entering the model
+s15461 is age 16.0 and whiteNH and is entering the model
+s15462 is age 16.0 and whiteNH and is entering the model
+s15463 is age 16.0 and blackNH and is entering the model
+s15464 is age 16.0 and hispanic and is entering the model
+s15465 is age 16.0 and blackNH and is entering the model
+s15466 is age 16.0 and whiteNH and is entering the model
+s15467 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 238 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 238/3640
+Prevalence: 2095
+Population Size: 11641
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s05857 is blackNH, aged 23.150692307692502 in age group 21to29, with relationship status of 1 and is now HIV+.
+s12204 is blackNH, aged 19.96153846153863 in age group 16to20, with relationship status of 1 and is now HIV+.
+s12900 is blackNH, aged 19.15384615384629 in age group 16to20, with relationship status of 1 and is now HIV+.
+s14790 is blackNH, aged 16.865384615384652 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00802 is aged 29.996692307692502, whiteNH and is leaving the simulation.
+s02043 is aged 29.994692307692503, whiteNH and is leaving the simulation.
+s03021 is aged 29.9876923076925, whiteNH and is leaving the simulation.
+s03501 is aged 29.993692307692502, whiteNH and is leaving the simulation.
+s03644 is aged 29.985692307692503, whiteNH and is leaving the simulation.
+s03736 is aged 29.9876923076925, whiteNH and is leaving the simulation.
+s03821 is aged 29.9926923076925, whiteNH and is leaving the simulation.
+s04396 is aged 29.996692307692502, blackNH and is leaving the simulation.
+s05767 is aged 29.996692307692502, blackNH and is leaving the simulation.
+s05959 is aged 29.991692307692503, blackNH and is leaving the simulation.
+s06696 is aged 29.988692307692503, blackNH and is leaving the simulation.
+s07820 is aged 29.9836923076925, hispanic and is leaving the simulation.
+s08416 is aged 29.994692307692503, hispanic and is leaving the simulation.
+s10237 is aged 29.9956923076925, hispanic and is leaving the simulation.
+s10682 is aged 29.9876923076925, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00262 is 21.009923076923272 and has aged to age group 21to29.
+s01752 is 21.016923076923273 and has aged to age group 21to29.
+s04671 is 21.01192307692327 and has aged to age group 21to29.
+s05167 is 21.013923076923273 and has aged to age group 21to29.
+s07083 is 21.004923076923273 and has aged to age group 21to29.
+s07342 is 21.00392307692327 and has aged to age group 21to29.
+s08483 is 21.00892307692327 and has aged to age group 21to29.
+s09852 is 21.00392307692327 and has aged to age group 21to29.
+s10102 is 21.00292307692327 and has aged to age group 21to29.
+s10288 is 21.013923076923273 and has aged to age group 21to29.
+s10902 is 21.001923076923273 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15468 is age 16.0 and hispanic and is entering the model
+s15469 is age 16.0 and blackNH and is entering the model
+s15470 is age 16.0 and whiteNH and is entering the model
+s15471 is age 16.0 and hispanic and is entering the model
+s15472 is age 16.0 and whiteNH and is entering the model
+s15473 is age 16.0 and otherNH and is entering the model
+s15474 is age 16.0 and hispanic and is entering the model
+s15475 is age 16.0 and whiteNH and is entering the model
+s15476 is age 16.0 and blackNH and is entering the model
+s15477 is age 16.0 and whiteNH and is entering the model
+s15478 is age 16.0 and hispanic and is entering the model
+s15479 is age 16.0 and whiteNH and is entering the model
+s15480 is age 16.0 and blackNH and is entering the model
+s15481 is age 16.0 and blackNH and is entering the model
+s15482 is age 16.0 and hispanic and is entering the model
+s15483 is age 16.0 and whiteNH and is entering the model
+s15484 is age 16.0 and hispanic and is entering the model
+s15485 is age 16.0 and hispanic and is entering the model
+s15486 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 239 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 239/3640
+Prevalence: 2096
+Population Size: 11645
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s02822 is whiteNH, aged 24.80292307692327 in age group 21to29, with relationship status of 0 and is now HIV+.
+s05705 is blackNH, aged 20.67492307692327 in age group 21to29, with relationship status of 0 and is now HIV+.
+s08443 is hispanic, aged 29.521923076923272 in age group 21to29, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00121 is aged 29.99792307692327, whiteNH and is leaving the simulation.
+s01668 is aged 29.990923076923274, whiteNH and is leaving the simulation.
+s02332 is aged 29.986923076923272, whiteNH and is leaving the simulation.
+s03655 is aged 29.984923076923273, whiteNH and is leaving the simulation.
+s04435 is aged 29.99492307692327, blackNH and is leaving the simulation.
+s04523 is aged 29.995923076923273, blackNH and is leaving the simulation.
+s04690 is aged 29.998923076923273, blackNH and is leaving the simulation.
+s05027 is aged 29.981923076923273, blackNH and is leaving the simulation.
+s05143 is aged 29.99492307692327, blackNH and is leaving the simulation.
+s05246 is aged 29.98592307692327, blackNH and is leaving the simulation.
+s05493 is aged 29.987923076923273, blackNH and is leaving the simulation.
+s05958 is aged 29.99192307692327, blackNH and is leaving the simulation.
+s06029 is aged 29.995923076923273, blackNH and is leaving the simulation.
+s06296 is aged 29.99992307692327, blackNH and is leaving the simulation.
+s07183 is aged 29.98592307692327, hispanic and is leaving the simulation.
+s08570 is aged 29.981923076923273, hispanic and is leaving the simulation.
+s09796 is aged 29.984923076923273, hispanic and is leaving the simulation.
+s10246 is aged 29.986923076923272, hispanic and is leaving the simulation.
+s11623 is aged 29.99492307692327, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00686 is 21.01915384615404 and has aged to age group 21to29.
+s01409 is 21.009153846154042 and has aged to age group 21to29.
+s02747 is 21.015153846154043 and has aged to age group 21to29.
+s02972 is 21.01415384615404 and has aged to age group 21to29.
+s03561 is 21.016153846154044 and has aged to age group 21to29.
+s03777 is 21.003153846154042 and has aged to age group 21to29.
+s06483 is 21.018153846154043 and has aged to age group 21to29.
+s07005 is 21.012153846154042 and has aged to age group 21to29.
+s08255 is 21.01415384615404 and has aged to age group 21to29.
+s08290 is 21.003153846154042 and has aged to age group 21to29.
+s09226 is 21.012153846154042 and has aged to age group 21to29.
+s09793 is 21.01715384615404 and has aged to age group 21to29.
+s09980 is 21.006153846154042 and has aged to age group 21to29.
+s10542 is 21.004153846154043 and has aged to age group 21to29.
+s10589 is 21.003153846154042 and has aged to age group 21to29.
+s10954 is 21.001153846154043 and has aged to age group 21to29.
+s11292 is 21.001153846154043 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15487 is age 16.0 and whiteNH and is entering the model
+s15488 is age 16.0 and blackNH and is entering the model
+s15489 is age 16.0 and whiteNH and is entering the model
+s15490 is age 16.0 and whiteNH and is entering the model
+s15491 is age 16.0 and whiteNH and is entering the model
+s15492 is age 16.0 and whiteNH and is entering the model
+s15493 is age 16.0 and hispanic and is entering the model
+s15494 is age 16.0 and blackNH and is entering the model
+s15495 is age 16.0 and hispanic and is entering the model
+s15496 is age 16.0 and hispanic and is entering the model
+s15497 is age 16.0 and blackNH and is entering the model
+s15498 is age 16.0 and whiteNH and is entering the model
+s15499 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 240 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 240/3640
+Prevalence: 2098
+Population Size: 11639
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s06191 is blackNH, aged 22.04615384615404 in age group 21to29, with relationship status of 0 and is now HIV+.
+s06215 is blackNH, aged 25.16815384615404 in age group 21to29, with relationship status of 0 and is now HIV+.
+s06399 is blackNH, aged 21.260153846154044 in age group 21to29, with relationship status of 0 and is now HIV+.
+s06724 is blackNH, aged 27.04015384615404 in age group 21to29, with relationship status of 1 and is now HIV+.
+s12048 is blackNH, aged 20.19230769230787 in age group 16to20, with relationship status of 0 and is now HIV+.
+s12815 is whiteNH, aged 19.28846153846168 in age group 16to20, with relationship status of 1 and is now HIV+.
+s15084 is whiteNH, aged 16.50000000000002 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00253 is aged 29.99315384615404, whiteNH and is leaving the simulation.
+s00541 is aged 29.981153846154044, whiteNH and is leaving the simulation.
+s01005 is aged 29.98515384615404, whiteNH and is leaving the simulation.
+s01175 is aged 29.99915384615404, whiteNH and is leaving the simulation.
+s01317 is aged 29.989153846154043, whiteNH and is leaving the simulation.
+s02359 is aged 29.981153846154044, whiteNH and is leaving the simulation.
+s03104 is aged 29.98215384615404, whiteNH and is leaving the simulation.
+s03235 is aged 29.98815384615404, whiteNH and is leaving the simulation.
+s04597 is aged 29.984153846154044, blackNH and is leaving the simulation.
+s05690 is aged 29.99915384615404, blackNH and is leaving the simulation.
+s06226 is aged 29.99915384615404, blackNH and is leaving the simulation.
+s06331 is aged 29.984153846154044, blackNH and is leaving the simulation.
+s06526 is aged 29.983153846154043, blackNH and is leaving the simulation.
+s07041 is aged 29.99015384615404, hispanic and is leaving the simulation.
+s07376 is aged 29.98515384615404, hispanic and is leaving the simulation.
+s08809 is aged 29.99615384615404, hispanic and is leaving the simulation.
+s08868 is aged 29.99115384615404, hispanic and is leaving the simulation.
+s09620 is aged 29.99915384615404, hispanic and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00336 is 21.016384615384812 and has aged to age group 21to29.
+s01036 is 21.00938461538481 and has aged to age group 21to29.
+s01255 is 21.008384615384813 and has aged to age group 21to29.
+s02493 is 21.003384615384814 and has aged to age group 21to29.
+s02547 is 21.002384615384813 and has aged to age group 21to29.
+s03643 is 21.014384615384813 and has aged to age group 21to29.
+s05821 is 21.005384615384813 and has aged to age group 21to29.
+s08602 is 21.00638461538481 and has aged to age group 21to29.
+s10376 is 21.005384615384813 and has aged to age group 21to29.
+s10440 is 21.013384615384812 and has aged to age group 21to29.
+s10455 is 21.013384615384812 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15500 is age 16.0 and blackNH and is entering the model
+s15501 is age 16.0 and blackNH and is entering the model
+s15502 is age 16.0 and blackNH and is entering the model
+s15503 is age 16.0 and hispanic and is entering the model
+s15504 is age 16.0 and blackNH and is entering the model
+s15505 is age 16.0 and whiteNH and is entering the model
+s15506 is age 16.0 and whiteNH and is entering the model
+s15507 is age 16.0 and blackNH and is entering the model
+s15508 is age 16.0 and hispanic and is entering the model
+s15509 is age 16.0 and hispanic and is entering the model
+s15510 is age 16.0 and hispanic and is entering the model
+s15511 is age 16.0 and blackNH and is entering the model
+s15512 is age 16.0 and blackNH and is entering the model
+s15513 is age 16.0 and hispanic and is entering the model
+s15514 is age 16.0 and hispanic and is entering the model
+s15515 is age 16.0 and otherNH and is entering the model
+s15516 is age 16.0 and whiteNH and is entering the model
+s15517 is age 16.0 and blackNH and is entering the model
+s15518 is age 16.0 and blackNH and is entering the model
+s15519 is age 16.0 and hispanic and is entering the model
+s15520 is age 16.0 and whiteNH and is entering the model
+s15521 is age 16.0 and hispanic and is entering the model
+s15522 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 241 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 241/3640
+Prevalence: 2098
+Population Size: 11644
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s00859 is whiteNH, aged 22.868384615384812 in age group 21to29, with relationship status of 1 and is now HIV+.
+s08025 is hispanic, aged 23.776384615384814 in age group 21to29, with relationship status of 1 and is now HIV+.
+s10641 is otherNH, aged 29.910384615384814 in age group 16to20, with relationship status of 0 and is now HIV+.
+s13491 is blackNH, aged 18.461538461538566 in age group 16to20, with relationship status of 1 and is now HIV+.
+s14670 is otherNH, aged 17.057692307692353 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00505 is aged 29.997384615384814, whiteNH and is leaving the simulation.
+s02951 is aged 29.98638461538481, whiteNH and is leaving the simulation.
+s03271 is aged 29.982384615384813, whiteNH and is leaving the simulation.
+s03361 is aged 29.993384615384812, whiteNH and is leaving the simulation.
+s06645 is aged 29.99838461538481, blackNH and is leaving the simulation.
+s06795 is aged 29.984384615384812, blackNH and is leaving the simulation.
+s07262 is aged 29.997384615384814, hispanic and is leaving the simulation.
+s07861 is aged 29.98638461538481, hispanic and is leaving the simulation.
+s09690 is aged 29.98338461538481, hispanic and is leaving the simulation.
+s09776 is aged 29.985384615384813, hispanic and is leaving the simulation.
+s09984 is aged 29.99538461538481, hispanic and is leaving the simulation.
+s10532 is aged 29.99238461538481, otherNH and is leaving the simulation.
+s10778 is aged 29.99838461538481, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00235 is 21.001615384615583 and has aged to age group 21to29.
+s01334 is 21.009615384615582 and has aged to age group 21to29.
+s02281 is 21.012615384615582 and has aged to age group 21to29.
+s02866 is 21.009615384615582 and has aged to age group 21to29.
+s03373 is 21.013615384615584 and has aged to age group 21to29.
+s03523 is 21.004615384615583 and has aged to age group 21to29.
+s05213 is 21.01161538461558 and has aged to age group 21to29.
+s06616 is 21.006615384615582 and has aged to age group 21to29.
+s06662 is 21.018615384615583 and has aged to age group 21to29.
+s07138 is 21.00561538461558 and has aged to age group 21to29.
+s07293 is 21.01161538461558 and has aged to age group 21to29.
+s08470 is 21.012615384615582 and has aged to age group 21to29.
+s08560 is 21.010615384615583 and has aged to age group 21to29.
+s08567 is 21.01761538461558 and has aged to age group 21to29.
+s08811 is 21.003615384615582 and has aged to age group 21to29.
+s09636 is 21.004615384615583 and has aged to age group 21to29.
+s10606 is 21.00561538461558 and has aged to age group 21to29.
+s11222 is 21.000615384615582 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15523 is age 16.0 and blackNH and is entering the model
+s15524 is age 16.0 and whiteNH and is entering the model
+s15525 is age 16.0 and whiteNH and is entering the model
+s15526 is age 16.0 and hispanic and is entering the model
+s15527 is age 16.0 and otherNH and is entering the model
+s15528 is age 16.0 and blackNH and is entering the model
+s15529 is age 16.0 and whiteNH and is entering the model
+s15530 is age 16.0 and otherNH and is entering the model
+s15531 is age 16.0 and blackNH and is entering the model
+s15532 is age 16.0 and blackNH and is entering the model
+s15533 is age 16.0 and whiteNH and is entering the model
+s15534 is age 16.0 and blackNH and is entering the model
+s15535 is age 16.0 and blackNH and is entering the model
+s15536 is age 16.0 and hispanic and is entering the model
+s15537 is age 16.0 and whiteNH and is entering the model
+s15538 is age 16.0 and blackNH and is entering the model
+s15539 is age 16.0 and whiteNH and is entering the model
+
+Agents are attending venues and using apps for week 242 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 242/3640
+Prevalence: 2101
+Population Size: 11648
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s00789 is whiteNH, aged 29.757615384615583 in age group 16to20, with relationship status of 1 and is now HIV+.
+s04509 is blackNH, aged 23.70661538461558 in age group 21to29, with relationship status of 1 and is now HIV+.
+s06070 is blackNH, aged 25.266615384615584 in age group 21to29, with relationship status of 0 and is now HIV+.
+s06853 is hispanic, aged 28.800615384615583 in age group 16to20, with relationship status of 1 and is now HIV+.
+s06973 is hispanic, aged 22.283615384615583 in age group 21to29, with relationship status of 1 and is now HIV+.
+s14260 is hispanic, aged 17.596153846153914 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s01116 is aged 29.99961538461558, whiteNH and is leaving the simulation.
+s01423 is aged 29.995615384615583, whiteNH and is leaving the simulation.
+s03172 is aged 29.990615384615584, whiteNH and is leaving the simulation.
+s04070 is aged 29.995615384615583, blackNH and is leaving the simulation.
+s06059 is aged 29.99161538461558, blackNH and is leaving the simulation.
+s06368 is aged 29.989615384615583, blackNH and is leaving the simulation.
+s06574 is aged 29.99461538461558, blackNH and is leaving the simulation.
+s06707 is aged 29.981615384615584, blackNH and is leaving the simulation.
+s07240 is aged 29.981615384615584, hispanic and is leaving the simulation.
+s07565 is aged 29.983615384615582, hispanic and is leaving the simulation.
+s09262 is aged 29.98261538461558, hispanic and is leaving the simulation.
+s09474 is aged 29.990615384615584, hispanic and is leaving the simulation.
+s10874 is aged 29.981615384615584, otherNH and is leaving the simulation.
+s11530 is aged 29.99461538461558, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00517 is 21.01384615384635 and has aged to age group 21to29.
+s00530 is 21.01884615384635 and has aged to age group 21to29.
+s00583 is 21.006846153846354 and has aged to age group 21to29.
+s01143 is 21.012846153846354 and has aged to age group 21to29.
+s02580 is 21.009846153846354 and has aged to age group 21to29.
+s04347 is 21.005846153846353 and has aged to age group 21to29.
+s05199 is 21.006846153846354 and has aged to age group 21to29.
+s05693 is 21.002846153846352 and has aged to age group 21to29.
+s07166 is 21.014846153846353 and has aged to age group 21to29.
+s08547 is 21.00484615384635 and has aged to age group 21to29.
+s09719 is 21.016846153846352 and has aged to age group 21to29.
+s09727 is 21.014846153846353 and has aged to age group 21to29.
+s10325 is 21.008846153846353 and has aged to age group 21to29.
+s10744 is 21.014846153846353 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15540 is age 16.0 and blackNH and is entering the model
+s15541 is age 16.0 and blackNH and is entering the model
+s15542 is age 16.0 and blackNH and is entering the model
+s15543 is age 16.0 and blackNH and is entering the model
+s15544 is age 16.0 and hispanic and is entering the model
+s15545 is age 16.0 and hispanic and is entering the model
+s15546 is age 16.0 and hispanic and is entering the model
+s15547 is age 16.0 and otherNH and is entering the model
+s15548 is age 16.0 and blackNH and is entering the model
+s15549 is age 16.0 and hispanic and is entering the model
+s15550 is age 16.0 and whiteNH and is entering the model
+s15551 is age 16.0 and hispanic and is entering the model
+s15552 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 243 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 243/3640
+Prevalence: 2102
+Population Size: 11647
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s08276 is hispanic, aged 29.85684615384635 in age group 21to29, with relationship status of 1 and is now HIV+.
+s14198 is blackNH, aged 17.692307692307764 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s01301 is aged 29.993846153846352, whiteNH and is leaving the simulation.
+s02243 is aged 29.994846153846353, whiteNH and is leaving the simulation.
+s03033 is aged 29.99884615384635, whiteNH and is leaving the simulation.
+s03489 is aged 29.994846153846353, whiteNH and is leaving the simulation.
+s05014 is aged 29.993846153846352, blackNH and is leaving the simulation.
+s05057 is aged 29.98984615384635, blackNH and is leaving the simulation.
+s07222 is aged 29.990846153846352, hispanic and is leaving the simulation.
+s07764 is aged 29.993846153846352, hispanic and is leaving the simulation.
+s08764 is aged 29.98184615384635, hispanic and is leaving the simulation.
+s10421 is aged 29.982846153846353, otherNH and is leaving the simulation.
+s10832 is aged 29.99584615384635, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00215 is 21.000076923077124 and has aged to age group 21to29.
+s00319 is 21.00307692307712 and has aged to age group 21to29.
+s00412 is 21.01507692307712 and has aged to age group 21to29.
+s00572 is 21.005076923077123 and has aged to age group 21to29.
+s00766 is 21.014076923077123 and has aged to age group 21to29.
+s00827 is 21.019076923077122 and has aged to age group 21to29.
+s01242 is 21.016076923077122 and has aged to age group 21to29.
+s01453 is 21.019076923077122 and has aged to age group 21to29.
+s01992 is 21.010076923077122 and has aged to age group 21to29.
+s03208 is 21.01207692307712 and has aged to age group 21to29.
+s04577 is 21.000076923077124 and has aged to age group 21to29.
+s04605 is 21.007076923077122 and has aged to age group 21to29.
+s06252 is 21.013076923077122 and has aged to age group 21to29.
+s06761 is 21.010076923077122 and has aged to age group 21to29.
+s06784 is 21.011076923077123 and has aged to age group 21to29.
+s07348 is 21.00607692307712 and has aged to age group 21to29.
+s07684 is 21.013076923077122 and has aged to age group 21to29.
+s07899 is 21.010076923077122 and has aged to age group 21to29.
+s08135 is 21.01507692307712 and has aged to age group 21to29.
+s09285 is 21.00107692307712 and has aged to age group 21to29.
+s10733 is 21.01807692307712 and has aged to age group 21to29.
+s11425 is 21.01807692307712 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15553 is age 16.0 and blackNH and is entering the model
+s15554 is age 16.0 and hispanic and is entering the model
+s15555 is age 16.0 and whiteNH and is entering the model
+s15556 is age 16.0 and whiteNH and is entering the model
+s15557 is age 16.0 and whiteNH and is entering the model
+s15558 is age 16.0 and otherNH and is entering the model
+s15559 is age 16.0 and blackNH and is entering the model
+s15560 is age 16.0 and whiteNH and is entering the model
+s15561 is age 16.0 and whiteNH and is entering the model
+s15562 is age 16.0 and blackNH and is entering the model
+s15563 is age 16.0 and hispanic and is entering the model
+s15564 is age 16.0 and hispanic and is entering the model
+s15565 is age 16.0 and whiteNH and is entering the model
+s15566 is age 16.0 and blackNH and is entering the model
+s15567 is age 16.0 and hispanic and is entering the model
+s15568 is age 16.0 and whiteNH and is entering the model
+s15569 is age 16.0 and blackNH and is entering the model
+s15570 is age 16.0 and whiteNH and is entering the model
+
+Agents are attending venues and using apps for week 244 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 244/3640
+Prevalence: 2107
+Population Size: 11654
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s05593 is blackNH, aged 20.967076923077123 in age group 21to29, with relationship status of 1 and is now HIV+.
+s07935 is hispanic, aged 27.877076923077123 in age group 16to20, with relationship status of 1 and is now HIV+.
+s12813 is blackNH, aged 19.36538461538476 in age group 16to20, with relationship status of 1 and is now HIV+.
+s13772 is otherNH, aged 18.211538461538556 in age group 16to20, with relationship status of 0 and is now HIV+.
+s14020 is blackNH, aged 17.903846153846235 in age group 16to20, with relationship status of 0 and is now HIV+.
+s14253 is otherNH, aged 17.653846153846224 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00348 is aged 29.98307692307712, whiteNH and is leaving the simulation.
+s00794 is aged 29.98607692307712, whiteNH and is leaving the simulation.
+s01118 is aged 29.982076923077123, whiteNH and is leaving the simulation.
+s02094 is aged 29.99207692307712, whiteNH and is leaving the simulation.
+s03026 is aged 29.996076923077123, whiteNH and is leaving the simulation.
+s03340 is aged 29.991076923077124, whiteNH and is leaving the simulation.
+s05265 is aged 29.987076923077122, blackNH and is leaving the simulation.
+s05310 is aged 29.987076923077122, blackNH and is leaving the simulation.
+s05399 is aged 29.993076923077123, blackNH and is leaving the simulation.
+s07369 is aged 29.990076923077122, hispanic and is leaving the simulation.
+s07735 is aged 29.984076923077122, hispanic and is leaving the simulation.
+s08630 is aged 29.988076923077124, hispanic and is leaving the simulation.
+s09190 is aged 29.99207692307712, hispanic and is leaving the simulation.
+s09580 is aged 29.999076923077123, hispanic and is leaving the simulation.
+s10416 is aged 29.997076923077124, otherNH and is leaving the simulation.
+s10798 is aged 29.984076923077122, otherNH and is leaving the simulation.
+s11426 is aged 29.993076923077123, otherNH and is leaving the simulation.
+s11628 is aged 29.999076923077123, otherNH and is leaving the simulation.
+s13581 is aged 18.423076923077026, blackNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00331 is 21.018307692307893 and has aged to age group 21to29.
+s01909 is 21.00830769230789 and has aged to age group 21to29.
+s02006 is 21.00530769230789 and has aged to age group 21to29.
+s02471 is 21.00830769230789 and has aged to age group 21to29.
+s02895 is 21.012307692307893 and has aged to age group 21to29.
+s03622 is 21.004307692307894 and has aged to age group 21to29.
+s03646 is 21.004307692307894 and has aged to age group 21to29.
+s04313 is 21.01430769230789 and has aged to age group 21to29.
+s04762 is 21.01430769230789 and has aged to age group 21to29.
+s06601 is 21.006307692307892 and has aged to age group 21to29.
+s07095 is 21.010307692307894 and has aged to age group 21to29.
+s07230 is 21.00530769230789 and has aged to age group 21to29.
+s07980 is 21.012307692307893 and has aged to age group 21to29.
+s08403 is 21.009307692307893 and has aged to age group 21to29.
+s08459 is 21.00830769230789 and has aged to age group 21to29.
+s10021 is 21.00830769230789 and has aged to age group 21to29.
+s10852 is 21.003307692307892 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15571 is age 16.0 and whiteNH and is entering the model
+s15572 is age 16.0 and hispanic and is entering the model
+s15573 is age 16.0 and blackNH and is entering the model
+s15574 is age 16.0 and whiteNH and is entering the model
+s15575 is age 16.0 and blackNH and is entering the model
+s15576 is age 16.0 and whiteNH and is entering the model
+s15577 is age 16.0 and hispanic and is entering the model
+s15578 is age 16.0 and blackNH and is entering the model
+s15579 is age 16.0 and blackNH and is entering the model
+s15580 is age 16.0 and hispanic and is entering the model
+s15581 is age 16.0 and blackNH and is entering the model
+s15582 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 245 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 245/3640
+Prevalence: 2108
+Population Size: 11647
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s03871 is blackNH, aged 23.372307692307892 in age group 21to29, with relationship status of 1 and is now HIV+.
+s04433 is blackNH, aged 21.23230769230789 in age group 21to29, with relationship status of 0 and is now HIV+.
+s06130 is blackNH, aged 20.754307692307894 in age group 21to29, with relationship status of 1 and is now HIV+.
+s07320 is hispanic, aged 29.416307692307893 in age group 16to20, with relationship status of 0 and is now HIV+.
+s10255 is hispanic, aged 28.093307692307892 in age group 21to29, with relationship status of 0 and is now HIV+.
+s14680 is blackNH, aged 17.115384615384663 in age group 16to20, with relationship status of 0 and is now HIV+.
+s15139 is blackNH, aged 16.51923076923079 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00180 is aged 29.987307692307894, whiteNH and is leaving the simulation.
+s00951 is aged 29.983307692307893, whiteNH and is leaving the simulation.
+s02995 is aged 29.99630769230789, whiteNH and is leaving the simulation.
+s03125 is aged 29.986307692307893, whiteNH and is leaving the simulation.
+s03423 is aged 29.987307692307894, whiteNH and is leaving the simulation.
+s03428 is aged 29.994307692307892, whiteNH and is leaving the simulation.
+s03434 is aged 29.992307692307893, whiteNH and is leaving the simulation.
+s03984 is aged 29.987307692307894, blackNH and is leaving the simulation.
+s04326 is aged 29.997307692307892, blackNH and is leaving the simulation.
+s05656 is aged 29.997307692307892, blackNH and is leaving the simulation.
+s06154 is aged 29.998307692307893, blackNH and is leaving the simulation.
+s07707 is aged 29.98530769230789, hispanic and is leaving the simulation.
+s07721 is aged 29.987307692307894, hispanic and is leaving the simulation.
+s07759 is aged 29.986307692307893, hispanic and is leaving the simulation.
+s08160 is aged 29.983307692307893, hispanic and is leaving the simulation.
+s09325 is aged 29.994307692307892, hispanic and is leaving the simulation.
+s09966 is aged 29.983307692307893, hispanic and is leaving the simulation.
+s10060 is aged 29.992307692307893, hispanic and is leaving the simulation.
+s10173 is aged 29.98230769230789, hispanic and is leaving the simulation.
+s10434 is aged 29.98530769230789, otherNH and is leaving the simulation.
+s10641 is aged 29.987307692307894, otherNH and is leaving the simulation.
+s11512 is aged 29.98830769230789, otherNH and is leaving the simulation.
+s11567 is aged 29.99930769230789, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s02076 is 21.01253846153866 and has aged to age group 21to29.
+s02269 is 21.008538461538663 and has aged to age group 21to29.
+s02815 is 21.005538461538663 and has aged to age group 21to29.
+s02917 is 21.014538461538663 and has aged to age group 21to29.
+s04400 is 21.013538461538662 and has aged to age group 21to29.
+s04556 is 21.003538461538664 and has aged to age group 21to29.
+s05077 is 21.00953846153866 and has aged to age group 21to29.
+s05593 is 21.005538461538663 and has aged to age group 21to29.
+s07511 is 21.002538461538663 and has aged to age group 21to29.
+s08138 is 21.00153846153866 and has aged to age group 21to29.
+s08279 is 21.01853846153866 and has aged to age group 21to29.
+s08583 is 21.003538461538664 and has aged to age group 21to29.
+s09508 is 21.01853846153866 and has aged to age group 21to29.
+s09804 is 21.002538461538663 and has aged to age group 21to29.
+s10034 is 21.01853846153866 and has aged to age group 21to29.
+s10200 is 21.016538461538662 and has aged to age group 21to29.
+s10870 is 21.016538461538662 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15583 is age 16.0 and otherNH and is entering the model
+s15584 is age 16.0 and otherNH and is entering the model
+s15585 is age 16.0 and whiteNH and is entering the model
+s15586 is age 16.0 and whiteNH and is entering the model
+s15587 is age 16.0 and blackNH and is entering the model
+s15588 is age 16.0 and otherNH and is entering the model
+s15589 is age 16.0 and whiteNH and is entering the model
+s15590 is age 16.0 and whiteNH and is entering the model
+s15591 is age 16.0 and blackNH and is entering the model
+s15592 is age 16.0 and whiteNH and is entering the model
+s15593 is age 16.0 and hispanic and is entering the model
+s15594 is age 16.0 and blackNH and is entering the model
+s15595 is age 16.0 and hispanic and is entering the model
+s15596 is age 16.0 and hispanic and is entering the model
+s15597 is age 16.0 and hispanic and is entering the model
+s15598 is age 16.0 and blackNH and is entering the model
+s15599 is age 16.0 and hispanic and is entering the model
+s15600 is age 16.0 and hispanic and is entering the model
+s15601 is age 16.0 and hispanic and is entering the model
+s15602 is age 16.0 and whiteNH and is entering the model
+s15603 is age 16.0 and whiteNH and is entering the model
+s15604 is age 16.0 and whiteNH and is entering the model
+s15605 is age 16.0 and whiteNH and is entering the model
+
+Agents are attending venues and using apps for week 246 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 246/3640
+Prevalence: 2104
+Population Size: 11647
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s02873 is whiteNH, aged 24.058538461538664 in age group 21to29, with relationship status of 1 and is now HIV+.
+s06199 is blackNH, aged 25.38753846153866 in age group 21to29, with relationship status of 1 and is now HIV+.
+s09957 is hispanic, aged 28.685538461538663 in age group 21to29, with relationship status of 0 and is now HIV+.
+s10291 is hispanic, aged 28.038538461538664 in age group 21to29, with relationship status of 1 and is now HIV+.
+s13743 is hispanic, aged 18.288461538461636 in age group 16to20, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00283 is aged 29.994538461538664, whiteNH and is leaving the simulation.
+s00745 is aged 29.984538461538662, whiteNH and is leaving the simulation.
+s01735 is aged 29.98353846153866, whiteNH and is leaving the simulation.
+s03074 is aged 29.993538461538662, whiteNH and is leaving the simulation.
+s03818 is aged 29.982538461538663, whiteNH and is leaving the simulation.
+s03921 is aged 29.984538461538662, blackNH and is leaving the simulation.
+s04974 is aged 29.999538461538663, blackNH and is leaving the simulation.
+s06193 is aged 29.990538461538662, blackNH and is leaving the simulation.
+s06988 is aged 29.99853846153866, hispanic and is leaving the simulation.
+s07518 is aged 29.981538461538662, hispanic and is leaving the simulation.
+s07948 is aged 29.991538461538664, hispanic and is leaving the simulation.
+s09179 is aged 29.991538461538664, hispanic and is leaving the simulation.
+s09192 is aged 29.991538461538664, hispanic and is leaving the simulation.
+s09828 is aged 29.98353846153866, hispanic and is leaving the simulation.
+s10202 is aged 29.990538461538662, hispanic and is leaving the simulation.
+s10323 is aged 29.999538461538663, hispanic and is leaving the simulation.
+s10833 is aged 29.99853846153866, otherNH and is leaving the simulation.
+s14628 is aged 17.192307692307743, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00213 is 21.007769230769433 and has aged to age group 21to29.
+s00624 is 21.007769230769433 and has aged to age group 21to29.
+s00977 is 21.004769230769433 and has aged to age group 21to29.
+s01048 is 21.00276923076943 and has aged to age group 21to29.
+s02062 is 21.01176923076943 and has aged to age group 21to29.
+s02787 is 21.000769230769432 and has aged to age group 21to29.
+s02990 is 21.01176923076943 and has aged to age group 21to29.
+s04203 is 21.010769230769434 and has aged to age group 21to29.
+s05144 is 21.009769230769432 and has aged to age group 21to29.
+s05217 is 21.016769230769434 and has aged to age group 21to29.
+s06639 is 21.01476923076943 and has aged to age group 21to29.
+s06839 is 21.001769230769433 and has aged to age group 21to29.
+s07708 is 21.018769230769433 and has aged to age group 21to29.
+s09050 is 21.009769230769432 and has aged to age group 21to29.
+s10698 is 21.01476923076943 and has aged to age group 21to29.
+s11664 is 21.007769230769433 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15606 is age 16.0 and otherNH and is entering the model
+s15607 is age 16.0 and hispanic and is entering the model
+s15608 is age 16.0 and hispanic and is entering the model
+s15609 is age 16.0 and whiteNH and is entering the model
+s15610 is age 16.0 and whiteNH and is entering the model
+s15611 is age 16.0 and whiteNH and is entering the model
+s15612 is age 16.0 and hispanic and is entering the model
+s15613 is age 16.0 and whiteNH and is entering the model
+s15614 is age 16.0 and blackNH and is entering the model
+s15615 is age 16.0 and hispanic and is entering the model
+s15616 is age 16.0 and whiteNH and is entering the model
+s15617 is age 16.0 and otherNH and is entering the model
+s15618 is age 16.0 and hispanic and is entering the model
+s15619 is age 16.0 and hispanic and is entering the model
+s15620 is age 16.0 and blackNH and is entering the model
+s15621 is age 16.0 and blackNH and is entering the model
+s15622 is age 16.0 and blackNH and is entering the model
+s15623 is age 16.0 and blackNH and is entering the model
+s15624 is age 16.0 and hispanic and is entering the model
+s15625 is age 16.0 and otherNH and is entering the model
+
+Agents are attending venues and using apps for week 247 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 247/3640
+Prevalence: 2105
+Population Size: 11649
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s01050 is whiteNH, aged 26.89276923076943 in age group 16to20, with relationship status of 0 and is now HIV+.
+s01937 is whiteNH, aged 23.829769230769433 in age group 21to29, with relationship status of 0 and is now HIV+.
+s07999 is hispanic, aged 27.20076923076943 in age group 16to20, with relationship status of 0 and is now HIV+.
+s09353 is hispanic, aged 25.097769230769433 in age group 21to29, with relationship status of 1 and is now HIV+.
+s11449 is otherNH, aged 24.05576923076943 in age group 21to29, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00133 is aged 29.983769230769433, whiteNH and is leaving the simulation.
+s00341 is aged 29.986769230769433, whiteNH and is leaving the simulation.
+s01809 is aged 29.99976923076943, whiteNH and is leaving the simulation.
+s02237 is aged 29.987769230769434, whiteNH and is leaving the simulation.
+s03293 is aged 29.995769230769433, whiteNH and is leaving the simulation.
+s03418 is aged 29.990769230769434, whiteNH and is leaving the simulation.
+s03844 is aged 29.98276923076943, blackNH and is leaving the simulation.
+s05738 is aged 29.993769230769434, blackNH and is leaving the simulation.
+s06698 is aged 29.989769230769433, blackNH and is leaving the simulation.
+s07223 is aged 29.990769230769434, hispanic and is leaving the simulation.
+s07250 is aged 29.990769230769434, hispanic and is leaving the simulation.
+s07933 is aged 29.986769230769433, hispanic and is leaving the simulation.
+s08919 is aged 29.994769230769432, hispanic and is leaving the simulation.
+s09364 is aged 29.997769230769432, hispanic and is leaving the simulation.
+s09701 is aged 29.989769230769433, hispanic and is leaving the simulation.
+s10343 is aged 29.995769230769433, hispanic and is leaving the simulation.
+s11010 is aged 29.995769230769433, otherNH and is leaving the simulation.
+s11392 is aged 29.98276923076943, otherNH and is leaving the simulation.
+s11683 is aged 29.986769230769433, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00687 is 21.0190000000002 and has aged to age group 21to29.
+s01640 is 21.000000000000203 and has aged to age group 21to29.
+s02005 is 21.009000000000203 and has aged to age group 21to29.
+s03845 is 21.009000000000203 and has aged to age group 21to29.
+s04062 is 21.000000000000203 and has aged to age group 21to29.
+s04641 is 21.0020000000002 and has aged to age group 21to29.
+s05055 is 21.018000000000203 and has aged to age group 21to29.
+s05121 is 21.017000000000202 and has aged to age group 21to29.
+s05969 is 21.0050000000002 and has aged to age group 21to29.
+s07547 is 21.0160000000002 and has aged to age group 21to29.
+s07589 is 21.009000000000203 and has aged to age group 21to29.
+s08195 is 21.0110000000002 and has aged to age group 21to29.
+s11365 is 21.001000000000204 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15626 is age 16.0 and blackNH and is entering the model
+s15627 is age 16.0 and whiteNH and is entering the model
+s15628 is age 16.0 and blackNH and is entering the model
+s15629 is age 16.0 and hispanic and is entering the model
+s15630 is age 16.0 and whiteNH and is entering the model
+s15631 is age 16.0 and hispanic and is entering the model
+s15632 is age 16.0 and hispanic and is entering the model
+s15633 is age 16.0 and hispanic and is entering the model
+s15634 is age 16.0 and whiteNH and is entering the model
+s15635 is age 16.0 and hispanic and is entering the model
+s15636 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 248 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 248/3640
+Prevalence: 2107
+Population Size: 11641
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s04420 is blackNH, aged 26.4060000000002 in age group 16to20, with relationship status of 0 and is now HIV+.
+s04839 is blackNH, aged 20.959000000000202 in age group 16to20, with relationship status of 0 and is now HIV+.
+s05236 is blackNH, aged 29.329000000000203 in age group 21to29, with relationship status of 0 and is now HIV+.
+s11736 is whiteNH, aged 20.692307692307892 in age group 16to20, with relationship status of 0 and is now HIV+.
+s15164 is otherNH, aged 16.55769230769233 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00171 is aged 29.994000000000202, whiteNH and is leaving the simulation.
+s00394 is aged 29.997000000000202, whiteNH and is leaving the simulation.
+s01396 is aged 29.983000000000203, whiteNH and is leaving the simulation.
+s01623 is aged 29.9960000000002, whiteNH and is leaving the simulation.
+s01931 is aged 29.994000000000202, whiteNH and is leaving the simulation.
+s03859 is aged 29.988000000000202, blackNH and is leaving the simulation.
+s03889 is aged 29.985000000000202, blackNH and is leaving the simulation.
+s04246 is aged 29.983000000000203, blackNH and is leaving the simulation.
+s05776 is aged 29.9930000000002, blackNH and is leaving the simulation.
+s05902 is aged 29.983000000000203, blackNH and is leaving the simulation.
+s07642 is aged 29.982000000000202, hispanic and is leaving the simulation.
+s08947 is aged 29.992000000000203, hispanic and is leaving the simulation.
+s09106 is aged 29.981000000000204, hispanic and is leaving the simulation.
+s09194 is aged 29.997000000000202, hispanic and is leaving the simulation.
+s09277 is aged 29.983000000000203, hispanic and is leaving the simulation.
+s10402 is aged 29.989000000000203, hispanic and is leaving the simulation.
+s11089 is aged 29.9990000000002, otherNH and is leaving the simulation.
+s11417 is aged 29.981000000000204, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00198 is 21.01523076923097 and has aged to age group 21to29.
+s00323 is 21.00623076923097 and has aged to age group 21to29.
+s00390 is 21.005230769230973 and has aged to age group 21to29.
+s00778 is 21.007230769230972 and has aged to age group 21to29.
+s01607 is 21.013230769230972 and has aged to age group 21to29.
+s02256 is 21.005230769230973 and has aged to age group 21to29.
+s03377 is 21.01223076923097 and has aged to age group 21to29.
+s05325 is 21.00623076923097 and has aged to age group 21to29.
+s05925 is 21.000230769230974 and has aged to age group 21to29.
+s06559 is 21.014230769230974 and has aged to age group 21to29.
+s06712 is 21.002230769230973 and has aged to age group 21to29.
+s06776 is 21.000230769230974 and has aged to age group 21to29.
+s08598 is 21.002230769230973 and has aged to age group 21to29.
+s09103 is 21.005230769230973 and has aged to age group 21to29.
+s10198 is 21.001230769230972 and has aged to age group 21to29.
+s10321 is 21.00923076923097 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15637 is age 16.0 and blackNH and is entering the model
+s15638 is age 16.0 and hispanic and is entering the model
+s15639 is age 16.0 and blackNH and is entering the model
+s15640 is age 16.0 and blackNH and is entering the model
+s15641 is age 16.0 and whiteNH and is entering the model
+s15642 is age 16.0 and whiteNH and is entering the model
+s15643 is age 16.0 and hispanic and is entering the model
+s15644 is age 16.0 and whiteNH and is entering the model
+s15645 is age 16.0 and hispanic and is entering the model
+s15646 is age 16.0 and whiteNH and is entering the model
+s15647 is age 16.0 and blackNH and is entering the model
+s15648 is age 16.0 and blackNH and is entering the model
+s15649 is age 16.0 and whiteNH and is entering the model
+s15650 is age 16.0 and whiteNH and is entering the model
+s15651 is age 16.0 and blackNH and is entering the model
+s15652 is age 16.0 and whiteNH and is entering the model
+s15653 is age 16.0 and blackNH and is entering the model
+s15654 is age 16.0 and hispanic and is entering the model
+s15655 is age 16.0 and hispanic and is entering the model
+s15656 is age 16.0 and whiteNH and is entering the model
+
+Agents are attending venues and using apps for week 249 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 249/3640
+Prevalence: 2106
+Population Size: 11643
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s04727 is blackNH, aged 24.79723076923097 in age group 21to29, with relationship status of 1 and is now HIV+.
+s09051 is hispanic, aged 26.104230769230973 in age group 21to29, with relationship status of 1 and is now HIV+.
+s12955 is hispanic, aged 19.30769230769245 in age group 16to20, with relationship status of 0 and is now HIV+.
+s13812 is blackNH, aged 18.269230769230866 in age group 16to20, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00152 is aged 29.98323076923097, whiteNH and is leaving the simulation.
+s00912 is aged 29.99223076923097, whiteNH and is leaving the simulation.
+s01968 is aged 29.98323076923097, whiteNH and is leaving the simulation.
+s03110 is aged 29.99523076923097, whiteNH and is leaving the simulation.
+s03344 is aged 29.985230769230974, whiteNH and is leaving the simulation.
+s03704 is aged 29.98923076923097, whiteNH and is leaving the simulation.
+s03798 is aged 29.98923076923097, whiteNH and is leaving the simulation.
+s04094 is aged 29.990230769230973, blackNH and is leaving the simulation.
+s04976 is aged 29.999230769230973, blackNH and is leaving the simulation.
+s05116 is aged 29.99823076923097, blackNH and is leaving the simulation.
+s05504 is aged 29.987230769230973, blackNH and is leaving the simulation.
+s05546 is aged 29.997230769230974, blackNH and is leaving the simulation.
+s07806 is aged 29.982230769230974, hispanic and is leaving the simulation.
+s08594 is aged 29.997230769230974, hispanic and is leaving the simulation.
+s09816 is aged 29.99223076923097, hispanic and is leaving the simulation.
+s10535 is aged 29.99523076923097, otherNH and is leaving the simulation.
+s11105 is aged 29.99523076923097, otherNH and is leaving the simulation.
+s13875 is aged 18.173076923077016, blackNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00633 is 21.00246153846174 and has aged to age group 21to29.
+s00753 is 21.007461538461744 and has aged to age group 21to29.
+s01363 is 21.01446153846174 and has aged to age group 21to29.
+s02058 is 21.004461538461744 and has aged to age group 21to29.
+s02314 is 21.013461538461744 and has aged to age group 21to29.
+s02962 is 21.00246153846174 and has aged to age group 21to29.
+s04551 is 21.003461538461742 and has aged to age group 21to29.
+s04781 is 21.003461538461742 and has aged to age group 21to29.
+s04925 is 21.015461538461743 and has aged to age group 21to29.
+s05324 is 21.015461538461743 and has aged to age group 21to29.
+s05496 is 21.00246153846174 and has aged to age group 21to29.
+s05627 is 21.015461538461743 and has aged to age group 21to29.
+s07367 is 21.01146153846174 and has aged to age group 21to29.
+s07664 is 21.004461538461744 and has aged to age group 21to29.
+s07889 is 21.01146153846174 and has aged to age group 21to29.
+s08106 is 21.017461538461742 and has aged to age group 21to29.
+s08420 is 21.015461538461743 and has aged to age group 21to29.
+s10546 is 21.004461538461744 and has aged to age group 21to29.
+s10686 is 21.017461538461742 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15657 is age 16.0 and blackNH and is entering the model
+s15658 is age 16.0 and blackNH and is entering the model
+s15659 is age 16.0 and hispanic and is entering the model
+s15660 is age 16.0 and blackNH and is entering the model
+s15661 is age 16.0 and otherNH and is entering the model
+s15662 is age 16.0 and hispanic and is entering the model
+s15663 is age 16.0 and hispanic and is entering the model
+s15664 is age 16.0 and blackNH and is entering the model
+s15665 is age 16.0 and whiteNH and is entering the model
+s15666 is age 16.0 and hispanic and is entering the model
+s15667 is age 16.0 and otherNH and is entering the model
+s15668 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 250 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 250/3640
+Prevalence: 2106
+Population Size: 11637
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s03351 is whiteNH, aged 26.54646153846174 in age group 21to29, with relationship status of 0 and is now HIV+.
+s04661 is blackNH, aged 26.619461538461742 in age group 16to20, with relationship status of 1 and is now HIV+.
+s05573 is blackNH, aged 28.708461538461744 in age group 21to29, with relationship status of 0 and is now HIV+.
+s14101 is blackNH, aged 17.923076923077005 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s01615 is aged 29.995461538461743, whiteNH and is leaving the simulation.
+s01671 is aged 29.995461538461743, whiteNH and is leaving the simulation.
+s02769 is aged 29.983461538461743, whiteNH and is leaving the simulation.
+s03200 is aged 29.989461538461743, whiteNH and is leaving the simulation.
+s03257 is aged 29.992461538461743, whiteNH and is leaving the simulation.
+s03929 is aged 29.988461538461742, blackNH and is leaving the simulation.
+s04536 is aged 29.986461538461743, blackNH and is leaving the simulation.
+s04919 is aged 29.997461538461742, blackNH and is leaving the simulation.
+s04960 is aged 29.987461538461744, blackNH and is leaving the simulation.
+s05961 is aged 29.992461538461743, blackNH and is leaving the simulation.
+s06249 is aged 29.985461538461742, blackNH and is leaving the simulation.
+s07278 is aged 29.986461538461743, hispanic and is leaving the simulation.
+s07973 is aged 29.98246153846174, hispanic and is leaving the simulation.
+s08276 is aged 29.991461538461742, hispanic and is leaving the simulation.
+s09552 is aged 29.99946153846174, hispanic and is leaving the simulation.
+s10784 is aged 29.998461538461743, otherNH and is leaving the simulation.
+s11570 is aged 29.989461538461743, otherNH and is leaving the simulation.
+s11578 is aged 29.987461538461744, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00573 is 21.016692307692512 and has aged to age group 21to29.
+s01609 is 21.01269230769251 and has aged to age group 21to29.
+s01728 is 21.004692307692512 and has aged to age group 21to29.
+s03155 is 21.006692307692514 and has aged to age group 21to29.
+s04183 is 21.005692307692513 and has aged to age group 21to29.
+s04839 is 21.016692307692512 and has aged to age group 21to29.
+s05138 is 21.016692307692512 and has aged to age group 21to29.
+s07305 is 21.011692307692513 and has aged to age group 21to29.
+s08007 is 21.01569230769251 and has aged to age group 21to29.
+s08207 is 21.005692307692513 and has aged to age group 21to29.
+s08895 is 21.00169230769251 and has aged to age group 21to29.
+s09798 is 21.00169230769251 and has aged to age group 21to29.
+s10061 is 21.010692307692512 and has aged to age group 21to29.
+s10547 is 21.013692307692512 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15669 is age 16.0 and blackNH and is entering the model
+s15670 is age 16.0 and hispanic and is entering the model
+s15671 is age 16.0 and whiteNH and is entering the model
+s15672 is age 16.0 and blackNH and is entering the model
+s15673 is age 16.0 and whiteNH and is entering the model
+s15674 is age 16.0 and hispanic and is entering the model
+s15675 is age 16.0 and hispanic and is entering the model
+s15676 is age 16.0 and hispanic and is entering the model
+s15677 is age 16.0 and blackNH and is entering the model
+s15678 is age 16.0 and hispanic and is entering the model
+s15679 is age 16.0 and otherNH and is entering the model
+s15680 is age 16.0 and blackNH and is entering the model
+s15681 is age 16.0 and whiteNH and is entering the model
+s15682 is age 16.0 and whiteNH and is entering the model
+s15683 is age 16.0 and hispanic and is entering the model
+s15684 is age 16.0 and whiteNH and is entering the model
+s15685 is age 16.0 and blackNH and is entering the model
+s15686 is age 16.0 and blackNH and is entering the model
+s15687 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 251 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 251/3640
+Prevalence: 2107
+Population Size: 11638
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s04936 is blackNH, aged 27.462692307692514 in age group 21to29, with relationship status of 1 and is now HIV+.
+s06522 is blackNH, aged 29.827692307692512 in age group 21to29, with relationship status of 0 and is now HIV+.
+s07300 is hispanic, aged 25.874692307692513 in age group 16to20, with relationship status of 1 and is now HIV+.
+s12862 is hispanic, aged 19.44230769230784 in age group 16to20, with relationship status of 0 and is now HIV+.
+s13821 is blackNH, aged 18.288461538461636 in age group 16to20, with relationship status of 0 and is now HIV+.
+s14272 is blackNH, aged 17.750000000000075 in age group 16to20, with relationship status of 1 and is now HIV+.
+s15230 is hispanic, aged 16.53846153846156 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00112 is aged 29.99869230769251, whiteNH and is leaving the simulation.
+s00145 is aged 29.981692307692512, whiteNH and is leaving the simulation.
+s00813 is aged 29.997692307692514, whiteNH and is leaving the simulation.
+s01002 is aged 29.982692307692513, whiteNH and is leaving the simulation.
+s02230 is aged 29.981692307692512, whiteNH and is leaving the simulation.
+s02923 is aged 29.990692307692512, whiteNH and is leaving the simulation.
+s02987 is aged 29.99569230769251, whiteNH and is leaving the simulation.
+s03126 is aged 29.98369230769251, whiteNH and is leaving the simulation.
+s05026 is aged 29.994692307692514, blackNH and is leaving the simulation.
+s05472 is aged 29.999692307692513, blackNH and is leaving the simulation.
+s05572 is aged 29.993692307692513, blackNH and is leaving the simulation.
+s05850 is aged 29.999692307692513, blackNH and is leaving the simulation.
+s06416 is aged 29.984692307692512, blackNH and is leaving the simulation.
+s06807 is aged 29.994692307692514, blackNH and is leaving the simulation.
+s07471 is aged 29.990692307692512, hispanic and is leaving the simulation.
+s07769 is aged 29.99569230769251, hispanic and is leaving the simulation.
+s08788 is aged 29.994692307692514, hispanic and is leaving the simulation.
+s09136 is aged 29.985692307692513, hispanic and is leaving the simulation.
+s10075 is aged 29.982692307692513, hispanic and is leaving the simulation.
+s11379 is aged 29.991692307692514, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00020 is 21.001923076923283 and has aged to age group 21to29.
+s00378 is 21.00292307692328 and has aged to age group 21to29.
+s01739 is 21.012923076923283 and has aged to age group 21to29.
+s01998 is 21.013923076923284 and has aged to age group 21to29.
+s02696 is 21.009923076923283 and has aged to age group 21to29.
+s03410 is 21.012923076923283 and has aged to age group 21to29.
+s03740 is 21.018923076923283 and has aged to age group 21to29.
+s03816 is 21.004923076923284 and has aged to age group 21to29.
+s05793 is 21.00592307692328 and has aged to age group 21to29.
+s06239 is 21.015923076923283 and has aged to age group 21to29.
+s06435 is 21.018923076923283 and has aged to age group 21to29.
+s08401 is 21.013923076923284 and has aged to age group 21to29.
+s09902 is 21.016923076923284 and has aged to age group 21to29.
+s11398 is 21.01792307692328 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15688 is age 16.0 and hispanic and is entering the model
+s15689 is age 16.0 and whiteNH and is entering the model
+s15690 is age 16.0 and whiteNH and is entering the model
+s15691 is age 16.0 and hispanic and is entering the model
+s15692 is age 16.0 and whiteNH and is entering the model
+s15693 is age 16.0 and blackNH and is entering the model
+s15694 is age 16.0 and whiteNH and is entering the model
+s15695 is age 16.0 and hispanic and is entering the model
+s15696 is age 16.0 and hispanic and is entering the model
+s15697 is age 16.0 and otherNH and is entering the model
+s15698 is age 16.0 and whiteNH and is entering the model
+s15699 is age 16.0 and blackNH and is entering the model
+s15700 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 252 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 252/3640
+Prevalence: 2107
+Population Size: 11631
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s04087 is blackNH, aged 22.47692307692328 in age group 21to29, with relationship status of 1 and is now HIV+.
+s06552 is blackNH, aged 27.137923076923283 in age group 21to29, with relationship status of 1 and is now HIV+.
+s13921 is blackNH, aged 18.173076923077016 in age group 16to20, with relationship status of 1 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00416 is aged 29.989923076923283, whiteNH and is leaving the simulation.
+s01608 is aged 29.983923076923283, whiteNH and is leaving the simulation.
+s01872 is aged 29.983923076923283, whiteNH and is leaving the simulation.
+s02653 is aged 29.986923076923283, whiteNH and is leaving the simulation.
+s02724 is aged 29.980923076923283, whiteNH and is leaving the simulation.
+s03160 is aged 29.983923076923283, whiteNH and is leaving the simulation.
+s03175 is aged 29.998923076923283, whiteNH and is leaving the simulation.
+s03873 is aged 29.99992307692328, blackNH and is leaving the simulation.
+s04112 is aged 29.981923076923284, blackNH and is leaving the simulation.
+s05429 is aged 29.98592307692328, blackNH and is leaving the simulation.
+s05623 is aged 29.980923076923283, blackNH and is leaving the simulation.
+s06569 is aged 29.984923076923284, blackNH and is leaving the simulation.
+s07337 is aged 29.98292307692328, hispanic and is leaving the simulation.
+s07421 is aged 29.991923076923282, hispanic and is leaving the simulation.
+s07545 is aged 29.98592307692328, hispanic and is leaving the simulation.
+s08555 is aged 29.980923076923283, hispanic and is leaving the simulation.
+s09746 is aged 29.994923076923282, hispanic and is leaving the simulation.
+s11188 is aged 29.998923076923283, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00339 is 21.012153846154053 and has aged to age group 21to29.
+s00634 is 21.014153846154052 and has aged to age group 21to29.
+s00731 is 21.018153846154053 and has aged to age group 21to29.
+s01359 is 21.018153846154053 and has aged to age group 21to29.
+s02357 is 21.018153846154053 and has aged to age group 21to29.
+s03990 is 21.010153846154054 and has aged to age group 21to29.
+s04932 is 21.003153846154053 and has aged to age group 21to29.
+s05156 is 21.004153846154054 and has aged to age group 21to29.
+s06077 is 21.014153846154052 and has aged to age group 21to29.
+s06104 is 21.003153846154053 and has aged to age group 21to29.
+s06775 is 21.009153846154053 and has aged to age group 21to29.
+s06970 is 21.00515384615405 and has aged to age group 21to29.
+s08125 is 21.003153846154053 and has aged to age group 21to29.
+s08879 is 21.012153846154053 and has aged to age group 21to29.
+s08911 is 21.007153846154054 and has aged to age group 21to29.
+s10810 is 21.016153846154054 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15701 is age 16.0 and hispanic and is entering the model
+s15702 is age 16.0 and whiteNH and is entering the model
+s15703 is age 16.0 and whiteNH and is entering the model
+s15704 is age 16.0 and blackNH and is entering the model
+s15705 is age 16.0 and hispanic and is entering the model
+s15706 is age 16.0 and otherNH and is entering the model
+s15707 is age 16.0 and hispanic and is entering the model
+s15708 is age 16.0 and whiteNH and is entering the model
+s15709 is age 16.0 and whiteNH and is entering the model
+s15710 is age 16.0 and hispanic and is entering the model
+s15711 is age 16.0 and otherNH and is entering the model
+s15712 is age 16.0 and blackNH and is entering the model
+s15713 is age 16.0 and otherNH and is entering the model
+s15714 is age 16.0 and blackNH and is entering the model
+s15715 is age 16.0 and whiteNH and is entering the model
+
+Agents are attending venues and using apps for week 253 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 253/3640
+Prevalence: 2106
+Population Size: 11628
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s04930 is blackNH, aged 21.338153846154054 in age group 21to29, with relationship status of 0 and is now HIV+.
+s08091 is hispanic, aged 28.091153846154054 in age group 16to20, with relationship status of 1 and is now HIV+.
+s09462 is hispanic, aged 22.08915384615405 in age group 21to29, with relationship status of 0 and is now HIV+.
+s15048 is otherNH, aged 16.788461538461572 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00155 is aged 29.981153846154054, whiteNH and is leaving the simulation.
+s00600 is aged 29.984153846154054, whiteNH and is leaving the simulation.
+s02128 is aged 29.99315384615405, whiteNH and is leaving the simulation.
+s03782 is aged 29.985153846154052, whiteNH and is leaving the simulation.
+s04249 is aged 29.99615384615405, blackNH and is leaving the simulation.
+s04430 is aged 29.991153846154052, blackNH and is leaving the simulation.
+s05214 is aged 28.125153846154053, blackNH and is leaving the simulation.
+s05688 is aged 29.99015384615405, blackNH and is leaving the simulation.
+s06814 is aged 29.998153846154054, blackNH and is leaving the simulation.
+s09105 is aged 29.99315384615405, hispanic and is leaving the simulation.
+s10124 is aged 29.988153846154052, hispanic and is leaving the simulation.
+s11702 is aged 29.988153846154052, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00054 is 21.016384615384823 and has aged to age group 21to29.
+s00432 is 21.004384615384822 and has aged to age group 21to29.
+s01067 is 21.011384615384824 and has aged to age group 21to29.
+s01781 is 21.000384615384824 and has aged to age group 21to29.
+s02395 is 21.014384615384824 and has aged to age group 21to29.
+s02953 is 21.002384615384823 and has aged to age group 21to29.
+s03942 is 21.004384615384822 and has aged to age group 21to29.
+s06745 is 21.003384615384824 and has aged to age group 21to29.
+s06928 is 21.003384615384824 and has aged to age group 21to29.
+s07056 is 21.008384615384823 and has aged to age group 21to29.
+s07779 is 21.005384615384823 and has aged to age group 21to29.
+s09022 is 21.017384615384824 and has aged to age group 21to29.
+s10431 is 21.017384615384824 and has aged to age group 21to29.
+s11487 is 21.014384615384824 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15716 is age 16.0 and whiteNH and is entering the model
+s15717 is age 16.0 and blackNH and is entering the model
+s15718 is age 16.0 and hispanic and is entering the model
+s15719 is age 16.0 and blackNH and is entering the model
+s15720 is age 16.0 and blackNH and is entering the model
+s15721 is age 16.0 and hispanic and is entering the model
+s15722 is age 16.0 and otherNH and is entering the model
+s15723 is age 16.0 and whiteNH and is entering the model
+s15724 is age 16.0 and whiteNH and is entering the model
+s15725 is age 16.0 and blackNH and is entering the model
+s15726 is age 16.0 and hispanic and is entering the model
+
+Agents are attending venues and using apps for week 254 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 254/3640
+Prevalence: 2105
+Population Size: 11627
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s07133 is hispanic, aged 22.584384615384824 in age group 21to29, with relationship status of 0 and is now HIV+.
+s13632 is blackNH, aged 18.576923076923187 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s00580 is aged 29.99238461538482, whiteNH and is leaving the simulation.
+s00789 is aged 29.988384615384824, whiteNH and is leaving the simulation.
+s00803 is aged 29.984384615384823, whiteNH and is leaving the simulation.
+s02117 is aged 29.997384615384824, whiteNH and is leaving the simulation.
+s03991 is aged 29.994384615384824, blackNH and is leaving the simulation.
+s04587 is aged 29.98938461538482, blackNH and is leaving the simulation.
+s05249 is aged 27.065384615384822, blackNH and is leaving the simulation.
+s05785 is aged 29.991384615384824, blackNH and is leaving the simulation.
+s05815 is aged 29.981384615384822, blackNH and is leaving the simulation.
+s05847 is aged 29.991384615384824, blackNH and is leaving the simulation.
+s06493 is aged 29.995384615384822, blackNH and is leaving the simulation.
+s07839 is aged 29.981384615384822, hispanic and is leaving the simulation.
+s08148 is aged 29.991384615384824, hispanic and is leaving the simulation.
+s09037 is aged 29.984384615384823, hispanic and is leaving the simulation.
+s10076 is aged 29.995384615384822, hispanic and is leaving the simulation.
+s10499 is aged 29.994384615384824, otherNH and is leaving the simulation.
+s10748 is aged 29.994384615384824, otherNH and is leaving the simulation.
+s11520 is aged 29.999384615384823, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00899 is 21.00261538461559 and has aged to age group 21to29.
+s01876 is 21.001615384615594 and has aged to age group 21to29.
+s02088 is 21.012615384615593 and has aged to age group 21to29.
+s02257 is 21.003615384615593 and has aged to age group 21to29.
+s02750 is 21.010615384615594 and has aged to age group 21to29.
+s02970 is 21.017615384615592 and has aged to age group 21to29.
+s03105 is 21.007615384615594 and has aged to age group 21to29.
+s03362 is 21.00561538461559 and has aged to age group 21to29.
+s03680 is 21.01161538461559 and has aged to age group 21to29.
+s04269 is 21.018615384615593 and has aged to age group 21to29.
+s04667 is 21.004615384615594 and has aged to age group 21to29.
+s05312 is 21.013615384615594 and has aged to age group 21to29.
+s05395 is 21.014615384615592 and has aged to age group 21to29.
+s06547 is 21.016615384615594 and has aged to age group 21to29.
+s08335 is 21.000615384615593 and has aged to age group 21to29.
+s08539 is 21.018615384615593 and has aged to age group 21to29.
+s11062 is 21.004615384615594 and has aged to age group 21to29.
+s11491 is 21.012615384615593 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15727 is age 16.0 and whiteNH and is entering the model
+s15728 is age 16.0 and whiteNH and is entering the model
+s15729 is age 16.0 and hispanic and is entering the model
+s15730 is age 16.0 and hispanic and is entering the model
+s15731 is age 16.0 and whiteNH and is entering the model
+s15732 is age 16.0 and blackNH and is entering the model
+s15733 is age 16.0 and whiteNH and is entering the model
+s15734 is age 16.0 and hispanic and is entering the model
+s15735 is age 16.0 and blackNH and is entering the model
+s15736 is age 16.0 and whiteNH and is entering the model
+s15737 is age 16.0 and hispanic and is entering the model
+s15738 is age 16.0 and otherNH and is entering the model
+s15739 is age 16.0 and hispanic and is entering the model
+s15740 is age 16.0 and whiteNH and is entering the model
+s15741 is age 16.0 and hispanic and is entering the model
+s15742 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 255 in simulation...
+
+
+Epidemic Simulation
+----------------------------
+Simulation: 1/1
+Timestep: 255/3640
+Prevalence: 2105
+Population Size: 11625
+----------------------------
+The ages, hiv status, and relationship status for the agents are being updated...
+s03557 is whiteNH, aged 28.161615384615594 in age group 21to29, with relationship status of 0 and is now HIV+.
+s05020 is blackNH, aged 26.490615384615595 in age group 21to29, with relationship status of 0 and is now HIV+.
+s13092 is blackNH, aged 19.25000000000014 in age group 16to20, with relationship status of 0 and is now HIV+.
+s13235 is hispanic, aged 19.038461538461668 in age group 16to20, with relationship status of 0 and is now HIV+.
+
+Agents are being removed from the simulation...
+s01369 is aged 29.990615384615595, whiteNH and is leaving the simulation.
+s01540 is aged 29.989615384615593, whiteNH and is leaving the simulation.
+s02552 is aged 29.988615384615592, whiteNH and is leaving the simulation.
+s03055 is aged 29.994615384615592, whiteNH and is leaving the simulation.
+s05380 is aged 29.992615384615593, blackNH and is leaving the simulation.
+s05637 is aged 29.99961538461559, blackNH and is leaving the simulation.
+s07173 is aged 29.991615384615592, hispanic and is leaving the simulation.
+s07519 is aged 29.984615384615594, hispanic and is leaving the simulation.
+s08381 is aged 29.998615384615594, hispanic and is leaving the simulation.
+s08499 is aged 29.997615384615592, hispanic and is leaving the simulation.
+s09268 is aged 29.994615384615592, hispanic and is leaving the simulation.
+s09326 is aged 29.985615384615592, hispanic and is leaving the simulation.
+s09539 is aged 29.988615384615592, hispanic and is leaving the simulation.
+s09792 is aged 29.990615384615595, hispanic and is leaving the simulation.
+s10059 is aged 29.987615384615594, hispanic and is leaving the simulation.
+s10390 is aged 29.988615384615592, hispanic and is leaving the simulation.
+s10876 is aged 29.998615384615594, otherNH and is leaving the simulation.
+s11306 is aged 29.987615384615594, otherNH and is leaving the simulation.
+
+Agents who have aged to a new age group are being updated...
+s00641 is 21.007846153846362 and has aged to age group 21to29.
+s02735 is 21.01584615384636 and has aged to age group 21to29.
+s03000 is 21.003846153846364 and has aged to age group 21to29.
+s03154 is 21.000846153846364 and has aged to age group 21to29.
+s03609 is 21.002846153846363 and has aged to age group 21to29.
+s04609 is 21.001846153846362 and has aged to age group 21to29.
+s05247 is 21.013846153846362 and has aged to age group 21to29.
+s05498 is 21.017846153846364 and has aged to age group 21to29.
+s05705 is 21.001846153846362 and has aged to age group 21to29.
+s08077 is 21.004846153846362 and has aged to age group 21to29.
+s10020 is 21.005846153846363 and has aged to age group 21to29.
+
+New agents are being added to the simulation...
+s15743 is age 16.0 and whiteNH and is entering the model
+s15744 is age 16.0 and whiteNH and is entering the model
+s15745 is age 16.0 and hispanic and is entering the model
+s15746 is age 16.0 and whiteNH and is entering the model
+s15747 is age 16.0 and whiteNH and is entering the model
+s15748 is age 16.0 and hispanic and is entering the model
+s15749 is age 16.0 and whiteNH and is entering the model
+s15750 is age 16.0 and otherNH and is entering the model
+s15751 is age 16.0 and hispanic and is entering the model
+s15752 is age 16.0 and blackNH and is entering the model
+s15753 is age 16.0 and blackNH and is entering the model
+s15754 is age 16.0 and blackNH and is entering the model
+s15755 is age 16.0 and whiteNH and is entering the model
+s15756 is age 16.0 and whiteNH and is entering the model
+s15757 is age 16.0 and whiteNH and is entering the model
+s15758 is age 16.0 and whiteNH and is entering the model
+s15759 is age 16.0 and whiteNH and is entering the model
+s15760 is age 16.0 and blackNH and is entering the model
+
+Agents are attending venues and using apps for week 256 in simulation...
+
