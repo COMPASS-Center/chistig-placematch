@@ -41,10 +41,10 @@ if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
 
 ### 0. Set up python and R environments ###
 # working directory
-# project_dir <- "/projects/p32153/chistig-placematch/"
 project_dir <- yamldata$repo.dir
-# this_dir <- paste0(project_dir, "04-chistig-model-simulation/")
 this_dir <- paste0(project_dir, yamldata$model.simulation.subdir)
+
+# necessary subdirectories
 utils_subdir <- paste0(project_dir, yamldata$utils.subdir)
 params_subdir <- paste0(project_dir, yamldata$params.subdir)
 epistats_subdir <- paste0(project_dir, yamldata$epistats.subdir)
@@ -52,36 +52,25 @@ network_fit_subdir <- paste0(project_dir, yamldata$netest.subdir)
 
 output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
 
-print(project_dir)
-print(this_dir)
 
 # # load python instance
 # reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
-reticulate::use_python(yamldata$reticulate.python.instance)
 # reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
+reticulate::use_python(yamldata$reticulate.python.instance)
 
-
-print("")
 
 #### ChiSTIG model prelim ------------------------------------------------------
-# python_chistig <- environment(reticulate::source_python(paste0(this_dir,"chistig/chistig_colocation_model.py")))
-# python_chistig <- import("chistig_colocation_model_reticulate")
-
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
 
 # load the necessary chistig data for the chistig colocation model
-# chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params.yaml"))
-# chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params.yaml"))
-# chistig_colocation_params <- python_chistig$create_params(paste0(project_dir, "params/model_params_step2.yaml"))
 chistig_colocation_params_fname <- paste0(params_subdir, yamldata$colocation.params.fname)
 chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
 
 
 # rename the agent_log file with the specific experiment
-# chistig_colocation_params$agent.log.file <- paste0(this_dir, "output/agent_log_", treatment_run, "_", experiment_name, ".txt")
 chistig_colocation_params$agent.log.file <- paste0(output_subdir, treatment_run, "_", experiment_name, ".txt")
 
 # set the random seed in the colocation
@@ -104,17 +93,13 @@ epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname))
 netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname))
 
 if (treatment == 'venues'){
-    # est <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/venue_only_netest-local.rds"))
     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname))
 
 } else if (treatment == 'apps'){
-    # est <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/apps_only_netest-local.rds"))
     est <- readRDS(paste0(project_dir, network_fit_subdir, yamldata$netest.apps.fname))
 } else if (treatment == 'both'){
-    # est <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/venues_apps_netest-local.rds"))
     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.appsvenues.fname))
 } else if (treatment == 'control') {
-    # est <- readRDS(paste0(project_dir, "02-network-edge-calibration/output/basic_netest-local.rds"))
     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.control.fname))
 } else {
   print("ERROR: invalid treatment type code provided")
@@ -185,9 +170,7 @@ control <- control_msm(
 
 #
 start_time <- Sys.time()
-# Epidemic simulation
 sim <- netsim(est, param, init, control)
 end_time <- Sys.time()
 
-# saveRDS(sim, paste0(this_dir, "output/", treatment, "_", treatment_run_number, "_", experiment_name, ".rds"))
 saveRDS(sim, paste0(output_subdir, "simout-", treatment, "_run-no-", treatment_run_number, ".rds"))
