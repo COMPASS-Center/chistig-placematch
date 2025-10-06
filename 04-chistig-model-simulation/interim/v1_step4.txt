@@ -1,1 +1,0 @@
-tick,agent_id,agent_uid_rank,ego_id,age,age_group,race_ethnicity,hiv_status,relationship_status,assigned_eego,venues_attended,apps_used
