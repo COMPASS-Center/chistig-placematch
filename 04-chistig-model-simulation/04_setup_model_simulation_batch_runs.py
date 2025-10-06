@@ -80,8 +80,8 @@ sbatch = f"""
 #SBATCH --time={yamldata['sbatch.walltime.hours']}:{yamldata['sbatch.walltime.minutes']}:00 ## how long does this need to run (remember different partitions have restrictions on this param)
 #SBATCH --mem={yamldata['sbatch.memory']}
 #SBATCH --job-name=%A.{yamldata['experiment.name']} ## When you run squeue -u NETID this is how you can identify the job
-#SBATCH --output={model_sim_interim_subdir}%a_{run}.%A.out ## standard out and standard error goes to this file
-#SBATCH --error={model_sim_interim_subdir}%a_{run}.%A.err
+#SBATCH --output={model_sim_interim_subdir}{experiment_name}%a_{run}.%A.out ## standard out and standard error goes to this file
+#SBATCH --error={model_sim_interim_subdir}{experiment_name}%a_{run}.%A.err
 #SBATCH --mail-type=ALL ## you can receive e-mail alerts from SLURM when your job begins and when your job finishes (complet$
 #SBATCH --mail-user={yamldata['sbatch.email']} ## your email
 
