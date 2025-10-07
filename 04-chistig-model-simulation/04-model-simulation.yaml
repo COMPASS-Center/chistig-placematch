@@ -24,7 +24,7 @@ netest.control.fname: 'basic_netest-local.rds'
 
 
 experiment.name: 'step4'
-number.runs.per.treatment: 1
+number.runs.per.treatment: 120
 batch.runs.args.fname: '04_input_args.txt'
 random.seed.max: 800
 
