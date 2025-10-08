@@ -1,0 +1,52 @@
+repo.dir: '/projects/p32153/chistig-placematch/'
+#repo.dir: '/Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/'
+model.simulation.subdir: '04-chistig-model-simulation/'
+epistats.subdir: '00-preliminary-setup/'
+netest.subdir: '02-network-edge-calibration/output/'
+utils.subdir: 'utils/'
+params.subdir: 'params/'
+
+model.simulation.interim.subdir: 'interim/'
+model.simulation.output.subdir: 'output/'
+
+#file names
+model.simulation.rscript.fname: '04_chistig_model_simulation.R'
+sbatch.outfile.fname: '04_sbatch.sh'
+colocation.params.fname: 'model_params_step2.yaml'
+epimodel.params.fname: 'params_chistig_apr18.csv'
+
+epistats.fname: 'epistats.rds'
+netstats.fname: 'netstats-local.rds'
+netest.apps.fname: 'apps_only_netest-local.rds'
+netest.venues.fname: 'venue_only_netest-local.rds'
+netest.appsvenues.fname: 'venues_apps_netest-local.rds'
+netest.control.fname: 'basic_netest-local.rds'
+
+
+experiment.name: 'step4'
+number.runs.per.treatment: 120
+batch.runs.args.fname: '04_input_args.txt'
+random.seed.max: 800
+
+treatment.types:
+  - control
+  # - apps
+  - venues
+  # - venuesapps      
+
+# partnerships
+partnership.types:
+  - main
+  - casual      
+  - onetime
+
+sbatch.email: 'tom.wolff@northwestern.edu'
+sbatch.memory: '3G'
+sbatch.walltime.hours: '08'
+sbatch.walltime.minutes: '00'
+sbatch.partition: 'normal'
+
+# reticulate details
+chistig.colocation.model.fname: 'chistig_colocation_model_reticulate.py'
+reticulate.python.instance: '/projects/p32153/condaenvs/conda-chistig/bin/python'
+
