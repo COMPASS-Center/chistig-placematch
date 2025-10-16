@@ -1,6 +1,7 @@
 # Libraries  -------------------------------------------------------------------
 library("chiSTIGmodules")
 library("EpiModelHIV")
+library(yaml)
 library(stringr)
 library(reticulate)
 
@@ -13,6 +14,8 @@ treatment_type <- args[3]
 treatment_run_num <- as.integer(args[4])
 experiment_name <- args[5]
 random_seed <- as.integer(args[6])
+yamlfname <- args[6]
+yamldata <- yaml.load_file(yamlfname)
 
 
 # set random seed
@@ -41,28 +44,40 @@ set.seed(random_seed)
 ### 0. Set up python and R environments ###
 # working directory
 # this_dir <- "/media/psf/dev/repos/ChiSTIG/ChiSTIG_model/"
-this_dir <- "/projects/p32153/chistig-placematch/"
-calibration_interim_dir <- paste0(this_dir, "02-network-edge-calibration/interim/")
+# repo_dir <- "/projects/p32153/chistig-placematch/"
+repo_dir <- yamldata$repo.dir
+calibration_subdir <- paste0(repo_dir, yamldata$calibration.subdir)
+calibration_interim_subdir <- paste0(calibration_subdir, yamldata$interim.data.subdir)
+
+utils_subdir <- paste0(repo_dir, yamldata$utils.subdir)
+epistats_subdir <- paste0(repo_dir, yamldata$epistats.subdir)
+params_subdir <- paste0(repo_dir, yamldata$params.subdir)
+
+# params_subdir <- paste0(project_dir, yamldata$params.subdir)
+# output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
 
 
 # load python instance
-reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
+# reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
+reticulate::use_python(yamldata$reticulate.python.instance)
 
 
 print("")
 
 #### ChiSTIG model prelim ------------------------------------------------------
 # python_chistig <- environment(reticulate::source_python(paste0(this_dir,"chistig/chistig_colocation_model.py")))
-python_chistig <- import("chistig_colocation_model_reticulate")
-
+# python_chistig <- import("chistig_colocation_model_reticulate")
+chistig_colocation_model <- yamldata$chistig.colocation.model.fname
+chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
+python_chistig <- import(chistig_colocation_model)
 
 # load the necessary chistig data for the chistig colocation model
 # chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params.yaml"))
-chistig_colocation_params <- python_chistig$create_params(paste0(calibration_interim_dir, "model_params_edge_calibration.yaml"))
+chistig_colocation_params <- python_chistig$create_params(paste0(calibration_interim_subdir, yamldata$simulation.params.fname))
 
 # rename the agent_log file with the specific experiment
 # chistig_colocation_params$agent.log.file <- paste0(this_dir, "output/agent_log_", treatment_type, "_", experiment_name, "_", calibration_set_num, ".txt")
-chistig_colocation_params$agent.log.file <- paste0(calibration_interim_dir, "agent-log-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".txt")
+chistig_colocation_params$agent.log.file <- paste0(calibration_interim_subdir, "agent-log-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".txt")
 
 # set the random seed in the colocation
 python_chistig$set_random_seed(random_seed)
@@ -75,22 +90,21 @@ python_chistig$next_step()
 
 
 # Settings ---------------------------------------------------------------------
-source(paste0(this_dir, "utils/utils-0_project_settings.R"))
-source(paste0(this_dir, "utils/utils-epi_trackers.R"))
-source(paste0(this_dir, "utils/utils-targets.R"))
-#
+source(paste0(utils_subdir, "utils-epi_trackers.R"))
+source(paste0(utils_subdir, "utils-targets.R"))
+
 # Necessary files
-epistats <- readRDS(paste0(this_dir, "00-preliminary-setup/epistats.rds"))
-netstats <- readRDS(paste0(calibration_interim_dir, "netstats_", calibration_set_num, ".rds"))
+epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname))
+netstats <- readRDS(paste0(calibration_interim_subdir, "netstats_", calibration_set_num, ".rds"))
 
 if (treatment_type == 'venues'){
-  est <- readRDS(paste0(calibration_interim_dir, "netest-venues_", calibration_set_num, ".rds"))
+  est <- readRDS(paste0(calibration_interim_subdir, "netest-venues_", calibration_set_num, ".rds"))
 } else if (treatment_type == 'apps'){
-  est <- readRDS(paste0(calibration_interim_dir, "netest-apps_", calibration_set_num, ".rds"))
+  est <- readRDS(paste0(calibration_interim_subdir, "netest-apps_", calibration_set_num, ".rds"))
 } else if (treatment_type == 'venuesapps'){
-  est <- readRDS(paste0(calibration_interim_dir, "netest-venuesapps_", calibration_set_num, ".rds"))
+  est <- readRDS(paste0(calibration_interim_subdir, "netest-venuesapps_", calibration_set_num, ".rds"))
 } else if (treatment_type == 'control') {
-  est <- readRDS(paste0(calibration_interim_dir, "netest-control_", calibration_set_num, ".rds"))
+  est <- readRDS(paste0(calibration_interim_subdir, "netest-control_", calibration_set_num, ".rds"))
 } else {
   print("ERROR: invalid treatment type code provided")
 }
@@ -102,9 +116,9 @@ netstats$attr$age <- sample(16:29, length(netstats$attr$age), replace = TRUE)
 netstats$attr$age <- netstats$attr$age + sample(1:1000, length(netstats$attr$age), replace = TRUE)/1000
 
 
+epimodel_params_df <- readr::read_csv(paste0(params_subdir, yamldata$epimodel.calibration.params.fname))
 param <- EpiModel::param.net(
-  data.frame.params = readr::read_csv(paste0(this_dir, "params/params_chistig_apr18.csv")),
-#   data.frame.params = readr::read_csv(paste0(this_dir, "data/input/params_chistig_apr18.csv")),
+  data.frame.params = epimodel_params_df,
   netstats          = netstats,
   epistats          = epistats,
   prep.start        = Inf,
@@ -165,4 +179,4 @@ end_time <- Sys.time()
 # saveRDS(sim, paste0(this_dir, "output/", treatment, "_", treatment_run_number, "_", experiment_name, "_", calibration_set_num,".rds"))
 # saveRDS(sim, paste0(this_dir, "output/", experiment_name, "_calset", calibration_set_num, "_", treatment, "_sim", treatment_run_number, ".rds")) 
 # saveRDS(sim, paste0(calibration_interim_dir, "calset_", calibration_set_num, "_", treatment, "_sim", treatment_run_number, ".rds")) 
-saveRDS(sim, paste0(calibration_interim_dir, "simout-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".rds"))
+saveRDS(sim, paste0(calibration_interim_subdir, "simout-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".rds"))
