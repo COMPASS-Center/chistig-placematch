@@ -17,6 +17,6 @@ python step3a_edge_calibration.py "$yaml_file"
 
 # Ensure the "interim" directory is the same in the yaml file as used in the following two lines:
 cp "$yaml_file" interim/
-cd interim/
+cd interim || exit 1
 sbatch step3a_simulation_sbatch.sh "$yaml_file"
 
