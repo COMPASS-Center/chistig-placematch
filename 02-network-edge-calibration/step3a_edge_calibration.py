@@ -86,7 +86,7 @@ with open(sim_args_fname, 'w') as file:
 
 
 # copy the Rscript for the simtest and copy it to the simulation subdirectory 
-simtest_rscript_fname = {yamldata['step3a.rscript.fname']}
+simtest_rscript_fname = yamldata['step3a.rscript.fname']
 base_sim_file = f"{experiment_dir}{simtest_rscript_fname}"
 testexp_sim_file = f"{simulation_dir}{simtest_rscript_fname}"
 shutil.copy(base_sim_file, testexp_sim_file)
