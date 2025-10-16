@@ -12,41 +12,51 @@ with open(yamlfname) as stream:
     except yaml.YAMLError as exc:
         print(exc)
 
-# experiment name 
-expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}" 
+print(yamldata)
+print(yamlfname)
+
+# setup the directory where simulations will be run
+experiment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 
 if 'expname' in yamldata:
     experiment_name = yamldata['expname']
-    expiriment_dir = f"{expiriment_dir}{experiment_name}/"
+    experiment_dir = f"{experiment_dir}{experiment_name}/"
 else:
     experiment_name = 'NA'
-    expiriment_dir = f"{expiriment_dir}"
+    experiment_dir = f"{experiment_dir}"
 
-expiriment_interim_dir = f"{expiriment_dir}{yamldata['interim.data.subdir']}"
+experiment_interim_dir = f"{experiment_dir}{yamldata['interim.data.subdir']}"
+simulation_dir = experiment_interim_dir
 
-simulation_dir = expiriment_interim_dir
 
-# params dir
+# specify where the params for the simulation are located 
 params_dir = f"{yamldata['repo.dir']}{yamldata['params.subdir']}"
 
-# # obtain the number of calibration runs
+# obtain the number of calibration runs
 calibration_df_fname = f"{yamldata['calibration.matrix.fname']}"
 calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 calibration_df = pd.read_csv(calibration_df_fname)
 num_calibration_sets = max(calibration_df['fit_no'])
 
-out_subdir = expiriment_interim_dir
+
+# set where the output from the simulations will go
+out_subdir = experiment_interim_dir
+
+
+# obtain the calibration sets that did not converge in step2
 cset2skip_fname = f"{out_subdir}{yamldata['convergence.fail.fname']}"
 with open(cset2skip_fname, 'r') as file:
     cset2skip = [int(line.strip()) for line in file]
 
+
 # obtain the treatments
 treatments_dict = yamldata['treatment.types']
-print(treatments_dict)
+
 
 # the random seed max
 random_seed_max = yamldata['max.random.seed']
 simulation_random_seeds = random.sample(range(yamldata['max.random.seed'] + 1), yamldata['step3.num.simulation.runs.per.treatment'])
+
 
 # the file names and locations
 sim_args_fname = f"{simulation_dir}{yamldata['step3.simulation.args.fname']}" #nolint
@@ -69,12 +79,20 @@ with open(sim_args_fname, 'w') as file:
                     simulation_args_dict[run]['treatment_run'] = thistreatmentrun
                     simulation_args_dict[run]['experiment'] = experiment_name
                     simulation_args_dict[run]['random_seed'] = thisrandomseed
-                    line = f"{run}\t{setno}\t{thistreatment}\t{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\n"
+                    simulation_args_dict[run]['yamlfile'] = yamlfname
+                    line = f"{run}\t{setno}\t{thistreatment}\t{thistreatmentrun+1}\t{experiment_name}\t{thisrandomseed}\t{yamlfname}\n"
                     file.write(line)                                
                     run += 1
 
 
+# copy the Rscript for the simtest and copy it to the simulation subdirectory 
+simtest_rscript_fname = {yamldata['step3a.rscript.fname']}
+base_sim_file = f"{experiment_dir}{simtest_rscript_fname}"
+testexp_sim_file = f"{simulation_dir}{simtest_rscript_fname}"
+shutil.copy(base_sim_file, testexp_sim_file)
 
+
+# setup the sbatch for the runs in the cluster
 sbatch = f"""
 #SBATCH --account=p32153  ## YOUR ACCOUNT pXXXX or bXXXX
 #SBATCH --partition={yamldata['sbatch.partition.sim']}  ### PARTITION (buyin, short, normal, etc)
@@ -97,7 +115,7 @@ IFS=$'\\n' read -d '' -r -a input_args < {yamldata['step3.simulation.args.fname'
 echo ${{input_args[$SLURM_ARRAY_TASK_ID]}}
 
 SECONDS=0
-Rscript step3a_simtest.R ${{input_args[$SLURM_ARRAY_TASK_ID]}}
+Rscript {simtest_rscript_fname} ${{input_args[$SLURM_ARRAY_TASK_ID]}}
 echo $SECONDS
 """
 
@@ -133,10 +151,6 @@ with open(new_sim_params_file, 'w') as outfile:
     yaml.dump(new_sim_yamldata, outfile, default_flow_style=False, sort_keys=False)
 
 
-# copy the Rscript for the simtest and rename it to match this experiment
-# move it to the `ChiSTIG_model/chistig/` subdirectory 
-base_sim_file = f"{expiriment_dir}{yamldata['step3a.rscript.fname']}"
-testexp_sim_file = f"{simulation_dir}{yamldata['step3a.rscript.fname']}"
-shutil.copy(base_sim_file, testexp_sim_file)
-
-
+# take the yaml file for the whole of step 2 and copy it to where the simulatiosn will occur
+with open(f"{simulation_dir}{yamlfname}", 'w') as file:
+    yaml.dump(yamldata, file, default_flow_style=False, sort_keys=False)
