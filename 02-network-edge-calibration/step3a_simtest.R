@@ -14,7 +14,7 @@ treatment_type <- args[3]
 treatment_run_num <- as.integer(args[4])
 experiment_name <- args[5]
 random_seed <- as.integer(args[6])
-yamlfname <- args[6]
+yamlfname <- args[7]
 yamldata <- yaml.load_file(yamlfname)
 
 
