@@ -170,15 +170,17 @@ control <- control_msm(
 )
 
 
-#
-# start_time <- Sys.time()
-# # Epidemic simulation
-# sim <- netsim(est, param, init, control)
-# end_time <- Sys.time()
+
+start_time <- Sys.time()
+# Epidemic simulation
+sim <- netsim(est, param, init, control)
+end_time <- Sys.time()
 
 
 simout_fname <- paste0(calibration_interim_subdir, "simout-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".rds")
-print(simout_fname)
+saveRDS(sim, simout_fname)
+
+
 # saveRDS(sim, paste0(this_dir, "output/", treatment, "_", treatment_run_number, "_", experiment_name, "_", calibration_set_num,".rds"))
 # saveRDS(sim, paste0(this_dir, "output/", experiment_name, "_calset", calibration_set_num, "_", treatment, "_sim", treatment_run_number, ".rds")) 
 # saveRDS(sim, paste0(calibration_interim_dir, "calset_", calibration_set_num, "_", treatment, "_sim", treatment_run_number, ".rds")) 
