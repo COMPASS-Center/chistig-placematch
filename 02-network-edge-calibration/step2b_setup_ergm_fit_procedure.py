@@ -2,6 +2,7 @@ import random
 import yaml 
 import sys
 import pandas as pd
+import os
 
 
 yamlfname = sys.argv[1]
@@ -12,16 +13,22 @@ with open(yamlfname) as stream:
     except yaml.YAMLError as exc:
         print(exc)
 
-num_convergence_attempts = yamldata['num.ergm.convergence.attempts']
-random_seed_max = yamldata['max.random.seed']
+# setup directory names
+experiment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
+experiment_interim_dir = f"{experiment_dir}{yamldata['interim.data.subdir']}"
+experiment_output_dir =  f"{experiment_dir}{yamldata['output.data.subdir']}"
 
-# setup args input filename 
-expiriment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
-expiriment_interim_dir = f"{expiriment_dir}{yamldata['interim.data.subdir']}"
+# make sure that our interim/output directory exists... if not, create one
+if not os.path.exists(experiment_interim_dir):
+    os.mkdir(experiment_interim_dir)
+
+if not os.path.exists(experiment_output_dir):
+    os.mkdir(experiment_output_dir)
+
+
+# setup args input filename and arguments
 output_fname = f"{yamldata['step2b.inputargs.fname']}.txt"
-
-output_file = f"{expiriment_dir}{output_fname}"
-
+output_file = f"{experiment_dir}{output_fname}"
 
 # obtain the length of the calibration set matrix 
 calibration_df_fname = f"{yamldata['calibration.matrix.fname']}"
@@ -29,8 +36,13 @@ calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 calibration_df = pd.read_csv(calibration_df_fname)
 num_calibration_sets = max(calibration_df['fit_no'])
 
-sbatch_bash_commands_outfile = f"{expiriment_dir}{yamldata['step2b.sbatch.fname']}.sh"
 
+# other arguments from yaml file 
+sbatch_bash_commands_outfile = f"{experiment_dir}{yamldata['step2b.sbatch.fname']}.sh"
+num_convergence_attempts = yamldata['num.ergm.convergence.attempts']
+random_seed_max = yamldata['max.random.seed']
+
+# setup the input params arguments for running the individual simulations for each calibration instance
 random_seeds_list = random.sample(range(random_seed_max + 1), yamldata['num.ergm.convergence.attempts'])
 random_seeds_string = f"({' '.join(map(str,random_seeds_list))})"
 
@@ -101,9 +113,10 @@ done
 echo "Finished convergence attempts loop."
 """
 
-outfile_temp = f'{expiriment_interim_dir}temp.sh'
+outfile_temp = f'{experiment_interim_dir}temp.sh'
 # outfile_temp = f'temp.sh'
 with open(outfile_temp, 'w') as f:
 	f.write(sbatch)
 open(f'{sbatch_bash_commands_outfile}', "w").write("#!/bin/bash\n" + open(outfile_temp).read())
+
 
