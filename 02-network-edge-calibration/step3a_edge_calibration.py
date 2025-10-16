@@ -12,8 +12,6 @@ with open(yamlfname) as stream:
     except yaml.YAMLError as exc:
         print(exc)
 
-print(yamldata)
-print(yamlfname)
 
 # setup the directory where simulations will be run
 experiment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
