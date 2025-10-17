@@ -21,30 +21,8 @@ yamldata <- yaml.load_file(yamlfname)
 # set random seed
 set.seed(random_seed)
 
-
-# # Define which "Treatment" we're running here
-# treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
-# treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
-
-
-
-# if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
-#   treatment <- "control"
-# } else if (treatment_run_letter == "a") { # "apps" - Apps, no venues
-#   treatment <- "apps"
-# } else if (treatment_run_letter == "v") { # "venues" - Venues, no apps
-#   treatment <- "venues"
-# } else if (treatment_run_letter == "b") { # "both" - Venues and Apps
-#   treatment <- "both"
-# } else {
-#   print("ERROR: invalid treatment type code provided")
-# }
-
-
 ### 0. Set up python and R environments ###
 # working directory
-# this_dir <- "/media/psf/dev/repos/ChiSTIG/ChiSTIG_model/"
-# repo_dir <- "/projects/p32153/chistig-placematch/"
 repo_dir <- yamldata$repo.dir
 calibration_subdir <- paste0(repo_dir, yamldata$calibration.subdir)
 calibration_interim_subdir <- paste0(calibration_subdir, yamldata$interim.data.subdir)
@@ -53,30 +31,21 @@ utils_subdir <- paste0(repo_dir, yamldata$utils.subdir)
 epistats_subdir <- paste0(repo_dir, yamldata$epistats.subdir)
 params_subdir <- paste0(repo_dir, yamldata$params.subdir)
 
-# params_subdir <- paste0(project_dir, yamldata$params.subdir)
-# output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
-
-
 # load python instance
-# reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
 reticulate::use_python(yamldata$reticulate.python.instance)
 
 
 print("")
 
 #### ChiSTIG model prelim ------------------------------------------------------
-# python_chistig <- environment(reticulate::source_python(paste0(this_dir,"chistig/chistig_colocation_model.py")))
-# python_chistig <- import("chistig_colocation_model_reticulate")
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
 # load the necessary chistig data for the chistig colocation model
-# chistig_colocation_params <- python_chistig$create_params(paste0(this_dir, "params/model_params.yaml"))
 chistig_colocation_params <- python_chistig$create_params(paste0(calibration_interim_subdir, yamldata$simulation.params.fname))
 
 # rename the agent_log file with the specific experiment
-# chistig_colocation_params$agent.log.file <- paste0(this_dir, "output/agent_log_", treatment_type, "_", experiment_name, "_", calibration_set_num, ".txt")
 chistig_colocation_params$agent.log.file <- paste0(calibration_interim_subdir, "agent-log-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".txt")
 
 # set the random seed in the colocation
@@ -179,9 +148,3 @@ end_time <- Sys.time()
 
 simout_fname <- paste0(calibration_interim_subdir, "simout-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".rds")
 saveRDS(sim, simout_fname)
-
-
-# saveRDS(sim, paste0(this_dir, "output/", treatment, "_", treatment_run_number, "_", experiment_name, "_", calibration_set_num,".rds"))
-# saveRDS(sim, paste0(this_dir, "output/", experiment_name, "_calset", calibration_set_num, "_", treatment, "_sim", treatment_run_number, ".rds")) 
-# saveRDS(sim, paste0(calibration_interim_dir, "calset_", calibration_set_num, "_", treatment, "_sim", treatment_run_number, ".rds")) 
-# saveRDS(sim, paste0(calibration_interim_subdir, "simout-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".rds"))
