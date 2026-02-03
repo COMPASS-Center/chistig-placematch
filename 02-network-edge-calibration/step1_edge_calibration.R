@@ -1,5 +1,5 @@
 # Create a CSV file to feed target stats into the calibration process
-# Set up directories for experiment 
+# Set up directories for experiment
 
 #######################################
 # Read in target stats (for netstats) #
@@ -64,30 +64,49 @@ apps_casual <- 794.72
 ##### so we extract it from our target stats sheet here:
 apps_onetime <- target_extract(term = "fuzzynodematch.apps_all.TRUE", model = "one.time")
 
+
 ### These three objects store values to test for the "target stats" that inform
 ### how many ties in our partnership networks should feature colocation in
 ### physical spaces between the two nodes they connect.
 ##### As mentioned above, we store a range of potential values in the
 ##### `venues.main` object to show what the output of this script
 ##### should look like.
-venues_main <- (19.56929 + c(0:-8))
-venues_casual <- 17.60886
-venues_onetime <- 1.951811
+# venues_main <- (19.56929 + c(0:-8))
+# venues_casual <- 17.60886
+# venues_onetime <- 1.951811
+
+# Testing Michelle's counterfactual scenario here
+pct_seq <- seq(0, 4, by = .1)
+venues_main <- 11.56929 * (1 + pct_seq)
+venues_casual <- 17.60886 * (1 + pct_seq)
+venues_onetime <- 1.951811 * (1 + pct_seq)
 
 # Once the above objects are stored, we use the `expand.grid` function
 # to create a data frame storing all possible combinations of values
 # for our `d.rate` parameters and target stats
-calibration_matrix <- expand.grid(experiment = expname,
-                            drate_main = drate_main,
-                            drate_cas = drate_cas,
-                            apps_main = apps_main,
-                            apps_casual = apps_casual,
-                            apps_onetime = apps_onetime,
-                            venues_main = venues_main,
-                            venues_casual = venues_casual,
-                            venues_onetime = venues_onetime) %>%
-     dplyr::mutate(fit_no = dplyr::row_number()) %>%
-     dplyr::select(fit_no, dplyr::everything())
+# calibration_matrix <- expand.grid(experiment = expname,
+#                             drate_main = drate_main,
+#                             drate_cas = drate_cas,
+#                             apps_main = apps_main,
+#                             apps_casual = apps_casual,
+#                             apps_onetime = apps_onetime,
+#                             venues_main = venues_main,
+#                             venues_casual = venues_casual,
+#                             venues_onetime = venues_onetime) %>%
+#      dplyr::mutate(fit_no = dplyr::row_number()) %>%
+#      dplyr::select(fit_no, dplyr::everything())
+
+calibration_matrix <- data.frame(experiment = expname,
+                                 drate_main = drate_main,
+                                 drate_cas = drate_cas,
+                                 apps_main = apps_main,
+                                 apps_casual = apps_casual,
+                                 apps_onetime = apps_onetime,
+                                 venues_main = venues_main,
+                                 venues_casual = venues_casual,
+                                 venues_onetime = venues_onetime) %>%
+  dplyr::mutate(fit_no = dplyr::row_number()) %>%
+  dplyr::select(fit_no, dplyr::everything())
 
 
 # Save `scenario_mat` as a CSV to be called on in next step

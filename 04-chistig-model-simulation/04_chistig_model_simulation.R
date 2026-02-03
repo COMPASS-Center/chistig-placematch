@@ -173,4 +173,6 @@ start_time <- Sys.time()
 sim <- netsim(est, param, init, control)
 end_time <- Sys.time()
 
+sim$sim_date <- end_time
+
 saveRDS(sim, paste0(output_subdir, "simout-", treatment, "_run-no-", treatment_run_number, ".rds"))
