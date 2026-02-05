@@ -9,44 +9,72 @@ library(reticulate)
 # Read in the arguments from the commandline
 args <- commandArgs(trailingOnly = TRUE)
 sbatch_run_num <- args[1]
-calibration_set_num <- args[2]
-treatment_type <- args[3]
-treatment_run_num <- as.integer(args[4])
-experiment_name <- args[5]
-random_seed <- as.integer(args[6])
-yamlfname <- args[7]
+treatment_run <- args[2]
+experiment_name <- args[3]
+random_seed <- as.integer(args[4])
+yamlfname <- args[5]
 yamldata <- yaml.load_file(yamlfname)
+# TODO: add an instance that goes up to 41, and remove the experiment_name argument, treatment_run 
+# The sbatch_run_num is the 120 times we are running each of the 41 instances
+
 
 
 # set random seed
 set.seed(random_seed)
 
+
+# Define which "Treatment" we're running here
+treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
+treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
+print(treatment_run_number)
+print(treatment_run_letter)
+
+if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
+  treatment <- "control"
+} else if (treatment_run_letter == "a") { # "apps" - Apps, no venues
+  treatment <- "apps"
+} else if (treatment_run_letter == "v") { # "venues" - Venues, no apps
+  treatment <- "venues"
+} else if (treatment_run_letter == "b") { # "both" - Venues and Apps
+  treatment <- "both"
+} else {
+  print("ERROR: invalid treatment type code provided")
+}
+# NOTE: for the 41 instances, we only have the "venues"
+
 ### 0. Set up python and R environments ###
 # working directory
-repo_dir <- yamldata$repo.dir
-calibration_subdir <- paste0(repo_dir, yamldata$calibration.subdir)
-calibration_interim_subdir <- paste0(calibration_subdir, yamldata$interim.data.subdir)
+project_dir <- yamldata$repo.dir
+this_dir <- paste0(project_dir, yamldata$model.simulation.subdir)
 
-utils_subdir <- paste0(repo_dir, yamldata$utils.subdir)
-epistats_subdir <- paste0(repo_dir, yamldata$epistats.subdir)
-params_subdir <- paste0(repo_dir, yamldata$params.subdir)
+# necessary subdirectories
+utils_subdir <- paste0(project_dir, yamldata$utils.subdir)
+params_subdir <- paste0(project_dir, yamldata$params.subdir)
+epistats_subdir <- paste0(project_dir, yamldata$epistats.subdir)
+network_fit_subdir <- paste0(project_dir, yamldata$netest.subdir)
 
-# load python instance
+output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
+
+
+# # load python instance
+# reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
+# reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
 reticulate::use_python(yamldata$reticulate.python.instance)
 
-
-print("")
 
 #### ChiSTIG model prelim ------------------------------------------------------
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
+
 # load the necessary chistig data for the chistig colocation model
-chistig_colocation_params <- python_chistig$create_params(paste0(calibration_interim_subdir, yamldata$simulation.params.fname))
+chistig_colocation_params_fname <- paste0(params_subdir, yamldata$colocation.params.fname)
+chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
+
 
 # rename the agent_log file with the specific experiment
-chistig_colocation_params$agent.log.file <- paste0(calibration_interim_subdir, "agent-log-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".txt")
+chistig_colocation_params$agent.log.file <- paste0(output_subdir, "agent-log_", treatment_run, "_", experiment_name, ".txt")
 
 # set the random seed in the colocation
 python_chistig$set_random_seed(random_seed)
@@ -59,21 +87,24 @@ python_chistig$next_step()
 
 
 # Settings ---------------------------------------------------------------------
+source(paste0(utils_subdir, "utils-0_project_settings.R"))
 source(paste0(utils_subdir, "utils-epi_trackers.R"))
 source(paste0(utils_subdir, "utils-targets.R"))
+#
+# Network fit files
+epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname)) # epistats will stay the same for all 41 instances and 120 runs
+netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname)) # netstats will change for each of the 41 instances (it would normally change for treatment type, but we don't have different types)
 
-# Necessary files
-epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname))
-netstats <- readRDS(paste0(calibration_interim_subdir, "netstats_", calibration_set_num, ".rds"))
+# TODO: the netest will change for each of the 41 instsances, but ONLY implemented for the "venues"
+if (treatment == 'venues'){
+    est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname))
 
-if (treatment_type == 'venues'){
-  est <- readRDS(paste0(calibration_interim_subdir, "netest-venues_", calibration_set_num, ".rds"))
-} else if (treatment_type == 'apps'){
-  est <- readRDS(paste0(calibration_interim_subdir, "netest-apps_", calibration_set_num, ".rds"))
-} else if (treatment_type == 'venuesapps'){
-  est <- readRDS(paste0(calibration_interim_subdir, "netest-venuesapps_", calibration_set_num, ".rds"))
-} else if (treatment_type == 'control') {
-  est <- readRDS(paste0(calibration_interim_subdir, "netest-control_", calibration_set_num, ".rds"))
+} else if (treatment == 'apps'){
+    est <- readRDS(paste0(project_dir, network_fit_subdir, yamldata$netest.apps.fname))
+} else if (treatment == 'both'){
+    est <- readRDS(paste0(network_fit_subdir, yamldata$netest.appsvenues.fname))
+} else if (treatment == 'control') {
+    est <- readRDS(paste0(network_fit_subdir, yamldata$netest.control.fname))
 } else {
   print("ERROR: invalid treatment type code provided")
 }
@@ -85,7 +116,7 @@ netstats$attr$age <- sample(16:29, length(netstats$attr$age), replace = TRUE)
 netstats$attr$age <- netstats$attr$age + sample(1:1000, length(netstats$attr$age), replace = TRUE)/1000
 
 
-epimodel_params_df <- readr::read_csv(paste0(params_subdir, yamldata$epimodel.calibration.params.fname))
+epimodel_params_df <- readr::read_csv(paste0(params_subdir, yamldata$epimodel.params.fname))
 param <- EpiModel::param.net(
   data.frame.params = epimodel_params_df,
   netstats          = netstats,
@@ -106,6 +137,8 @@ control <- control_msm(
   nsteps = 52 * 70,
   nsims  = 1,
   ncores = 1,
+  raw.output = TRUE,
+  cumulative.edgelist = TRUE,
   .tracker.list       = calibration_trackers,
 
   initialize.FUN =              chiSTIGmodules::initialize_msm_chi,
@@ -139,12 +172,12 @@ control <- control_msm(
 )
 
 
-
+#
 start_time <- Sys.time()
-# Epidemic simulation
 sim <- netsim(est, param, init, control)
 end_time <- Sys.time()
 
+saveRDS(sim, paste0(output_subdir, "simout-", treatment, "_run-no-", treatment_run_number, ".rds"))
 
-simout_fname <- paste0(calibration_interim_subdir, "simout-", treatment_type, "_run-no-", treatment_run_num, "_calibration-set-", calibration_set_num, ".rds")
-saveRDS(sim, simout_fname)
+
+

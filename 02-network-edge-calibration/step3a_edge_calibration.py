@@ -15,6 +15,7 @@ with open(yamlfname) as stream:
 
 # setup the directory where simulations will be run
 experiment_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
+print(experiment_dir)
 
 if 'expname' in yamldata:
     experiment_name = yamldata['expname']
@@ -25,20 +26,24 @@ else:
 
 experiment_interim_dir = f"{experiment_dir}{yamldata['interim.data.subdir']}"
 simulation_dir = experiment_interim_dir
-
+print(experiment_interim_dir)
+print(simulation_dir)
 
 # specify where the params for the simulation are located 
 params_dir = f"{yamldata['repo.dir']}{yamldata['params.subdir']}"
+print(params_dir)
 
 # obtain the number of calibration runs
 calibration_df_fname = f"{yamldata['calibration.matrix.fname']}"
 calibration_df_dir = f"{yamldata['repo.dir']}{yamldata['calibration.subdir']}"
 calibration_df = pd.read_csv(calibration_df_fname)
 num_calibration_sets = max(calibration_df['fit_no'])
-
+print(num_calibration_sets)
+print(calibration_df.head(10))
 
 # set where the output from the simulations will go
 out_subdir = experiment_interim_dir
+print(out_subdir)
 
 
 # obtain the calibration sets that did not converge in step2

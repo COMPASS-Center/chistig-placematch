@@ -1,0 +1,9 @@
+model_name: chistig
+workflow_name: sweeps-test
+
+walltime :
+queue :
+project :
+nodes : 4
+ppn : 4
+ 

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-module purge all
-conda activate /projects/p32153/condaenvs/conda-chistig
+# module purge all
+# conda activate /projects/p32153/condaenvs/conda-chistig
 
-R --version
+# R --version
 
 yaml_file="$1"
 echo "$yaml_file"
@@ -15,8 +15,8 @@ echo "$yaml_file"
 python step3a_edge_calibration.py "$yaml_file" 
 
 
-# Ensure the "interim" directory is the same in the yaml file as used in the following two lines:
-cp "$yaml_file" interim/
-cd interim || exit 1
-sbatch step3a_simulation_sbatch.sh "$yaml_file"
+# # Ensure the "interim" directory is the same in the yaml file as used in the following two lines:
+# cp "$yaml_file" interim/
+# cd interim || exit 1
+# sbatch step3a_simulation_sbatch.sh "$yaml_file"
 

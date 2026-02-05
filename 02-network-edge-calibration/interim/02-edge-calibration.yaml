@@ -1,0 +1,56 @@
+repo.dir: /Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/
+calibration.subdir: 02-network-edge-calibration/
+calibration.matrix.fname: edge_target_calibration_vals.csv
+prelim.subdir: 00-preliminary-setup/
+artnet.duration.dissolution.fname: dur_coefs.rds
+epistats.subdir: 00-preliminary-setup/
+epistats.fname: epistats.rds
+synthpop.subdir: synthpop/
+synthpop.fname: egos_v4_1_uniform_age_dist.csv
+target.dataframe.fname: target_values_v4_1_uniform_age_dist.csv
+netstats.subdir: 01-networks-estimation/
+netstats.fname: netstats.rds
+interim.data.subdir: interim/
+output.data.subdir: output/
+step2b.inputargs.fname: step2_ergm_fit_procedure_input_args
+step2b.sbatch.fname: step2b_sbatch_ergm_fit_procedure
+step2b.rscript.fname: step2b_edge_calibration.R
+params.subdir: params/
+epimodel.calibration.params.fname: params_chistig_apr18.csv
+default.simulation.params.fname: model_params_step2.yaml
+simulation.params.fname: model_params_edge_calibration.yaml
+utils.subdir: utils/
+step3a.rscript.fname: step3a_simtest.R
+step3.simulation.args.fname: step3a_simulation_runs_input_args.txt
+step3.simulation.sbatch.fname: step3a_simulation_sbatch.sh
+step3.num.simulation.runs.per.treatment: 20
+reticulate.python.instance: /projects/p32153/condaenvs/conda-chistig/bin/python
+chistig.colocation.model.fname: chistig_colocation_model_reticulate.py
+num.ergm.convergence.attempts: 10
+ergm.convergence.attempt.time: 60
+max.random.seed: 200
+sbatch.partition: normal
+sbatch.walltime.hours: '10'
+sbatch.walltime.minutes: '30'
+sbatch.email: tom.wolff@northwestern.edu
+sbatch.memory: 3G
+convergence.fail.fname: edge_calibration_sets_that_did_not_converge.txt
+sbatch.partition.sim: normal
+sbatch.walltime.hours.sim: '10'
+sbatch.walltime.minutes.sim: '30'
+sbatch.email.sim: tom.wolff@northwestern.edu
+sbatch.memory.sim: 3G
+treatment.types:
+- control
+- apps
+- venues
+- venuesapps
+partnership.types:
+- main
+- casual
+- onetime
+simulation.yaml.override:
+  stop.at: 4000
+  burnin.time.weeks: 4000
+departure.rate.main: 0.0018
+departure.rate.casual: 0.0014
