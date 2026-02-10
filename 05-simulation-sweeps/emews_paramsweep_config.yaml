@@ -1,0 +1,10 @@
+model_name: chistig
+workflow_name: paramsweepworkflow
+output_dir: experiments/
+
+walltime: 
+queue:
+project: p32153
+nodes: 1
+ppn: 
+
