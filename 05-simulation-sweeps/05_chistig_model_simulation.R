@@ -7,18 +7,20 @@ library(reticulate)
 library(argparse)
 
 all_args <- commandArgs(trailingOnly = TRUE)
-param_string <- paste(all_arges, collapse = " ")
+all_args <- all_args[-1]
+param_string <- paste(all_args, collapse = " ")
 args_vector <- strsplit(param_string, " ")[[1]]
 
 parser <- ArgumentParser()
 parser$add_argument("--replicate", type="integer")
 parser$add_argument("--simparamsyamlfname", type="character", help="Path to simulation parameter file")
 parser$add_argument("--siminstance", type="integer", help="The instance of the sweep test")
-
+parser$add_argument("--runno", type="integer")
 
 args <- parser$parse_args()
 
 # print(args$replicate)
+
 
 random_seed <- as.integer(args$replicate)
 sim_instance <- args$siminstance
