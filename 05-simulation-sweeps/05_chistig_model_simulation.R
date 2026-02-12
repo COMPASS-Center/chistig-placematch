@@ -6,8 +6,8 @@ library(stringr)
 library(reticulate)
 library(argparse)
 
-
-param_string <- commandArgs(trailingOnly = TRUE)[1]
+all_args <- commandArgs(trailingOnly = TRUE)
+param_string <- paste(all_arges, collapse = " ")
 args_vector <- strsplit(param_string, " ")[[1]]
 
 parser <- ArgumentParser()
