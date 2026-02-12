@@ -35,24 +35,7 @@ number.runs.per.treatment: 120
 batch.runs.args.fname: '04_input_args.txt'
 random.seed.max: 800
 
-#NOTE THAT I'VE TURNED OFF CONTROL HERE FOR THE JAN. 8 TEST
-treatment.types:
-  # - control
-  # - apps
-  - venues
-  # - venuesapps      
 
-# partnerships
-partnership.types:
-  - main
-  - casual      
-  - onetime
-
-sbatch.email: 'tom.wolff@northwestern.edu'
-sbatch.memory: '3G'
-sbatch.walltime.hours: '08'
-sbatch.walltime.minutes: '00'
-sbatch.partition: 'normal'
 
 # reticulate details
 chistig.colocation.model.fname: 'chistig_colocation_model_reticulate.py'

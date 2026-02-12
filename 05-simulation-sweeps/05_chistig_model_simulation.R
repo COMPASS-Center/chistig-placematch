@@ -4,16 +4,37 @@ library("EpiModelHIV")
 library(yaml)
 library(stringr)
 library(reticulate)
+library(argparse)
 
 
-# Read in the arguments from the commandline
-args <- commandArgs(trailingOnly = TRUE)
-sbatch_run_num <- args[1]
-treatment_run <- args[2]
-experiment_name <- args[3]
-random_seed <- as.integer(args[4])
-yamlfname <- args[5]
+param_string <- commandArgs(trailingOnly = TRUE)[1]
+args_vector <- strsplit(param_string, " ")[[1]]
+
+parser <- ArgumentParser()
+parser$add_argument("--replicate", type="integer")
+parser$add_argument("--simparamsyamlfname", type="character", help="Path to simulation parameter file")
+parser$add_argument("--siminstance", type="integer", help="The instance of the sweep test")
+
+
+args <- parser$parse_args()
+
+# print(args$replicate)
+
+random_seed <- as.integer(args$replicate)
+sim_instance <- args$siminstance
+yamlfname <- args$simparamsyamlfname
 yamldata <- yaml.load_file(yamlfname)
+
+
+# # Read in the arguments from the commandline
+# args <- commandArgs(trailingOnly = TRUE)
+# replicate_run
+# sbatch_run_num <- args[1]
+# treatment_run <- args[2]
+# experiment_name <- args[3]
+# random_seed <- as.integer(args[4])
+# yamlfname <- args[5]
+# yamldata <- yaml.load_file(yamlfname)
 
 
 # set random seed
@@ -21,36 +42,39 @@ set.seed(random_seed)
 
 
 # Define which "Treatment" we're running here
-treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
-treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
-print(treatment_run_number)
-print(treatment_run_letter)
+treatment <- "venues"
 
-if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
-  treatment <- "control"
-} else if (treatment_run_letter == "a") { # "apps" - Apps, no venues
-  treatment <- "apps"
-} else if (treatment_run_letter == "v") { # "venues" - Venues, no apps
-  treatment <- "venues"
-} else if (treatment_run_letter == "b") { # "both" - Venues and Apps
-  treatment <- "both"
-} else {
-  print("ERROR: invalid treatment type code provided")
-}
+# treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
+# treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
+# print(treatment_run_number)
+# print(treatment_run_letter)
+
+# if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
+#   treatment <- "control"
+# } else if (treatment_run_letter == "a") { # "apps" - Apps, no venues
+#   treatment <- "apps"
+# } else if (treatment_run_letter == "v") { # "venues" - Venues, no apps
+#   treatment <- "venues"
+# } else if (treatment_run_letter == "b") { # "both" - Venues and Apps
+#   treatment <- "both"
+# } else {
+#   print("ERROR: invalid treatment type code provided")
+# }
 
 
 ### 0. Set up python and R environments ###
 # working directory
 project_dir <- yamldata$repo.dir
-this_dir <- paste0(project_dir, yamldata$model.simulation.subdir)
+this_dir <- paste0(project_dir, yamldata$param.sweep.subdir) #TODO
 
 # necessary subdirectories
 utils_subdir <- paste0(project_dir, yamldata$utils.subdir)
-params_subdir <- paste0(project_dir, yamldata$params.subdir)
+disease_params_subdir <- paste0(project_dir, yamldata$disease.params.subdir)
+abm_params_subdir <- paste0(project_dir, yamldata$abm.params.subdir)
 epistats_subdir <- paste0(project_dir, yamldata$epistats.subdir)
 network_fit_subdir <- paste0(project_dir, yamldata$netest.subdir)
 
-output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
+# output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
 
 
 # # load python instance
@@ -66,12 +90,13 @@ python_chistig <- import(chistig_colocation_model)
 
 
 # load the necessary chistig data for the chistig colocation model
-chistig_colocation_params_fname <- paste0(params_subdir, yamldata$colocation.params.fname)
+chistig_colocation_params_fname <- paste0(abm_params_subdir, yamldata$colocation.params.fname)
 chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
 
 
 # rename the agent_log file with the specific experiment
-chistig_colocation_params$agent.log.file <- paste0(output_subdir, "agent-log_", treatment_run, "_", experiment_name, ".txt")
+# chistig_colocation_params$agent.log.file <- paste0(output_subdir, "agent-log_", treatment_run, "_", experiment_name, ".txt") #TODO
+chistig_colocation_params$agent.log.file <- "agent-log.txt"
 
 # set the random seed in the colocation
 python_chistig$set_random_seed(random_seed)
@@ -90,20 +115,23 @@ source(paste0(utils_subdir, "utils-targets.R"))
 #
 # Network fit files
 epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname))
-netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname))
+netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname, "_", sim_instance, ".rds"))
+est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname, "_", sim_instance, ".rds"))
 
-if (treatment == 'venues'){
-    est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname))
 
-} else if (treatment == 'apps'){
-    est <- readRDS(paste0(project_dir, network_fit_subdir, yamldata$netest.apps.fname))
-} else if (treatment == 'both'){
-    est <- readRDS(paste0(network_fit_subdir, yamldata$netest.appsvenues.fname))
-} else if (treatment == 'control') {
-    est <- readRDS(paste0(network_fit_subdir, yamldata$netest.control.fname))
-} else {
-  print("ERROR: invalid treatment type code provided")
-}
+
+# if (treatment == 'venues'){
+#     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname))
+
+# } else if (treatment == 'apps'){
+#     est <- readRDS(paste0(project_dir, network_fit_subdir, yamldata$netest.apps.fname))
+# } else if (treatment == 'both'){
+#     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.appsvenues.fname))
+# } else if (treatment == 'control') {
+#     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.control.fname))
+# } else {
+#   print("ERROR: invalid treatment type code provided")
+# }
 
 epistats$age.breaks <- c(16, 20, 30)
 epistats$age.limits <- c(16, 30)
@@ -112,7 +140,7 @@ netstats$attr$age <- sample(16:29, length(netstats$attr$age), replace = TRUE)
 netstats$attr$age <- netstats$attr$age + sample(1:1000, length(netstats$attr$age), replace = TRUE)/1000
 
 
-epimodel_params_df <- readr::read_csv(paste0(params_subdir, yamldata$epimodel.params.fname))
+epimodel_params_df <- readr::read_csv(paste0(disease_params_subdir, yamldata$epimodel.params.fname))
 param <- EpiModel::param.net(
   data.frame.params = epimodel_params_df,
   netstats          = netstats,
@@ -175,4 +203,6 @@ end_time <- Sys.time()
 
 sim$sim_date <- end_time
 
-saveRDS(sim, paste0(output_subdir, "simout-", treatment, "_run-no-", treatment_run_number, ".rds"))
+
+saveRDS(sim, "simout.rds")
+# saveRDS(sim, paste0(output_subdir, "simout-", treatment, "_run-no-", treatment_run_number, ".rds")) #TODO 
