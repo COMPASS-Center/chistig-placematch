@@ -1,43 +1,31 @@
 repo.dir: '/projects/p32153/chistig-placematch/'
 #repo.dir: '/Users/rimersara/dev/repos/ChiSTIG/chistig-placematch/'
-model.simulation.subdir: '04-chistig-model-simulation/'
-#epistats.subdir: '03-epimodel-parameter-calibration/data/intermediate/estimates/'
-#netest.subdir: '03-epimodel-parameter-calibration/data/intermediate/estimates/'
-epistats.subdir: '04-chistig-model-simulation/run41_files/'
-netest.subdir: '04-chistig-model-simulation/run41_files/'
+
+param.sweep.subdir: '05-simulation-sweeps/'
 utils.subdir: 'utils/'
-params.subdir: '03-epimodel-parameter-calibration/data/input/'
+# disease.params.subdir: '03-epimodel-parameter-calibration/data/input/'
+disease.params.subdir: 'params/'
+abm.params.subdir: 'params/'
+epistats.subdir: '03-epimodel-parameter-calibration/data/intermediate/estimates/'
+netest.subdir: '05-simulation-sweeps/input/'
 
-model.simulation.interim.subdir: 'interim/'
-model.simulation.output.subdir: 'output/'
 
-#file names
-model.simulation.rscript.fname: '04_chistig_model_simulation.R'
-sbatch.outfile.fname: '04_sbatch.sh'
 colocation.params.fname: 'model_params_step2.yaml'
 epimodel.params.fname: 'params_chistig_apr18.csv'
 
+
+# model.simulation.interim.subdir: 'interim/'
+# model.simulation.output.subdir: 'output/'
+
+
 epistats.fname: 'epistats-local.rds'
-#netstats.fname: 'netstats-local.rds'
-netstats.fname: 'netstats_41.rds'
-#netstats.fname: 'netstats_1.rds'
-netest.apps.fname: 'apps_only_netest-local.rds'
-#netest.venues.fname: 'venue_only_netest-local.rds'
-netest.venues.fname: 'venue_only_netest-local_41.rds'
-#netest.venues.fname: 'venue_only_netest-local_1.rds'
-netest.appsvenues.fname: 'venues_apps_netest-local.rds'
-netest.control.fname: 'basic_netest-local.rds'
+netstats.fname: 'netstats'
+netest.venues.fname: 'netest-venues'
 
-
-#experiment.name: 'step4'
-experiment.name: 'step4_1'
-number.runs.per.treatment: 120
-batch.runs.args.fname: '04_input_args.txt'
-random.seed.max: 800
-
+agent.log.file: 'agent-log.txt'
 
 
 # reticulate details
 chistig.colocation.model.fname: 'chistig_colocation_model_reticulate.py'
-reticulate.python.instance: '/projects/p32153/condaenvs/conda-chistig/bin/python'
+reticulate.python.instance: '/projects/p32153/condaenvs/conda-swift/bin/python'
 

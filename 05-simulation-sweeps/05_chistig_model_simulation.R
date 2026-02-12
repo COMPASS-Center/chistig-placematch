@@ -19,25 +19,11 @@ parser$add_argument("--runno", type="integer")
 
 args <- parser$parse_args()
 
-# print(args$replicate)
-
 
 random_seed <- as.integer(args$replicate)
 sim_instance <- args$siminstance
 yamlfname <- args$simparamsyamlfname
 yamldata <- yaml.load_file(yamlfname)
-
-
-# # Read in the arguments from the commandline
-# args <- commandArgs(trailingOnly = TRUE)
-# replicate_run
-# sbatch_run_num <- args[1]
-# treatment_run <- args[2]
-# experiment_name <- args[3]
-# random_seed <- as.integer(args[4])
-# yamlfname <- args[5]
-# yamldata <- yaml.load_file(yamlfname)
-
 
 # set random seed
 set.seed(random_seed)
@@ -45,23 +31,6 @@ set.seed(random_seed)
 
 # Define which "Treatment" we're running here
 treatment <- "venues"
-
-# treatment_run_letter <- str_extract(treatment_run, "[a-zA-Z]+")
-# treatment_run_number <- as.integer(str_extract(treatment_run, "[0-9]+"))
-# print(treatment_run_number)
-# print(treatment_run_letter)
-
-# if (treatment_run_letter == "c") { # "Control" Simulation (No apps, no venues)
-#   treatment <- "control"
-# } else if (treatment_run_letter == "a") { # "apps" - Apps, no venues
-#   treatment <- "apps"
-# } else if (treatment_run_letter == "v") { # "venues" - Venues, no apps
-#   treatment <- "venues"
-# } else if (treatment_run_letter == "b") { # "both" - Venues and Apps
-#   treatment <- "both"
-# } else {
-#   print("ERROR: invalid treatment type code provided")
-# }
 
 
 ### 0. Set up python and R environments ###
@@ -78,6 +47,11 @@ network_fit_subdir <- paste0(project_dir, yamldata$netest.subdir)
 
 # output_subdir <- paste0(this_dir, yamldata$model.simulation.interim.subdir)
 
+print(utils_subdir)
+print(disease_params_subdir)
+print(abm_params_subdir)
+print(epistats_subdir)
+print(network_fit_subdir)
 
 # # load python instance
 # reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
@@ -87,12 +61,14 @@ reticulate::use_python(yamldata$reticulate.python.instance)
 
 #### ChiSTIG model prelim ------------------------------------------------------
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
+print(chistig_colocation_model)
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
 
-# load the necessary chistig data for the chistig colocation model
+# # load the necessary chistig data for the chistig colocation model
 chistig_colocation_params_fname <- paste0(abm_params_subdir, yamldata$colocation.params.fname)
+print(chistig_colocation_params_fname)
 chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
 
 
@@ -121,19 +97,6 @@ netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname, "_", sim
 est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname, "_", sim_instance, ".rds"))
 
 
-
-# if (treatment == 'venues'){
-#     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname))
-
-# } else if (treatment == 'apps'){
-#     est <- readRDS(paste0(project_dir, network_fit_subdir, yamldata$netest.apps.fname))
-# } else if (treatment == 'both'){
-#     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.appsvenues.fname))
-# } else if (treatment == 'control') {
-#     est <- readRDS(paste0(network_fit_subdir, yamldata$netest.control.fname))
-# } else {
-#   print("ERROR: invalid treatment type code provided")
-# }
 
 epistats$age.breaks <- c(16, 20, 30)
 epistats$age.limits <- c(16, 30)

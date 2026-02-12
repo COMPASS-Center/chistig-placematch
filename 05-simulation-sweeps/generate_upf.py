@@ -18,7 +18,7 @@ with open(output_file, 'w') as f:
         for replicate in range(1, num_replicates + 1):
             # Format as standard command-line arguments (space-separated)
             params = f"--runno {line_number} --siminstance {instance} --replicate {replicate} --simparamsyamlfname {yaml_file}"
-            f.write(f"{line_number}\t{params}\n")
+            f.write(f"{params}\n")
             line_number += 1
 
 total_runs = num_instances * num_replicates
