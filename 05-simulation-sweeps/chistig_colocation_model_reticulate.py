@@ -137,6 +137,7 @@ class Model:
     """
 
     def __init__(self, comm: MPI.Intracomm, params: Dict):
+        print(params)
         # create the context to hold the agents and manage cross process
         # synchronization
         self.comm = comm
@@ -445,11 +446,7 @@ def set_random_seed(random_seed_str):
 
 def create_params(parameters_file):
     global params
-    print("")
-    print(parameters_file) 
     params = parameters.init_params(parameters_file, '')
-    # print(params)
-    # print("")
     return params
 
 def hello_world():
