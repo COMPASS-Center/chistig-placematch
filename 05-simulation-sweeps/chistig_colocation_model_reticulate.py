@@ -448,8 +448,8 @@ def create_params(parameters_file):
     print("")
     print(parameters_file) 
     params = parameters.init_params(parameters_file, '')
-    print(params)
-    print("")
+    # print(params)
+    # print("")
     return params
 
 def hello_world():
