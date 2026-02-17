@@ -79,11 +79,11 @@ chistig_colocation_params$agent.log.file <- "agent_log.txt"
 # set the random seed in the colocation
 python_chistig$set_random_seed(random_seed)
 
-# # set up the model
-# python_chistig$run(chistig_colocation_params)
+# set up the model
+python_chistig$run(chistig_colocation_params)
 
-# # have agents attend their first sets of venues
-# python_chistig$next_step()
+# have agents attend their first sets of venues
+python_chistig$next_step()
 
 
 # # Settings ---------------------------------------------------------------------
