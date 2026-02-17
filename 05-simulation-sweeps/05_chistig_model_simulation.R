@@ -72,9 +72,9 @@ print(chistig_colocation_params_fname)
 chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
 
 
-# # rename the agent_log file with the specific experiment
-# # chistig_colocation_params$agent.log.file <- paste0(output_subdir, "agent-log_", treatment_run, "_", experiment_name, ".txt") #TODO
-# chistig_colocation_params$agent.log.file <- "agent-log.txt"
+# rename the agent_log file with the specific experiment
+# chistig_colocation_params$agent.log.file <- paste0(output_subdir, "agent-log_", treatment_run, "_", experiment_name, ".txt") #TODO
+chistig_colocation_params$agent.log.file <- "agent_log.txt"
 
 # # set the random seed in the colocation
 # python_chistig$set_random_seed(random_seed)
