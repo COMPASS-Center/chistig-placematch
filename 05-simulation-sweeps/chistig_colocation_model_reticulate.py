@@ -137,7 +137,6 @@ class Model:
     """
 
     def __init__(self, comm: MPI.Intracomm, params: Dict):
-        print(params)
         # create the context to hold the agents and manage cross process
         # synchronization
         self.comm = comm
@@ -161,52 +160,52 @@ class Model:
         #     random.init(int(time.time()))
 
         # initialize Tabular logging 
-        self.agent_logger = logging.TabularLogger(comm, params['agent.log.file'], ['tick', 'agent_id', 'agent_uid_rank', 'ego_id', 'age', 'age_group', 'race_ethnicity', 'hiv_status', 'relationship_status', 'assigned_eego', 'venues_attended', 'apps_used'])
+        # self.agent_logger = logging.TabularLogger(comm, params['agent.log.file'], ['tick', 'agent_id', 'agent_uid_rank', 'ego_id', 'age', 'age_group', 'race_ethnicity', 'hiv_status', 'relationship_status', 'assigned_eego', 'venues_attended', 'apps_used'])
 
         # print(MPI.Comm.Get_size(self.comm))
 
         sego_datafile = params['synthpop.ego.file']
         segodf = pd.read_csv(sego_datafile)
 
-        self.egoidcounter = 1
-        for index, row in segodf.iterrows():
-            sego = Ego(row['numeric_id'], self.rank)
-            sego.egoid = row['egoid']
-            sego.age = row['age']
-            sego.agegroup = row['agegroup']
-            sego.raceethnicity = row['race_ethnicity']
-            sego.democode = row['demographic_bucket']
-            # sego.hivstatus = 0
-            sego.hivstatus = row['hiv_status']
-            sego.relationshipstatus = int(row['any_serious'])
-            sego.eego = row['assigned_empego']
-            sego.venues_attended = row['egoid']
-            sego.apps_used = row['egoid']
-            self.context.add(sego)
-            self.egoidcounter += 1
+        # self.egoidcounter = 1
+        # for index, row in segodf.iterrows():
+        #     sego = Ego(row['numeric_id'], self.rank)
+        #     sego.egoid = row['egoid']
+        #     sego.age = row['age']
+        #     sego.agegroup = row['agegroup']
+        #     sego.raceethnicity = row['race_ethnicity']
+        #     sego.democode = row['demographic_bucket']
+        #     # sego.hivstatus = 0
+        #     sego.hivstatus = row['hiv_status']
+        #     sego.relationshipstatus = int(row['any_serious'])
+        #     sego.eego = row['assigned_empego']
+        #     sego.venues_attended = row['egoid']
+        #     sego.apps_used = row['egoid']
+        #     self.context.add(sego)
+        #     self.egoidcounter += 1
 
 
-        # create an object for empirical egos and their demo buckets
-        self.empop_demo_buckets = {key: value.split('|') for key, value in params['empop.demo.buckets'].items()}
+        # # create an object for empirical egos and their demo buckets
+        # self.empop_demo_buckets = {key: value.split('|') for key, value in params['empop.demo.buckets'].items()}
 
-        # create an object for empirical egos and their venue assignment
-        self.empop_venue_attendance_dict = params['empop.venue.attendance']
+        # # create an object for empirical egos and their venue assignment
+        # self.empop_venue_attendance_dict = params['empop.venue.attendance']
 
-        # create an object for empirical egos and their appslist 
-        self.empop_appuse_dict = params['empop.app.use']
+        # # create an object for empirical egos and their appslist 
+        # self.empop_appuse_dict = params['empop.app.use']
 
-        # create an object for empirical egos and their relationship status within demo buckets   
-        # self.empop_demo_rel_buckets = {outer_key: {inner_key: inner_value.split('|') if isinstance(inner_value, str) else inner_value for inner_key, inner_value in outer_value.items()} for outer_key, outer_value in params['empop.demo.rel.buckets'].items()}
+        # # create an object for empirical egos and their relationship status within demo buckets   
+        # # self.empop_demo_rel_buckets = {outer_key: {inner_key: inner_value.split('|') if isinstance(inner_value, str) else inner_value for inner_key, inner_value in outer_value.items()} for outer_key, outer_value in params['empop.demo.rel.buckets'].items()}
 
-        # create an object that is the venues and their venue type
-        self.venue_types = {key: value.split('|') for key, value in params['venue.types'].items()}
-        self.venues_dating = self.venue_types['bar-club'] + self.venue_types['bathhouse']
-        self.venues_nondating = self.venue_types['arts-theatre'] + self.venue_types['communityorganization'] + self.venue_types['museum-library-attraction-casino'] + self.venue_types['park-neighborhood'] + self.venue_types['restaurant-coffeeshop'] + self.venue_types['school-college-university'] + self.venue_types['shopping'] + self.venue_types['somethingelse'] + self.venue_types['sports-gamingvenue']
+        # # create an object that is the venues and their venue type
+        # self.venue_types = {key: value.split('|') for key, value in params['venue.types'].items()}
+        # self.venues_dating = self.venue_types['bar-club'] + self.venue_types['bathhouse']
+        # self.venues_nondating = self.venue_types['arts-theatre'] + self.venue_types['communityorganization'] + self.venue_types['museum-library-attraction-casino'] + self.venue_types['park-neighborhood'] + self.venue_types['restaurant-coffeeshop'] + self.venue_types['school-college-university'] + self.venue_types['shopping'] + self.venue_types['somethingelse'] + self.venue_types['sports-gamingvenue']
 
-        # create an object that is the apps and their app type
-        self.app_types = {key: value.split('|') for key, value in params['app.types'].items()}
-        self.apps_dating = self.app_types['classifiedandescort'] + self.app_types['hookup-datingapp']
-        self.apps_nondating = self.app_types['socialnetwork']
+        # # create an object that is the apps and their app type
+        # self.app_types = {key: value.split('|') for key, value in params['app.types'].items()}
+        # self.apps_dating = self.app_types['classifiedandescort'] + self.app_types['hookup-datingapp']
+        # self.apps_nondating = self.app_types['socialnetwork']
 
 
 
