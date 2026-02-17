@@ -444,8 +444,12 @@ def set_random_seed(random_seed_str):
 
 
 def create_params(parameters_file):
-    global params 
+    global params
+    print("")
+    print(parameters_file) 
     params = parameters.init_params(parameters_file, '')
+    print(params)
+    print("")
     return params
 
 def hello_world():
