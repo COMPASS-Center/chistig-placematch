@@ -53,10 +53,10 @@ print(abm_params_subdir)
 print(epistats_subdir)
 print(network_fit_subdir)
 
-# # # load python instance
-# # reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
-# # reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
-# reticulate::use_python(yamldata$reticulate.python.instance)
+# # load python instance
+# reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
+# reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
+reticulate::use_python(yamldata$reticulate.python.instance)
 
 
 # #### ChiSTIG model prelim ------------------------------------------------------
