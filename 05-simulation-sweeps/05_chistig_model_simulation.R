@@ -62,8 +62,8 @@ reticulate::use_python(yamldata$reticulate.python.instance)
 #### ChiSTIG model prelim ------------------------------------------------------
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
 print(chistig_colocation_model)
-# chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
-# python_chistig <- import(chistig_colocation_model)
+chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
+python_chistig <- import(chistig_colocation_model)
 
 
 # # # load the necessary chistig data for the chistig colocation model
