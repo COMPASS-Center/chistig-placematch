@@ -82,8 +82,8 @@ python_chistig$set_random_seed(random_seed)
 # set up the model
 python_chistig$run(chistig_colocation_params)
 
-# have agents attend their first sets of venues
-python_chistig$next_step()
+# # have agents attend their first sets of venues
+# python_chistig$next_step()
 
 
 # # Settings ---------------------------------------------------------------------
