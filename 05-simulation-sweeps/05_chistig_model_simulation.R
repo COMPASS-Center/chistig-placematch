@@ -66,10 +66,10 @@ chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
 
-# # # load the necessary chistig data for the chistig colocation model
-# chistig_colocation_params_fname <- paste0(abm_params_subdir, yamldata$colocation.params.fname)
-# print(chistig_colocation_params_fname)
-# chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
+# # load the necessary chistig data for the chistig colocation model
+chistig_colocation_params_fname <- paste0(abm_params_subdir, yamldata$colocation.params.fname)
+print(chistig_colocation_params_fname)
+chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
 
 
 # # rename the agent_log file with the specific experiment
