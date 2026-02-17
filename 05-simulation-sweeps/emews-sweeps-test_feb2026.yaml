@@ -4,6 +4,22 @@ workflow_name: sweeps-test
 walltime :
 queue :
 project :
-nodes : 4
+nodes : 1
 ppn : 4
  
+
+# --model-name, emewscreator argument
+model_name: My Model
+# --workflow-name, sweep argument
+workflow_name: sweep workflow
+
+# Optional HPC Arguments
+walltime : '24:00:00'
+queue : queue
+project : project
+nodes : 4
+ppn : 4
+account: p32153
+mem: 3G
+mail-user: srimer@northwestern.edu
+ntasks-per-node: 28 
