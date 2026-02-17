@@ -160,7 +160,7 @@ class Model:
         #     random.init(int(time.time()))
 
         # initialize Tabular logging 
-        # self.agent_logger = logging.TabularLogger(comm, params['agent.log.file'], ['tick', 'agent_id', 'agent_uid_rank', 'ego_id', 'age', 'age_group', 'race_ethnicity', 'hiv_status', 'relationship_status', 'assigned_eego', 'venues_attended', 'apps_used'])
+        self.agent_logger = logging.TabularLogger(comm, params['agent.log.file'], ['tick', 'agent_id', 'agent_uid_rank', 'ego_id', 'age', 'age_group', 'race_ethnicity', 'hiv_status', 'relationship_status', 'assigned_eego', 'venues_attended', 'apps_used'])
 
         # print(MPI.Comm.Get_size(self.comm))
 
