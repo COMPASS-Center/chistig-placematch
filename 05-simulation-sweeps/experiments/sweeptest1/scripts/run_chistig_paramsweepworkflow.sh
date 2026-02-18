@@ -46,7 +46,8 @@ MODEL_CMD="Rscript"
 # TODO: Define the arguments to the MODEL_CMD. Each argument should be
 # surrounded by quotes and separated by spaces. For example,
 # arg_array=("$EMEWS_ROOT/python/my_model.py" "$PARAM_LINE")
-arg_array=("$EMEWS_ROOT/../../../05_chistig_model_simulation.R" "$PARAM_LINE")
+# arg_array=("$EMEWS_ROOT/../../../05_chistig_model_simulation.R" "$PARAM_LINE")
+arg_array=("/projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_model_simulation.R" "$PARAM_LINE")
 #arg_array=("arg1" "arg2" "arg3")
 
 # Turn bash error checking off. This is
