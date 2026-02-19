@@ -1,0 +1,40 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+*~
+.DS_Store
+
+*.d
+/io.txt
+/.cproject
+/.project
+/.settings
+
+Debug/
+Release/
+
+turbine-output
+
+.ipynb_checkpoints/
+Untitled.ipynb
+.RData
+.Rhistory
+
+*.pyc
+
+pkgIndex.tcl
+experiments/
+*.tic
+
+.vscode
+
