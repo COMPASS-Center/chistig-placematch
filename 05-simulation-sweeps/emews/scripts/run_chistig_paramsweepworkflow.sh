@@ -2,6 +2,8 @@
 
 set -eu
 
+conda activate /projects/p32153/condaenvs/conda-swift
+
 # Check for an optional timeout threshold in seconds. If the duration of the
 # model run as executed below, takes longer that this threshold
 # then the run will be aborted. Note that the "timeout" command
@@ -40,11 +42,15 @@ cd $INSTANCE_DIRECTORY
 
 # TODO: Define the command to run the model. For example,
 # MODEL_CMD="python"
-MODEL_CMD=""
+MODEL_CMD="Rscript"
 # TODO: Define the arguments to the MODEL_CMD. Each argument should be
 # surrounded by quotes and separated by spaces. For example,
 # arg_array=("$EMEWS_ROOT/python/my_model.py" "$PARAM_LINE")
-arg_array=("arg1" "arg2" "arg3")
+# arg_array=("arg1" "arg2" "arg3")
+
+cd $TURBINE_OUTPUT
+
+arg_array=("/projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_model_simulation.R" "$PARAM_LINE")
 
 # Turn bash error checking off. This is
 # required to properly handle the model execution
