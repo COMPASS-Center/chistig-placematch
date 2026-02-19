@@ -2,8 +2,6 @@
 
 set -eu
 
-conda activate /projects/p32153/condaenvs/conda-swift
-
 # Check for an optional timeout threshold in seconds. If the duration of the
 # model run as executed below, takes longer that this threshold
 # then the run will be aborted. Note that the "timeout" command
@@ -39,6 +37,10 @@ EMEWS_ROOT=$2
 # Set INSTANCE_DIRECTORY to that and cd into it.
 INSTANCE_DIRECTORY=$3
 cd $INSTANCE_DIRECTORY
+
+
+conda activate /projects/p32153/condaenvs/conda-swift
+
 
 # TODO: Define the command to run the model. For example,
 # MODEL_CMD="python"
