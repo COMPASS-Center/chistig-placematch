@@ -2,6 +2,7 @@
 
 set -eu
 
+
 # Check for an optional timeout threshold in seconds. If the duration of the
 # model run as executed below, takes longer that this threshold
 # then the run will be aborted. Note that the "timeout" command
@@ -28,6 +29,9 @@ fi
 # Set PARAM_LINE from the first argument to this script
 # PARAM_LINE is the string containing the model parameters for a run.
 PARAM_LINE=$1
+# strip surrounding curly braces if present
+PARAM_LINE="${PARAM_LINE#\{}"
+PARAM_LINE="${PARAM_LINE%\}}"
 
 # Set EMEWS_ROOT to the root directory of the project (i.e. the directory
 # that contains the scripts, swift, etc. directories and files)
@@ -38,13 +42,17 @@ EMEWS_ROOT=$2
 INSTANCE_DIRECTORY=$3
 cd $INSTANCE_DIRECTORY
 
+source $EMEWS_ROOT/scripts/quest.sh
 
-conda activate /projects/p32153/condaenvs/conda-swift
+#conda activate /gpfs/projects/p32153/condaenvs/conda-swift
 
 
 # TODO: Define the command to run the model. For example,
 # MODEL_CMD="python"
 MODEL_CMD="Rscript"
+
+#MODEL_CMD="/gpfs/projects/p32153/condaenvs/conda-swift/bin/Rscript"
+
 # TODO: Define the arguments to the MODEL_CMD. Each argument should be
 # surrounded by quotes and separated by spaces. For example,
 # arg_array=("$EMEWS_ROOT/python/my_model.py" "$PARAM_LINE")

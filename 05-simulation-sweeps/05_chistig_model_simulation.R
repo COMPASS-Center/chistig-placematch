@@ -6,10 +6,14 @@ library(stringr)
 library(reticulate)
 library(argparse)
 
+print(getwd())
+
 all_args <- commandArgs(trailingOnly = TRUE)
 all_args <- all_args[-1]
 param_string <- paste(all_args, collapse = " ")
 args_vector <- strsplit(param_string, " ")[[1]]
+cat("args_vector:", args_vector, "\n")
+print(args_vector)
 
 parser <- ArgumentParser()
 parser$add_argument("--replicate", type="integer")
@@ -17,7 +21,7 @@ parser$add_argument("--simparamsyamlfname", type="character", help="Path to simu
 parser$add_argument("--siminstance", type="integer", help="The instance of the sweep test")
 parser$add_argument("--runno", type="integer")
 
-args <- parser$parse_args()
+args <- parser$parse_args(args_vector)
 
 
 random_seed <- as.integer(args$replicate)
@@ -60,8 +64,12 @@ reticulate::use_python(yamldata$reticulate.python.instance)
 
 
 #### ChiSTIG model prelim ------------------------------------------------------
+reticulate::py_run_string(paste0("import sys; sys.path.insert(0, '", this_dir, "')"))
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
-print(chistig_colocation_model)
+
+
+#chistig_colocation_model <- paste0(this_dir, yamldata$chistig.colocation.model.fname)
+#print(chistig_colocation_model)
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
