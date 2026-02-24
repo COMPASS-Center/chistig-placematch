@@ -26,7 +26,7 @@ parse_args <- function(args) {
 
 params <- parse_args(args_vector)
 
-cat("params:", params, "\n")
+print("params:", params, "\n")
 
 # print(getwd())
 
