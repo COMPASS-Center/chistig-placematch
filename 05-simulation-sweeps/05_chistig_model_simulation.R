@@ -4,13 +4,9 @@ library("EpiModelHIV")
 library(yaml)
 library(stringr)
 library(reticulate)
-library(argparse)
 
 args_vector_raw <- commandArgs(trailingOnly = TRUE)
-cat("args_vector:", args_vector_raw, "\n")
-
 args_vector <- unlist(strsplit(args_vector_raw, "\\s+"))
-print(args_vector)
 
 parse_args <- function(args) {
   result <- list()
@@ -29,28 +25,6 @@ parse_args <- function(args) {
 
 args <- parse_args(args_vector)
 
-
-print(args)
-# print("params:", params, "\n")
-
-# print(getwd())
-
-# all_args <- commandArgs(trailingOnly = TRUE)
-# all_args <- all_args[-1]
-# param_string <- paste(all_args, collapse = " ")
-# args_vector <- strsplit(param_string, " ")[[1]]
-# cat("args_vector:", args_vector, "\n")
-# print(args_vector)
-
-# parser <- ArgumentParser()
-# parser$add_argument("--replicate", type="integer")
-# parser$add_argument("--simparamsyamlfname", type="character", help="Path to simulation parameter file")
-# parser$add_argument("--siminstance", type="integer", help="The instance of the sweep test")
-# parser$add_argument("--runno", type="integer")
-
-# args <- parser$parse_args(args_vector)
-
-
 random_seed <- as.integer(args$replicate)
 sim_instance <- as.integer(args$siminstance)
 yamlfname <- args$simparamsyamlfname
@@ -59,8 +33,8 @@ yamldata <- yaml.load_file(yamlfname)
 print(yamldata)
 
 
-# # set random seed
-# set.seed(random_seed)
+# set random seed
+set.seed(random_seed)
 
 
 # # Define which "Treatment" we're running here
