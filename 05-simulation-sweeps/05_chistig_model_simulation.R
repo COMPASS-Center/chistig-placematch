@@ -27,7 +27,9 @@ parse_args <- function(args) {
   return(result)
 }
 
-params <- parse_args(args_vector)
+args <- parse_args(args_vector)
+
+
 print(params)
 # print("params:", params, "\n")
 
@@ -49,10 +51,13 @@ print(params)
 # args <- parser$parse_args(args_vector)
 
 
-# random_seed <- as.integer(args$replicate)
-# sim_instance <- args$siminstance
-# yamlfname <- args$simparamsyamlfname
-# yamldata <- yaml.load_file(yamlfname)
+random_seed <- as.integer(args$replicate)
+sim_instance <- as.integer(args$siminstance)
+yamlfname <- args$simparamsyamlfname
+yamldata <- yaml.load_file(yamlfname)
+
+print(yamldata)
+
 
 # # set random seed
 # set.seed(random_seed)
