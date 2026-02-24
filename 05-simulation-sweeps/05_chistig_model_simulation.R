@@ -109,8 +109,6 @@ epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname))
 netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname, "_", sim_instance, ".rds"))
 est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname, "_", sim_instance, ".rds"))
 
-
-
 epistats$age.breaks <- c(16, 20, 30)
 epistats$age.limits <- c(16, 30)
 

@@ -59,7 +59,7 @@ cp $CFG_FILE $TURBINE_OUTPUT/cfg.cfg
 
 # TODO: Set MACHINE to your schedule type (e.g. pbs, slurm, cobalt etc.),
 # or empty for an immediate non-queued unscheduled run
-MACHINE=""
+MACHINE="slurm"
 
 if [ -n "$MACHINE" ]; then
   MACHINE="-m $MACHINE"
