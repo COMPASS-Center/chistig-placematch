@@ -6,8 +6,11 @@ library(stringr)
 library(reticulate)
 library(argparse)
 
-args_vector <- commandArgs(trailingOnly = TRUE)
-cat("args_vector:", args_vector, "\n")
+args_vector_raw <- commandArgs(trailingOnly = TRUE)
+cat("args_vector:", args_vector_raw, "\n")
+
+args_vector <- unlist(strsplit(args_vector_raw, "\\s+"))
+print(args_vector)
 
 parse_args <- function(args) {
   result <- list()
