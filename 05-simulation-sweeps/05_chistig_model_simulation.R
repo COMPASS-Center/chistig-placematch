@@ -9,6 +9,24 @@ library(argparse)
 args_vector <- commandArgs(trailingOnly = TRUE)
 cat("args_vector:", args_vector, "\n")
 
+parse_args <- function(args) {
+  result <- list()
+  i <- 1
+  while (i <= length(args)) {
+    if (grepl("^--", args[i])) {
+      key <- sub("^--", "", args[i])
+      result[[key]] <- args[i + 1]
+      i <- i + 2
+    } else {
+      i <- i + 1
+    }
+  }
+  return(result)
+}
+
+params <- parse_args(args_vector)
+
+cat("params:", params, "\n")
 
 # print(getwd())
 
