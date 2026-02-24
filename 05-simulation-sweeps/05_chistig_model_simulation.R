@@ -30,7 +30,7 @@ parse_args <- function(args) {
 args <- parse_args(args_vector)
 
 
-print(params)
+print(args)
 # print("params:", params, "\n")
 
 # print(getwd())
