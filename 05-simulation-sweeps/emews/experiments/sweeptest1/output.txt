@@ -1,0 +1,18 @@
+
+TURBINE-SLURM.SH
+STARTED:            2026-02-24 17:03:54
+No modules loaded
+
++ /projects/p32153/condaenvs/conda-swift/bin/mpiexec --nodes=2 --ntasks=8 --ntasks-per-node=4 /projects/p32153/condaenvs/conda-swift/bin/tclsh8.6 /gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/swift-t-paramsweepworkflow.8BC.tic sweeptest1 swift/cfgs/paramsweepworkflow.cfg -f=/gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/upf.txt
+[mpiexec@qnode0010] match_arg (lib/utils/args.c:166): unrecognized argument nodes
+[mpiexec@qnode0010] HYDU_parse_array (lib/utils/args.c:181): argument matching returned error
+[mpiexec@qnode0010] parse_args (mpiexec/get_parameters.c:315): error parsing input array
+[mpiexec@qnode0010] HYD_uii_mpx_get_parameters (mpiexec/get_parameters.c:48): unable to parse user arguments
+[mpiexec@qnode0010] main (mpiexec/mpiexec.c:49): error parsing parameters
+
+TURBINE-SLURM: MPI launcher returned an error code!
+
+
+MPIEXEC TIME:       0.124
+EXIT CODE:          255
+COMPLETED:          2026-02-24 17:03:54
