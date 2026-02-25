@@ -18,7 +18,7 @@
 
 # TURBINE-SLURM.SH
 
-# Created: 2026-02-24 17:03:41
+# Created: 2026-02-25 13:33:06
 
 
 #SBATCH --output=/gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/output.txt
@@ -72,7 +72,7 @@ then
   source ${TURBINE_HOME}/scripts/turbine-config.sh
 fi
 
-COMMAND="/projects/p32153/condaenvs/conda-swift/bin/tclsh8.6 /gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/swift-t-paramsweepworkflow.8BC.tic sweeptest1 swift/cfgs/paramsweepworkflow.cfg -f=/gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/upf.txt"
+COMMAND="/projects/p32153/condaenvs/conda-swift/bin/tclsh8.6 /gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/swift-t-paramsweepworkflow.LKx.tic sweeptest1 swift/cfgs/paramsweepworkflow.cfg -f=/gpfs/projects/p32153/chistig-placematch/05-simulation-sweeps/emews/experiments/sweeptest1/upf.txt"
 
 # SLURM exports all environment variables to the job by default
 # Evaluate any user turbine -e K=V settings here
@@ -102,7 +102,7 @@ done
 # module swap PrgEnv-intel PrgEnv-gnu
 # module load gcc
 
-TURBINE_LAUNCHER="/projects/p32153/condaenvs/conda-swift/bin/mpiexec"
+TURBINE_LAUNCHER="srun"
 TURBINE_INTERPOSER=""
 
 # BEGIN TURBINE_PRELAUNCH
