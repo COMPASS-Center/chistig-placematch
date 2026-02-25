@@ -80,7 +80,7 @@ CMD_LINE_ARGS="$* -f=$UPF_FILE "
 # TODO: Some slurm machines may expect jobs to be run
 # with srun, rather than mpiexec (for example). If
 # so, uncomment this export.
-export TURBINE_LAUNCHER=srun
+export TURBINE_LAUNCHER="srun --mpi=pmi2"
 
 # TODO: Add any script variables that you want to log as
 # part of the experiment meta data to the USER_VARS array,
