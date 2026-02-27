@@ -5,6 +5,8 @@ library(yaml)
 library(stringr)
 library(reticulate)
 
+options(flush.console = TRUE)
+
 args_vector_raw <- commandArgs(trailingOnly = TRUE)
 args_vector <- unlist(strsplit(args_vector_raw, "\\s+"))
 
@@ -25,6 +27,7 @@ parse_args <- function(args) {
 
 args <- parse_args(args_vector)
 
+run_no <- as.integer(args$runno)
 random_seed <- as.integer(args$replicate)
 sim_instance <- as.integer(args$siminstance)
 yamlfname <- args$simparamsyamlfname
@@ -36,6 +39,7 @@ set.seed(random_seed)
 # Define which "Treatment" we're running here
 treatment <- "venues"
 
+writeLines("script output location is here", paste0("dummy_file_", run_no, ".txt"))
 
 ### 0. Set up python and R environments ###
 # working directory
