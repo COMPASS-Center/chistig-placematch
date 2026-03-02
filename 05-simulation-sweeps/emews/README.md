@@ -31,3 +31,24 @@ The directories are intended to contain the following:
  * `scripts` - any necessary scripts (e.g. scripts to launch a model), excluding
     scripts used to run the workflow.
  * `swift` - swift code
+
+
+
+To actually run a chistig sweep, first do the following:
+1. Create a upf file and put it into the /emews/data/ subdirectory. 
+2. Then create a configuration file in the /swift/cfgs/ subdirectory. 
+NOTE: Make sure you specify the upf file from step1 in this .cfg file.
+3. Finally, choose an experiment/sweep name (e.g. `sweeptest1`).
+
+Then start the conda environment with the following:
+conda activate /projects/p32153/condaenvs/conda-swift
+
+Then cd into the emews subdirectory of the git repo where the runs will occur:
+cd /projects/p32153/chistig-placematch/05-simulation-sweeps/emews/
+
+And run the sweep with the following:
+swift/run_paramsweepworkflow.sh <experiment-name> swift/cfgs/<config-name>.cfg
+
+So for example, the sweeptest1 experiment submission looked like this:
+swift/run_paramsweepworkflow.sh sweeptest3 swift/cfgs/paramsweepworkflow_sweeptest3.cfg
+

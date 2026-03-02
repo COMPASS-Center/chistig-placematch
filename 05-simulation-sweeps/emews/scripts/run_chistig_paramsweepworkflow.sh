@@ -58,7 +58,7 @@ MODEL_CMD="Rscript"
 # arg_array=("$EMEWS_ROOT/python/my_model.py" "$PARAM_LINE")
 # arg_array=("arg1" "arg2" "arg3")
 
-cd $TURBINE_OUTPUT
+#cd $TURBINE_OUTPUT
 
 arg_array=("/projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_model_simulation.R" "$PARAM_LINE")
 
