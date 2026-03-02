@@ -459,6 +459,10 @@ def next_step():
 def read_data(passeddata):
     pass
 
+def test_reticulate():
+    print("chistig and repast4py are working via reticulate!")
+
+
 def update_age_groups(newly21nodesdf):
     print("\nAgents who have aged to a new age group are being updated...")
     if len(newly21nodesdf) > 0:

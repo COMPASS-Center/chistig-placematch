@@ -61,11 +61,26 @@ network_fit_subdir <- paste0(project_dir, yamldata$netest.subdir)
 # print(epistats_subdir)
 # print(network_fit_subdir)
 
+# Show which python reticulate is using
+cat("Python path:", py_config()$python, "\n")
+cat("Python version:", py_config()$version, "\n")
+cat("Virtual env / conda env:", py_config()$virtualenv, "\n")
+
+# Show full config
+py_config()
+
 # # load python instance
 # reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
 # reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
 reticulate::use_python(yamldata$reticulate.python.instance)
 
+# Show which python reticulate is using
+cat("Python path:", py_config()$python, "\n")
+cat("Python version:", py_config()$version, "\n")
+cat("Virtual env / conda env:", py_config()$virtualenv, "\n")
+
+# Show full config
+py_config()
 
 #### ChiSTIG model prelim ------------------------------------------------------
 reticulate::py_run_string(paste0("import sys; sys.path.insert(0, '", this_dir, "')"))
@@ -77,6 +92,8 @@ chistig_colocation_model <- yamldata$chistig.colocation.model.fname
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
 python_chistig <- import(chistig_colocation_model)
 
+testreticulate <- python_chistig$test_reticulate()
+print(testreticulate)
 
 # # load the necessary chistig data for the chistig colocation model
 chistig_colocation_params_fname <- paste0(abm_params_subdir, yamldata$colocation.params.fname)
