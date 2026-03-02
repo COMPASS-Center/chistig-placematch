@@ -60,6 +60,12 @@ MODEL_CMD="Rscript"
 
 #cd $TURBINE_OUTPUT
 
+which python
+which python3
+python --version
+echo $PYTHONPATH
+echo $CONDA_DEFAULT_ENV
+
 arg_array=("/projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_model_simulation.R" "$PARAM_LINE")
 
 # Turn bash error checking off. This is
