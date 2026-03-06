@@ -66,6 +66,44 @@ python --version
 echo $PYTHONPATH
 echo $CONDA_DEFAULT_ENV
 
+#python -c "
+#import sys
+#print('testing ctypes...', flush=True)
+#import ctypes
+#print('ctypes imported ok', flush=True)
+#import builtins
+#original_import = builtins.__import__
+#def tracing_import(name, *args, **kwargs):
+#    print(f'Importing: {name}', flush=True)
+#    return original_import(name, *args, **kwargs)
+#builtins.__import__ = tracing_import
+
+#import chistig_colocation_model_reticulate
+#print('module imported ok', flush=True)
+#"
+
+#python -c "
+#print('testing repast4py...', flush=True)
+#from repast4py import core
+#print('repast4py ok', flush=True)
+#print('testing mpi4py...', flush=True)
+#from mpi4py import MPI
+#print('mpi4py ok', flush=True)
+#"
+
+#python -c "
+#import mpi4py
+#mpi4py.rc.initialize = False
+#mpi4py.rc.finalize = False
+#print('mpi4py rc set', flush=True)
+#from mpi4py import MPI
+#print('mpi4py ok', flush=True)
+#from repast4py import core
+#print('repast4py ok', flush=True)
+#import chistig_colocation_model_reticulate
+#print('module imported ok', flush=True)
+#"
+
 arg_array=("/projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_model_simulation.R" "$PARAM_LINE")
 
 # Turn bash error checking off. This is
@@ -74,7 +112,7 @@ arg_array=("/projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_
 set +e
 echo "Running $MODEL_CMD ${arg_array[@]}"
 
-$TIMEOUT_CMD "$MODEL_CMD" "${arg_array[@]}"
+$TIMEOUT_CMD mpiexec -n 1 -launcher fork "$MODEL_CMD" "${arg_array[@]}"
 
 # $? is the exit status of the most recently executed command (i.e the
 # line above)

@@ -46,6 +46,9 @@ export TURBINE_MPI_THREAD=1
 mkdir -p $TURBINE_OUTPUT
 cp $CFG_FILE $TURBINE_OUTPUT/cfg.cfg
 
+# copy the Rscript being used to the turbine output
+cp /projects/p32153/chistig-placematch/05-simulation-sweeps/05_chistig_model_simulation.R $TURBINE_OUTPUT/ 
+
 # TODO: If R cannot be found, then these will need to be
 # uncommented and set correctly.
 # export R_HOME=/path/to/R
@@ -56,6 +59,8 @@ cp $CFG_FILE $TURBINE_OUTPUT/cfg.cfg
 # will need to be uncommented and set correctly.
 # export PYTHONHOME=/path/to/python
 # export PYTHONPATH=$EMEWS_PROJECT_ROOT/python
+export PYTHONPATH=$EMEWS_PROJECT_ROOT/python:/projects/p32153/software/swift-t/turbine/py
+#export PYTHONPATH=$EMEWS_PROJECT_ROOT/python:$PYTHONPATH
 
 # TODO: Set MACHINE to your schedule type (e.g. pbs, slurm, cobalt etc.),
 # or empty for an immediate non-queued unscheduled run

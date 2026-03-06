@@ -4,6 +4,7 @@ set +u
 conda activate /projects/p32153/condaenvs/conda-swift
 set -u
 
+export PYTHONPATH=$EMEWS_PROJECT_ROOT/python:/projects/p32153/software/swift-t/turbine/py:${PYTHONPATH:-}
 
 which python
 which python3
