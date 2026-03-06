@@ -41,7 +41,8 @@ set.seed(random_seed)
 # Define which "Treatment" we're running here
 treatment <- "venues"
 
-writeLines("script output location is here", paste0("dummy_file_", run_no, ".txt"))
+# Uncomment the following to test that the output is being written to the correct location
+# writeLines("script output location is here", paste0("dummy_file_", run_no, ".txt"))
 
 ### 0. Set up python and R environments ###
 # working directory
@@ -66,182 +67,29 @@ network_fit_subdir <- paste0(project_dir, yamldata$netest.subdir)
 # Show which python reticulate is using
 
 chistig_colocation_model <- yamldata$chistig.colocation.model.fname
-
-print(paste("this_dir:", this_dir))
-print(paste("chistig_colocation_model:", chistig_colocation_model))
 chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
-print(chistig_colocation_model)
-print("")
-
-# Print the full sys.path Python is searching
-reticulate::py_run_string("import sys; print('sys.path:', sys.path)")
-print("")
-
-# Print PYTHONPATH environment variable
-reticulate::py_run_string("import os; print('PYTHONPATH:', os.environ.get('PYTHONPATH', 'NOT SET'))")
-print("")
-
-reticulate::py_run_string(paste0("
-import sys, os
-results = [(p, os.path.exists(os.path.join(p, '", chistig_colocation_model, ".py'))) for p in sys.path]
-for path, found in results:
-    print(f'  {path}: {found}')
-"))
-
-
-print("testing mpi initialization before importing module...")
-reticulate::py_run_string("
-from mpi4py import MPI
-if not MPI.Is_initialized():
-    MPI.Init()
-print('MPI initialized:', MPI.Is_initialized(), flush=True)
-print('MPI rank:', MPI.COMM_WORLD.Get_rank(), flush=True)
-")
-
-#reticulate::py_run_string(paste0("import os; print('Module file exists:', os.path.exists('", this_dir, "/", chistig_colocation_model, ".py'))"))
-
-
-#tryCatch({
-#  reticulate::py_run_string(paste0("import sys; sys.path.insert(0, '", this_dir, "')"))
-#  print("sys.path insert succeeded")
-#}, error = function(e) print(paste("sys.path insert FAILED:", conditionMessage(e))))
-
-#tryCatch({
-#  chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
-#  python_chistig <- import(chistig_colocation_model)
-#  print("import succeeded")
-#}, error = function(e) print(paste("import FAILED:", conditionMessage(e))))
-
-#tryCatch({
-#  testreticulate <- python_chistig$test_reticulate()
-#  print(paste("test_reticulate succeeded:", testreticulate))
-#}, error = function(e) print(paste("test_reticulate FAILED:", conditionMessage(e))))
-
-
-
-#cat("Python path:", py_config()$python, "\n")
-#cat("Python version:", py_config()$version, "\n")
-#cat("Virtual env / conda env:", py_config()$virtualenv, "\n")
-
-# Show full config
-#py_config()
-
-# # load python instance
-# reticulate::use_python("/projects/p32153/condaenvs/conda-chistig/bin/python")
-# reticulate::use_python("/home/parallels/.local/python-projects/venv/bin/python")
-#reticulate::use_python(yamldata$reticulate.python.instance)
-
-# Show which python reticulate is using
-#cat("Python path:", py_config()$python, "\n")
-#cat("Python version:", py_config()$version, "\n")
-#cat("Virtual env / conda env:", py_config()$virtualenv, "\n")
-
-#print("")
-#reticulate::py_run_string("import os; print(os.environ.get('PYTHONPATH', 'NOT SET'))")
-#print("")
-
-# Show full config
-#print(py_config())
-
-#### ChiSTIG model prelim ------------------------------------------------------
-#reticulate::py_run_string(paste0("import sys; sys.path.insert(0, '", this_dir, "')"))
-#chistig_colocation_model <- yamldata$chistig.colocation.model.fname
-
-
-#chistig_colocation_model <- paste0(this_dir, yamldata$chistig.colocation.model.fname)
-#print(chistig_colocation_model)
-
-#tryCatch({
-#  chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
-#  python_chistig <- import(chistig_colocation_model)
-#  print("import succeeded")
-#}, error = function(e) print(paste("import FAILED:", conditionMessage(e))))
-
-#tryCatch({
-#  testreticulate <- python_chistig$test_reticulate()
-#  print(paste("test_reticulate succeeded:", testreticulate))
-#}, error = function(e) print(paste("test_reticulate FAILED:", conditionMessage(e))))
-
-print("about to test the ctypes...")
-
-reticulate::py_run_string("
-import ctypes.util
-original_find = ctypes.util.find_library
-def traced_find(name):
-    result = original_find(name)
-    print(f'ctypes looking for: {name} -> {result}', flush=True)
-    return result
-ctypes.util.find_library = traced_find
-")
 python_chistig <- import(chistig_colocation_model)
-
-
-
-
-#reticulate::py_run_string("
-#import importlib, sys
-
-## Monkey-patch __import__ to trace imports
-#original_import = __builtins__.__import__
-#def tracing_import(name, *args, **kwargs):
-#    print(f'Importing: {name}', flush=True)
-#    return original_import(name, *args, **kwargs)
-#__builtins__.__import__ = tracing_import
-#")
-#reticulate::py_run_string("
-#import ctypes.util
-#original_find = ctypes.util.find_library
-#def traced_find(name):
-#    result = original_find(name)
-#    print(f'ctypes looking for: {name} -> {result}', flush=True)
-#    return result
-#ctypes.util.find_library = traced_find
-#")
-
-
-#chistig_colocation_model <- str_remove(chistig_colocation_model, "\\.py$")
-#python_chistig <- import(chistig_colocation_model)
-
-print("chistig python module imported successfully!")
-
-print(python_chistig$hello_world())
 
 testreticulate <- python_chistig$test_reticulate()
 print(testreticulate)
 
-print("chistig testing reticulate functioning correctly!")
 
+#### ChiSTIG model prelim ------------------------------------------------------
 
-
-# # load the necessary chistig data for the chistig colocation model
+# load the necessary chistig data for the chistig colocation model
 chistig_colocation_params_fname <- paste0(abm_params_subdir, yamldata$colocation.params.fname)
-# print(chistig_colocation_params_fname)
 chistig_colocation_params <- python_chistig$create_params(chistig_colocation_params_fname)
-
-print("params loaded successfully")
-
-# print("")
-# print(chistig_colocation_params$agent.log.file)
-
-# rename the agent_log file with the specific experiment
-# chistig_colocation_params$agent.log.file <- paste0(output_subdir, "agent-log_", treatment_run, "_", experiment_name, ".txt") #TODO
-# chistig_colocation_params$agent.log.file <- "agent_log.txt"
-
-# print("")
-# print(chistig_colocation_params$agent.log.file)
 
 # set the random seed in the colocation
 python_chistig$set_random_seed(random_seed)
 
-print("random seed set successfully")
 # set up the model
 python_chistig$run(chistig_colocation_params)
 
-print("initial model setup carried out successfully")
 # have agents attend their first sets of venues
 python_chistig$next_step()
 
-print("first step of agents carried out successfully")
+
 # Settings ---------------------------------------------------------------------
 source(paste0(utils_subdir, "utils-0_project_settings.R"))
 source(paste0(utils_subdir, "utils-epi_trackers.R"))

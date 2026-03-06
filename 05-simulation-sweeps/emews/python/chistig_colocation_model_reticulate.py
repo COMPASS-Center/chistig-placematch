@@ -4,15 +4,16 @@ import math
 import pandas as pd
 import numpy as np
 from typing import Dict, Tuple
+from dataclasses import dataclass
+import yaml
+import time
 
 import mpi4py
 mpi4py.rc.initialize = False
 mpi4py.rc.finalize = False
 from mpi4py import MPI
-
-from dataclasses import dataclass
-import yaml
-import time
+if not MPI.Is_initialized():
+    MPI.init()
 
 from repast4py import core, schedule, logging, parameters, random 
 from repast4py import context as ctx
@@ -455,14 +456,18 @@ def create_params(parameters_file):
     params = parameters.init_params(parameters_file, '')
     return params
 
+
 def hello_world():
     print("hello")
+
 
 def next_step():
     model.next_step()
 
+
 def read_data(passeddata):
     pass
+
 
 def test_reticulate():
     print("chistig and repast4py are working via reticulate!")
@@ -475,6 +480,7 @@ def update_age_groups(newly21nodesdf):
             model.update_agent_agegroup_from_epimodel(int(row['numeric.id']))
     else:
         pass
+
 
 def update_egos(segosdf):
     print("")
