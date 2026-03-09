@@ -35,8 +35,19 @@ sim_instance <- as.integer(args$siminstance)
 yamlfname <- args$simparamsyamlfname
 yamldata <- yaml.load_file(yamlfname)
 
+print("")
+print("Params:")
+print(paste0("Run number: ", args$runno))
+print(paste0("Replicate: ", args$replicate))
+print(paste0("Simulation instance: ", args$siminstance))
+print("")
+
+
 # set random seed
 set.seed(random_seed)
+print("")
+print(paste0("Random seed set as: ", random_seed))
+print("")
 
 # Define which "Treatment" we're running here
 treatment <- "venues"
@@ -99,6 +110,12 @@ source(paste0(utils_subdir, "utils-targets.R"))
 epistats <- readRDS(paste0(epistats_subdir, yamldata$epistats.fname))
 netstats <- readRDS(paste0(network_fit_subdir, yamldata$netstats.fname, "_", sim_instance, ".rds"))
 est <- readRDS(paste0(network_fit_subdir, yamldata$netest.venues.fname, "_", sim_instance, ".rds"))
+
+print("")
+print(paste0("Epistats file location: ", epistats_subdir, yamldata$epistats.fname))
+print(paste0("Netstats file location: ", network_fit_subdir, yamldata$netstats.fname, "_", sim_instance, ".rds"))
+print(paste0("Network estimation file location: ", network_fit_subdir, yamldata$netest.venues.fname, "_", sim_instance, ".rds"))
+print("")
 
 epistats$age.breaks <- c(16, 20, 30)
 epistats$age.limits <- c(16, 30)
