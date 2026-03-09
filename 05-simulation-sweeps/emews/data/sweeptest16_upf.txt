@@ -1,0 +1,6 @@
+--runno 1 --siminstance 1 --replicate 1 --simparamsyamlfname /projects/p32153/chistig-placematch/05-simulation-sweeps/05-model-simulation.yaml
+--runno 2 --siminstance 1 --replicate 2 --simparamsyamlfname /projects/p32153/chistig-placematch/05-simulation-sweeps/05-model-simulation.yaml
+--runno 3 --siminstance 1 --replicate 3 --simparamsyamlfname /projects/p32153/chistig-placematch/05-simulation-sweeps/05-model-simulation.yaml
+--runno 4 --siminstance 2 --replicate 1 --simparamsyamlfname /projects/p32153/chistig-placematch/05-simulation-sweeps/05-model-simulation.yaml
+--runno 5 --siminstance 2 --replicate 2 --simparamsyamlfname /projects/p32153/chistig-placematch/05-simulation-sweeps/05-model-simulation.yaml
+--runno 6 --siminstance 2 --replicate 3 --simparamsyamlfname /projects/p32153/chistig-placematch/05-simulation-sweeps/05-model-simulation.yaml
