@@ -19,5 +19,5 @@ conda activate /projects/p32153/condaenvs/conda-chistig
 R --version
 
 SECONDS=0
-Rscript /projects/p32153/chistig-placematch/05-simulation-sweeps/post_sweep_processing.R
+Rscript /projects/p32153/chistig-placematch/05-simulation-sweeps/post_sweep_processing1.R
 echo $SECONDS
