@@ -64,8 +64,13 @@ mean_incid2 <- readRDS("/projects/p32153/chistig-placematch/05-simulation-sweeps
 #   }
 # }
 
+print("Starting to analyze mean_incid2 object...")
+
 results_list <- mclapply(1:nrow(mean_incid2), function(j) {
-  
+  if (j %% 1000 == 0) {
+    print(j)
+  }
+
   this_row <- mean_incid2[j, ]
   past_year <- mean_incid2 %>%
     filter(time <= this_row$time & time > (this_row$time - 52)) %>%
@@ -80,7 +85,11 @@ results_list <- mclapply(1:nrow(mean_incid2), function(j) {
   means
 }, mc.cores = num_workers)
 
+print("Finished with creating reesults_list object...")
+
 annual_incid2 <- dplyr::bind_rows(results_list)
+
+print("Finished with creating annual_incid2 object...")
 
 annual_incid2$total.incid.rate.dispar.BW <- annual_incid2$total.incid.B - annual_incid2$total.incid.W
 annual_incid2$total.incid.rate.dispar.HW <- annual_incid2$total.incid.H - annual_incid2$total.incid.W
@@ -89,10 +98,15 @@ annual_incid2$ir100.dispar.BW <- annual_incid2$ir100.B - annual_incid2$ir100.W
 annual_incid2$ir100.dispar.HW <- annual_incid2$ir100.H - annual_incid2$ir100.W
 annual_incid2$ir100.dispar.OW <- annual_incid2$ir100.O - annual_incid2$ir100.W
 
+print("Finished with annual_incid2 analysis...")
 
 annual_incid_final <- annual_incid2 %>% dplyr::filter(time > (max(time)-520)) %>%
   dplyr::select(treat = siminstance, trial = replicate, time, dplyr::everything())
 
+print("Finished creating annual_incid_final...")
 
 write.csv(annual_incid_final, "/projects/p32153/chistig-placematch/05-simulation-sweeps/data_processing/annual_incid.csv")
 
+print("Finished writing annual_incid_final out...")
+
+print("Finished with post processing 2 script.")
