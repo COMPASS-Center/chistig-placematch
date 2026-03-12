@@ -5,6 +5,7 @@ library("future.apply")
 library("EpiModel")
 library("EpiModelHIV")
 library(parallel)
+library(data.table)
 
 options(flush.console = TRUE)
 
@@ -115,63 +116,9 @@ sim_targets <- dplyr::bind_rows(Filter(Negate(is.null), results_list))
 
 print("Done creating the sim_targets object...")
 
-mean_incid <-  sim_targets %>%
-  # mutate(sim = treat) %>%
-  mutate(total.incid.B = incid.B + exo.incid.B,
-         total.incid.H = incid.H + exo.incid.H,
-         total.incid.O = incid.O + exo.incid.O,
-         total.incid.W = incid.W + exo.incid.W,
-         total.incid = incid + exo.incid) %>%
-  group_by(siminstance, replicate, time) %>%
-  summarize(incid.B = mean(incid.B),
-            exo.incid.B = mean(exo.incid.B),
-            total.incid.B = mean(total.incid.B),
-            endo.ir100.B = mean(endo.ir100.B),
-            exo.ir100.B = mean(exo.ir100.B),
-            ir100.B = mean(ir100.B),
+saveRDS(sim_targets, "/projects/p32153/chistig-placematch/05-simulation-sweeps/data_processing/sim_targets_intermediary.rds")
 
-            incid.H = mean(incid.H),
-            exo.incid.H = mean(exo.incid.H),
-            total.incid.H = mean(total.incid.H),
-            endo.ir100.H = mean(endo.ir100.H),
-            exo.ir100.H = mean(exo.ir100.H),
-            ir100.H = mean(ir100.H),
-
-            incid.O = mean(incid.O),
-            exo.incid.O = mean(exo.incid.O),
-            total.incid.O = mean(total.incid.O),
-            endo.ir100.O = mean(endo.ir100.O),
-            exo.ir100.O = mean(exo.ir100.O),
-            ir100.O = mean(ir100.O),
-
-            incid.W = mean(incid.W),
-            exo.incid.W = mean(exo.incid.W),
-            total.incid.W = mean(total.incid.W),
-            endo.ir100.W = mean(endo.ir100.W),
-            exo.ir100.W = mean(exo.ir100.W),
-            ir100.W = mean(ir100.W),
-
-            incid = mean(incid),
-            exo.incid = mean(exo.incid),
-            total.incid = mean(total.incid),
-            endo.ir100 = mean(endo.ir100),
-            exo.ir100 = mean(exo.ir100),
-            ir100 = mean(ir100)
-
-
-
-  ) %>%
-  ungroup()
-
-print("Done creating the mean_incid...")
-
-mean_incid2 <- mean_incid %>% dplyr::filter(time > 2900)
-
-print("Done creating the mean_incid2...")
-
-saveRDS(mean_incid2, "/projects/p32153/chistig-placematch/05-simulation-sweeps/data_processing/mean_incid_intermediary.rds")
-
-print("Done saving the mean_incid2 as an intermediary data object...")
+print("Done saving the sim_targets as an intermediary data object...")
 
 sim_targets_final <- sim_targets %>% dplyr::filter(time > (max(time)-520)) %>%
   dplyr::select(treat = siminstance, trial = replicate, time, dplyr::everything())
@@ -181,3 +128,86 @@ print("Done creating the sim_targets_final object...")
 write.csv(sim_targets_final, "/projects/p32153/chistig-placematch/05-simulation-sweeps/data_processing/sim_targets.csv")
 
 print("Done writing the sim_targets_final object...")
+
+print("Starting mean incidence analysis...")
+
+setDT(sim_targets)
+
+# mean_incid <-  sim_targets %>%
+#   # mutate(sim = treat) %>%
+#   mutate(total.incid.B = incid.B + exo.incid.B,
+#          total.incid.H = incid.H + exo.incid.H,
+#          total.incid.O = incid.O + exo.incid.O,
+#          total.incid.W = incid.W + exo.incid.W,
+#          total.incid = incid + exo.incid) %>%
+#   group_by(siminstance, replicate, time) %>%
+#   summarize(incid.B = mean(incid.B),
+#             exo.incid.B = mean(exo.incid.B),
+#             total.incid.B = mean(total.incid.B),
+#             endo.ir100.B = mean(endo.ir100.B),
+#             exo.ir100.B = mean(exo.ir100.B),
+#             ir100.B = mean(ir100.B),
+
+#             incid.H = mean(incid.H),
+#             exo.incid.H = mean(exo.incid.H),
+#             total.incid.H = mean(total.incid.H),
+#             endo.ir100.H = mean(endo.ir100.H),
+#             exo.ir100.H = mean(exo.ir100.H),
+#             ir100.H = mean(ir100.H),
+
+#             incid.O = mean(incid.O),
+#             exo.incid.O = mean(exo.incid.O),
+#             total.incid.O = mean(total.incid.O),
+#             endo.ir100.O = mean(endo.ir100.O),
+#             exo.ir100.O = mean(exo.ir100.O),
+#             ir100.O = mean(ir100.O),
+
+#             incid.W = mean(incid.W),
+#             exo.incid.W = mean(exo.incid.W),
+#             total.incid.W = mean(total.incid.W),
+#             endo.ir100.W = mean(endo.ir100.W),
+#             exo.ir100.W = mean(exo.ir100.W),
+#             ir100.W = mean(ir100.W),
+
+#             incid = mean(incid),
+#             exo.incid = mean(exo.incid),
+#             total.incid = mean(total.incid),
+#             endo.ir100 = mean(endo.ir100),
+#             exo.ir100 = mean(exo.ir100),
+#             ir100 = mean(ir100)
+
+#   ) %>%
+#   ungroup()
+
+
+mean_incid <- sim_targets[, `:=`(
+  total.incid.B = incid.B + exo.incid.B,
+  total.incid.H = incid.H + exo.incid.H,
+  total.incid.O = incid.O + exo.incid.O,
+  total.incid.W = incid.W + exo.incid.W,
+  total.incid    = incid + exo.incid
+)][, lapply(.SD, mean), 
+   by = .(siminstance, replicate, time),
+   .SDcols = c("incid.B", "exo.incid.B", "total.incid.B",
+               "endo.ir100.B", "exo.ir100.B", "ir100.B",
+               "incid.H", "exo.incid.H", "total.incid.H",
+               "endo.ir100.H", "exo.ir100.H", "ir100.H",
+               "incid.O", "exo.incid.O", "total.incid.O",
+               "endo.ir100.O", "exo.ir100.O", "ir100.O",
+               "incid.W", "exo.incid.W", "total.incid.W",
+               "endo.ir100.W", "exo.ir100.W", "ir100.W",
+               "incid", "exo.incid", "total.incid",
+               "endo.ir100", "exo.ir100", "ir100")]
+
+print("Done creating the mean_incid...")
+
+# mean_incid2 <- mean_incid %>% dplyr::filter(time > 2900)
+mean_incid2 <- mean_incid[time > 2900]
+
+print("Done creating the mean_incid2...")
+
+saveRDS(mean_incid2, "/projects/p32153/chistig-placematch/05-simulation-sweeps/data_processing/mean_incid_intermediary.rds")
+
+print("Done saving the mean_incid2 as an intermediary data object...")
+
+print("Done with script.")
